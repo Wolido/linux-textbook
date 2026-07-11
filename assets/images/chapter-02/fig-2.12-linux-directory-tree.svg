@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" style="max-width:100%;height:auto;">
+  <title>Linux 目录树示意</title>
+  <desc>从根目录 / 向下分支出 /home、/root、/tmp、/etc、/usr、/var、/bin、/dev 等主要目录，并标注各自用途。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#fafafa"/>
+
+  <!-- 连接线 -->
+  <g stroke="#2c3e50" stroke-width="2" fill="none">
+    <!-- 主树干 -->
+    <line x1="400" y1="90" x2="400" y2="130"/>
+    <!-- 第一层横线 -->
+    <line x1="148" y1="130" x2="652" y2="130"/>
+    <!-- 第二层横线 -->
+    <line x1="148" y1="270" x2="652" y2="270"/>
+    <!-- 两层横线之间的竖线 -->
+    <line x1="400" y1="130" x2="400" y2="270"/>
+    <!-- 第一层到目录框 -->
+    <line x1="148" y1="130" x2="148" y2="150"/>
+    <line x1="316" y1="130" x2="316" y2="150"/>
+    <line x1="484" y1="130" x2="484" y2="150"/>
+    <line x1="652" y1="130" x2="652" y2="150"/>
+    <!-- 第二层到目录框 -->
+    <line x1="148" y1="270" x2="148" y2="290"/>
+    <line x1="316" y1="270" x2="316" y2="290"/>
+    <line x1="484" y1="270" x2="484" y2="290"/>
+    <line x1="652" y1="270" x2="652" y2="290"/>
+  </g>
+
+  <!-- 根目录 -->
+  <g>
+    <rect x="368" y="40" width="64" height="50" rx="6" fill="#1565c0"/>
+    <text x="400" y="73" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="600" fill="#ffffff">/</text>
+  </g>
+
+  <!-- 第一层目录 -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ffffff" text-anchor="middle">
+    <rect x="100" y="150" width="96" height="44" rx="6" fill="#1565c0"/>
+    <text x="148" y="178">/home</text>
+
+    <rect x="268" y="150" width="96" height="44" rx="6" fill="#1565c0"/>
+    <text x="316" y="178">/root</text>
+
+    <rect x="436" y="150" width="96" height="44" rx="6" fill="#e67e22"/>
+    <text x="484" y="178">/tmp</text>
+
+    <rect x="604" y="150" width="96" height="44" rx="6" fill="#27ae60"/>
+    <text x="652" y="178">/etc</text>
+  </g>
+
+  <!-- 第二层目录 -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ffffff" text-anchor="middle">
+    <rect x="100" y="290" width="96" height="44" rx="6" fill="#27ae60"/>
+    <text x="148" y="318">/usr</text>
+
+    <rect x="268" y="290" width="96" height="44" rx="6" fill="#e67e22"/>
+    <text x="316" y="318">/var</text>
+
+    <rect x="436" y="290" width="96" height="44" rx="6" fill="#1565c0"/>
+    <text x="484" y="318">/bin</text>
+
+    <rect x="604" y="290" width="96" height="44" rx="6" fill="#1565c0"/>
+    <text x="652" y="318">/dev</text>
+  </g>
+
+  <!-- 用途标签 -->
+  <g font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50" text-anchor="middle">
+    <text x="148" y="226">用户家目录</text>
+    <text x="316" y="226">root 家目录</text>
+    <text x="484" y="226">临时文件</text>
+    <text x="652" y="226">配置文件</text>
+
+    <text x="148" y="366">用户程序</text>
+    <text x="316" y="366">可变数据</text>
+    <text x="484" y="366">基本命令</text>
+    <text x="652" y="366">设备文件</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <g transform="translate(400, 460)">
+    <rect x="-320" y="-30" width="640" height="60" rx="8" fill="#ecf0f1"/>
+    <text x="0" y="-4" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">Linux 的所有文件和目录都从唯一的根目录 / 开始</text>
+    <text x="0" y="22" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">像一棵倒置的树，层层向下生长</text>
+  </g>
+</svg>

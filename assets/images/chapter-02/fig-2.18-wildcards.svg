@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" style="max-width:100%;height:auto;">
+  <title>通配符匹配示意</title>
+  <desc>展示 ls result_*.log 如何在一组文件中匹配出 result_001.log、result_002.log、result_003.log，并补充 ? 和 [...] 通配符的说明。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="480" fill="#fafafa"/>
+
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#2c3e50">通配符匹配示意</text>
+
+  <!-- 左侧文件夹 -->
+  <g transform="translate(60, 80)">
+    <!-- 文件夹外形 -->
+    <path d="M0,30 L80,30 L100,10 L320,10 L320,280 L0,280 Z" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+    <path d="M0,30 L320,30 L320,280 L0,280 Z" fill="#ffffff" stroke="#1565c0" stroke-width="2"/>
+    <text x="160" y="26" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#1565c0">当前目录</text>
+
+    <!-- 文件列表 -->
+    <g transform="translate(30, 70)" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">
+      <!-- result_001.log -->
+      <g>
+        <rect x="-10" y="-8" width="270" height="32" rx="4" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
+        <rect x="0" y="-2" width="22" height="20" rx="2" fill="#90caf9" stroke="#1565c0" stroke-width="1"/>
+        <text x="32" y="14" fill="#2c3e50">result_001.log</text>
+        <text x="245" y="14" text-anchor="middle" fill="#27ae60" font-weight="600">✓</text>
+      </g>
+
+      <!-- result_002.log -->
+      <g transform="translate(0, 44)">
+        <rect x="-10" y="-8" width="270" height="32" rx="4" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
+        <rect x="0" y="-2" width="22" height="20" rx="2" fill="#90caf9" stroke="#1565c0" stroke-width="1"/>
+        <text x="32" y="14" fill="#2c3e50">result_002.log</text>
+        <text x="245" y="14" text-anchor="middle" fill="#27ae60" font-weight="600">✓</text>
+      </g>
+
+      <!-- result_003.log -->
+      <g transform="translate(0, 88)">
+        <rect x="-10" y="-8" width="270" height="32" rx="4" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
+        <rect x="0" y="-2" width="22" height="20" rx="2" fill="#90caf9" stroke="#1565c0" stroke-width="1"/>
+        <text x="32" y="14" fill="#2c3e50">result_003.log</text>
+        <text x="245" y="14" text-anchor="middle" fill="#27ae60" font-weight="600">✓</text>
+      </g>
+
+      <!-- readme.txt -->
+      <g transform="translate(0, 132)">
+        <rect x="0" y="-2" width="22" height="20" rx="2" fill="#e0e0e0" stroke="#9e9e9e" stroke-width="1"/>
+        <text x="32" y="14" fill="#666">readme.txt</text>
+      </g>
+
+      <!-- plot.py -->
+      <g transform="translate(0, 176)">
+        <rect x="0" y="-2" width="22" height="20" rx="2" fill="#e0e0e0" stroke="#9e9e9e" stroke-width="1"/>
+        <text x="32" y="14" fill="#666">plot.py</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="match-arrow" viewBox="0 0 10 6" refX="10" refY="3" markerWidth="9" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,3 L0,6 Z" fill="#27ae60"/>
+    </marker>
+  </defs>
+
+  <!-- 匹配箭头：从终端命令指向三个匹配文件 -->
+  <g stroke="#27ae60" stroke-width="2" fill="none">
+    <line x1="460" y1="214" x2="345" y2="164" marker-end="url(#match-arrow)"/>
+    <line x1="460" y1="214" x2="345" y2="208" marker-end="url(#match-arrow)"/>
+    <line x1="460" y1="214" x2="345" y2="252" marker-end="url(#match-arrow)"/>
+  </g>
+
+  <!-- 右侧终端 -->
+  <g transform="translate(440, 120)">
+    <rect x="0" y="0" width="300" height="120" rx="10" fill="#2d2d2d"/>
+    <path d="M10,0 L290,0 A10,10 0 0 1 300,10 L300,32 L0,32 L0,10 A10,10 0 0 1 10,0 Z" fill="#3a3a3a"/>
+    <circle cx="20" cy="16" r="5" fill="#ff5f56"/>
+    <circle cx="38" cy="16" r="5" fill="#ffbd2e"/>
+    <circle cx="56" cy="16" r="5" fill="#27c93f"/>
+    <text x="150" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cccccc">Terminal</text>
+
+    <text x="16" y="64" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#4caf50">student@debian:~$</text>
+    <text x="16" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#ffffff">ls</text>
+    <text x="44" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#f0c674">result_*.log</text>
+  </g>
+
+  <!-- 通配符说明 -->
+  <g transform="translate(400, 410)">
+    <rect x="-360" y="-40" width="720" height="80" rx="8" fill="#ecf0f1"/>
+    <text x="0" y="-10" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="500" fill="#2c3e50">其他常用通配符</text>
+    <text x="-160" y="22" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#1565c0">?</text>
+    <text x="-110" y="22" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">匹配单个字符</text>
+    <text x="80" y="22" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#1565c0">[...]</text>
+    <text x="155" y="22" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">匹配方括号内任一字符</text>
+  </g>
+</svg>

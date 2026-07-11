@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" style="max-width:100%;height:auto;">
+  <title>通过 SSH 登录远程服务器</title>
+  <desc>左侧本地笔记本终端输入 ssh 命令，中间为带锁的 SSH 加密通道，右侧为远程服务器 gpu-lab01。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="420" fill="#fafafa"/>
+
+  <!-- 左侧：本地笔记本电脑 -->
+  <g transform="translate(275, 190)">
+    <!-- 底座 -->
+    <path d="M-160,105 L160,105 L176,125 L-176,125 Z" fill="#bdc3c7" stroke="#7f8c8d" stroke-width="2"/>
+    <rect x="-162" y="103" width="324" height="8" rx="2" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1"/>
+    <!-- 屏幕外壳 -->
+    <rect x="-170" y="-105" width="340" height="210" rx="6" fill="#2c3e50" stroke="#1a252f" stroke-width="2"/>
+    <!-- 屏幕显示区 -->
+    <rect x="-160" y="-93" width="320" height="180" rx="2" fill="#2d2d2d"/>
+    <!-- 终端标题栏 -->
+    <path d="M-160,-93 L160,-93 A2,2 0 0 1 160,-91 L160,-68 L-160,-68 L-160,-91 A2,2 0 0 1 -160,-93 Z" fill="#3a3a3a"/>
+    <circle cx="-144" cy="-80" r="5" fill="#ff5f56"/>
+    <circle cx="-126" cy="-80" r="5" fill="#ffbd2e"/>
+    <circle cx="-108" cy="-80" r="5" fill="#27c93f"/>
+    <text x="0" y="-76" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cccccc">Terminal</text>
+    <!-- 终端内容 -->
+    <text x="-150" y="-44" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">
+      <tspan fill="#4caf50">student@debian:~$ </tspan>
+      <tspan fill="#ffffff">ssh </tspan>
+      <tspan fill="#81d4fa">student@gpu-lab01</tspan>
+    </text>
+    <text x="-150" y="-16" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#81d4fa">Welcome to Ubuntu 22.04</text>
+    <text x="-150" y="16" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#4caf50">student@gpu-lab01:~$</text>
+    <!-- 摄像头 -->
+    <circle cx="0" cy="-98" r="3" fill="#1a252f"/>
+  </g>
+
+  <!-- 本地标签 -->
+  <text x="275" y="350" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#2c3e50">本地笔记本</text>
+
+  <!-- 中间：SSH 连接箭头 -->
+  <path d="M445,188.5 L445,191.5 L567,191.5 L567,196 L575,190 L567,184 L567,188.5 Z" fill="#1565c0"/>
+
+  <!-- SSH 标签与锁图标 -->
+  <g transform="translate(510, 135)">
+    <!-- 锁身 -->
+    <rect x="-8" y="0" width="16" height="13" rx="2" fill="#e67e22" stroke="#d35400" stroke-width="1.5"/>
+    <!-- 锁梁 -->
+    <path d="M-6,0 L-6,-6 A6,6 0 0 1 6,-6 L6,0" fill="none" stroke="#d35400" stroke-width="2"/>
+    <!-- SSH 文字 -->
+    <text x="0" y="35" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="600" fill="#1565c0">SSH</text>
+  </g>
+
+  <!-- 右侧：远程服务器机柜 -->
+  <g transform="translate(635, 190)">
+    <!-- 机柜主体 -->
+    <rect x="-60" y="-100" width="120" height="200" rx="4" fill="#ecf0f1" stroke="#7f8c8d" stroke-width="2"/>
+    <!-- 顶部面板 -->
+    <rect x="-56" y="-96" width="112" height="24" rx="2" fill="#2c3e50"/>
+    <text x="0" y="-78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#ffffff">SERVER</text>
+    <!-- 服务器单元 -->
+    <rect x="-52" y="-62" width="104" height="28" rx="2" fill="#ffffff" stroke="#bdc3c7" stroke-width="1"/>
+    <circle cx="-38" cy="-48" r="4" fill="#27ae60"/>
+    <rect x="-24" y="-52" width="40" height="4" rx="1" fill="#ecf0f1"/>
+    <rect x="-24" y="-45" width="28" height="4" rx="1" fill="#ecf0f1"/>
+
+    <rect x="-52" y="-26" width="104" height="28" rx="2" fill="#ffffff" stroke="#bdc3c7" stroke-width="1"/>
+    <circle cx="-38" cy="-12" r="4" fill="#27ae60"/>
+    <rect x="-24" y="-16" width="40" height="4" rx="1" fill="#ecf0f1"/>
+    <rect x="-24" y="-9" width="28" height="4" rx="1" fill="#ecf0f1"/>
+
+    <rect x="-52" y="10" width="104" height="28" rx="2" fill="#ffffff" stroke="#bdc3c7" stroke-width="1"/>
+    <circle cx="-38" cy="24" r="4" fill="#27ae60"/>
+    <rect x="-24" y="20" width="40" height="4" rx="1" fill="#ecf0f1"/>
+    <rect x="-24" y="27" width="28" height="4" rx="1" fill="#ecf0f1"/>
+
+    <rect x="-52" y="46" width="104" height="28" rx="2" fill="#ffffff" stroke="#bdc3c7" stroke-width="1"/>
+    <circle cx="-38" cy="60" r="4" fill="#e67e22"/>
+    <rect x="-24" y="56" width="40" height="4" rx="1" fill="#ecf0f1"/>
+    <rect x="-24" y="63" width="28" height="4" rx="1" fill="#ecf0f1"/>
+  </g>
+
+  <!-- 服务器标签 -->
+  <text x="635" y="350" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="600" fill="#2c3e50">gpu-lab01</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="398" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#555">登录后提示符从 student@debian 变为 student@gpu-lab01</text>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" style="max-width:100%;height:auto;">
+  <title>第一次 SSH 登录提示</title>
+  <desc>展示第一次 SSH 登录时出现的指纹提示，以及核对指纹的重要性。</desc>
+
+  <rect width="800" height="560" fill="#fafafa"/>
+
+  <!-- 终端窗口 -->
+  <g transform="translate(60, 60)">
+    <rect x="0" y="0" width="560" height="320" rx="12" fill="#2d2d2d"/>
+    <path d="M12,0 L548,0 A12,12 0 0 1 560,12 L560,40 L0,40 L0,12 A12,12 0 0 1 12,0 Z" fill="#3a3a3a"/>
+    <circle cx="24" cy="20" r="6" fill="#ff5f56"/>
+    <circle cx="46" cy="20" r="6" fill="#ffbd2e"/>
+    <circle cx="68" cy="20" r="6" fill="#27c93f"/>
+    <text x="280" y="25" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cccccc">Terminal</text>
+
+    <!-- 命令 -->
+    <text x="20" y="78" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#4caf50">student@debian:~$</text>
+    <text x="186" y="78" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ffffff">ssh gpu-lab01</text>
+
+    <!-- 输出文本 -->
+    <text x="20" y="116" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">The authenticity of host 'gpu-lab01 (10.0.0.21)' can't be</text>
+    <text x="20" y="142" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">established.</text>
+    <text x="20" y="178" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">ED25519 key fingerprint is SHA256:abc123def456...</text>
+    <text x="20" y="214" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">Are you sure you want to continue connecting</text>
+    <text x="20" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#f0c674">(yes/no/[fingerprint])?</text>
+
+    <!-- 高亮框：fingerprint -->
+    <rect x="14" y="158" width="390" height="28" rx="4" fill="none" stroke="#e67e22" stroke-width="2"/>
+
+    <!-- 高亮框：yes/no/[fingerprint] -->
+    <rect x="14" y="218" width="210" height="28" rx="4" fill="none" stroke="#27ae60" stroke-width="2"/>
+  </g>
+
+  <!-- 右侧提示框 -->
+  <g transform="translate(640, 120)">
+    <rect x="0" y="0" width="130" height="220" rx="10" fill="#fff3e0" stroke="#e67e22" stroke-width="2"/>
+    <text x="65" y="36" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="500" fill="#e65100">安全提示</text>
+    <text x="65" y="74" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">第一次连接要</text>
+    <text x="65" y="96" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">核对指纹</text>
+    <text x="65" y="138" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">如果指纹变了，</text>
+    <text x="65" y="160" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">可能是中间人</text>
+    <text x="65" y="182" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">攻击</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <g transform="translate(60, 420)">
+    <rect x="0" y="0" width="680" height="100" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="1"/>
+    <text x="340" y="40" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#0d47a1">输入 yes 后，host key 会存入 ~/.ssh/known_hosts</text>
+    <text x="340" y="72" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">下次若指纹不一致，SSH 会发出 WARNING 警告</text>
+  </g>
+</svg>

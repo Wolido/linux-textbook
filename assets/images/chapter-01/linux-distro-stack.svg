@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="640" viewBox="0 0 800 640" role="img">
+  <title>Linux 发行版的组成层次</title>
+  <desc>该图以层次结构展示一个 Linux 发行版的组成：从底层的 Linux 内核，到 GNU 工具链、系统库与图形界面、应用软件，再到最上层的包管理器、安装器和默认配置。各层之间通过向上箭头表示依赖与服务关系。</desc>
+  <style>
+    text {
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    }
+    .title {
+      font-size: 22px;
+      font-weight: 700;
+      fill: #333;
+      text-anchor: middle;
+    }
+    .layer-title {
+      font-size: 18px;
+      font-weight: 600;
+      text-anchor: middle;
+    }
+    .layer-desc {
+      font-size: 14px;
+      text-anchor: middle;
+    }
+    .summary {
+      font-size: 16px;
+      font-weight: 600;
+      fill: #0d47a1;
+      text-anchor: middle;
+    }
+    .annotation {
+      font-size: 14px;
+      fill: #666;
+      text-anchor: middle;
+    }
+  </style>
+
+  <!-- Background -->
+  <rect width="800" height="640" fill="#fafafa"/>
+
+  <!-- Title -->
+  <text x="400" y="40" class="title">Linux 发行版的组成层次</text>
+
+  <!-- Layer 5: Package manager + installer + config (top) -->
+  <g transform="translate(400, 105)">
+    <rect x="-250" y="-35" width="500" height="70" rx="10" fill="#90caf9" stroke="#1565c0" stroke-width="1"/>
+    <text x="0" y="-5" class="layer-title" fill="#0d47a1">包管理器 + 安装器 + 默认配置</text>
+    <text x="0" y="17" class="layer-desc" fill="#0d47a1">apt / dnf / pacman · 安装向导 · 主题与预设</text>
+  </g>
+
+  <!-- Layer 4: Applications -->
+  <g transform="translate(400, 199)">
+    <rect x="-250" y="-35" width="500" height="70" rx="10" fill="#64b5f6" stroke="#1565c0" stroke-width="1"/>
+    <text x="0" y="-5" class="layer-title" fill="#0d47a1">应用软件</text>
+    <text x="0" y="17" class="layer-desc" fill="#0d47a1">浏览器 · 办公套件 · 开发工具 · 媒体播放器</text>
+  </g>
+
+  <!-- Layer 3: System Libraries & GUI -->
+  <g transform="translate(400, 293)">
+    <rect x="-250" y="-35" width="500" height="70" rx="10" fill="#42a5f5" stroke="#ffffff" stroke-width="1" stroke-opacity="0.6"/>
+    <text x="0" y="-5" class="layer-title" fill="#fff">系统库与图形界面</text>
+    <text x="0" y="17" class="layer-desc" fill="#fff">X11 / Wayland · GNOME · KDE · 系统服务</text>
+  </g>
+
+  <!-- Layer 2: GNU Toolchain -->
+  <g transform="translate(400, 387)">
+    <rect x="-250" y="-35" width="500" height="70" rx="10" fill="#1565c0" stroke="#ffffff" stroke-width="1" stroke-opacity="0.6"/>
+    <text x="0" y="-5" class="layer-title" fill="#fff">GNU 工具链</text>
+    <text x="0" y="17" class="layer-desc" fill="#e3f2fd">bash · gcc · coreutils · glibc 等基础工具</text>
+  </g>
+
+  <!-- Layer 1: Linux Kernel (bottom) -->
+  <g transform="translate(400, 481)">
+    <rect x="-250" y="-35" width="500" height="70" rx="10" fill="#0d47a1" stroke="#ffffff" stroke-width="1" stroke-opacity="0.6"/>
+    <text x="0" y="-5" class="layer-title" fill="#fff">Linux 内核</text>
+    <text x="0" y="17" class="layer-desc" fill="#e3f2fd">硬件抽象 · 进程管理 · 内存管理 · 设备驱动</text>
+  </g>
+
+  <!-- Upward arrows between layers: single filled paths, 3px shaft + 12px/8px head -->
+  <!-- Layer 4 -> Layer 5 -->
+  <path d="M398.5,160 L401.5,160 L401.5,152 L406,152 L400,144 L394,152 L398.5,152 Z" fill="#0d47a1"/>
+  <!-- Layer 3 -> Layer 4 -->
+  <path d="M398.5,254 L401.5,254 L401.5,246 L406,246 L400,238 L394,246 L398.5,246 Z" fill="#0d47a1"/>
+  <!-- Layer 2 -> Layer 3 -->
+  <path d="M398.5,348 L401.5,348 L401.5,340 L406,340 L400,332 L394,340 L398.5,340 Z" fill="#0d47a1"/>
+  <!-- Layer 1 -> Layer 2 -->
+  <path d="M398.5,442 L401.5,442 L401.5,434 L406,434 L400,426 L394,434 L398.5,434 Z" fill="#0d47a1"/>
+
+  <!-- Service annotation -->
+  <text x="730" y="320" class="annotation" transform="rotate(-90, 730, 320)">向上提供服务</text>
+
+  <!-- Bottom summary -->
+  <g transform="translate(400, 570)">
+    <rect x="-280" y="-22" width="560" height="44" rx="8" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5"/>
+    <text x="0" y="6" class="summary">把这些打包好，就是一个 Linux 发行版</text>
+  </g>
+</svg>

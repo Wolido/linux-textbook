@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" width="800" style="max-width:100%;height:auto;">
+  <title>图3.6 chmod 符号法与数字法</title>
+  <desc>chmod 命令支持符号法和数字法两种权限设置方式，符号法直观表达增删权限，数字法简洁紧凑。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="360" fill="#fafafa"/>
+
+  <!-- 主标题 -->
+  <text x="400" y="55" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="600" fill="#0d47a1">chmod 的两种写法</text>
+
+  <!-- 左侧卡片：符号法 -->
+  <g transform="translate(220, 190)">
+    <rect x="-170" y="-110" width="340" height="220" rx="12" fill="#ffffff" stroke="#1565c0" stroke-width="2"/>
+    <rect x="-170" y="-110" width="340" height="44" rx="12" fill="#1565c0"/>
+    <rect x="-170" y="-78" width="340" height="22" fill="#1565c0"/>
+    <text x="0" y="-82" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="600" fill="#ffffff">符号法</text>
+
+    <text x="0" y="-25" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="700" fill="#0d47a1">chmod u+x file</text>
+
+    <line x1="-130" y1="10" x2="130" y2="10" stroke="#e0e0e0" stroke-width="1"/>
+
+    <text x="0" y="45" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">u = 所有者（user）</text>
+    <text x="0" y="70" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">+x = 增加执行权限</text>
+    <text x="0" y="100" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" font-weight="600" fill="#27ae60">给所有者添加执行权</text>
+  </g>
+
+  <!-- 右侧卡片：数字法 -->
+  <g transform="translate(580, 190)">
+    <rect x="-170" y="-110" width="340" height="220" rx="12" fill="#ffffff" stroke="#e67e22" stroke-width="2"/>
+    <rect x="-170" y="-110" width="340" height="44" rx="12" fill="#e67e22"/>
+    <rect x="-170" y="-78" width="340" height="22" fill="#e67e22"/>
+    <text x="0" y="-82" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="600" fill="#ffffff">数字法</text>
+
+    <text x="0" y="-25" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="700" fill="#e65100">chmod 755 file</text>
+
+    <line x1="-130" y1="10" x2="130" y2="10" stroke="#e0e0e0" stroke-width="1"/>
+
+    <text x="0" y="45" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">7 = rwx（所有者）</text>
+    <text x="0" y="70" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">5 = r-x（组/其他）</text>
+    <text x="0" y="100" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="600" fill="#27ae60">rwxr-xr-x</text>
+  </g>
+</svg>

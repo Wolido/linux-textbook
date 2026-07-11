@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>延伸阅读：XZ Utils 后门事件 - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">封面 · 目录</a></li>
+        <li><a href="preface.html">序言</a></li>
+        <li>
+          <a href="chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的“乐高”</a></li>
+            <li><a href="chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="chapter-03.html#用包管理器安装软件">用包管理器安装软件</a></li>
+            <li><a href="chapter-03.html#从源码或其他方式安装">从源码或其他方式安装</a></li>
+            <li><a href="chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="case-open-source.html">开源：从自由软件运动到人工智能时代</a></li>
+            <li><a href="case-xz-utils.html">XZ Utils 后门事件</a></li>
+            <li><a href="case-unix-wars.html">Unix 战争与 BSD 诉讼案</a></li>
+            <li><a href="case-gnu-hurd.html">GNU Hurd：那个没做成的内核</a></li>
+            <li><a href="case-linux-on-mars.html">Linux 在火星</a></li>
+            <li><a href="case-android-linux.html">Android 是不是 Linux？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+<h1 id="xzutils后门事件">XZ Utils 后门事件</h1>
+<p>XZ Utils 后门事件，是2024年3月发生的一起重大开源软件供应链攻击事件。这起事件涉及Linux 系统中广泛使用的 XZ Utils数据压缩库（liblzma），攻击者试图通过恶意代码插入一个后门，从而允许远程代码执行。</p>
+<h2 id="事件背景">事件背景</h2>
+<p>XZ Utils是一个开源的压缩工具包，用于处理.xz格式的文件，在许多Linux发行版（如Fedora、Debian和Ubuntu）中被默认集成。它由Lasse Collin维护，但近年来维护者减少，导致社区依赖外部贡献者。攻击者利用这一漏洞，使用化名为“Jia Tan”的账号逐步获得维护权限，并在2022年至2024年间提交了多个看似无害的补丁，最终在XZ 5.6.0和5.6.1版本中植入恶意代码。</p>
+<h2 id="后门细节">后门细节</h2>
+<p>后门通过修改liblzma库的构建过程，在编译OpenSSH的sshd守护进程时注入恶意代码。具体来说，它利用一个特定的Ed448椭圆曲线私钥，允许持有该密钥的攻击者绕过SSH认证，实现远程代码执行，而不触发警报。这个后门不会直接影响所有系统，但针对使用受影响XZ版本的Linux服务器（尤其是那些运行OpenSSH的）构成严重威胁。</p>
+<h2 id="后门发现过程">后门发现过程</h2>
+<p>2024年3月28日，微软工程师Andres Freund在测试PostgreSQL时注意到SSH连接性能异常（如延迟增加），进而调查发现XZ Utils 中的异常行为。他公开披露后，迅速引发社区响应。Red Hat等公司立即发布了补丁和警告，避免了更大规模的传播。</p>
+<h2 id="事件影响">事件影响</h2>
+<p>事件整体影响了数百万Linux系统，特别是那些已升级到XZ 5.6.0/5.6.1的发行版。幸运的是，发现者 Andres Freund 及时披露后，Fedora、Debian 等发行版暂缓了受影响版本的发布，并迅速回滚到安全版本，后门未广泛传播。</p>
+<h2 id="后门事件与开源生态关系">后门事件与开源生态关系</h2>
+<p>整体来看，此次后门事件与开源生态密切相关，开源Linux生态高度依赖社区贡献和自动化构建流程，但维护者资源有限是最大隐患。XZ Utils项目由单一开发者Lasse Collin长期维护，近年来贡献者稀少，这为攻击者“Jia Tan”（疑似国家行为者伪装）提供了机会。他通过两年多的小型合法补丁逐步获得信任，最终在2024年2月的5.6.0和5.6.1版本中注入后门。这种“缓慢渗透”模式，正是开源生态的典型弱点：82%的开源组件因维护不善、代码过时或安全缺陷而被视为高风险。在Linux生态中，XZ被用作liblzma库，支持OpenSSH等关键服务，一旦被攻破，可能导致远程代码执行，直接威胁服务器安全。</p>
+<p>但是另一方面，开源生态也恰恰是此次攻击被发现的原因。开源软件的本质是代码公开，这意味着任何人都能下载、剖析和验证它。如果XZ是闭源软件，这种隐蔽攻击可能潜伏更久，甚至造成不可逆转的破坏。开源模式下，代码审查不是单一维护者的负担，而是依赖分布式协作。XZ项目虽维护者少，但事件曝光后，数千开发者在GitHub、邮件列表和论坛上涌入，短短几天内就完成了全面审计和回滚。这体现了开源的“众包审查”优势：不像企业内部审查可能受资源限制，开源社区能调动全球专家，覆盖从初级补丁到复杂构建的全链条。同时，开源的审查让响应速度成为杀手锏，XZ后门在2024年3月29日披露后，Red Hat、Debian等发行版在数小时内发布补丁，回滚到安全版本，避免了大规模传播。这得益于开源的模块化设计：代码公开，修复只需pull request，就能全球同步。相比闭源软件的“内部修复+等待更新”，开源的迭代周期短得多。</p>
+<p>系统和网络攻击，无论开源还是闭源，都无法根除。开源模式的核心魅力恰恰在于它的“透明与协作”——代码公开让审查成为集体智慧的武器。尽管攻击者费尽心机渗透了两年，但正是开源的审查机制让隐患在萌芽阶段就被扼杀。这不仅仅是事件的一个“意外收获”，更是开源生态的内在韧性体现。</p>
+
+    <footer class="page-footer">
+      <div class="prev">
+        <span class="label">上一章</span>
+        <a href="case-open-source.html">开源：从自由软件运动到人工智能时代</a>
+      </div>
+      <div class="next">
+        <span class="label">下一章</span>
+        <a href="case-unix-wars.html">Unix 战争与 BSD 诉讼案</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

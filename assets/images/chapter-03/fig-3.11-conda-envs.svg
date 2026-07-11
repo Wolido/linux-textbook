@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" style="max-width:100%;height:auto;">
+  <title>图3.11 Conda 环境隔离</title>
+  <desc>Conda 允许创建多个相互隔离的环境，每个环境拥有独立的 Python 解释器和库版本，互不干扰。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="420" fill="#fafafa"/>
+
+  <!-- 标题 -->
+  <text x="400" y="45" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="600" fill="#0d47a1">Conda 多环境隔离</text>
+
+  <!-- 环境 1 -->
+  <g transform="translate(220, 200)">
+    <rect x="-120" y="-120" width="240" height="240" rx="12" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+    <path d="M-120,-108 A12,12 0 0,1 -108,-120 H108 A12,12 0 0,1 120,-108 V-80 H-120 Z" fill="#1565c0"/>
+    <text x="0" y="-94" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="600" fill="#ffffff">env1 (py310)</text>
+
+    <rect x="-90" y="-55" width="180" height="55" rx="6" fill="#ffffff" stroke="#42a5f5" stroke-width="1.5"/>
+    <text x="0" y="-28" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#0d47a1">Python 3.10</text>
+    <text x="0" y="-6" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50">/envs/env1/bin/python</text>
+
+    <rect x="-90" y="15" width="180" height="55" rx="6" fill="#ffffff" stroke="#42a5f5" stroke-width="1.5"/>
+    <text x="0" y="42" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#0d47a1">numpy 1.x</text>
+    <text x="0" y="64" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50">v1.24.x</text>
+
+    <rect x="-90" y="85" width="180" height="40" rx="6" fill="#ffffff" stroke="#42a5f5" stroke-width="1.5"/>
+    <text x="0" y="110" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">旧项目依赖</text>
+  </g>
+
+  <!-- 环境 2 -->
+  <g transform="translate(580, 200)">
+    <rect x="-120" y="-120" width="240" height="240" rx="12" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
+    <path d="M-120,-108 A12,12 0 0,1 -108,-120 H108 A12,12 0 0,1 120,-108 V-80 H-120 Z" fill="#27ae60"/>
+    <text x="0" y="-94" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="600" fill="#ffffff">env2 (py311)</text>
+
+    <rect x="-90" y="-55" width="180" height="55" rx="6" fill="#ffffff" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="0" y="-28" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#1b5e20">Python 3.11</text>
+    <text x="0" y="-6" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50">/envs/env2/bin/python</text>
+
+    <rect x="-90" y="15" width="180" height="55" rx="6" fill="#ffffff" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="0" y="42" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#1b5e20">numpy 2.x</text>
+    <text x="0" y="64" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50">v2.0+</text>
+
+    <rect x="-90" y="85" width="180" height="40" rx="6" fill="#ffffff" stroke="#27ae60" stroke-width="1.5"/>
+    <text x="0" y="110" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">新项目依赖</text>
+  </g>
+
+  <!-- 隔离分隔线 -->
+  <line x1="400" y1="100" x2="400" y2="320" stroke="#9e9e9e" stroke-width="2" stroke-dasharray="8 5"/>
+  <text x="400" y="360" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666">两个环境相互隔离，库版本互不冲突</text>
+</svg>

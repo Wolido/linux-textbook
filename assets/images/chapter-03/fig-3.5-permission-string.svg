@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" width="800" style="max-width:100%;height:auto;">
+  <title>图3.5 权限字符串拆解</title>
+  <desc>Linux 文件权限字符串共 10 位，第 1 位表示文件类型，后 9 位分三组表示所有者、所属组和其他用户的读、写、执行权限。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="360" fill="#fafafa"/>
+
+  <!-- 主标题 -->
+  <text x="400" y="50" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="600" fill="#0d47a1">权限字符串拆解</text>
+
+  <!-- 权限字符块 -->
+  <g transform="translate(400, 120)">
+    <!-- 文件类型 -->
+    <rect x="-200" y="-30" width="40" height="60" rx="4" fill="#e3f2fd" stroke="#0d47a1" stroke-width="2"/>
+    <text x="-180" y="6" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="700" fill="#0d47a1">-</text>
+    <text x="-180" y="45" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">文件类型</text>
+
+    <!-- 所有者 -->
+    <rect x="-150" y="-30" width="120" height="60" rx="4" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
+    <text x="-90" y="6" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="700" fill="#27ae60">rw-</text>
+    <text x="-90" y="45" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">所有者权限</text>
+
+    <!-- 所属组 -->
+    <rect x="-20" y="-30" width="120" height="60" rx="4" fill="#fff3e0" stroke="#e67e22" stroke-width="2"/>
+    <text x="40" y="6" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="700" fill="#e67e22">r--</text>
+    <text x="40" y="45" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">所属组权限</text>
+
+    <!-- 其他用户 -->
+    <rect x="110" y="-30" width="120" height="60" rx="4" fill="#ffebee" stroke="#e74c3c" stroke-width="2"/>
+    <text x="170" y="6" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="700" fill="#e74c3c">r--</text>
+    <text x="170" y="45" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">其他用户权限</text>
+  </g>
+
+  <!-- 详细说明 -->
+  <g transform="translate(400, 230)">
+    <text x="-180" y="0" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">- 普通文件</text>
+    <text x="-90" y="0" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">r=读 w=写 x=执行</text>
+    <text x="40" y="0" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">仅可读</text>
+    <text x="170" y="0" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">仅可读</text>
+  </g>
+
+  <!-- 示例命令 -->
+  <g transform="translate(400, 300)">
+    <rect x="-180" y="-22" width="360" height="44" rx="6" fill="#f5f5f5" stroke="#9e9e9e" stroke-width="1" stroke-dasharray="4 3"/>
+    <text x="0" y="-5" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#2c3e50">$ ls -l file.txt</text>
+    <text x="0" y="17" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#2c3e50">-rw-r--r-- 1 alice student ... file.txt</text>
+  </g>
+</svg>

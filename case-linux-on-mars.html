@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>延伸阅读：Linux 在火星 - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">封面 · 目录</a></li>
+        <li><a href="preface.html">序言</a></li>
+        <li>
+          <a href="chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的“乐高”</a></li>
+            <li><a href="chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="chapter-03.html#用包管理器安装软件">用包管理器安装软件</a></li>
+            <li><a href="chapter-03.html#从源码或其他方式安装">从源码或其他方式安装</a></li>
+            <li><a href="chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="case-open-source.html">开源：从自由软件运动到人工智能时代</a></li>
+            <li><a href="case-xz-utils.html">XZ Utils 后门事件</a></li>
+            <li><a href="case-unix-wars.html">Unix 战争与 BSD 诉讼案</a></li>
+            <li><a href="case-gnu-hurd.html">GNU Hurd：那个没做成的内核</a></li>
+            <li><a href="case-linux-on-mars.html">Linux 在火星</a></li>
+            <li><a href="case-android-linux.html">Android 是不是 Linux？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+<h1 id="linux在火星">Linux 在火星</h1>
+<p>第一章正文里讲过一个笑话：火星是宇宙中第二个 Linux 设备数超过 Windows 的行星。这句话当然是调侃，但它背后还真不是瞎说。NASA 的火星任务里，确实有一台运行 Linux 的小型计算机。</p>
+
+<h2 id="笑话背后的真实任务">笑话背后的真实任务</h2>
+<p>2021 年 2 月，NASA 的毅力号（Perseverance）火星车成功降落在火星表面。和它一起去的，还有一架名叫 Ingenuity 的小型直升机。这架直升机是人类历史上第一架在另一个行星上进行动力飞行的航空器。</p>
+<p>在地球上试飞直升机已经不算难事，但火星的环境完全不同：大气密度只有地球的 1% 左右，相当于地球上海拔三万米的高空。传统直升机依赖足够稠密的空气产生升力，在火星上基本行不通。Ingenuity 必须通过极高的旋翼转速、轻量化的机身和精确的自主控制来克服这一难题。</p>
+<p>Ingenuity 的身材很小，起飞重量只有大约 1.8 公斤，旋翼直径约 1.2 米，但它要完成的工作却很了不起：在火星稀薄的大气中自主起飞、悬停、导航和降落。为了完成这些任务，它配备了一套高通骁龙 801 处理器作为飞行控制计算机。</p>
+
+<h2 id="一架运行linux的直升机">一架运行 Linux 的直升机</h2>
+<p>Ingenuity 的飞行控制计算机运行的是 Linux 内核。这让它成为第一台在另一个行星上运行 Linux 的航空器，也可能是那个笑话真正的底气来源。</p>
+<p>除了 Linux 内核，NASA 还在 Ingenuity 上使用了 F´（读作 F Prime）框架。F´ 是 NASA 开源的飞行软件框架，专门用于小型航天器。它的设计目标是模块化、可移植、易于测试。NASA 把 F´ 的源码公开放在 GitHub 上，任何人都可以查看和学习。</p>
+
+<h2 id="航天器为什么选择linux">航天器为什么选择 Linux</h2>
+<p>航天任务对软件的要求非常苛刻：稳定、可控、可定制，出了问题还能自己排查。Linux 恰好满足这些需求。</p>
+<p>首先，Linux 内核经过多年验证，稳定性有口皆碑。它已经在地球上无数服务器、嵌入式设备和科研仪器中跑了数十年，内核社区积累的大量测试和修复经验，可以直接迁移到航天器的开发流程中。</p>
+<p>其次，源码完全开放，NASA 的工程师可以根据任务需求裁剪内核、去掉不需要的模块、精确控制每一处行为。深空任务的计算资源极其有限，每一兆内存和每一赫兹 CPU 都很珍贵。能自己决定内核里保留什么、去掉什么，是商业闭源操作系统很难提供的自由。</p>
+<p>第三，Linux 不需要授权费用，这对预算吃紧的科研项目来说是实实在在的优势。NASA 可以把有限的资金花在硬件、测试和人才培养上，而不是花在软件许可上。</p>
+<p>最后，庞大的开源社区意味着遇到问题时，可以参考的资源和经验非常丰富。从驱动适配到安全补丁，从实时性优化到交叉编译，地球上已经有大量工程师做过类似的工作。Ingenuity 的飞行软件框架 F´ 本身也是 NASA 开源出来的成果，这又反向回馈了开源社区。</p>
+
+<h2 id="不只在火星">不只在火星</h2>
+<p>Linux 在航天领域的应用并不止于 Ingenuity。国际空间站（ISS）上也曾迁移到基于 Linux 的计算机系统，用于处理实验控制和日常计算任务。地面上，大量的科学计算、天文观测、气象模拟和粒子物理实验设备也运行在 Linux 上。</p>
+<p>如果把视野再放宽一点，SpaceX 的龙飞船和猎鹰火箭的飞行控制软件中也使用了 Linux 和大量开源工具；ESA、JAXA 等航天机构的不少任务同样依赖 Linux 生态。开源、可靠、可审计的软件，正在成为现代航天工程的标准配置之一。</p>
+<p>所以，火星笑话听起来轻松，但它揭示了一个事实：Linux 已经不只是服务器机房里的操作系统，它真的飞出了地球。</p>
+
+    <footer class="page-footer">
+      <div class="prev">
+        <span class="label">上一章</span>
+        <a href="case-gnu-hurd.html">GNU Hurd：那个没做成的内核</a>
+      </div>
+      <div class="next">
+        <span class="label">下一章</span>
+        <a href="case-android-linux.html">Android 是不是 Linux？</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

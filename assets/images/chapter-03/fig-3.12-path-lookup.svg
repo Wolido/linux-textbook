@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="800" style="max-width:100%;height:auto;">
+  <title>图3.12 PATH 查找命令流程</title>
+  <desc>Shell 按照 PATH 环境变量中目录的顺序依次查找命令，找到第一个匹配的可执行文件即执行，找不到则提示命令未找到。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="440" fill="#fafafa"/>
+
+  <!-- 标题 -->
+  <text x="400" y="45" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="600" fill="#0d47a1">PATH 查找命令流程</text>
+
+  <!-- PATH 标签 -->
+  <g transform="translate(400, 100)">
+    <rect x="-160" y="-28" width="320" height="56" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+    <text x="0" y="7" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#0d47a1">PATH=/usr/local/bin:/usr/bin:/bin</text>
+  </g>
+
+  <!-- 目录 1 -->
+  <g transform="translate(180, 240)">
+    <rect x="-90" y="-45" width="180" height="90" rx="8" fill="#ffffff" stroke="#1565c0" stroke-width="2"/>
+    <text x="0" y="-18" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#0d47a1">/usr/local/bin</text>
+    <text x="0" y="12" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#999999">...</text>
+    <text x="0" y="34" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">查找 python3</text>
+  </g>
+
+  <!-- 目录 2 -->
+  <g transform="translate(400, 240)">
+    <rect x="-90" y="-45" width="180" height="90" rx="8" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
+    <text x="0" y="-18" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#1b5e20">/usr/bin</text>
+    <text x="0" y="12" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600" fill="#27ae60">python3 ✓</text>
+    <text x="0" y="34" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">找到并执行</text>
+  </g>
+
+  <!-- 目录 3 -->
+  <g transform="translate(620, 240)">
+    <rect x="-90" y="-45" width="180" height="90" rx="8" fill="#ffffff" stroke="#9e9e9e" stroke-width="2"/>
+    <text x="0" y="-18" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#666666">/bin</text>
+    <text x="0" y="12" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#999999">停止查找</text>
+    <text x="0" y="34" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">不再继续</text>
+  </g>
+
+  <!-- 向下箭头 -->
+  <line x1="400" y1="128" x2="400" y2="189" stroke="#0d47a1" stroke-width="2"/>
+  <path d="M399,128 L401,128 L401,189 L404,189 L400,195 L396,189 L399,189 Z" fill="#0d47a1"/>
+  <text x="440" y="155" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">按顺序查找</text>
+
+  <!-- 水平箭头 -->
+  <line x1="270" y1="240" x2="304" y2="240" stroke="#0d47a1" stroke-width="2"/>
+  <path d="M270,239 L270,241 L304,241 L304,244 L310,240 L304,236 L304,239 Z" fill="#0d47a1"/>
+
+  <!-- /bin 为后续目录，找到即停止，不再绘制继续箭头 -->
+
+  <!-- 执行说明 -->
+  <g transform="translate(400, 350)">
+    <rect x="-180" y="-28" width="360" height="56" rx="8" fill="#fff3e0" stroke="#e67e22" stroke-width="2"/>
+    <text x="0" y="7" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#e65100">执行 /usr/bin/python3</text>
+  </g>
+
+  <!-- 底部提示 -->
+  <text x="400" y="420" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666666">若所有目录都找不到，则返回 command not found</text>
+</svg>

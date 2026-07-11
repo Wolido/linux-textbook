@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" style="max-width:100%;height:auto;">
+  <title>图3.13 .bashrc 中的 export 对新终端生效</title>
+  <desc>在 .bashrc 中修改 export PATH 后，已打开的终端不会自动生效，需要 source 或重新打开终端才会应用新环境变量。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="420" fill="#fafafa"/>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arr-down-red" markerWidth="8" markerHeight="8" refX="4" refY="8" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,0 L4,8 Z" fill="#e74c3c"/>
+    </marker>
+    <marker id="arr-down-green" markerWidth="8" markerHeight="8" refX="4" refY="8" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,0 L4,8 Z" fill="#27ae60"/>
+    </marker>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="400" y="45" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="600" fill="#0d47a1">.bashrc 中的 export 何时生效</text>
+
+  <!-- .bashrc 文件 -->
+  <g transform="translate(400, 130)">
+    <rect x="-180" y="-60" width="360" height="120" rx="8" fill="#ffffff" stroke="#1565c0" stroke-width="2"/>
+    <path d="M-180,-52 A8,8 0 0,1 -172,-60 H172 A8,8 0 0,1 180,-52 V-28 H-180 Z" fill="#1565c0"/>
+    <text x="0" y="-40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#ffffff">~/.bashrc</text>
+    <text x="-160" y="-4" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50"># 自定义工具路径</text>
+    <text x="-160" y="24" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#27ae60">export PATH="$HOME/.local/bin:$PATH"</text>
+    <text x="-160" y="50" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50"># 其他配置 ...</text>
+  </g>
+
+  <!-- 旧终端 -->
+  <g transform="translate(230, 310)">
+    <rect x="-110" y="-55" width="220" height="110" rx="10" fill="#2d2d2d" stroke="#e74c3c" stroke-width="2"/>
+    <rect x="-110" y="-55" width="220" height="40" rx="10" fill="#4a4a4a"/>
+    <rect x="-110" y="-15" width="220" height="10" fill="#4a4a4a"/>
+    <circle cx="-90" cy="-35" r="4" fill="#ff5f56"/>
+    <circle cx="-75" cy="-35" r="4" fill="#ffbd2e"/>
+    <circle cx="-60" cy="-35" r="4" fill="#27c93f"/>
+    <text x="0" y="-30" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#f0f0f0">已打开的终端</text>
+    <text x="0" y="10" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#f0f0f0">PATH 未改变</text>
+    <text x="0" y="35" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#ff8a80">需要 source ~/.bashrc</text>
+  </g>
+
+  <!-- 新终端 -->
+  <g transform="translate(570, 310)">
+    <rect x="-110" y="-55" width="220" height="110" rx="10" fill="#2d2d2d" stroke="#27ae60" stroke-width="2"/>
+    <rect x="-110" y="-55" width="220" height="40" rx="10" fill="#4a4a4a"/>
+    <rect x="-110" y="-15" width="220" height="10" fill="#4a4a4a"/>
+    <circle cx="-90" cy="-35" r="4" fill="#ff5f56"/>
+    <circle cx="-75" cy="-35" r="4" fill="#ffbd2e"/>
+    <circle cx="-60" cy="-35" r="4" fill="#27c93f"/>
+    <text x="0" y="-30" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#f0f0f0">新打开的终端</text>
+    <text x="0" y="10" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#f0f0f0">PATH 已包含</text>
+    <text x="0" y="35" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#69f0ae">$HOME/.local/bin</text>
+  </g>
+
+  <!-- 箭头：.bashrc → 旧终端 -->
+  <path d="M280,190 Q180,230 230,255" fill="none" stroke="#e74c3c" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arr-down-red)"/>
+  <text x="210" y="205" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#e74c3c">不自动生效</text>
+
+  <!-- 箭头：.bashrc → 新终端 -->
+  <path d="M520,190 Q620,230 570,255" fill="none" stroke="#27ae60" stroke-width="2" marker-end="url(#arr-down-green)"/>
+  <text x="590" y="205" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#27ae60">自动生效</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="405" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666666">.bashrc 只在启动新 Shell 时被读取，当前终端需手动 source</text>
+</svg>

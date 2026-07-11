@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" style="max-width:100%;height:auto;">
+  <title>图3.9 软件安装方式选择</title>
+  <desc>选择软件安装方式时，优先使用系统包管理器；不满足时再考虑 Conda 或官方二进制；最后才选择源码编译。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="#fafafa"/>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arr-down-blue" markerWidth="8" markerHeight="8" refX="4" refY="8" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,0 L4,8 Z" fill="#0d47a1"/>
+    </marker>
+    <marker id="arr-down-green" markerWidth="8" markerHeight="8" refX="4" refY="8" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,0 L4,8 Z" fill="#27ae60"/>
+    </marker>
+    <marker id="arr-down-red" markerWidth="8" markerHeight="8" refX="4" refY="8" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,0 L4,8 Z" fill="#e74c3c"/>
+    </marker>
+    <marker id="arr-left-blue" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M8,0 L0,4 L8,8 Z" fill="#0d47a1"/>
+    </marker>
+    <marker id="arr-left-red" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M8,0 L0,4 L8,8 Z" fill="#e74c3c"/>
+    </marker>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="400" y="45" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="600" fill="#0d47a1">软件安装方式选择</text>
+
+  <!-- 开始 -->
+  <g transform="translate(400, 100)">
+    <rect x="-80" y="-25" width="160" height="50" rx="25" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+    <text x="0" y="6" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="600" fill="#0d47a1">需要安装软件</text>
+  </g>
+
+  <!-- 决策 1：包管理器 -->
+  <g transform="translate(400, 190)">
+    <polygon points="0,-35 120,0 0,35 -120,0" fill="#fff3e0" stroke="#e67e22" stroke-width="2"/>
+    <text x="0" y="-7" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" font-weight="600" fill="#e65100">包管理器中</text>
+    <text x="0" y="14" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" font-weight="600" fill="#e65100">是否有该软件？</text>
+  </g>
+
+  <!-- 安装 1：包管理器 -->
+  <g transform="translate(180, 280)">
+    <rect x="-85" y="-35" width="170" height="70" rx="8" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#1b5e20">apt/dnf install</text>
+    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">系统包管理器安装</text>
+  </g>
+
+  <!-- 决策 2：Conda/官方二进制 -->
+  <g transform="translate(400, 330)">
+    <polygon points="0,-35 130,0 0,35 -130,0" fill="#fff3e0" stroke="#e67e22" stroke-width="2"/>
+    <text x="0" y="-7" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" font-weight="600" fill="#e65100">Conda / 官方二进制</text>
+    <text x="0" y="14" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" font-weight="600" fill="#e65100">是否满足需求？</text>
+  </g>
+
+  <!-- 安装 2：Conda/官方二进制 -->
+  <g transform="translate(180, 420)">
+    <rect x="-85" y="-35" width="170" height="70" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#0d47a1">conda install</text>
+    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">或下载官方二进制</text>
+  </g>
+
+  <!-- 安装 3：源码编译 -->
+  <g transform="translate(620, 420)">
+    <rect x="-85" y="-35" width="170" height="70" rx="8" fill="#ffebee" stroke="#e74c3c" stroke-width="2"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#c0392b">./configure</text>
+    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">源码编译安装</text>
+  </g>
+
+  <!-- 箭头：开始 → 决策 1 -->
+  <line x1="400" y1="125" x2="400" y2="155" stroke="#0d47a1" stroke-width="2" marker-end="url(#arr-down-blue)"/>
+
+  <!-- 箭头：决策 1 → 是 → 包管理器安装 -->
+  <path d="M280,190 L180,190 L180,245" fill="none" stroke="#27ae60" stroke-width="2" marker-end="url(#arr-down-green)"/>
+  <text x="240" y="180" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#27ae60" font-weight="600">是</text>
+
+  <!-- 箭头：决策 1 → 否 → 决策 2 -->
+  <path d="M520,190 L575,190 L575,330 L530,330" fill="none" stroke="#e74c3c" stroke-width="2" marker-end="url(#arr-left-red)"/>
+  <text x="575" y="180" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#e74c3c" font-weight="600">否</text>
+
+  <!-- 箭头：决策 2 → 是 → Conda 安装 -->
+  <path d="M270,330 L180,330 L180,385" fill="none" stroke="#27ae60" stroke-width="2" marker-end="url(#arr-down-green)"/>
+  <text x="240" y="320" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#27ae60" font-weight="600">是</text>
+
+  <!-- 箭头：决策 2 → 否 → 源码编译 -->
+  <path d="M530,330 L620,330 L620,385" fill="none" stroke="#e74c3c" stroke-width="2" marker-end="url(#arr-down-red)"/>
+  <text x="575" y="320" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#e74c3c" font-weight="600">否</text>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" width="800" style="max-width:100%;height:auto;">
+  <title>命令行 vs 图形界面对比图</title>
+  <desc>左侧展示 GUI 方式需要多次点击鼠标处理多个文件，右侧展示 CLI 方式只需一条命令即可完成批量任务。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="460" fill="#fafafa"/>
+
+  <!-- 左侧 GUI 面板 -->
+  <rect x="40" y="40" width="320" height="380" rx="12" fill="#ffffff" stroke="#ddd" stroke-width="1"/>
+  <text x="200" y="72" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#2c3e50">GUI 方式</text>
+
+  <!-- 文件图标网格 -->
+  <g>
+    <!-- 文件 1 -->
+    <rect x="80" y="110" width="56" height="68" rx="4" fill="#90caf9" stroke="#1565c0" stroke-width="2"/>
+    <text x="108" y="150" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#0d47a1">result</text>
+    <text x="108" y="166" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#0d47a1">001.log</text>
+
+    <!-- 文件 2 -->
+    <rect x="160" y="110" width="56" height="68" rx="4" fill="#90caf9" stroke="#1565c0" stroke-width="2"/>
+    <text x="188" y="150" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#0d47a1">result</text>
+    <text x="188" y="166" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#0d47a1">002.log</text>
+
+    <!-- 文件 3 -->
+    <rect x="240" y="110" width="56" height="68" rx="4" fill="#90caf9" stroke="#1565c0" stroke-width="2"/>
+    <text x="268" y="150" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#0d47a1">result</text>
+    <text x="268" y="166" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#0d47a1">003.log</text>
+
+    <!-- 文件 4 -->
+    <rect x="80" y="200" width="56" height="68" rx="4" fill="#90caf9" stroke="#1565c0" stroke-width="2"/>
+    <text x="108" y="240" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#0d47a1">result</text>
+    <text x="108" y="256" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#0d47a1">004.log</text>
+
+    <!-- 文件 5 -->
+    <rect x="160" y="200" width="56" height="68" rx="4" fill="#90caf9" stroke="#1565c0" stroke-width="2"/>
+    <text x="188" y="240" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#0d47a1">result</text>
+    <text x="188" y="256" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#0d47a1">005.log</text>
+
+    <!-- 省略号文件 -->
+    <rect x="240" y="200" width="56" height="68" rx="4" fill="#e3f2fd" stroke="#90caf9" stroke-width="2" stroke-dasharray="4 2"/>
+    <text x="268" y="240" text-anchor="middle" font-family="ui-monospace, monospace" font-size="16" fill="#1565c0">...</text>
+  </g>
+
+  <!-- 鼠标指针（指向 result_003.log 文件右侧） -->
+  <g transform="translate(300, 144)">
+    <path d="M0,0 L0,24 L8,18 L14,28 L18,26 L12,16 L22,16 Z" fill="#2c3e50"/>
+  </g>
+
+  <!-- 100 次点击标签 -->
+  <g transform="translate(200, 382)">
+    <rect x="-72" y="-18" width="144" height="36" rx="18" fill="#e67e22"/>
+    <text x="0" y="6" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="500" fill="#ffffff">100 次点击</text>
+  </g>
+
+  <!-- 中间 VS 分隔 -->
+  <g transform="translate(400, 230)">
+    <circle cx="0" cy="0" r="32" fill="#ffffff" stroke="#2c3e50" stroke-width="2"/>
+    <text x="0" y="7" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="700" fill="#2c3e50">VS</text>
+  </g>
+
+  <!-- 右侧 CLI 面板 -->
+  <rect x="440" y="40" width="320" height="380" rx="12" fill="#ffffff" stroke="#ddd" stroke-width="1"/>
+  <text x="600" y="72" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#2c3e50">CLI 方式</text>
+
+  <!-- 终端窗口 -->
+  <g transform="translate(450, 100)">
+    <rect x="0" y="0" width="300" height="180" rx="10" fill="#2d2d2d"/>
+    <path d="M10,0 L290,0 A10,10 0 0 1 300,10 L300,32 L0,32 L0,10 A10,10 0 0 1 10,0 Z" fill="#3a3a3a"/>
+    <circle cx="20" cy="16" r="5" fill="#ff5f56"/>
+    <circle cx="38" cy="16" r="5" fill="#ffbd2e"/>
+    <circle cx="56" cy="16" r="5" fill="#27c93f"/>
+    <text x="150" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cccccc">Terminal</text>
+
+    <!-- 终端内容 -->
+    <text x="16" y="62" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#4caf50">student@debian:~$</text>
+    <text x="156" y="62" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#ffffff">grep</text>
+    <text x="16" y="88" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#f0c674">"Final Accuracy"</text>
+    <text x="16" y="114" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#ffffff">result_*.log &gt; summary.txt</text>
+
+    <!-- 输出结果示意 -->
+    <text x="16" y="150" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#9e9e9e">result_001.log: Final Accuracy: 0.92</text>
+  </g>
+
+  <!-- 1 条命令标签 -->
+  <g transform="translate(600, 382)">
+    <rect x="-60" y="-18" width="120" height="36" rx="18" fill="#27ae60"/>
+    <text x="0" y="6" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="500" fill="#ffffff">1 条命令</text>
+  </g>
+</svg>

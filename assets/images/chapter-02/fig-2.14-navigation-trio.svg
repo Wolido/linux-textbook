@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 310" width="800" style="max-width:100%;height:auto;">
+  <title>pwd、ls、cd 配合导航示意</title>
+  <desc>三个命令 pwd、ls、cd 像导航三连问：我在哪？这里有什么？我想去哪？</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="310" fill="#fafafa"/>
+
+  <!-- 上方标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#2c3e50">文件系统导航三连问</text>
+
+  <!-- 三个命令卡片 -->
+  <g>
+    <!-- pwd 卡片 -->
+    <rect x="40" y="70" width="208" height="200" rx="12" fill="#ffffff" stroke="#1565c0" stroke-width="2"/>
+    <rect x="40" y="70" width="208" height="44" rx="12" fill="#1565c0"/>
+    <text x="144" y="100" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="600" fill="#ffffff">pwd</text>
+
+    <!-- 定位图标 -->
+    <g transform="translate(144, 155)">
+      <path d="M0,-22 C-14,-22 -22,-10 -22,2 C-22,18 0,38 0,38 C0,38 22,18 22,2 C22,-10 14,-22 0,-22 Z" fill="none" stroke="#1565c0" stroke-width="3"/>
+      <circle cx="0" cy="2" r="8" fill="#1565c0"/>
+    </g>
+
+    <text x="144" y="230" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#2c3e50">我在哪？</text>
+    <text x="144" y="254" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666">显示当前目录</text>
+
+    <!-- ls 卡片 -->
+    <rect x="296" y="70" width="208" height="200" rx="12" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
+    <rect x="296" y="70" width="208" height="44" rx="12" fill="#27ae60"/>
+    <text x="400" y="100" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="600" fill="#ffffff">ls</text>
+
+    <!-- 列表图标 -->
+    <g transform="translate(400, 166)" fill="#27ae60">
+      <rect x="-36" y="-20" width="72" height="6" rx="3"/>
+      <rect x="-36" y="-6" width="72" height="6" rx="3"/>
+      <rect x="-36" y="8" width="72" height="6" rx="3"/>
+      <rect x="-36" y="22" width="48" height="6" rx="3"/>
+    </g>
+
+    <text x="400" y="230" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#2c3e50">这里有什么？</text>
+    <text x="400" y="254" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666">列出目录内容</text>
+
+    <!-- cd 卡片 -->
+    <rect x="552" y="70" width="208" height="200" rx="12" fill="#ffffff" stroke="#e67e22" stroke-width="2"/>
+    <rect x="552" y="70" width="208" height="44" rx="12" fill="#e67e22"/>
+    <text x="656" y="100" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="600" fill="#ffffff">cd</text>
+
+    <!-- 箭头/门图标 -->
+    <g transform="translate(656, 166)" fill="none" stroke="#e67e22" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-22,-22 L-22,22 L10,22 L10,-22 Z"/>
+      <path d="M-6,0 L18,-12 L18,12 Z" fill="#e67e22"/>
+      <circle cx="-12" cy="4" r="2" fill="#e67e22" stroke="none"/>
+    </g>
+
+    <text x="656" y="230" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#2c3e50">我想去哪？</text>
+    <text x="656" y="254" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666">切换当前目录</text>
+  </g>
+
+  <!-- 横向连接箭头（卡片之间） -->
+  <g stroke="#2c3e50" stroke-width="2" fill="none">
+    <line x1="248" y1="170" x2="296" y2="170"/>
+    <line x1="504" y1="170" x2="552" y2="170"/>
+  </g>
+
+  <!-- 向右箭头 1 -->
+  <path d="M248,168.5 L248,171.5 L288,171.5 L288,176 L296,170 L288,164 L288,168.5 Z" fill="#2c3e50"/>
+  <!-- 向右箭头 2 -->
+  <path d="M504,168.5 L504,171.5 L544,171.5 L544,176 L552,170 L544,164 L544,168.5 Z" fill="#2c3e50"/>
+
+
+</svg>

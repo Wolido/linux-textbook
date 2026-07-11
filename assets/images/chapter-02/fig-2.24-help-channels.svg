@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" style="max-width:100%;height:auto;">
+  <title>三条求助渠道</title>
+  <desc>对比 man、--help、tldr 三种帮助渠道的使用场景与特点。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="420" fill="#fafafa"/>
+
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#2c3e50">三条求助渠道</text>
+
+  <!-- man 卡片 -->
+  <g>
+    <rect x="40" y="70" width="208" height="260" rx="12" fill="#ffffff" stroke="#1565c0" stroke-width="2"/>
+    <rect x="40" y="70" width="208" height="44" rx="12" fill="#1565c0"/>
+    <text x="144" y="100" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="600" fill="#ffffff">man ls</text>
+
+    <!-- 终端内容 -->
+    <g transform="translate(144, 180)">
+      <rect x="-80" y="-50" width="160" height="100" rx="6" fill="#2d2d2d"/>
+      <text x="-70" y="-28" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#ffffff">NAME</text>
+      <text x="-70" y="-10" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#9e9e9e">ls - list directory</text>
+      <text x="-70" y="6" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#ffffff">SYNOPSIS</text>
+      <text x="-70" y="22" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#9e9e9e">ls [OPTION]... [FILE]...</text>
+      <text x="-70" y="42" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#9e9e9e">Manual page ...</text>
+    </g>
+
+    <text x="144" y="261" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" font-weight="500" fill="#2c3e50">完整手册</text>
+    <text x="144" y="285" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666">按 q 退出</text>
+    <text x="144" y="305" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666">按 / 搜索</text>
+  </g>
+
+  <!-- help flag 卡片 -->
+  <g>
+    <rect x="296" y="70" width="208" height="260" rx="12" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
+    <rect x="296" y="70" width="208" height="44" rx="12" fill="#27ae60"/>
+    <text x="400" y="100" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#ffffff">ls --help</text>
+
+    <!-- 参数列表 -->
+    <g transform="translate(400, 180)">
+      <rect x="-80" y="-50" width="160" height="100" rx="6" fill="#f1f8e9" stroke="#c5e1a5" stroke-width="1"/>
+      <text x="-70" y="-30" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#1b5e20">Usage: ls [OPTION]...</text>
+      <text x="-70" y="-10" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#2e7d32">  -a  all files</text>
+      <text x="-70" y="8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#2e7d32">  -l  long format</text>
+      <text x="-70" y="26" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#2e7d32">  -h  human readable</text>
+      <text x="-70" y="44" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#2e7d32">  -R  recursive</text>
+    </g>
+
+    <text x="400" y="261" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" font-weight="500" fill="#2c3e50">快速参数列表</text>
+    <text x="400" y="285" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666">适合查选项</text>
+    <text x="400" y="305" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666">比 man 更短</text>
+  </g>
+
+  <!-- tldr 卡片 -->
+  <g>
+    <rect x="552" y="70" width="208" height="260" rx="12" fill="#ffffff" stroke="#e67e22" stroke-width="2"/>
+    <rect x="552" y="70" width="208" height="44" rx="12" fill="#e67e22"/>
+    <text x="656" y="100" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="600" fill="#ffffff">tldr tar</text>
+
+    <!-- 示例列表 -->
+    <g transform="translate(656, 180)">
+      <rect x="-80" y="-50" width="160" height="100" rx="6" fill="#fff3e0" stroke="#ffcc80" stroke-width="1"/>
+      <text x="-70" y="-30" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#e65100"># tar</text>
+      <text x="-70" y="-10" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#e65100">Archiving utility.</text>
+      <text x="-70" y="10" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#ef6c00">tar -czf out.tar.gz f1 f2</text>
+      <text x="-70" y="30" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#ef6c00">tar -xzf in.tar.gz</text>
+      <text x="-70" y="48" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="9" fill="#ef6c00">tar -tf archive.tar</text>
+    </g>
+
+    <text x="656" y="261" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" font-weight="500" fill="#2c3e50">常见用法示例</text>
+    <text x="656" y="285" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666">适合新手</text>
+    <text x="656" y="305" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666">需安装 tldr</text>
+  </g>
+
+  <!-- 底部推荐 -->
+  <g transform="translate(400, 360)">
+    <rect x="-320" y="-18" width="640" height="42" rx="8" fill="#ecf0f1"/>
+    <text x="0" y="8" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">推荐顺序：先 <tspan font-family="ui-monospace, monospace" font-weight="600">--help</tspan> / <tspan font-family="ui-monospace, monospace" font-weight="600">tldr</tspan>，需要细节再 <tspan font-family="ui-monospace, monospace" font-weight="600">man</tspan></text>
+  </g>
+</svg>

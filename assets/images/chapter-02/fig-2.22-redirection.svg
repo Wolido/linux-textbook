@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" style="max-width:100%;height:auto;">
+  <title>重定向示意</title>
+  <desc>展示输出重定向 &gt;、追加重定向 &gt;&gt; 和输入重定向 &lt; 的区别。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="420" fill="#fafafa"/>
+
+  <!-- 标题 -->
+  <text x="400" y="42" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#2c3e50">重定向示意</text>
+
+  <!-- 卡片 1：输出重定向 &gt; -->
+  <g transform="translate(60, 90)">
+    <rect width="200" height="220" rx="12" fill="#ffffff" stroke="#1565c0" stroke-width="2"/>
+    <rect width="200" height="44" rx="12" fill="#1565c0"/>
+    <text x="100" y="27" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#ffffff">ls &gt; files.txt</text>
+
+    <!-- 命令方块 -->
+    <rect x="40" y="70" width="120" height="44" rx="6" fill="#1565c0"/>
+    <text x="100" y="97" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#ffffff">ls</text>
+
+    <!-- 输出箭头（蓝色）：从 ls 底部指向 files.txt 顶部，保留 4px 间隙 -->
+    <path d="M99,114 L101,114 L101,154 L104,154 L100,160 L96,154 L99,154 Z" fill="#1565c0"/>
+
+    <!-- 目标文件 -->
+    <rect x="48" y="164" width="104" height="36" rx="6" fill="#ffffff" stroke="#1565c0" stroke-width="2"/>
+    <text x="100" y="187" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#1565c0">files.txt</text>
+
+    <text x="100" y="235" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666">覆盖写入</text>
+  </g>
+
+  <!-- 卡片 2：追加重定向 &gt;&gt; -->
+  <g transform="translate(300, 90)">
+    <rect width="200" height="220" rx="12" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
+    <rect width="200" height="44" rx="12" fill="#27ae60"/>
+    <text x="100" y="19" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600" fill="#ffffff">echo "done" &gt;&gt;</text>
+    <text x="100" y="35" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600" fill="#ffffff">notes.txt</text>
+
+    <!-- 命令方块 -->
+    <rect x="30" y="76" width="140" height="38" rx="6" fill="#27ae60"/>
+    <text x="100" y="100" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#ffffff">echo "done"</text>
+
+    <!-- 追加箭头：从 echo 底部指向 notes.txt 顶部，保留 4px 间隙 -->
+    <path d="M99,114 L101,114 L101,154 L104,154 L100,160 L96,154 L99,154 Z" fill="#27ae60"/>
+
+    <!-- 已有内容 + 新增 -->
+    <rect x="48" y="164" width="104" height="36" rx="6" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
+    <text x="100" y="182" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#7f8c8d">notes.txt</text>
+    <text x="100" y="195" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#27ae60">+ done</text>
+
+    <text x="100" y="235" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666">追加到末尾</text>
+  </g>
+
+  <!-- 卡片 3：输入重定向 &lt; -->
+  <g transform="translate(540, 90)">
+    <rect width="200" height="220" rx="12" fill="#ffffff" stroke="#e67e22" stroke-width="2"/>
+    <rect width="200" height="44" rx="12" fill="#e67e22"/>
+    <text x="100" y="26" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600" fill="#ffffff">sort &lt; unsorted.txt</text>
+
+    <!-- 源文件 -->
+    <rect x="48" y="70" width="104" height="36" rx="6" fill="#ffffff" stroke="#e67e22" stroke-width="2"/>
+    <text x="100" y="93" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#e67e22">unsorted.txt</text>
+
+    <!-- 输入箭头（橙色）：从 unsorted.txt 底部指向 sort 顶部，保留 4px 间隙 -->
+    <path d="M99,106 L101,106 L101,148 L104,148 L100,154 L96,148 L99,148 Z" fill="#e67e22"/>
+
+    <!-- 命令方块 -->
+    <rect x="40" y="158" width="120" height="44" rx="6" fill="#e67e22"/>
+    <text x="100" y="185" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#ffffff">sort</text>
+
+    <text x="100" y="235" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666">从文件读入</text>
+  </g>
+
+  <!-- 底部警示 -->
+  <g transform="translate(400, 360)">
+    <rect x="-280" y="-18" width="560" height="40" rx="8" fill="#fadbd8"/>
+    <text x="0" y="8" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#c0392b">注意：&gt; 会覆盖，重要文件先备份</text>
+  </g>
+</svg>

@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="560" viewBox="0 0 800 560" role="img">
+  <title>Debian 系 Linux 发行版家谱</title>
+  <desc>该图以 Debian GNU/Linux 为母版，展示其衍生出的主要发行版 Ubuntu、Kali Linux、Raspberry Pi OS，以及 Ubuntu 进一步衍生出的 Linux Mint、Deepin / 优麒麟、Pop!_OS 等桌面发行版。箭头方向表示“由……衍生而来”。</desc>
+  <style>
+    text {
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    }
+    .title {
+      font-size: 22px;
+      font-weight: 700;
+      fill: #333;
+      text-anchor: middle;
+    }
+    .box-label {
+      font-size: 18px;
+      font-weight: 600;
+      fill: #fff;
+      text-anchor: middle;
+    }
+    .caption {
+      font-size: 14px;
+      fill: #666;
+      text-anchor: middle;
+    }
+    .sub-box-label {
+      font-size: 15px;
+      font-weight: 600;
+      fill: #0d47a1;
+      text-anchor: middle;
+    }
+    .legend-text {
+      font-size: 13px;
+      fill: #666;
+    }
+    .note {
+      font-size: 13px;
+      fill: #888;
+      text-anchor: middle;
+    }
+    .arrow {
+      stroke: #42a5f5;
+      stroke-width: 2;
+    }
+    .arrow-light {
+      stroke: #90caf9;
+      stroke-width: 2;
+    }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L0,6 L6,3 z" fill="#42a5f5"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="560" fill="#fafafa"/>
+
+  <!-- Title -->
+  <text x="400" y="42" class="title">Debian 系 Linux 发行版家谱</text>
+
+  <!-- Debian GNU/Linux (mother distribution) -->
+  <g transform="translate(400, 95)">
+    <rect x="-110" y="-28" width="220" height="56" rx="10" fill="#0d47a1" filter="url(#shadow)"/>
+    <text x="0" y="8" class="box-label">Debian GNU/Linux</text>
+  </g>
+  <text x="400" y="150" class="caption">母版 / 社区驱动</text>
+
+  <!-- Main branch lines from Debian to middle row -->
+  <line x1="400" y1="160" x2="400" y2="185" class="arrow"/>
+  <line x1="230" y1="185" x2="570" y2="185" class="arrow"/>
+  <line x1="230" y1="185" x2="230" y2="205" class="arrow" marker-end="url(#arrow)"/>
+  <line x1="400" y1="185" x2="400" y2="205" class="arrow" marker-end="url(#arrow)"/>
+  <line x1="570" y1="185" x2="570" y2="205" class="arrow" marker-end="url(#arrow)"/>
+
+  <!-- Ubuntu (major derivative) -->
+  <g transform="translate(230, 240)">
+    <rect x="-82" y="-28" width="164" height="56" rx="10" fill="#1565c0" filter="url(#shadow)"/>
+    <text x="0" y="8" class="box-label">Ubuntu</text>
+  </g>
+  <text x="230" y="290" class="caption">主要桌面 / 服务器衍生版</text>
+
+  <!-- Kali Linux -->
+  <g transform="translate(400, 240)">
+    <rect x="-82" y="-28" width="164" height="56" rx="10" fill="#1565c0" filter="url(#shadow)"/>
+    <text x="0" y="8" class="box-label">Kali Linux</text>
+  </g>
+  <text x="400" y="290" class="caption">安全审计 / 渗透测试</text>
+
+  <!-- Raspberry Pi OS -->
+  <g transform="translate(570, 240)">
+    <rect x="-82" y="-28" width="164" height="56" rx="10" fill="#1565c0" filter="url(#shadow)"/>
+    <text x="0" y="8" class="box-label">Raspberry Pi OS</text>
+  </g>
+  <text x="570" y="290" class="caption">树莓派硬件专用</text>
+
+  <!-- Branch lines from Ubuntu to desktop derivatives -->
+  <line x1="230" y1="305" x2="230" y2="320" class="arrow-light"/>
+  <line x1="130" y1="320" x2="340" y2="320" class="arrow-light"/>
+  <line x1="130" y1="320" x2="130" y2="340" class="arrow-light" marker-end="url(#arrow)"/>
+  <line x1="235" y1="320" x2="235" y2="340" class="arrow-light" marker-end="url(#arrow)"/>
+  <line x1="340" y1="320" x2="340" y2="340" class="arrow-light" marker-end="url(#arrow)"/>
+
+  <!-- Linux Mint -->
+  <g transform="translate(130, 375)">
+    <rect x="-50" y="-25" width="100" height="50" rx="8" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="0" y="7" class="sub-box-label">Linux Mint</text>
+  </g>
+
+  <!-- Deepin / 优麒麟 -->
+  <g transform="translate(235, 375)">
+    <rect x="-50" y="-25" width="100" height="50" rx="8" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="0" y="-1" class="sub-box-label">Deepin /</text>
+    <text x="0" y="17" class="sub-box-label">优麒麟</text>
+  </g>
+
+  <!-- Pop!_OS -->
+  <g transform="translate(340, 375)">
+    <rect x="-50" y="-25" width="100" height="50" rx="8" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="0" y="7" class="sub-box-label">Pop!_OS</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(100, 490)">
+    <rect x="0" y="-9" width="18" height="18" rx="4" fill="#0d47a1"/>
+    <text x="26" y="5" class="legend-text">母版 / 核心</text>
+
+    <rect x="130" y="-9" width="18" height="18" rx="4" fill="#1565c0"/>
+    <text x="156" y="5" class="legend-text">主要衍生版</text>
+
+    <rect x="260" y="-9" width="18" height="18" rx="4" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1"/>
+    <text x="286" y="5" class="legend-text">桌面衍生版</text>
+
+    <line x1="395" y1="0" x2="420" y2="0" class="arrow" marker-end="url(#arrow)"/>
+    <text x="428" y="5" class="legend-text">衍生关系</text>
+  </g>
+
+  <!-- Note -->
+  <text x="400" y="535" class="note">注：箭头方向表示“由……衍生而来”</text>
+</svg>

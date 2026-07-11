@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" style="max-width:100%;height:auto;">
+  <title>公钥/私钥认证过程</title>
+  <desc>展示 SSH 密钥对：私钥留在本地，公钥上传到服务器，登录时私钥签名、公钥验证。</desc>
+
+  <rect width="800" height="520" fill="#fafafa"/>
+
+  <!-- 左侧：本地电脑 -->
+  <g transform="translate(60, 120)">
+    <rect x="0" y="0" width="200" height="240" rx="10" fill="#1565c0"/>
+    <text x="100" y="36" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#ffffff">本地电脑</text>
+
+    <!-- 私钥卡片 -->
+    <rect x="20" y="60" width="160" height="70" rx="6" fill="#e74c3c"/>
+    <text x="100" y="84" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" font-weight="500" fill="#ffffff">私钥</text>
+    <text x="100" y="106" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#ffffff">~/.ssh/id_ed25519</text>
+    <text x="100" y="120" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="10" fill="#ffebee">不要泄露</text>
+
+    <!-- 公钥卡片 -->
+    <rect x="20" y="150" width="160" height="70" rx="6" fill="#27ae60"/>
+    <text x="100" y="174" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" font-weight="500" fill="#ffffff">公钥</text>
+    <text x="100" y="196" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#ffffff">~/.ssh/id_ed25519.pub</text>
+    <text x="100" y="210" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="10" fill="#e8f5e9">可分发</text>
+  </g>
+
+  <!-- 中间：公钥上传箭头 -->
+  <g>
+    <line x1="280" y1="240" x2="500" y2="240" stroke="#27ae60" stroke-width="3"/>
+    <path d="M496,236 L504,240 L496,244 L496,242 L492,242 L492,238 L496,238 Z" fill="#27ae60"/>
+    <text x="390" y="226" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#27ae60">公钥上传</text>
+    <text x="390" y="268" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#2c3e50">~/.ssh/authorized_keys</text>
+  </g>
+
+  <!-- 私钥不外传提示 -->
+  <g transform="translate(80, 390)">
+    <rect x="0" y="0" width="160" height="40" rx="6" fill="#ffebee" stroke="#e74c3c" stroke-width="1"/>
+    <text x="80" y="25" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#c0392b">私钥绝不离开本地</text>
+  </g>
+
+  <!-- 右侧：远程服务器 -->
+  <g transform="translate(540, 120)">
+    <rect x="0" y="0" width="200" height="240" rx="10" fill="#2c3e50"/>
+    <text x="100" y="36" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#ffffff">远程服务器</text>
+
+    <!-- 服务器机柜线条 -->
+    <rect x="40" y="60" width="120" height="20" rx="2" fill="#ecf0f1"/>
+    <circle cx="54" cy="70" r="4" fill="#27ae60"/>
+    <circle cx="70" cy="70" r="4" fill="#ffbd2e"/>
+    <circle cx="86" cy="70" r="4" fill="#e74c3c"/>
+    <rect x="40" y="92" width="120" height="20" rx="2" fill="#ecf0f1"/>
+    <rect x="40" y="124" width="120" height="20" rx="2" fill="#ecf0f1"/>
+    <rect x="40" y="156" width="120" height="20" rx="2" fill="#ecf0f1"/>
+
+    <!-- 锁图标 -->
+    <g transform="translate(100, 210)">
+      <rect x="-10" y="-2" width="20" height="16" rx="3" fill="#27ae60"/>
+      <path d="M-6,-8 C-6,-14 6,-14 6,-8 L6,-2 L-6,-2 Z" fill="none" stroke="#27ae60" stroke-width="3"/>
+    </g>
+  </g>
+
+  <!-- 登录流程 -->
+  <g transform="translate(80, 460)">
+    <rect x="0" y="0" width="640" height="44" rx="6" fill="#ecf0f1"/>
+    <text x="320" y="28" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">登录流程：本地用私钥签名 → 服务器用公钥验证 → 验证通过允许登录</text>
+  </g>
+</svg>

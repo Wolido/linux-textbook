@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第三章 用户、权限与软件安装 - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">封面 · 目录</a></li>
+        <li><a href="preface.html">序言</a></li>
+        <li>
+          <a href="chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的“乐高”</a></li>
+            <li><a href="chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="chapter-03.html#用包管理器安装软件">用包管理器安装软件</a></li>
+            <li><a href="chapter-03.html#从源码或其他方式安装">从源码或其他方式安装</a></li>
+            <li><a href="chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="case-open-source.html">开源：从自由软件运动到人工智能时代</a></li>
+            <li><a href="case-xz-utils.html">XZ Utils 后门事件</a></li>
+            <li><a href="case-unix-wars.html">Unix 战争与 BSD 诉讼案</a></li>
+            <li><a href="case-gnu-hurd.html">GNU Hurd：那个没做成的内核</a></li>
+            <li><a href="case-linux-on-mars.html">Linux 在火星</a></li>
+            <li><a href="case-android-linux.html">Android 是不是 Linux？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1 id="第三章用户权限与软件安装">第三章 用户、权限与软件安装</h1>
+
+    <h2 id="为什么Linux要区分用户">为什么 Linux 要区分用户？</h2>
+
+    <h3 id="多用户一台机器上的多个工作台">多用户：一台机器上的多个工作台</h3>
+
+    <p>设想你们课题组的实验室服务器：机箱只有一台，但每天早上醒来，常有五六个人同时登录上去跑 Python 脚本、训练模型、分析 XRD 数据。如果这台机器像家里的 Windows 电脑一样，只有一个“桌面”，大家的工作混在同一堆文件夹里，会是什么场面？A 同学的模型权重可能覆盖了 B 同学的计算结果，C 同学一不小心把系统配置改了，所有人都得跟着重新配环境。更糟糕的是，如果大家用的是同一个账号登录，你连“这是谁干的”都查不到。Linux 从设计之初就考虑到了这种场景——它生来就是多用户操作系统，每个人在系统里都有自己的独立空间。</p>
+
+    <p>在 Linux 上，“用户”不是一个人名，而是系统分配的一个身份。登录时你输入用户名和密码，系统就在 <code>/home/用户名</code> 下为你准备好一个家目录。你的 Python 虚拟环境、SSH 密钥、论文草稿，都会按你的身份各归其位。比如学生 Alice 登录后，她的文件、脚本、配置文件都放在 <code>/home/alice</code>；Bob 的文件则放在 <code>/home/bob</code>。默认情况下，Alice 看不到 Bob 的文件，Bob 也动不了 Alice 的东西。系统内部有一张简单的名单，叫做 <code>/etc/passwd</code>，用来记住每个用户的用户名、编号和对应的家目录位置，你只需要知道它存在即可，暂时不用打开研究。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.1-multi-user-isolation.svg" alt="多用户家目录隔离示意">
+      <figcaption>图3.1 多用户家目录隔离</figcaption>
+    </figure>
+
+    <p>这张图的意思是：同一台物理服务器上，每个用户都像拥有一张自己的工作台，桌板下面是各自的抽屉。大家在同一间屋子里干活，但各自的文件彼此隔离。这样一来，Alice 训练模型时产生的临时文件再多，也不会把 Bob 的家目录搞乱；Bob 想删除自己目录下的旧数据，也不会误删 Alice 跑了一个月的模拟结果。Alice 和 Bob 只是教材里常用的化名，换成你自己的学号或课题组账号，逻辑完全相同。</p>
+
+    <p>多用户设计还有一层保护作用：普通用户只能在自己的家目录里随意操作，对系统关键目录的修改受到限制。即使某个人手滑执行了危险命令，影响范围通常也只限于自己的账户，不会立刻把整个服务器拖垮。实验室、云主机、HPC 集群之所以都采用多用户 Linux 环境，正是因为它既能让大家共享硬件资源，又能把每个人的工作边界划清楚。下一节，我们会看到这种边界具体是怎么实现的。</p>
+
+    <h3 id="用户与组个人身份与团队身份">用户与组：个人身份与团队身份</h3>
+
+    <p>上一节说，Linux 给每个人分配了一个独立的家目录。但现实中，实验室里很多事情是“一群人一起做”的：一个课题组要共享 XRD 原始数据，一个 AI 小组要共用预训练权重，一个材料模拟团队要轮流读写同一个计算结果目录。如果每个人只能管自己的文件，那协作就会变得很别扭。于是 Linux 除了“用户”之外，还引入了另一个概念：组（group）。</p>
+
+    <p>你可以把“用户”理解为个人身份证，把“组”理解为团队工牌。一个人可以同时属于多个组，就像你在学校里可能既是某个课题组的学生，又是某个学生社团的成员。系统在创建用户时，通常会顺便创建一个和用户同名的组，作为这个人的“默认组”。比如创建用户 <code>alice</code> 时，系统会同时创建一个叫 <code>alice</code> 的组，并把 <code>alice</code> 放进这个组里。之后管理员还可以把她加进别的组，比如 <code>lab_group</code>。</p>
+
+    <p>组的存在主要是为了方便批量管理权限。假设课题组有一个共享目录 <code>/data/lab_shared</code>，导师希望组内所有人都能读写里面的文件，但组外的人只能看不能改。如果不用组，导师得一条一条给每个人单独授权；有了组之后，只要给 <code>lab_group</code> 这个组授权一次，组内所有成员自动生效。这就像给实验室共享冰箱贴了一张“本室成员可使用”的告示，而不是给每个人单独发钥匙。</p>
+
+    <p>想知道自己当前的用户身份和所属组，可以用 <code>id</code> 命令：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">id</span>
+<span class="output">uid=1000(student) gid=1000(student) groups=1000(student),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),100(users)</span></code></pre>
+
+    <p>输出里的 <code>uid</code> 是你的用户 ID，系统内部用它识别你；<code>gid</code> 是你的主组 ID；<code>groups</code> 后面列出的是你加入的所有组。数字是系统在内部使用的编号，括号里是便于人类阅读的名字。大多数普通用户的 UID 从 1000 开始分配，系统保留 0 到 999 给各种系统账号。</p>
+
+    <p>注意，组本身并不“存放”文件，它只是权限判断时的一个标签。真正决定谁能读、谁能写的，是文件上的权限设置里“组用户”这一栏。下一节讲文件权限时，你会看到组的具体用法。现在只需要记住：用户解决“我是谁”，组解决“我属于哪个团队”。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.2-user-and-group.svg" alt="用户与组关系示意">
+      <figcaption>图3.2 用户与组关系</figcaption>
+    </figure>
+
+    <h3 id="当前用户是谁whoami与who">当前用户是谁？<code>whoami</code> 与 <code>who</code></h3>
+
+    <p>在多用户服务器上操作，第一件应该做的事不是敲命令，而是确认“我现在是谁”。听起来有点奇怪，但实际情况是：你可能先用 <code>student</code> 登录，又用 <code>su</code> 切换到另一个账号，或者借用了别人的电脑登录了 SSH。如果不先确认身份，很可能把文件建在别人家里，或者以为自己有权限结果处处碰壁。</p>
+
+    <p>最简单的身份查询命令是 <code>whoami</code>，它会直接打印当前 Shell 的用户名：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">whoami</span>
+<span class="output">student</span></code></pre>
+
+    <p>这个名字就是你当前在系统里的“面具”。它跟你的登录名通常一致，但如果你用 <code>su</code> 切换过用户，或者通过某些工具进入了另一个身份，<code>whoami</code> 会显示当前实际生效的用户。</p>
+
+    <p>另一个相关命令是 <code>who</code>，它显示当前有哪些用户登录了这台机器：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">who</span>
+<span class="output">student  pts/0        2026-07-10 09:15 (10.0.0.24)</span>
+<span class="output">alice    pts/1        2026-07-10 09:42 (10.0.0.31)</span>
+<span class="output">bob      pts/2        2026-07-10 10:03 (10.0.0.18)</span></code></pre>
+
+    <p>第一列是用户名，第二列是终端名（<code>pts/0</code> 表示伪终端，常见于 SSH），第三、四列是登录时间，括号里是来源 IP。在实验室服务器上，这条命令能让你快速判断现在是不是高峰期：如果七八个人同时在线，你可能就要考虑把大训练任务放到晚上再跑，避免抢资源。</p>
+
+    <p>养成一个小习惯：每次登录服务器后，先扫一眼提示符和 <code>whoami</code> 的输出，确认自己的身份和主机名。提示符里的 <code>student@debian</code> 已经告诉了你一半信息，<code>whoami</code> 再把另一半补上。这个习惯看起来微不足道，但能在关键时刻避免“手滑删了别人的数据”这种尴尬场面。</p>
+
+    <h2 id="root与sudo">root 与 sudo</h2>
+
+    <h3 id="root系统的管理员账户">root：系统的管理员账户</h3>
+
+    <p>在多用户系统里，普通用户只能管理自己的一亩三分地。但总得有人负责维护整个系统：安装软件、创建账号、修改网络配置、清理日志。Linux 里承担这个角色的是一个特殊的用户，叫做 root。它是系统的管理员账户，地位比普通用户高得多。</p>
+
+    <p>root 的 UID 固定为 0，这是系统识别它的方式。普通用户的 UID 通常从 1000 开始，而 root 从 0 开始，数字本身就说明了优先级。root 几乎可以对系统做任何事情：读取任何文件、修改任何配置、终止任何进程、删除任何目录。这种能力在维护系统时是必需的，但也是危险的。</p>
+
+    <p>为什么危险？因为 root 没有“ undo 键”。普通用户如果误删了 <code>/usr</code> 目录下的文件，系统会拒绝；root 却会被放行，然后整个系统可能就起不来了。实验室里有一种常见悲剧：新手为了省事，一直用 root 登录桌面，结果某天手滑把系统目录改了，全组人半天没法跑实验。所以一个基本共识是：日常操作应该使用普通用户，只有真正需要管理权限时才切换到 root。</p>
+
+    <p>怎么判断当前是不是 root？最直观的方法就是看提示符。普通用户的 Bash 提示符通常以 <code>$</code> 结尾：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span></code></pre>
+
+    <p>而 root 的提示符以 <code>#</code> 结尾：</p>
+
+<pre><code class="terminal"><span class="prompt">root@debian:~#</span></code></pre>
+
+    <p>这个 <code>#</code> 就像汽车仪表盘上的红色警示灯，提醒你现在握着的是最高权限。很多教材和安全规范都会强调：看到 <code>#</code> 就要格外小心。它不是装饰，而是系统在用一种很朴素的方式告诉你——“现在你说的话都算数”。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.3-root-prompt.svg" alt="普通用户与 root 提示符对比">
+      <figcaption>图3.3 普通用户与 root 提示符对比</figcaption>
+    </figure>
+
+    <h3 id="sudo临时借一把钥匙"><code>sudo</code>：临时借一把钥匙</h3>
+
+    <p>每次需要用 root 权限时都切换到 root 账户，既麻烦又不安全。于是 Linux 提供了一个更优雅的工具：<code>sudo</code>。它的名字来自 “superuser do”，意思是“以超级用户身份执行”。更准确地说，<code>sudo</code> 允许普通用户在某一条命令上临时获得更高的权限，而不需要把自己变成 root。</p>
+
+    <p>想象你住在实验室宿舍楼，每个人都有自己的房间钥匙。楼管室（root）里有一把万能钥匙，可以开所有门。你不会整天把万能钥匙挂在脖子上，但偶尔需要进公共设备间时，可以找宿管阿姨登记，借来用一下，用完马上归还。<code>sudo</code> 就是这个“借钥匙”的过程。</p>
+
+    <p>最常见的 <code>sudo</code> 场景是安装软件。普通用户不能直接往系统目录里写文件，但更新软件包列表又需要这个权限，于是我们用：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt update</span>
+<span class="output">[sudo] password for student:</span>
+<span class="output">Hit:1 http://deb.debian.org/debian bookworm InRelease</span>
+<span class="output">...</span></code></pre>
+
+    <p>执行时，系统会要求你输入当前用户的密码，而不是 root 密码。输入正确后，这条命令就以 root 权限运行。注意，<code>sudo</code> 只提升“这一条命令”的权限，命令结束后你又变回普通用户。这比你一直待在 root 账户里安全得多。</p>
+
+    <p>另外，<code>sudo</code> 有缓存机制。第一次输入密码后，默认几分钟内再次使用 <code>sudo</code> 不需要重复输入。这个时间可以配置，但初学者只要知道“不是每次都要输密码”就够了。更重要的一点是：不要给每一条命令都加 <code>sudo</code>。只有那些确实因为权限不足而失败的命令才需要借这把钥匙。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.4-sudo-elevation.svg" alt="sudo 临时权限提升示意">
+      <figcaption>图3.4 sudo 临时权限提升</figcaption>
+    </figure>
+
+    <h3 id="sudo的安全习惯"><code>sudo</code> 的安全习惯</h3>
+
+    <p><code>sudo</code> 很方便，但方便的东西往往也容易被滥用。初学者常犯的一个错误是：一旦某个命令报错“Permission denied”，立刻条件反射般地再敲一遍 <code>sudo</code>。这就像是发现门打不开，不先看是不是走错了门，直接拿斧子劈。权限错误有时确实需要 <code>sudo</code>，但更多时候是因为你当前的目录不对、文件不属于你、或者命令本身写错了。</p>
+
+    <p>第一个好习惯是：只给真正需要的命令加 <code>sudo</code>。查看自己的文件不需要 <code>sudo</code>，编辑自己写的脚本不需要 <code>sudo</code>，运行 Python 程序也不需要 <code>sudo</code>。如果你发现做什么事都要 <code>sudo</code>，那多半是当前路径或文件所有权出了问题，应该停下来检查，而不是一路 <code>sudo</code> 下去。</p>
+
+    <p>第二个好习惯是：永远不要盲目复制粘贴带有 <code>sudo rm -rf /</code> 的命令。这条命令的意思是“以 root 权限递归强制删除根目录下的一切”，执行后系统会被清空。网络上偶尔有人开玩笑地贴出这条命令，但它一点都不好笑。类似地，任何带 <code>rm -rf</code> 的命令都要先看清楚路径，确认它删的不是你家目录或者系统目录。</p>
+
+    <p>下面是一个简单的好坏对比：</p>
+
+<pre><code class="terminal"><span class="comment"># 好习惯：先确认是否需要 sudo</span>
+<span class="prompt">student@debian:~$</span> <span class="command">ls -l /etc/os-release</span>
+<span class="output">-rw-r--r-- 1 root root  [...]  /etc/os-release</span>
+<span class="prompt">student@debian:~$</span> <span class="command">cat /etc/os-release</span>
+<span class="output">PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"</span>
+
+<span class="comment"># 坏习惯：无事也加 sudo</span>
+<span class="prompt">student@debian:~$</span> <span class="command">sudo cat /etc/os-release</span>
+<span class="output">PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"</span></code></pre>
+
+    <p>两个命令结果一样，但前者没有暴露 root 权限。养成这种“能不用就不用”的意识，比记住任何具体命令都重要。Linux 的安全模型并不复杂：普通用户做普通事，root 做系统事，<code>sudo</code> 作为两者之间的临时桥梁。桥是用的时候搭的，不是一直架在那里的。</p>
+
+    <h2 id="文件权限与chmod">文件权限与 chmod</h2>
+
+    <h3 id="读懂权限字符串lsl的输出">读懂权限字符串：<code>ls -l</code> 的输出</h3>
+
+    <p>现在你已经知道 Linux 用“用户”和“组”来区分身份，那么系统怎么决定谁能读、谁能写、谁能运行一个文件呢？答案就在每个文件附带的权限信息里。权限是 Linux 安全模型的具体实现，理解了它，你就能解释很多日常现象：为什么这个脚本双击没反应？为什么那个目录进不去？为什么我能复制别人的文件却不能删除？</p>
+
+    <p>查看权限最常用的命令是 <code>ls -l</code>。在你的家目录下新建一个文件，然后执行它：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">touch report.txt</span>
+<span class="prompt">student@debian:~$</span> <span class="command">ls -l report.txt</span>
+<span class="output">-rw-r--r-- 1 student student 0 Jul 10 11:20 report.txt</span></code></pre>
+
+    <p>输出最前面的 <code>-rw-r--r--</code> 就是权限字符串，一共 10 个字符。第一个字符表示文件类型：<code>-</code> 是普通文件，<code>d</code> 是目录，<code>l</code> 是符号链接。后面 9 个字符分成三组，每组 3 个，分别对应：</p>
+
+    <ul>
+      <li>文件所有者（owner）</li>
+      <li>所属组（group）</li>
+      <li>其他用户（others）</li>
+    </ul>
+
+    <p>每组里的三个位置依次是读（r）、写（w）、执行（x）。如果某个位置是 <code>-</code>，就表示没有这项权限。所以 <code>-rw-r--r--</code> 的意思是：这是一个普通文件，所有者可读可写，组用户和其他用户都只能读，不能写，也不能执行。</p>
+
+    <p>对于目录来说，<code>x</code> 的含义要特别注意：它不是“运行目录”，而是“能否进入目录”。如果一个目录的权限是 <code>drwxr-xr-x</code>，说明所有人都能进入；如果变成了 <code>drwxr-xr--</code>，其他用户就进不去了。这个细节初学者很容易忽略，导致明明给了读权限却打不开目录。</p>
+
+    <p>想看目录本身的权限而不是它里面的内容，需要加 <code>-d</code> 选项：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ls -ld /data/lab_shared</span>
+<span class="output">drwxrwxr-x 2 alice lab_group 4096 Jul 10 11:25 /data/lab_shared</span></code></pre>
+
+    <p>这里 <code>drwxrwxr-x</code> 表示：这是一个目录，所有者和组用户都能读、写、进入，其他用户只能读和进入，不能写。这种权限设置很适合课题组共享目录：组内成员可以自由上传和修改数据，组外人员只能浏览。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.5-permission-string.svg" alt="权限字符串拆解示意">
+      <figcaption>图3.5 权限字符串拆解</figcaption>
+    </figure>
+
+    <h3 id="修改权限chmod的数字法与符号法">修改权限：<code>chmod</code> 的数字法与符号法</h3>
+
+    <p>权限字符串不仅能看，还能改。修改权限的命令是 <code>chmod</code>，它有两种写法：符号法和数字法。符号法更直观，数字法更紧凑，建议你都学会，用的时候看哪个顺手。</p>
+
+    <p>符号法直接用 <code>u</code>、<code>g</code>、<code>o</code>、<code>a</code> 代表用户、组、其他、全部，用 <code>+</code>、<code>-</code>、<code>=</code> 代表增加、移除、设定权限。比如：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">chmod u+x train.sh</span></code></pre>
+
+    <p>意思是：给文件所有者（u）增加（+）执行（x）权限。改完后 <code>ls -l train.sh</code> 会看到权限从 <code>-rw-r--r--</code> 变成 <code>-rwxr--r--</code>。</p>
+
+    <p>再比如：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">chmod go-w dataset.csv</span></code></pre>
+
+    <p>意思是：把组用户（g）和其他用户（o）的写权限（w）移除（-）。这在你想分享一个数据文件给别人看、但不想让他们修改时很有用。</p>
+
+    <p>数字法把每组权限用一个 0 到 7 的数字表示：<code>r=4</code>，<code>w=2</code>，<code>x=1</code>，没有就是 0。三个数字分别对应所有者、组、其他。所以 <code>chmod 755 file</code> 表示所有者可读可写可执行（4+2+1=7），组用户和其他用户可读可执行（4+0+1=5）。</p>
+
+    <p>初学者记住下面几个常见组合就够了：</p>
+
+    <ul>
+      <li><code>644</code>：普通文本文件，自己可读写，别人只读。</li>
+      <li><code>755</code>：脚本或程序，自己可读写执行，别人可读可执行。</li>
+      <li><code>775</code>：共享目录或协作文件，组内成员可读写执行，其他人只读可执行。</li>
+    </ul>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">chmod 755 train.sh</span>
+<span class="prompt">student@debian:~$</span> <span class="command">ls -l train.sh</span>
+<span class="output">-rwxr-xr-x 1 student student 312 Jul 10 11:30 train.sh</span></code></pre>
+
+    <p>修改完权限后，养成用 <code>ls -l</code> 再确认一下的习惯。符号法和数字法没有绝对的优劣，前者适合“微调某个权限”，后者适合“直接设定一整套权限”。随着用得多了，你会自然形成偏好。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.6-chmod-methods.svg" alt="chmod 符号法与数字法示意">
+      <figcaption>图3.6 chmod 符号法与数字法</figcaption>
+    </figure>
+
+    <h3 id="所有权chown与共享目录">所有权：<code>chown</code> 与共享目录</h3>
+
+    <p>权限字符串解决了“谁能做什么”的问题，但它还依赖另一个前提：系统得知道谁是文件的所有者、文件属于哪个组。修改这两个属性的命令分别是 <code>chown</code>（change owner）和 <code>chgrp</code>（change group）。通常只有 root 或者文件当前所有者才能修改所有权。</p>
+
+    <p>设想这样一个场景：Alice 把一个重要的数据集 <code>dataset.csv</code> 上传到课题组共享目录，但她离职或者账号要清理，导师希望把文件转给 Bob 管理。作为管理员，可以用 <code>chown</code> 修改所有者：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo chown bob:lab_group dataset.csv</span>
+<span class="prompt">student@debian:~$</span> <span class="command">ls -l dataset.csv</span>
+<span class="output">-rw-r--r-- 1 bob lab_group 2.4M Jul 10 11:35 dataset.csv</span></code></pre>
+
+    <p>这里 <code>bob:lab_group</code> 同时指定了新的所有者和新的组，冒号前面是用户，后面是组。执行后，文件所有者变成了 Bob，组还是 <code>lab_group</code>，组内成员仍然可以按组权限访问。</p>
+
+    <p>共享目录的维护常常需要 <code>chown</code> 配合 <code>chmod</code> 一起使用。一个典型的课题组目录可能这样配置：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ls -ld /data/lab_shared</span>
+<span class="output">drwxrwsr-x 5 alice lab_group 4096 Jul 10 11:40 /data/lab_shared</span></code></pre>
+
+    <p>注意到组权限里有一个 <code>s</code> 而不是 <code>x</code>，这叫做 SGID 位。它让在该目录下新建的文件自动继承目录的所属组，而不是创建者的主组。这样小组成员上传的新数据天然就属于 <code>lab_group</code>，省去了后续手动改组的麻烦。SGID 属于稍微进阶一点的设置，这里只做概念提及，具体配置可以查阅系统管理文档。</p>
+
+    <p>最后提醒一点：<code>chown</code> 是系统级操作，普通用户不能把自己的文件改成别人所有，也不能把别人的文件改成自己所有。如果在共享服务器上遇到权限问题，先别急着 <code>sudo chown</code> 一切，最好联系管理员确认正确的所有权应该是什么。</p>
+
+    <h3 id="权限实战一个脚本从打不开到能运行">权限实战：一个脚本从“打不开”到“能运行”</h3>
+
+    <p>初学者最常见的权限问题之一，就是写了一个 Shell 脚本，双击或者输入文件名后却提示“Permission denied”。这一节我们走一遍完整的排查和解决流程，把这个过程变成你以后的本能反应。</p>
+
+    <p>假设你写了一个训练模型的脚本 <code>train.sh</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">cat train.sh</span>
+<span class="output">#!/bin/bash</span>
+<span class="output">echo "Starting training..."</span>
+<span class="output">python3 train_model.py</span></code></pre>
+
+    <p>你满怀期待地敲下：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">./train.sh</span>
+<span class="output">bash: ./train.sh: Permission denied</span></code></pre>
+
+    <p>别急，第一步永远是看权限：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ls -l train.sh</span>
+<span class="output">-rw-r--r-- 1 student student 73 Jul 10 11:45 train.sh</span></code></pre>
+
+    <p>看到权限是 <code>-rw-r--r--</code>，所有人都没有执行权限。这就是问题所在。给文件添加执行权限（所有用户）：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">chmod +x train.sh</span>
+<span class="prompt">student@debian:~$</span> <span class="command">ls -l train.sh</span>
+<span class="output">-rwxr-xr-x 1 student student 73 Jul 10 11:45 train.sh</span></code></pre>
+
+    <p>现在再执行：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">./train.sh</span>
+<span class="output">Starting training...</span>
+<span class="output">...</span></code></pre>
+
+    <p>脚本成功运行了。注意，执行当前目录下的脚本时要写成 <code>./train.sh</code>，而不是直接写 <code>train.sh</code>，因为当前目录通常不在 <code>PATH</code> 环境变量里。这一点我们到 6.1 节还会再讲。</p>
+
+    <p>一个要警惕的坏习惯是：遇到权限问题就 <code>chmod 777</code>，把文件变成所有人可读可写可执行。这确实能解决眼前的报错，但也把文件的大门完全敞开。在课题组服务器上，777 意味着任何人都能改你的数据、塞恶意内容进去，管理员通常看到 777 都会皱眉。正确的做法是：给谁需要权限就改谁的权限，能用 755 解决就不用 777。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.7-script-permission-flow.svg" alt="脚本权限检查与修改流程">
+      <figcaption>图3.7 脚本权限检查与修改流程</figcaption>
+    </figure>
+
+    <h2 id="用包管理器安装软件">用包管理器安装软件</h2>
+
+    <h3 id="包管理器是什么">包管理器是什么？</h3>
+
+    <p>前面两节讲的是“人”和“文件”之间的关系。从这一节开始，我们把话题转向软件安装。初学者在 Linux 上安装软件，最常见的困惑是：为什么不像 Windows 那样下载一个 <code>.exe</code> 双击就行？答案其实跟 Linux 的设计哲学有关——它倾向于把软件的各个部分分散放在系统约定的位置，由统一的工具来管理。</p>
+
+    <p>这个统一工具就是包管理器（package manager）。你可以把它理解为没有图形界面的“应用商店”，但它比手机上的应用商店更适合服务器环境。包管理器知道系统里已经装了什么、每个软件依赖哪些库、新版本发布了没有。当你安装一个软件时，它会自动把依赖一起装上来；当你卸载时，它会清理不再需要的包。</p>
+
+    <p>不同 Linux 发行版使用不同的包管理器。最主流的两大家族是：</p>
+
+    <ul>
+      <li>Debian/Ubuntu 系：使用 <code>apt</code> 或 <code>dpkg</code>，软件包后缀是 <code>.deb</code>。</li>
+      <li>RHEL/Fedora/CentOS 系：使用 <code>dnf</code> 或 <code>yum</code>，软件包后缀是 <code>.rpm</code>。</li>
+    </ul>
+
+    <p>这两家的命令名字不同，但概念完全一致：<code>update</code> 刷新软件列表，<code>install</code> 安装，<code>remove</code> 卸载，<code>upgrade</code> 或 <code>update</code> 升级。你只要理解了一个，另一个很快就能上手。</p>
+
+    <p>以 Ubuntu 安装 Python 3 为例：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt update</span>
+<span class="prompt">student@debian:~$</span> <span class="command">sudo apt install python3</span></code></pre>
+
+    <p>第一条命令让系统从仓库里拉取最新的软件列表，第二条命令让系统下载并安装 Python 3 及其依赖。整个过程不需要你手动去找下载链接、解压、配置路径，包管理器会帮你搞定。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.8-package-manager.svg" alt="包管理器从仓库拉取软件">
+      <figcaption>图3.8 包管理器从仓库拉取软件</figcaption>
+    </figure>
+
+    <h3 id="debianubuntu系apt常用操作">Debian/Ubuntu 系：<code>apt</code> 常用操作</h3>
+
+    <p>如果你用的是 Debian、Ubuntu 或它们的衍生发行版，<code>apt</code> 是你最常用的包管理命令。它是一组工具的“前端”，背后会调用 <code>dpkg</code> 真正完成安装。<code>apt</code> 的命令设计得很直观，常用操作记住下面几条就够了。</p>
+
+    <p>刷新软件列表：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt update</span></code></pre>
+
+    <p>这条命令不会升级任何软件，只是让系统知道仓库里有哪些新版本。建议安装软件前先执行一次，避免安装到旧版本。</p>
+
+    <p>升级已安装的软件：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt upgrade</span></code></pre>
+
+    <p>这条命令会把所有能安全升级的包都升级掉。如果它提示某些包因为依赖关系不能自动升级，可以用 <code>sudo apt full-upgrade</code>（旧版叫 <code>dist-upgrade</code>），但生产服务器上升级前最好先备份。</p>
+
+    <p>安装和卸载：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install htop git vim</span>
+<span class="prompt">student@debian:~$</span> <span class="command">sudo apt remove htop</span>
+<span class="prompt">student@debian:~$</span> <span class="command">sudo apt autoremove</span></code></pre>
+
+    <p><code>install</code> 后面可以跟多个包名，一次装完。<code>remove</code> 会删除软件本身，但可能保留配置文件；如果想彻底清除，可以用 <code>purge</code>。<code>autoremove</code> 会自动清理不再被任何软件依赖的包，适合定期运行一次，给磁盘瘦瘦身。</p>
+
+    <p>注意，这些命令大多需要 <code>sudo</code>，因为包管理器要往系统目录写文件。只有在查看信息时，比如 <code>apt search</code> 或 <code>apt show</code>，才通常不需要 <code>sudo</code>。</p>
+
+    <h3 id="rhelfedora系dnf与yum">RHEL/Fedora 系：<code>dnf</code> 与 <code>yum</code></h3>
+
+    <p>如果你用的是 Fedora、RHEL、CentOS Stream 或者 AlmaLinux、Rocky Linux 这类发行版，包管理器是 <code>dnf</code>，较旧的系统可能还在用 <code>yum</code>。<code>dnf</code> 是 <code>yum</code> 的新一代实现，命令结构几乎一样，但解析依赖更快、输出更友好。</p>
+
+    <p>常用操作和 <code>apt</code> 一一对应：</p>
+
+<pre><code class="terminal"><span class="prompt">[student@fedora ~]$</span> <span class="command">sudo dnf update</span>
+<span class="prompt">[student@fedora ~]$</span> <span class="command">sudo dnf install python3 git</span>
+<span class="prompt">[student@fedora ~]$</span> <span class="command">sudo dnf remove htop</span>
+<span class="prompt">[student@fedora ~]$</span> <span class="command">dnf search nginx</span></code></pre>
+
+    <p>这里 <code>dnf update</code> 同时完成了“刷新列表”和“升级软件”两件事，相当于 <code>apt update && apt upgrade</code> 的组合。<code>dnf search</code> 则用来搜索仓库里的包。</p>
+
+    <p>很多教程会给出 <code>yum</code> 的命令，比如 <code>sudo yum install</code>。在较新的系统上，<code>yum</code> 往往只是 <code>dnf</code> 的一个兼容入口，实际执行的还是 <code>dnf</code>。所以新手不必纠结该学哪一个，优先用 <code>dnf</code> 即可。</p>
+
+    <p>无论你用 <code>apt</code> 还是 <code>dnf</code>，背后的思路都是一样的：从发行版维护的官方仓库里下载经过签名的软件包，自动处理依赖，统一安装到系统路径。这比手动下载安装包要可靠得多，也是服务器环境的首选方式。</p>
+
+    <h3 id="查找与选择软件包">查找与选择软件包</h3>
+
+    <p>有时候你知道自己想要什么功能，但不知道包名具体怎么拼。比如你想装一个 C 编译器，可能听说过 <code>gcc</code>，但不确定仓库里的包名是 <code>gcc</code> 还是 <code>gcc-12</code>。这时候就需要搜索功能。</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">apt search gcc</span>
+<span class="output">Sorting... Done</span>
+<span class="output">Full Text Search... Done</span>
+<span class="output">gcc/bookworm 4:12.2.0-3 amd64</span>
+<span class="output">  GNU C compiler</span>
+<span class="output">gcc-12/bookworm 12.2.0-14 amd64</span>
+<span class="output">  GNU C compiler, version 12</span></code></pre>
+
+    <p>搜索时要注意区分“主包”“开发包”和“文档包”。很多软件会把功能拆成几个包：</p>
+
+    <ul>
+      <li>主包：运行程序所需，比如 <code>python3</code>。</li>
+      <li>开发包：编译依赖这个库的软件时需要，Debian/Ubuntu 通常以 <code>-dev</code> 结尾，比如 <code>libssl-dev</code>；RHEL/Fedora 通常以 <code>-devel</code> 结尾，比如 <code>openssl-devel</code>。</li>
+      <li>文档包：手册页或示例代码，比如 <code>python3-doc</code>。</li>
+    </ul>
+
+    <p>如果你是普通用户，只需要用软件，装主包就够了；如果你是开发者，要编译某个依赖它的程序，才可能需要开发包。新手常犯的错误是看到教程里列了一堆 <code>-dev</code> 包，就全部装上，结果装了很多根本用不到的东西。</p>
+
+    <p>选包时还有一个原则：优先使用发行版官方仓库。官方仓库里的包经过测试，和系统兼容性最好。如果官方仓库版本太老或者没有收录，再考虑第三方仓库、Snap、Flatpak 或源码编译。后面几节会专门讲这些替代方案。</p>
+
+    <h2 id="从源码或其他方式安装">从源码或其他方式安装</h2>
+
+    <h3 id="什么时候需要绕过包管理器">什么时候需要绕过包管理器？</h3>
+
+    <p>包管理器虽然好用，但它也不是万能的。科研和工程里经常会遇到这种情况：仓库里的软件版本太旧，不支持你需要的某个功能；或者某个专业软件根本就没进官方仓库。比如材料模拟软件 VASP、AI 框架 PyTorch 的某些预览版本、实验室自己开发的工具，往往不会出现在 <code>apt</code> 或 <code>dnf</code> 里。</p>
+
+    <p>这时候就需要绕过包管理器，采用其他安装方式。常见的替代方案包括：</p>
+
+    <ul>
+      <li>源码编译：从软件的源代码开始，自己编译成可执行文件。</li>
+      <li>预编译二进制：开发者直接提供编译好的可执行文件或压缩包。</li>
+      <li>Conda：数据科学和 AI 领域常用的环境与包管理工具。</li>
+      <li>Docker：把软件和它依赖的环境打包成容器运行。</li>
+      <li>官方安装脚本：开发者提供的一键安装脚本。</li>
+    </ul>
+
+    <p>选择的原则很简单：能用包管理器就用包管理器；包管理器满足不了，就优先选择发行版官方推荐的方式；最后再考虑源码编译。因为源码编译虽然灵活，但也会带来更多的维护负担。</p>
+
+    <p>以 PyTorch 为例。官方安装页面通常会给出类似这样的命令：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118</span></code></pre>
+
+    <p>这里用的是 Python 的包管理工具 <code>pip</code>，从 PyTorch 自己的仓库下载预编译好的二进制包。它没有经过 Debian 或 Ubuntu 的官方仓库审核，但因为来源可信、文档齐全，所以是合理的选择。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.9-install-method-decision.svg" alt="软件安装方式选择决策">
+      <figcaption>图3.9 软件安装方式选择</figcaption>
+    </figure>
+
+    <h3 id="源码编译configuremakemakeinstall">源码编译：<code>./configure</code>、<code>make</code>、<code>make install</code></h3>
+
+    <p>源码编译是 Linux 世界里最“硬核”的安装方式，也是最灵活的一种。它的核心思想是：软件的作者把源代码公开，你根据自己的系统和需求，把它编译成可执行文件。很多科研软件和开源工具都采用这种方式发布。</p>
+
+    <p>典型的源码编译分为三步：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/src$</span> <span class="command">./configure</span>
+<span class="prompt">student@debian:~/src$</span> <span class="command">make</span>
+<span class="prompt">student@debian:~/src$</span> <span class="command">sudo make install</span></code></pre>
+
+    <p>第一步 <code>./configure</code> 会检查你的系统环境，看看有没有需要的编译器、库和头文件，然后生成一个 Makefile。第二步 <code>make</code> 按照 Makefile 的指示编译源代码，生成可执行文件。第三步 <code>sudo make install</code> 把编译好的文件复制到系统目录，比如 <code>/usr/local/bin</code>。</p>
+
+    <p>要执行这三步，你的系统里必须先有编译工具。Debian/Ubuntu 上叫 <code>build-essential</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install build-essential</span></code></pre>
+
+    <p>RHEL/Fedora 上则叫 “Development Tools” 组：</p>
+
+<pre><code class="terminal"><span class="prompt">[student@fedora ~]$</span> <span class="command">sudo dnf groupinstall "Development Tools"</span></code></pre>
+
+    <p>源码编译有几个明显的风险。第一是卸载麻烦：<code>make install</code> 把文件分散放到各个系统目录，包管理器不知道它们的存在，想卸载时只能手动找。第二是依赖冲突：你编译时链接的库版本可能和系统里其他软件期望的版本不一致。第三是污染系统目录：新手如果把所有软件都 <code>sudo make install</code> 到 <code>/usr/local</code>，时间长了系统会变得很乱。</p>
+
+    <p>因此，新手练习源码编译时，建议先在虚拟机、Docker 容器或者 <code>--prefix=$HOME/.local</code> 这种只影响自己的路径下进行。等熟悉了整个流程，再决定要不要往系统目录里装。科研服务器上安装专业软件，也最好先和管理员沟通，避免影响其他用户。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.10-source-compile-flow.svg" alt="源码编译三步流程">
+      <figcaption>图3.10 源码编译三步流程</figcaption>
+    </figure>
+
+    <h3 id="conda与python环境">Conda 与 Python 环境</h3>
+
+    <p>如果你做的是 AI、数据科学或者生物信息学相关的工作，Conda 大概率是你最好的朋友之一。它是一个跨平台的包和环境管理工具，最擅长解决 Python 生态里最让人头疼的问题：版本冲突。</p>
+
+    <p>想象一下，你同时在做两个项目：项目 A 需要 PyTorch 1.12 和 Python 3.8，项目 B 需要 PyTorch 2.0 和 Python 3.10。如果用系统里的同一个 Python，这两个项目的需求就撞车了。Conda 的解决方案是“环境隔离”：为每个项目创建一个独立的环境，每个环境有自己的 Python 和一组包，彼此互不干扰。</p>
+
+    <p>基本操作很直观：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">conda create -n ai_lab python=3.10</span>
+<span class="prompt">student@debian:~$</span> <span class="command">conda activate ai_lab</span>
+<span class="prompt">(ai_lab) student@debian:~$</span> <span class="command">conda install pytorch torchvision -c pytorch</span></code></pre>
+
+    <p>第一行创建一个叫 <code>ai_lab</code> 的环境，指定 Python 3.10。第二行激活这个环境，激活后提示符前面会出现环境名 <code>(ai_lab)</code>。第三行在这个环境里安装 PyTorch。退出环境时用 <code>conda deactivate</code>。</p>
+
+    <p>Conda 管理的是它自己的 Python，不会替换系统的 <code>/usr/bin/python3</code>。这一点非常重要：系统的 Python 可能被很多系统工具依赖，如果你把它乱改一通，轻则某些命令报错，重则系统维护工具失灵。Conda 把一切都放在用户家目录下，既隔离又安全。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.11-conda-envs.svg" alt="Conda 环境隔离示意">
+      <figcaption>图3.11 Conda 环境隔离</figcaption>
+    </figure>
+
+    <h3 id="其他补充方式appimagedocker官方脚本">其他补充方式：AppImage、Docker、官方脚本</h3>
+
+    <p>除了包管理器、源码编译和 Conda，Linux 上还有一些更轻量或者更现代的软件分发方式。它们各有适用场景，了解之后可以让你的工具箱更完整。</p>
+
+    <p>AppImage 是一种“单文件应用”格式。开发者把整个软件打包成一个可执行文件，用户下载后赋予执行权限就能直接运行，不需要安装，也不需要 root。适合临时试用某个工具：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">chmod +x SomeApp.AppImage</span>
+<span class="prompt">student@debian:~$</span> <span class="command">./SomeApp.AppImage</span></code></pre>
+
+    <p>Docker 则是把软件和它所需的一切都装进一个“容器”里。容器和宿主机共享内核，但文件系统、进程、网络环境都是隔离的。很多 AI 工具会提供官方 Docker 镜像，你不需要在本地配环境，直接拉镜像运行即可：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">docker pull pytorch/pytorch:2.0.0-cuda11.7-cudnn8-runtime</span>
+<span class="prompt">student@debian:~$</span> <span class="command">docker run --gpus all -it pytorch/pytorch:2.0.0-cuda11.7-cudnn8-runtime</span></code></pre>
+
+    <p>这种方式特别适合运行环境特别复杂、或者你不想污染本机系统的场景。不过 Docker 本身也需要先安装，而且 GPU 容器需要额外配置 NVIDIA Container Toolkit，这里只做概念介绍。</p>
+
+    <p>最后一种是官方安装脚本。很多现代工具会直接提供一个命令，比如：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">curl -fsSL https://example.com/install.sh | sh</span></code></pre>
+
+    <p>这种一键脚本看起来很爽，但风险也很大：你把脚本的执行权直接交给了网上的一个链接。如果来源不可信，它可能在你的系统里做任何事。所以使用这类脚本前，一定要先确认网站是官方域名，最好先把脚本下载下来看一遍再执行。安全意识和方便之间，永远是安全更重要。</p>
+
+    <h2 id="运行程序与环境变量">运行程序与环境变量</h2>
+
+    <h3 id="安装好的程序为什么找不到">安装好的程序为什么找不到？</h3>
+
+    <p>有时候软件明明已经装好了，但你在终端里输入命令，系统却提示“command not found”。这不是软件没装成功，而是 Shell 不知道去哪里找它。Shell 查找可执行程序的依据，是一个叫做 <code>PATH</code> 的环境变量。</p>
+
+    <p><code>PATH</code> 里面保存了一组目录路径，Shell 会在这些目录里按顺序搜索你输入的命令。你可以把它理解为系统的“命令搜索清单”。当你在终端里敲 <code>python3</code> 时，Shell 会依次去 <code>PATH</code> 里的每个目录找有没有一个叫 <code>python3</code> 的可执行文件，找到就执行，找不到就报错。</p>
+
+    <p>看看你自己的 <code>PATH</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">echo $PATH</span>
+<span class="output">/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/local/sbin:/usr/sbin:/sbin</span></code></pre>
+
+    <p>路径之间用冒号 <code>:</code> 分隔。如果你安装了一个程序，但它所在的目录不在 <code>PATH</code> 里，你就需要用完整路径调用它。比如某个软件安装在 <code>/opt/software/bin</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">/opt/software/bin/myapp</span></code></pre>
+
+    <p>每次都写完整路径很麻烦，所以通常我们会把常用软件的 bin 目录加进 <code>PATH</code>。具体怎么加，下一节会讲。</p>
+
+    <p>想确认某个命令到底用的是哪个文件，可以用 <code>which</code>、<code>whereis</code> 或 <code>type</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">which python3</span>
+<span class="output">/usr/bin/python3</span>
+<span class="prompt">student@debian:~$</span> <span class="command">whereis python3</span>
+<span class="output">python3: /usr/bin/python3 /usr/share/man/man1/python3.1.gz</span>
+<span class="prompt">student@debian:~$</span> <span class="command">type python3</span>
+<span class="output">python3 is /usr/bin/python3</span></code></pre>
+
+    <p>这三个命令各有侧重。<code>which</code> 告诉你可执行文件的位置；<code>whereis</code> 还会找手册页和源码；<code>type</code> 则会区分命令是外部程序还是 Shell 内置命令。日常排查“找不到命令”的问题，<code>which</code> 最常用。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.12-path-lookup.svg" alt="PATH 查找命令流程">
+      <figcaption>图3.12 PATH 查找命令流程</figcaption>
+    </figure>
+
+    <h3 id="查看与设置环境变量">查看与设置环境变量</h3>
+
+    <p>环境变量是 Shell 和程序运行时可以读取的一组“配置项”。它们影响很多东西：命令搜索路径、默认编辑器、语言区域、Python 库搜索路径等等。学会查看和设置环境变量，是 Linux 使用的必备技能。</p>
+
+    <p>查看单个变量用 <code>echo</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">echo $HOME</span>
+<span class="output">/home/student</span>
+<span class="prompt">student@debian:~$</span> <span class="command">echo $USER</span>
+<span class="output">student</span></code></pre>
+
+    <p>注意变量名前面要加 <code>$</code>，表示取它的值。想看当前 Shell 里所有的环境变量，可以用 <code>env</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">env</span>
+<span class="output">SHELL=/bin/bash</span>
+<span class="output">USER=student</span>
+<span class="output">HOME=/home/student</span>
+<span class="output">PATH=/usr/local/bin:/usr/bin:/bin</span>
+<span class="output">...</span></code></pre>
+
+    <p>设置环境变量分临时和永久两种。临时设置只对当前终端会话有效，关闭终端后就消失：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">export PATH=$PATH:/opt/bin</span>
+<span class="prompt">student@debian:~$</span> <span class="command">echo $PATH</span>
+<span class="output">/usr/local/bin:/usr/bin:/bin:/opt/bin</span></code></pre>
+
+    <p>这里 <code>$PATH:/opt/bin</code> 的意思是在原来的 <code>PATH</code> 后面追加 <code>/opt/bin</code>。注意不要把旧的 <code>$PATH</code> 漏掉，否则系统自带的命令反而找不到了。</p>
+
+    <p>想让设置永久生效，需要把 <code>export</code> 命令写进配置文件。Bash 用户通常写在 <code>~/.bashrc</code> 里：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">echo 'export PATH=$PATH:/opt/bin' >> ~/.bashrc</span>
+<span class="prompt">student@debian:~$</span> <span class="command">source ~/.bashrc</span></code></pre>
+
+    <p><code>source</code> 的作用是让修改后的配置文件在当前终端立即生效，不用重新打开窗口。新开的终端会自动读取 <code>~/.bashrc</code>，所以以后每次登录都会带着这个新的 <code>PATH</code>。</p>
+
+    <p>最后区分一个概念：Shell 变量和环境变量。用 <code>VAR=value</code> 定义的是 Shell 变量，只对当前 Shell 可见；用 <code>export VAR=value</code> 定义的才是环境变量，会传递给子进程。大多数配置场景用 <code>export</code>。</p>
+
+    <figure>
+      <img src="assets/images/chapter-03/fig-3.13-bashrc-export.svg" alt=".bashrc 中的 export 对新终端生效">
+      <figcaption>图3.13 .bashrc 中的 export 对新终端生效</figcaption>
+    </figure>
+
+    <h3 id="实战把自定义程序加入path">实战：把自定义程序加入 <code>PATH</code></h3>
+
+    <p>学完 <code>PATH</code> 和环境变量，我们来做一个很实用的练习：把自己写的脚本或者从源码安装的程序加入 <code>PATH</code>，这样以后就不用每次都写完整路径。</p>
+
+    <p>对于个人脚本，推荐放在 <code>~/bin</code> 或者 <code>~/.local/bin</code>。这两个目录都是给用户自己放可执行文件的传统位置，不会和系统文件冲突。先把脚本放进去：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">mkdir -p ~/.local/bin</span>
+<span class="prompt">student@debian:~$</span> <span class="command">cp my_script.sh ~/.local/bin/my_script</span>
+<span class="prompt">student@debian:~$</span> <span class="command">chmod +x ~/.local/bin/my_script</span></code></pre>
+
+    <p>然后把这个目录加入 <code>PATH</code>。编辑 <code>~/.bashrc</code>，在文件末尾加上：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc</span>
+<span class="prompt">student@debian:~$</span> <span class="command">source ~/.bashrc</span></code></pre>
+
+    <p>注意这里我把 <code>$HOME/.local/bin</code> 放在了 <code>$PATH</code> 前面。这意味着如果系统里有一个同名命令，你自己的版本会优先被找到。这个顺序很重要，根据需求调整。</p>
+
+    <p>对于从源码安装到 <code>/opt</code> 的软件，比如 <code>/opt/myapp/bin</code>，也可以类似处理：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">echo 'export PATH=/opt/myapp/bin:$PATH' >> ~/.bashrc</span>
+<span class="prompt">student@debian:~$</span> <span class="command">source ~/.bashrc</span>
+<span class="prompt">student@debian:~$</span> <span class="command">which myapp</span>
+<span class="output">/opt/myapp/bin/myapp</span></code></pre>
+
+    <p>用 <code>which myapp</code> 确认一下，如果输出的是你期望的路径，说明 <code>PATH</code> 已经配置成功。如果还是找不到，检查拼写、检查 <code>source</code> 是否执行过、检查配置文件是不是保存到了正确位置。</p>
+
+    <p>一个小建议：不要把所有软件的 bin 目录都塞进 <code>PATH</code>。放太多路径会让命令搜索变慢，也增加冲突的概率。只放你真正常用的、自己管理的目录即可。</p>
+
+    <h3 id="环境变量的常见用途">环境变量的常见用途</h3>
+
+    <p>环境变量虽然看不见摸不着，但每天都在替你干活。了解几个常用的环境变量，能帮你更快地理解和调试系统行为。</p>
+
+    <p><code>HOME</code> 是当前用户的家目录路径，很多程序默认在这里找配置文件或保存数据。<code>USER</code> 是当前用户名，脚本里经常用它来判断身份或生成日志文件名。<code>LANG</code> 和 <code>LC_ALL</code> 控制语言和区域设置，比如日期格式、字符编码、数字里的小数点是用点还是逗号。如果你的终端中文显示乱码，多半跟这几个变量有关。</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">echo $LANG</span>
+<span class="output">zh_CN.UTF-8</span></code></pre>
+
+    <p>在科研和工程里，还有一些更专业的环境变量：</p>
+
+    <ul>
+      <li><code>PYTHONPATH</code>：Python 查找模块时会参考这个路径。</li>
+      <li><code>LD_LIBRARY_PATH</code>：程序运行查找动态链接库时会参考这个路径。</li>
+      <li><code>CUDA_HOME</code>：很多 GPU 程序用它定位 CUDA 安装目录。</li>
+    </ul>
+
+    <p>这些变量通常在安装 Python 库、编译 CUDA 程序、配置科学计算环境时用到。你现在不需要记住每个细节，只要知道它们存在、知道怎么查看和设置就够了。等到具体场景出现时，再配合文档调整即可。</p>
+
+    <p>环境变量的本质，就是把一些“系统配置”从程序内部抽出来，交给用户或管理员灵活控制。掌握了 <code>export</code> 和 <code>~/.bashrc</code>，你就掌握了 Linux 上一种非常重要的定制手段。</p>
+
+    <footer class="page-footer">
+      <div class="prev">
+        <span class="label">上一章</span>
+        <a href="chapter-02.html">第二章 Shell 与命令行</a>
+      </div>
+      <div class="next">
+        <span class="label">下一章</span>
+        <span>第四章 网络</span>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

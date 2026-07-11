@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400" role="img">
+  <title>红帽系发行版历史时间线</title>
+  <desc>该图以时间轴形式展示红帽系发行版及社区发展的重要节点：1993 年 Red Hat 成立、2003 年 RHEL 发布、2004 年 Fedora 项目成立与 CentOS 出现、2014 年红帽支持 CentOS、2019 年 IBM 收购 Red Hat、2020 年 CentOS Linux 转向 Stream、2021 年 Rocky Linux 与 AlmaLinux 发布。</desc>
+  <style>
+    text {
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    }
+    .title {
+      font-size: 22px;
+      font-weight: 700;
+      fill: #0d47a1;
+      text-anchor: middle;
+    }
+    .subtitle {
+      font-size: 13px;
+      fill: #666;
+      text-anchor: middle;
+    }
+    .year {
+      font-size: 14px;
+      font-weight: 600;
+      text-anchor: middle;
+    }
+    .event {
+      font-size: 13px;
+      fill: #222;
+      text-anchor: middle;
+    }
+    .legend-text {
+      font-size: 13px;
+      fill: #666;
+    }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L0,6 L6,3 z" fill="#666"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="#fafafa"/>
+
+  <!-- Title -->
+  <text x="400" y="42" class="title">红帽系发行版历史时间线</text>
+  <text x="400" y="68" class="subtitle">（时间轴为示意，不按严格比例绘制）</text>
+
+  <!-- Main horizontal axis -->
+  <line x1="90" y1="210" x2="780" y2="210" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Event: 1993 Red Hat founded (company) -->
+  <circle cx="150" cy="210" r="6" fill="#0d47a1" stroke="#fff" stroke-width="1.5"/>
+  <line x1="150" y1="210" x2="150" y2="183" stroke="#90caf9" stroke-width="1.5"/>
+  <rect x="85" y="126" width="130" height="54" rx="6" fill="#e3f2fd" stroke="#0d47a1" stroke-width="1.5"/>
+  <text x="150" y="151" class="year" fill="#0d47a1">1993</text>
+  <text x="150" y="172" class="event">Red Hat 成立</text>
+
+  <!-- Event: 2003 RHEL released (product) -->
+  <circle cx="232" cy="210" r="6" fill="#2e7d32" stroke="#fff" stroke-width="1.5"/>
+  <line x1="232" y1="210" x2="232" y2="237" stroke="#a5d6a7" stroke-width="1.5"/>
+  <rect x="167" y="240" width="130" height="54" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="232" y="265" class="year" fill="#2e7d32">2003</text>
+  <text x="232" y="286" class="event">RHEL 发布</text>
+
+  <!-- Event: 2004 Fedora project (community) -->
+  <circle cx="314" cy="210" r="6" fill="#42a5f5" stroke="#fff" stroke-width="1.5"/>
+  <line x1="314" y1="210" x2="314" y2="183" stroke="#90caf9" stroke-width="1.5"/>
+  <rect x="249" y="126" width="130" height="54" rx="6" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5"/>
+  <text x="314" y="151" class="year" fill="#0277bd">2004</text>
+  <text x="314" y="172" class="event">Fedora 项目成立</text>
+
+  <!-- Event: 2004 CentOS appears (community) -->
+  <circle cx="396" cy="210" r="6" fill="#42a5f5" stroke="#fff" stroke-width="1.5"/>
+  <line x1="396" y1="210" x2="396" y2="237" stroke="#90caf9" stroke-width="1.5"/>
+  <rect x="331" y="240" width="130" height="54" rx="6" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5"/>
+  <text x="396" y="265" class="year" fill="#0277bd">2004</text>
+  <text x="396" y="286" class="event">CentOS 出现</text>
+
+  <!-- Event: 2014 Red Hat supports CentOS (company) -->
+  <circle cx="478" cy="210" r="6" fill="#0d47a1" stroke="#fff" stroke-width="1.5"/>
+  <line x1="478" y1="210" x2="478" y2="183" stroke="#90caf9" stroke-width="1.5"/>
+  <rect x="413" y="126" width="130" height="54" rx="6" fill="#e3f2fd" stroke="#0d47a1" stroke-width="1.5"/>
+  <text x="478" y="151" class="year" fill="#0d47a1">2014</text>
+  <text x="478" y="172" class="event">红帽支持 CentOS</text>
+
+  <!-- Event: 2019 IBM acquires Red Hat (company) -->
+  <circle cx="560" cy="210" r="6" fill="#0d47a1" stroke="#fff" stroke-width="1.5"/>
+  <line x1="560" y1="210" x2="560" y2="237" stroke="#90caf9" stroke-width="1.5"/>
+  <rect x="495" y="240" width="130" height="70" rx="6" fill="#e3f2fd" stroke="#0d47a1" stroke-width="1.5"/>
+  <text x="560" y="265" class="year" fill="#0d47a1">2019</text>
+  <text x="560" y="286" class="event">IBM 收购</text>
+  <text x="560" y="302" class="event">Red Hat</text>
+
+  <!-- Event: 2020 CentOS Linux to Stream (major turn) -->
+  <circle cx="642" cy="210" r="6" fill="#ef5350" stroke="#fff" stroke-width="1.5"/>
+  <line x1="642" y1="210" x2="642" y2="183" stroke="#ef9a9a" stroke-width="1.5"/>
+  <rect x="577" y="110" width="130" height="70" rx="6" fill="#ffebee" stroke="#ef5350" stroke-width="1.5"/>
+  <text x="642" y="135" class="year" fill="#c62828">2020</text>
+  <text x="642" y="156" class="event">CentOS Linux</text>
+  <text x="642" y="172" class="event">转向 Stream</text>
+
+  <!-- Event: 2021 Rocky/Alma released (community) -->
+  <circle cx="708" cy="210" r="6" fill="#42a5f5" stroke="#fff" stroke-width="1.5"/>
+  <line x1="708" y1="210" x2="708" y2="237" stroke="#90caf9" stroke-width="1.5"/>
+  <rect x="651" y="240" width="114" height="70" rx="6" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5"/>
+  <text x="708" y="265" class="year" fill="#0277bd">2021</text>
+  <text x="708" y="286" class="event">Rocky Linux</text>
+  <text x="708" y="302" class="event">AlmaLinux 发布</text>
+
+  <!-- Legend -->
+  <g transform="translate(125, 365)">
+    <circle cx="0" cy="0" r="6" fill="#0d47a1" stroke="#fff" stroke-width="1.5"/>
+    <text x="14" y="5" class="legend-text">公司事件</text>
+
+    <circle cx="115" cy="0" r="6" fill="#2e7d32" stroke="#fff" stroke-width="1.5"/>
+    <text x="129" y="5" class="legend-text">产品发布</text>
+
+    <circle cx="230" cy="0" r="6" fill="#42a5f5" stroke="#fff" stroke-width="1.5"/>
+    <text x="244" y="5" class="legend-text">社区变化</text>
+
+    <circle cx="345" cy="0" r="6" fill="#ef5350" stroke="#fff" stroke-width="1.5"/>
+    <text x="359" y="5" class="legend-text">重大转折</text>
+  </g>
+</svg>

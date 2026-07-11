@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 680" width="800" style="max-width:100%;height:auto;">
+  <title>命令执行流程</title>
+  <desc>展示用户输入 ls 后，Shell 在 PATH 中搜索、调用内核执行、并返回结果到终端的完整流程。</desc>
+
+  <rect width="800" height="680" fill="#fafafa"/>
+
+  <!-- 1. 顶部终端窗口：用户输入 ls -->
+  <g transform="translate(220, 40)">
+    <rect x="0" y="0" width="360" height="120" rx="10" fill="#2d2d2d"/>
+    <path d="M10,0 L350,0 A10,10 0 0 1 360,10 L360,32 L0,32 L0,10 A10,10 0 0 1 10,0 Z" fill="#3a3a3a"/>
+    <circle cx="20" cy="16" r="5" fill="#ff5f56"/>
+    <circle cx="38" cy="16" r="5" fill="#ffbd2e"/>
+    <circle cx="56" cy="16" r="5" fill="#27c93f"/>
+    <text x="180" y="20" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#cccccc">Terminal</text>
+    <text x="16" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#4caf50">student@debian:~$</text>
+    <text x="184" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#ffffff">ls</text>
+  </g>
+
+  <!-- 1→2 箭头：输入命令 -->
+  <path d="M399,160 L401,160 L401,192 L404,192 L400,198 L396,192 L399,192 Z" fill="#1565c0"/>
+  <text x="414" y="182" text-anchor="start" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#1565c0">输入命令</text>
+
+  <!-- 2. Shell 框 -->
+  <g>
+    <rect x="260" y="200" width="280" height="80" rx="6" fill="#1565c0"/>
+    <text x="400" y="232" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="17" font-weight="500" fill="#ffffff">Shell（Bash）</text>
+    <text x="400" y="260" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#bbdefb">解析命令并在 PATH 中搜索</text>
+  </g>
+
+  <!-- 2→3 箭头：搜索可执行文件 -->
+  <path d="M399,280 L401,280 L401,312 L404,312 L400,318 L396,312 L399,312 Z" fill="#1565c0"/>
+  <text x="414" y="302" text-anchor="start" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#1565c0">搜索可执行文件</text>
+
+  <!-- 3. PATH 目录小框 -->
+  <g>
+    <rect x="110" y="320" width="160" height="60" rx="6" fill="#1565c0"/>
+    <text x="190" y="345" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ffffff">/usr/local/bin</text>
+    <text x="190" y="367" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#bbdefb">未找到</text>
+
+    <rect x="320" y="320" width="160" height="60" rx="6" fill="#1565c0"/>
+    <text x="400" y="345" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ffffff">/usr/bin</text>
+    <text x="400" y="367" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#bbdefb">未找到</text>
+
+    <rect x="530" y="320" width="160" height="60" rx="6" fill="#27ae60"/>
+    <text x="610" y="345" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#ffffff">/bin</text>
+    <text x="610" y="367" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#ffffff">找到 /bin/ls</text>
+  </g>
+
+  <!-- 绿色对勾 -->
+  <g transform="translate(610, 396)">
+    <circle cx="0" cy="0" r="14" fill="#27ae60"/>
+    <path d="M-6,-2 L-2,6 L8,-8" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 3→4 箭头：从 /bin 指向内核 -->
+  <path d="M609.73,411.04 L610.27,412.96 L456.05,456.34 L456.86,459.23 L450,457 L454.69,451.53 L455.50,454.41 Z" fill="#1565c0"/>
+  <text x="514" y="416" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#1565c0">调用执行</text>
+
+  <!-- 4. 内核框 -->
+  <g>
+    <rect x="320" y="460" width="160" height="100" rx="6" fill="#e67e22"/>
+    <text x="400" y="482" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#ffffff">Linux 内核</text>
+    <text x="400" y="548" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#ffffff">调度进程、读写磁盘</text>
+  </g>
+
+  <!-- 齿轮图标 -->
+  <g transform="translate(400, 512)">
+    <circle cx="0" cy="0" r="18" fill="none" stroke="#ffffff" stroke-width="3"/>
+    <circle cx="0" cy="0" r="8" fill="#ffffff"/>
+    <path d="M-22,-6 L-16,-6 M-22,0 L-16,0 M-22,6 L-16,6 M16,-6 L22,-6 M16,0 L22,0 M16,6 L22,6 M-6,-22 L-6,-16 M0,-22 L0,-16 M6,-22 L6,-16 M-6,16 L-6,22 M0,16 L0,22 M6,16 L6,22" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- 4→5 箭头：返回结果 -->
+  <path d="M399,560 L401,560 L401,592 L404,592 L400,598 L396,592 L399,592 Z" fill="#757575"/>
+  <text x="414" y="582" text-anchor="start" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#757575">返回结果</text>
+
+  <!-- 5. 底部终端窗口：输出结果 -->
+  <g transform="translate(220, 600)">
+    <rect x="0" y="0" width="360" height="60" rx="10" fill="#2d2d2d"/>
+    <text x="16" y="38" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#ffffff">file1.txt  file2.txt</text>
+  </g>
+</svg>

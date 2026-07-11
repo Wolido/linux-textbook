@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>序言 - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">封面 · 目录</a></li>
+        <li><a href="preface.html">序言</a></li>
+        <li>
+          <a href="chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的“乐高”</a></li>
+            <li><a href="chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="chapter-03.html#用包管理器安装软件">用包管理器安装软件</a></li>
+            <li><a href="chapter-03.html#从源码或其他方式安装">从源码或其他方式安装</a></li>
+            <li><a href="chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="case-open-source.html">开源：从自由软件运动到人工智能时代</a></li>
+            <li><a href="case-xz-utils.html">XZ Utils 后门事件</a></li>
+            <li><a href="case-unix-wars.html">Unix 战争与 BSD 诉讼案</a></li>
+            <li><a href="case-gnu-hurd.html">GNU Hurd：那个没做成的内核</a></li>
+            <li><a href="case-linux-on-mars.html">Linux 在火星</a></li>
+            <li><a href="case-android-linux.html">Android 是不是 Linux？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1>序言</h1>
+
+    <p>这是一本写给材料学院学生的教材，所以我会在书里经常提及一些材料学相关的事情，如果这些小例子和正在读书的你关系不大，跳过就好，因为书里的大部分还是关于Linux以及数据库的；如果这本书也能帮到其他专业的同学，或者完全不是为了大学课程而学习的你，那我真的是万分荣幸！</p>
+
+    <p>人工智能时代来得又突然，又莫名其妙。</p>
+
+    <p>小时候爱看一些科幻小说，感觉小说里的人工智能高级又炫酷，一直以为此生是不会见到书里那样的人工智能的，哪想到现在还不到35岁，现实世界的人工智能已经比科幻小说中的要更厉害了。在写下这段话的当天早晨，我刷到了一个视频，对比2023年和2025年的“AI生成视频”，都是“巨石强森”吃石头的画面，2023年生成的视频还很鬼畜，但是看到2025年的版本，若不是吃石头这个举动太过突兀，确实是可以以假乱真了。视频的链接我放在这里，<a href="https://www.bilibili.com/video/BV1FaT2zYEBV/?spm_id_from=333.337.search-card.all.click&amp;vd_source=c17c68c4bf2f4d824f2adb11c30088d1" target="_blank" rel="noopener noreferrer">“巨石强森”吃石头视频</a>，希望你点开的时候，视频还在。</p>
+
+    <p>材料学曾是实验室里的“慢哲学”——合成、表征、测试，一个合金配方的诞生往往以年为单位；一次晶体结构分析需要人工比对千百张衍射图谱；而高通量实验的成本高昂，注定它只能是顶级实验室的专属武器。</p>
+
+    <p>但人工智能将这一切揉碎重组，而且来势汹汹。电子显微镜下纳米颗粒的分布，X射线衍射图谱的多重峰解析，甚至材料疲劳断裂时的微裂纹传播路径，都被卷积神经网络转化为像素矩阵中暗涌的概率。曾经的“试错艺术”正在退位，如同AlphaFold用百万级蛋白质折叠数据颠覆结构生物学，材料基因工程正借AI之手，把周期表上的元素排列组合成一场无穷尽的数字游戏。</p>
+
+    <p>作为材料学的学生，你慌吗？</p>
+
+    <p>要我说，倒是完全不用慌，因为就像计算机的出现一样，AI不是来抢走我们的饭碗的，而是来重新定义我们的工作方式。传统的手工分析、重复性实验和线性思维正在被自动化和智能化所取代，这可并不意味着工科学生会变得无足轻重。恰恰相反，AI的崛起为那些愿意拥抱变化、主动学习新技能的人打开了一扇全新的机会之门。学会了AI的技能，你就能适应AI带来的变化，还能让你把AI当作一个强大的工具，融入到自己的专业领域中，无论是设计新材料还是开发智能系统。</p>
+
+    <p>说到学习新东西，这正是我们这本书的主题——Linux操作系统和数据库——能够发挥作用的地方。你可能会问：“学Linux和数据库跟AI有什么关系？”答案是：它们是现代科技世界的基石，也是AI得以运行的关键基础设施。</p>
+
+    <h2 id="为什么是linux">为什么是Linux？</h2>
+
+    <p>Linux作为一个开源、强大且灵活的操作系统，几乎是AI和数据科学领域的标配。无论是运行机器学习模型、进行大规模仿真，还是处理海量实验数据，Linux都提供了稳定而高效的环境。比如，很多深度学习框架（如TensorFlow、PyTorch）都默认在Linux上开发和部署。学会Linux，不仅意味着你能熟练操作命令行、编写脚本，还意味着你能驾驭那些支撑AI技术的底层系统。更重要的是，Linux的开源特性让你有机会窥探技术的内核，培养解决实际问题的能力。</p>
+
+    <h2 id="为什么是数据库">为什么是数据库？</h2>
+
+    <p>AI的强大离不开数据，而数据的存储、管理和调用则依赖于数据库。试想一下，材料基因工程需要处理周期表上无数元素的组合数据，高通量实验会生成海量的测试结果，而AI模型的训练更是需要结构化的数据集来喂养。没有数据库的支撑，这些都无从谈起。掌握数据库技术，比如SQL或NoSQL的使用，能让你高效地组织和提取数据，为AI的应用奠定基础。比如，你可以用数据库管理纳米材料的性能参数，然后通过AI分析这些数据，找到最佳的合成路径。</p>
+
+    <p>所以，这本书虽然表面上是讲Linux和数据库的，但它的意义远不止于此。它为你提供了一套基础工具，让你能够在这个AI驱动的时代站稳脚跟，甚至走在前沿。对于材料学院的同学来说，Linux和数据库可以帮助你处理实验数据、运行模拟软件，甚至参与到AI辅助的材料设计中；而对于其他专业的工科学生，或者任何对技术感兴趣的读者来说，这些技能同样是通用的“硬通货”。</p>
+
+    <p>人工智能可能是突如其来的冲击，但它也带来了无限的可能性。作为工科学生，我们的使命不是抗拒这场变革，而是学会驾驭它。Linux和数据库只是起点，它们将带你走进一个更广阔的世界——一个由数据、计算和智能共同定义的未来。无论你是想在材料科学中探索新材料的奥秘，还是在其他领域开创属于自己的事业，这些知识都将成为你手中的利器，让AI从一个陌生的挑战者，变成你职业生涯中的强大盟友。</p>
+
+    <footer class="page-footer">
+      <div class="prev">
+        <span class="label">上一章</span>
+        <a href="index.html">封面 · 目录</a>
+      </div>
+      <div class="next">
+        <span class="label">下一章</span>
+        <a href="chapter-01.html">第一章 Linux的基础知识</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" style="max-width:100%;height:auto;">
+  <title>家目录位置与 ~ 简写</title>
+  <desc>展示普通用户家目录 /home/student 与 root 用户家目录 /root 的位置，以及 ~ 简写的含义。</desc>
+
+  <rect width="800" height="500" fill="#fafafa"/>
+
+  <!-- 树形分叉：/ → home 与 / → root -->
+  <!-- 从 / 框底边中心垂直到分叉节点 -->
+  <line x1="400" y1="110" x2="400" y2="150" stroke="#2c3e50" stroke-width="2"/>
+  <!-- 水平分叉线 -->
+  <line x1="400" y1="150" x2="260" y2="150" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="400" y1="150" x2="540" y2="150" stroke="#2c3e50" stroke-width="2"/>
+  <!-- 分叉节点 -->
+  <circle cx="400" cy="150" r="4.5" fill="#2c3e50"/>
+  <!-- 下垂线 + 箭头：指向 home（尖端停在 home 顶边外侧 2px，y=198） -->
+  <path d="M259,150 L261,150 L261,192 L264,192 L260,198 L256,192 L259,192 Z" fill="#2c3e50"/>
+  <!-- 下垂线 + 箭头：指向 root（尖端停在 root 顶边外侧 2px，y=198） -->
+  <path d="M539,150 L541,150 L541,192 L544,192 L540,198 L536,192 L539,192 Z" fill="#2c3e50"/>
+
+  <!-- 箭头：home → student（垂直向下） -->
+  <path d="M259,244 L261,244 L261,282 L264,282 L260,288 L256,282 L259,282 Z" fill="#2c3e50"/>
+
+  <!-- 箭头：~ → student（垂直向上） -->
+  <path d="M259,380 L261,380 L261,348 L264,348 L260,342 L256,348 L259,348 Z" fill="#e67e22"/>
+
+  <!-- 根目录 / -->
+  <g transform="translate(400, 60)">
+    <rect x="-40" y="0" width="80" height="50" rx="8" fill="#1565c0"/>
+    <text x="0" y="33" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="600" fill="#ffffff">/</text>
+  </g>
+
+  <!-- home 目录 -->
+  <g transform="translate(260, 200)">
+    <rect x="-50" y="0" width="100" height="44" rx="8" fill="#1565c0"/>
+    <text x="0" y="29" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#ffffff">home</text>
+  </g>
+
+  <!-- root 家目录 -->
+  <g transform="translate(540, 200)">
+    <rect x="-50" y="0" width="100" height="44" rx="8" fill="#e67e22"/>
+    <text x="0" y="29" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#ffffff">root</text>
+    <text x="0" y="64" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#2c3e50">/root</text>
+  </g>
+
+  <!-- student 家目录（位于 home 正下方） -->
+  <g transform="translate(260, 290)">
+    <rect x="-70" y="0" width="140" height="50" rx="8" fill="#27ae60"/>
+    <text x="0" y="21" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ffffff">student</text>
+    <text x="0" y="41" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#ffffff">/home/student</text>
+  </g>
+
+  <!-- ~ 标签指向 /home/student（位于 student 正下方） -->
+  <g transform="translate(260, 380)">
+    <rect x="-40" y="0" width="80" height="40" rx="20" fill="#e67e22"/>
+    <text x="0" y="27" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="600" fill="#ffffff">~</text>
+  </g>
+
+  <!-- 底部说明：~ 展开 -->
+  <g transform="translate(400, 460)">
+    <rect x="-220" y="-26" width="440" height="52" rx="8" fill="#ecf0f1"/>
+    <text x="0" y="6" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" fill="#2c3e50">~  =  /home/student</text>
+  </g>
+</svg>

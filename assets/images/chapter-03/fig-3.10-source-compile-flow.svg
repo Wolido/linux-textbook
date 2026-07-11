@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" width="800" style="max-width:100%;height:auto;">
+  <title>图3.10 源码编译三步流程</title>
+  <desc>源码编译通常分为 ./configure 配置编译参数、make 编译源码、sudo make install 安装到系统路径三步。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="360" fill="#fafafa"/>
+
+  <!-- 标题 -->
+  <text x="400" y="50" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="600" fill="#0d47a1">源码编译三步流程</text>
+
+  <!-- 步骤 1：./configure -->
+  <g transform="translate(160, 190)">
+    <rect x="-110" y="-55" width="220" height="110" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+    <text x="0" y="-20" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" fill="#0d47a1">./configure</text>
+    <text x="0" y="12" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">检测系统环境</text>
+    <text x="0" y="35" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">生成 Makefile</text>
+  </g>
+
+  <!-- 步骤 2：make -->
+  <g transform="translate(400, 190)">
+    <rect x="-110" y="-55" width="220" height="110" rx="10" fill="#fff3e0" stroke="#e67e22" stroke-width="2"/>
+    <text x="0" y="-20" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" fill="#e65100">make</text>
+    <text x="0" y="12" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">按 Makefile</text>
+    <text x="0" y="35" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">编译生成可执行文件</text>
+  </g>
+
+  <!-- 步骤 3：sudo make install -->
+  <g transform="translate(640, 190)">
+    <rect x="-110" y="-55" width="220" height="110" rx="10" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
+    <text x="0" y="-20" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="700" fill="#1b5e20">sudo make install</text>
+    <text x="0" y="12" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">将二进制文件</text>
+    <text x="0" y="35" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">安装到系统路径</text>
+  </g>
+
+  <!-- 箭头 1 -->
+  <line x1="270" y1="190" x2="282" y2="190" stroke="#0d47a1" stroke-width="3"/>
+  <path d="M270,188.5 L270,191.5 L282,191.5 L282,196 L290,190 L282,184 L282,188.5 Z" fill="#0d47a1"/>
+
+  <!-- 箭头 2 -->
+  <line x1="510" y1="190" x2="522" y2="190" stroke="#0d47a1" stroke-width="3"/>
+  <path d="M510,188.5 L510,191.5 L522,191.5 L522,196 L530,190 L522,184 L522,188.5 Z" fill="#0d47a1"/>
+
+  <!-- 底部提示 -->
+  <text x="400" y="315" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666666">每步都必须成功，才能进入下一步</text>
+</svg>

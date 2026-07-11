@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" width="800" style="max-width:100%;height:auto;">
+  <title>图3.4 sudo 临时权限提升</title>
+  <desc>普通用户通过 sudo 命令临时获得 root 权限，执行需要管理员权限的系统命令，执行结束后权限恢复。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="360" fill="#fafafa"/>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrow-return" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M8,0 L0,4 L8,8 Z" fill="#9e9e9e"/>
+    </marker>
+  </defs>
+
+  <!-- 普通用户 -->
+  <g transform="translate(130, 180)">
+    <rect x="-70" y="-40" width="140" height="80" rx="10" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="600" fill="#0d47a1">普通用户</text>
+    <text x="0" y="18" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50">alice $</text>
+  </g>
+
+  <!-- sudo 门/钥匙 -->
+  <g transform="translate(330, 180)">
+    <rect x="-60" y="-40" width="120" height="80" rx="10" fill="#fff3e0" stroke="#e67e22" stroke-width="2"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="600" fill="#e65100">sudo</text>
+    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">验证密码</text>
+    <text x="0" y="34" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">临时授权</text>
+    <!-- 钥匙图标 -->
+    <circle cx="35" cy="-25" r="5" fill="none" stroke="#e67e22" stroke-width="2"/>
+    <line x1="38" y1="-22" x2="45" y2="-15" stroke="#e67e22" stroke-width="2"/>
+    <rect x="43" y="-17" width="8" height="6" fill="#e67e22"/>
+  </g>
+
+  <!-- root 权限 -->
+  <g transform="translate(530, 180)">
+    <rect x="-70" y="-40" width="140" height="80" rx="10" fill="#ffebee" stroke="#e74c3c" stroke-width="2"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="600" fill="#c0392b">root 权限</text>
+    <text x="0" y="18" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50">临时生效</text>
+  </g>
+
+  <!-- 系统命令 -->
+  <g transform="translate(700, 180)">
+    <rect x="-60" y="-35" width="120" height="70" rx="8" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
+    <text x="0" y="-4" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600" fill="#1b5e20">apt</text>
+    <text x="0" y="16" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600" fill="#1b5e20">install</text>
+  </g>
+
+  <!-- 箭头 1：普通用户 → sudo -->
+  <line x1="200" y1="180" x2="264" y2="180" stroke="#0d47a1" stroke-width="2"/>
+  <path d="M200,179 L200,181 L264,181 L264,184 L270,180 L264,176 L264,179 Z" fill="#0d47a1"/>
+  <text x="228" y="165" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">执行</text>
+
+  <!-- 箭头 2：sudo → root 权限 -->
+  <line x1="390" y1="180" x2="454" y2="180" stroke="#0d47a1" stroke-width="2"/>
+  <path d="M390,179 L390,181 L454,181 L454,184 L460,180 L454,176 L454,179 Z" fill="#0d47a1"/>
+  <text x="423" y="165" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">授权</text>
+
+  <!-- 箭头 3：root 权限 → 系统命令 -->
+  <line x1="600" y1="180" x2="634" y2="180" stroke="#0d47a1" stroke-width="2"/>
+  <path d="M600,179 L600,181 L634,181 L634,184 L640,180 L634,176 L634,179 Z" fill="#0d47a1"/>
+  <text x="620" y="165" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">执行命令</text>
+
+  <!-- 返回箭头：执行结束后权限恢复 -->
+  <path d="M700,215 Q400,290 60,180" fill="none" stroke="#9e9e9e" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrow-return)"/>
+  <text x="400" y="305" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666666">命令执行完毕后，权限恢复为普通用户</text>
+</svg>

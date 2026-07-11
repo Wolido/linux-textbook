@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>延伸阅读：Android 是不是 Linux？ - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">封面 · 目录</a></li>
+        <li><a href="preface.html">序言</a></li>
+        <li>
+          <a href="chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的“乐高”</a></li>
+            <li><a href="chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="chapter-03.html#用包管理器安装软件">用包管理器安装软件</a></li>
+            <li><a href="chapter-03.html#从源码或其他方式安装">从源码或其他方式安装</a></li>
+            <li><a href="chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="case-open-source.html">开源：从自由软件运动到人工智能时代</a></li>
+            <li><a href="case-xz-utils.html">XZ Utils 后门事件</a></li>
+            <li><a href="case-unix-wars.html">Unix 战争与 BSD 诉讼案</a></li>
+            <li><a href="case-gnu-hurd.html">GNU Hurd：那个没做成的内核</a></li>
+            <li><a href="case-linux-on-mars.html">Linux 在火星</a></li>
+            <li><a href="case-android-linux.html">Android 是不是 Linux？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+<h1 id="android是不是linux">Android 是不是 Linux？</h1>
+<p>如果你去网上搜索“Android 是不是 Linux”，通常会得到两种截然相反的答案：有人说是，因为 Android 确实用了 Linux 内核；也有人说不是，因为 Android 跟我们在电脑上用的 Linux 完全不一样。这两种说法其实都没错，只是它们说的“Linux”不是同一个意思。</p>
+
+<h2 id="android用了linux内核">Android 用了 Linux 内核</h2>
+<p>从最底层看，Android 确实是基于 Linux 内核的。Google 从 Linux Kernel 源码出发，针对移动设备做了不少修改：电源管理、内存管理、驱动模型、触摸屏和传感器支持，都有 Android 自己的一套东西。但内核的核心机制，比如进程调度、文件系统、网络协议栈，仍然来自 Linux。</p>
+<p>Google 选择 Linux 内核是有实际考虑的。Linux 已经能运行在大量不同架构的硬件上，开源、免费、网络协议栈成熟，而且拥有一整套成熟的驱动生态。对于需要快速适配五花八门手机芯片的 Android 来说，Linux 是一个现成的、可靠的地基。</p>
+<p>所以，如果“Linux”指的是 Linux 内核，那么 Android 毫无疑问是 Linux 的一个变体。</p>
+
+<h2 id="但用户空间完全不同">但用户空间完全不同</h2>
+<p>我们平时说的 Ubuntu、Fedora、Debian 这些 Linux 发行版，除了内核，还包括一整套 GNU 工具链：Bash、GCC、Glibc 等等。它们的应用程序运行在 X11 或 Wayland 图形环境上，包管理用 apt、dnf 或 pacman，遵循的是类 Unix 的传统结构。</p>
+<p>Android 完全不是这样。它不用 GNU 工具链，而是用 Bionic C 库；不用 X11 或 Wayland，而是自己的 SurfaceFlinger 图形系统；不用 apt 或 dnf，而是 APK 安装包和 Google Play 生态。Android 的应用运行在 ART（Android Runtime）之上，开发者写 Java 或 Kotlin，而不是直接调用 Linux 的系统调用。</p>
+<p>Android 还有自己独立的硬件抽象层（HAL）。在典型 Linux 发行版里，驱动通常直接和内核打交道；而在 Android 里，Google 通过 HAL 把硬件访问封装成标准接口，这样手机厂商既可以使用专有驱动，又能保证上层框架的统一。这一套架构让 Android 能够同时照顾开放性和商业化需求，但也让它和 GNU/Linux 越走越远。</p>
+
+<h2 id="linux的两层含义">Linux 的两层含义</h2>
+<p>这就是为什么关于 Android 是不是 Linux 会有争论。这个词在不同语境下有两层含义：</p>
+<ul>
+  <li>狭义上，Linux 指 Linux 内核。按这个定义，Android 基于 Linux。</li>
+  <li>广义上，Linux 指以 Linux 内核加 GNU 工具链构成的完整操作系统，也就是常说的 GNU/Linux。按这个定义，Android 不是典型的 Linux 发行版。</li>
+</ul>
+
+<h2 id="结论怎么说最准确">结论：怎么说最准确</h2>
+<p>最稳妥的说法是：Android 基于 Linux 内核，但它不是 Linux 发行版，也不是 GNU/Linux 系统。它借用了 Linux 内核的底层能力，却构建了一个完全不同的用户空间和应用生态。</p>
+<p>Google 官方的态度也很能说明问题。Android 的开放源代码项目叫 AOSP（Android Open Source Project），它明确把自己和 Linux 发行版区分开来。AOSP 包含 Linux 内核，但更大头是 Android 自己的框架、库和运行时。</p>
+<p>下次再有人为这个问题争论，你可以直接告诉他：争的不是事实，而是定义。</p>
+
+    <footer class="page-footer">
+      <div class="prev">
+        <span class="label">上一章</span>
+        <a href="case-linux-on-mars.html">Linux 在火星</a>
+      </div>
+      <div class="next">
+        <span class="label">下一章</span>
+        <a href="index.html">返回目录</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

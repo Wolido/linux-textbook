@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" style="max-width:100%;height:auto;">
+  <title>便签与命令的对照</title>
+  <desc>左侧便签用人话表达复制需求，右侧终端用 cp 命令精确表达同一意图，并高亮动作、源、目标三部分。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="480" fill="#fafafa"/>
+
+  <!-- 左侧：便签纸 -->
+  <g transform="translate(200, 200)">
+    <!-- 便签主体，轻微旋转 -->
+    <g transform="rotate(-3)">
+      <rect x="-130" y="-110" width="260" height="220" rx="4" fill="#fff9c4" stroke="#f0e68c" stroke-width="1"/>
+      <!-- 顶部胶带 -->
+      <rect x="-50" y="-124" width="100" height="28" rx="2" fill="#e8e8e8" opacity="0.9"/>
+      <!-- 便签文字 -->
+      <text x="0" y="-54" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#5d4037">请把 ~/data 下所有 .csv 文件</text>
+      <text x="0" y="-24" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#5d4037">复制到 backup/ 目录。</text>
+      <!-- 便签底部折角 -->
+      <path d="M130,110 L110,110 L130,90 Z" fill="#f0e68c"/>
+    </g>
+  </g>
+
+  <!-- 左侧标签 -->
+  <text x="200" y="370" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#2c3e50">日常便签</text>
+
+  <!-- 中间：向右箭头 -->
+  <g transform="translate(400, 200)">
+    <!-- 箭杆长 80px，宽 4px；箭头深度 20px，底边 20px -->
+    <path d="M-60,-2 L-60,2 L20,2 L20,10 L40,0 L20,-10 L20,-2 Z" fill="#1565c0"/>
+    <text x="0" y="32" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#1565c0">对应到命令</text>
+  </g>
+
+  <!-- 右侧：终端窗口 -->
+  <g transform="translate(600, 200)">
+    <rect x="-140" y="-100" width="280" height="160" rx="10" fill="#2d2d2d"/>
+    <path d="M-140,-100 L140,-100 A10,10 0 0 1 140,-90 L140,-72 L-140,-72 L-140,-90 A10,10 0 0 1 -140,-100 Z" fill="#3a3a3a"/>
+    <circle cx="-124" cy="-86" r="5" fill="#ff5f56"/>
+    <circle cx="-104" cy="-86" r="5" fill="#ffbd2e"/>
+    <circle cx="-84" cy="-86" r="5" fill="#27c93f"/>
+    <text x="0" y="-82" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cccccc">Terminal</text>
+
+    <!-- 终端内容 -->
+    <text x="-126" y="-44" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#4caf50">student@debian:~$</text>
+    <text x="-126" y="-16" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="500" fill="#27ae60">cp</text>
+    <text x="-96" y="-16" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="500" fill="#64b5f6">~/data/*.csv</text>
+    <text x="30" y="-16" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="500" fill="#ffb74d">backup/</text>
+  </g>
+
+  <!-- 右侧标签 -->
+  <text x="600" y="370" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#2c3e50">命令</text>
+
+  <!-- 底部图例与说明 -->
+  <g transform="translate(400, 430)">
+    <!-- 动作 -->
+    <rect x="-230" y="-12" width="18" height="18" rx="3" fill="#27ae60"/>
+    <text x="-202" y="2" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#555">动作：cp</text>
+
+    <!-- 源 -->
+    <rect x="-80" y="-12" width="18" height="18" rx="3" fill="#64b5f6"/>
+    <text x="-52" y="2" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#555">源：~/data/*.csv</text>
+
+    <!-- 目标 -->
+    <rect x="90" y="-12" width="18" height="18" rx="3" fill="#ffb74d"/>
+    <text x="118" y="2" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#555">目标：backup/</text>
+  </g>
+
+  <!-- 底部说明 -->
+  <text x="400" y="470" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#555">命令的结构和日常便签几乎一一对应</text>
+</svg>

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 650" width="780">
+  <title>终端 - Shell - 内核 - 硬件层次图</title>
+  <rect width="780" height="650" fill="#fafafa"/>
+
+  <!-- 层 1：用户 / 终端 -->
+  <g>
+    <rect x="60" y="50" width="660" height="76" rx="4" fill="#1565c0"/>
+    <text x="390" y="82" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#ffffff">用户 / 终端</text>
+    <text x="390" y="108" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#bbdefb">Terminal Emulator</text>
+  </g>
+
+  <!-- 层 2：Shell -->
+  <g>
+    <rect x="60" y="178" width="660" height="76" rx="4" fill="#1565c0"/>
+    <text x="390" y="210" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#ffffff">Shell</text>
+    <text x="390" y="236" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#bbdefb">命令解释器 · Bash / Zsh</text>
+  </g>
+
+  <!-- 层 3：内核 -->
+  <g>
+    <rect x="60" y="306" width="660" height="76" rx="4" fill="#1565c0"/>
+    <text x="390" y="338" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#ffffff">内核</text>
+    <text x="390" y="364" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#bbdefb">Linux Kernel</text>
+  </g>
+
+  <!-- 层 4：硬件 -->
+  <g>
+    <rect x="60" y="434" width="660" height="76" rx="4" fill="#1565c0"/>
+    <text x="390" y="466" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#ffffff">硬件</text>
+    <text x="390" y="492" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#bbdefb">CPU / Memory / Disk</text>
+  </g>
+
+  <!-- 输入命令箭头（蓝色，向下，2px 杆） -->
+  <!-- 层 1 → 层 2 -->
+  <line x1="330" y1="126" x2="330" y2="172" stroke="#0d47a1" stroke-width="2"/>
+  <path d="M330,178 L334,172 L326,172 Z" fill="#0d47a1"/>
+  <text x="330" y="156" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#0d47a1">输入命令</text>
+  <!-- 层 2 → 层 3 -->
+  <line x1="330" y1="254" x2="330" y2="300" stroke="#0d47a1" stroke-width="2"/>
+  <path d="M330,306 L334,300 L326,300 Z" fill="#0d47a1"/>
+  <text x="330" y="284" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#0d47a1">输入命令</text>
+  <!-- 层 3 → 层 4 -->
+  <line x1="330" y1="382" x2="330" y2="428" stroke="#0d47a1" stroke-width="2"/>
+  <path d="M330,434 L334,428 L326,428 Z" fill="#0d47a1"/>
+  <text x="330" y="412" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#0d47a1">输入命令</text>
+
+  <!-- 返回结果箭头（灰色，向上，2px 杆） -->
+  <!-- 层 2 → 层 1 -->
+  <line x1="450" y1="178" x2="450" y2="132" stroke="#757575" stroke-width="2"/>
+  <path d="M450,126 L454,132 L446,132 Z" fill="#757575"/>
+  <text x="450" y="156" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#757575">返回结果</text>
+  <!-- 层 3 → 层 2 -->
+  <line x1="450" y1="306" x2="450" y2="260" stroke="#757575" stroke-width="2"/>
+  <path d="M450,254 L454,260 L446,260 Z" fill="#757575"/>
+  <text x="450" y="284" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#757575">返回结果</text>
+  <!-- 层 4 → 层 3 -->
+  <line x1="450" y1="434" x2="450" y2="388" stroke="#757575" stroke-width="2"/>
+  <path d="M450,382 L454,388 L446,388 Z" fill="#757575"/>
+  <text x="450" y="412" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#757575">返回结果</text>
+
+  <!-- 场景示例 -->
+  <g>
+    <rect x="60" y="530" width="660" height="64" rx="4" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+    <rect x="60" y="530" width="4" height="64" rx="2" fill="#ef5350"/>
+    <text x="390" y="556" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#424242">示例：用户输入 ls → Shell 解析 → 内核读取目录</text>
+    <text x="390" y="580" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#424242">→ 返回文件列表 → 终端显示</text>
+  </g>
+</svg>
