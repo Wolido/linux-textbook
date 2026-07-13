@@ -38,10 +38,10 @@
     <text x="0" y="34" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">不再继续</text>
   </g>
 
-  <!-- 向下箭头 -->
-  <line x1="400" y1="128" x2="400" y2="189" stroke="#0d47a1" stroke-width="2"/>
-  <path d="M399,128 L401,128 L401,189 L404,189 L400,195 L396,189 L399,189 Z" fill="#0d47a1"/>
-  <text x="440" y="155" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">按顺序查找</text>
+  <!-- 向下箭头 → 指向左侧框 /usr/local/bin -->
+  <path d="M400,128 L400,162 L180,162 L180,189" stroke="#0d47a1" stroke-width="2" fill="none"/>
+  <path d="M179,162 L181,162 L181,189 L184,189 L180,195 L176,189 L179,189 Z" fill="#0d47a1"/>
+  <text x="290" y="146" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">按顺序查找</text>
 
   <!-- 水平箭头 -->
   <line x1="270" y1="240" x2="304" y2="240" stroke="#0d47a1" stroke-width="2"/>

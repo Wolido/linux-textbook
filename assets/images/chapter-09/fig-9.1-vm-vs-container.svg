@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
+  <title>虚拟机与容器架构对比</title>
+  <desc>左侧展示虚拟机通过 Hypervisor 运行多个 Guest OS，每个 Guest OS 自带完整系统；右侧展示容器通过 Docker Engine 共享 Host OS 内核，只隔离应用及其依赖。</desc>
+
+  <defs>
+    <marker id="arrow-9.1" markerWidth="8" markerHeight="10" refX="0" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,5 L0,10 Z" fill="#0d47a1"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="560" fill="#fafafa"/>
+
+  <text x="400" y="42" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="18" font-weight="bold" fill="#0d47a1">虚拟机与容器架构对比</text>
+
+  <!-- 左侧面板：虚拟机 -->
+  <g transform="translate(40,80)">
+    <rect width="340" height="420" rx="12" fill="#ffffff" stroke="#1565c0" stroke-width="2"/>
+    <text x="170" y="44" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="16" font-weight="bold" fill="#0d47a1">虚拟机</text>
+
+    <!-- Host OS -->
+    <rect x="20" y="370" width="300" height="40" rx="6" fill="#0d47a1"/>
+    <text x="170" y="396" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Host OS</text>
+
+    <!-- Hypervisor -->
+    <rect x="20" y="310" width="300" height="40" rx="6" fill="#1565c0"/>
+    <text x="170" y="336" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Hypervisor</text>
+
+    <!-- VM 1 -->
+    <g transform="translate(52,80)">
+      <rect width="96" height="210" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+      <rect width="96" height="34" rx="6" fill="#1565c0"/>
+      <rect x="0" y="22" width="96" height="12" fill="#1565c0"/>
+      <text x="48" y="16" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Guest OS</text>
+      <rect x="10" y="48" width="76" height="56" rx="4" fill="#ffffff" stroke="#42a5f5" stroke-width="1"/>
+      <text x="48" y="80" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">App</text>
+      <rect x="10" y="114" width="76" height="80" rx="4" fill="#ffffff" stroke="#42a5f5" stroke-width="1"/>
+      <text x="48" y="150" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">Bin/Lib</text>
+    </g>
+
+    <!-- VM 2 -->
+    <g transform="translate(162,80)">
+      <rect width="96" height="210" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+      <rect width="96" height="34" rx="6" fill="#1565c0"/>
+      <rect x="0" y="22" width="96" height="12" fill="#1565c0"/>
+      <text x="48" y="16" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Guest OS</text>
+      <rect x="10" y="48" width="76" height="56" rx="4" fill="#ffffff" stroke="#42a5f5" stroke-width="1"/>
+      <text x="48" y="80" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">App</text>
+      <rect x="10" y="114" width="76" height="80" rx="4" fill="#ffffff" stroke="#42a5f5" stroke-width="1"/>
+      <text x="48" y="150" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">Bin/Lib</text>
+    </g>
+
+    <!-- VM 3 -->
+    <g transform="translate(272,80)">
+      <rect width="96" height="210" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+      <rect width="96" height="34" rx="6" fill="#1565c0"/>
+      <rect x="0" y="22" width="96" height="12" fill="#1565c0"/>
+      <text x="48" y="16" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Guest OS</text>
+      <rect x="10" y="48" width="76" height="56" rx="4" fill="#ffffff" stroke="#42a5f5" stroke-width="1"/>
+      <text x="48" y="80" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">App</text>
+      <rect x="10" y="114" width="76" height="80" rx="4" fill="#ffffff" stroke="#42a5f5" stroke-width="1"/>
+      <text x="48" y="150" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">Bin/Lib</text>
+    </g>
+
+    <!-- 箭头：Host OS → Hypervisor -->
+    <line x1="170" y1="370" x2="170" y2="358" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+
+    <!-- 箭头：Hypervisor → VM -->
+    <line x1="100" y1="310" x2="100" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+    <line x1="210" y1="310" x2="210" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+    <line x1="320" y1="310" x2="320" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+  </g>
+
+  <!-- 右侧面板：容器 -->
+  <g transform="translate(420,80)">
+    <rect width="340" height="420" rx="12" fill="#ffffff" stroke="#0d47a1" stroke-width="2"/>
+    <text x="170" y="44" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="16" font-weight="bold" fill="#0d47a1">容器</text>
+
+    <!-- Host OS -->
+    <rect x="20" y="370" width="300" height="40" rx="6" fill="#0d47a1"/>
+    <text x="170" y="396" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Host OS</text>
+
+    <!-- Docker Engine -->
+    <rect x="20" y="310" width="300" height="40" rx="6" fill="#1565c0"/>
+    <text x="170" y="336" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Docker Engine</text>
+
+    <!-- Container 1 -->
+    <g transform="translate(52,80)">
+      <rect width="96" height="210" rx="6" fill="#e3f2fd" stroke="#42a5f5" stroke-width="2"/>
+      <rect width="96" height="34" rx="6" fill="#42a5f5"/>
+      <rect x="0" y="22" width="96" height="12" fill="#42a5f5"/>
+      <text x="48" y="16" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="bold" fill="#0d47a1">Container</text>
+      <rect x="10" y="48" width="76" height="56" rx="4" fill="#ffffff" stroke="#1565c0" stroke-width="1"/>
+      <text x="48" y="80" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">App</text>
+      <rect x="10" y="114" width="76" height="80" rx="4" fill="#ffffff" stroke="#1565c0" stroke-width="1"/>
+      <text x="48" y="150" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">Bin/Lib</text>
+    </g>
+
+    <!-- Container 2 -->
+    <g transform="translate(162,80)">
+      <rect width="96" height="210" rx="6" fill="#e3f2fd" stroke="#42a5f5" stroke-width="2"/>
+      <rect width="96" height="34" rx="6" fill="#42a5f5"/>
+      <rect x="0" y="22" width="96" height="12" fill="#42a5f5"/>
+      <text x="48" y="16" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="bold" fill="#0d47a1">Container</text>
+      <rect x="10" y="48" width="76" height="56" rx="4" fill="#ffffff" stroke="#1565c0" stroke-width="1"/>
+      <text x="48" y="80" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">App</text>
+      <rect x="10" y="114" width="76" height="80" rx="4" fill="#ffffff" stroke="#1565c0" stroke-width="1"/>
+      <text x="48" y="150" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">Bin/Lib</text>
+    </g>
+
+    <!-- Container 3 -->
+    <g transform="translate(272,80)">
+      <rect width="96" height="210" rx="6" fill="#e3f2fd" stroke="#42a5f5" stroke-width="2"/>
+      <rect width="96" height="34" rx="6" fill="#42a5f5"/>
+      <rect x="0" y="22" width="96" height="12" fill="#42a5f5"/>
+      <text x="48" y="16" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="bold" fill="#0d47a1">Container</text>
+      <rect x="10" y="48" width="76" height="56" rx="4" fill="#ffffff" stroke="#1565c0" stroke-width="1"/>
+      <text x="48" y="80" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">App</text>
+      <rect x="10" y="114" width="76" height="80" rx="4" fill="#ffffff" stroke="#1565c0" stroke-width="1"/>
+      <text x="48" y="150" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">Bin/Lib</text>
+    </g>
+
+    <!-- 箭头：Host OS → Docker Engine -->
+    <line x1="170" y1="370" x2="170" y2="358" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+
+    <!-- 箭头：Docker Engine → Container -->
+    <line x1="100" y1="310" x2="100" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+    <line x1="210" y1="310" x2="210" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+    <line x1="320" y1="310" x2="320" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+
+    <!-- 共享内核标注 -->
+    <text x="170" y="420" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">容器共享 Host OS 内核</text>
+  </g>
+
+  <!-- 底部说明：容器更轻量 -->
+  <text x="400" y="525" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#ef5350">容器更轻量：无需完整 Guest OS，启动更快、资源占用更少</text>
+</svg>

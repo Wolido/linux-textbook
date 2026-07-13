@@ -17,7 +17,7 @@
   <aside class="sidebar" id="site-sidebar">
     <nav>
       <ul>
-        <li><a href="index.html">封面 · 目录</a></li>
+        <li><a href="index.html">目录</a></li>
         <li><a href="preface.html">序言</a></li>
         <li>
           <a href="chapter-01.html">第一章 Linux的基础知识</a>
@@ -53,16 +53,39 @@
             <li><a href="chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
           </ul>
         </li>
+        <li>
+          <a href="chapter-04.html">第四章 Linux 好用的工具</a>
+        </li>
+        <li>
+          <a href="chapter-05.html">第五章 Git</a>
+        </li>
+
+        <li>
+          <a href="chapter-06.html">第六章 Vim 文本编辑器</a>
+        </li>
+        <li>
+          <a href="chapter-07.html">第七章 网络基础</a>
+        </li>
+        <li>
+          <a href="chapter-08.html">第八章 Web 与 API</a>
+        </li>
+        <li>
+          <a href="chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
 
         <li class="nav-section">
           <span class="nav-section-title">延伸阅读</span>
           <ul>
-            <li><a href="case-open-source.html">开源：从自由软件运动到人工智能时代</a></li>
-            <li><a href="case-xz-utils.html">XZ Utils 后门事件</a></li>
-            <li><a href="case-unix-wars.html">Unix 战争与 BSD 诉讼案</a></li>
-            <li><a href="case-gnu-hurd.html">GNU Hurd：那个没做成的内核</a></li>
-            <li><a href="case-linux-on-mars.html">Linux 在火星</a></li>
-            <li><a href="case-android-linux.html">Android 是不是 Linux？</a></li>
+            <li><a href="extended-reading.html">延伸阅读</a></li>
           </ul>
         </li>
       </ul>
@@ -70,7 +93,7 @@
   </aside>
 
   <main class="main-content">
-<h1 id="第一章linux的基础知识">第一章 Linux的基础知识</h1>
+    <h1 id="第一章linux的基础知识">第一章 Linux的基础知识</h1>
 <h2 id="unix与linux">Unix与Linux</h2>
 <p>虽然这本书是讲Linux的，但是故事却要从Unix这个操作系统开始讲起，甚至从Unix操作系统之前的一款已经淹没在历史长河中的操作系统讲起。</p>
 <p>20世纪60年代，贝尔实验室（Bell Labs）与麻省理工学院（MIT）以及通用电气公司（GE）合作开发了一个名为Multics（Multiplexed Information and Computing Service）的操作系统。这是一款为了多用户和多任务操作场景而设计的操作系统，但是最终Multics因为设计过于复杂、资源消耗过于巨大，项目在1969年被放弃。</p>
@@ -78,7 +101,7 @@
 <p>当时，肯·汤普森正在开发一款名为“星际旅行”（Space Travel）的游戏。这款游戏模拟了太阳系的旅行，玩家可以控制飞船在二维比例模型的太阳系中飞行，尝试登陆行星和卫星。</p>
 <p>“星际旅行”游戏最初在Multics上开发，后来移植到GECOS操作系统，运行在GE-635计算机上。但是游戏的开发成本太贵了，每次运行游戏，需要消耗公司大概50~75美元的内部费用，这还是上世纪60年代的美元。巧的是，汤普森偶然发现了一台闲置的PDP-7计算机，他决定将游戏移植到这台机器上。</p>
 <figure>
-  <img src="assets/images/chapter-01/PDP-7.jpg" alt="PDP-7计算机">
+  <img src="assets/images/chapter-01/fig-1.1-pdp7.jpg" alt="PDP-7计算机">
   <figcaption>图1.1 PDP-7计算机</figcaption>
 </figure>
 
@@ -89,7 +112,7 @@
 <p>在那个时代，Unix有着许多领先的概念和实现。Unix的设计哲学强调简单性、模块化和可扩展性，提出了“一切皆文件”的概念，并通过管道和进程等机制实现了模块化设计。这些理念很大程度上推动了操作系统的商业化。早期，Unix的源代码被广泛分发给学术机构、研究人员和企业，例如Unix源码曾分发给加州大学伯克利分校，并促成了BSD（Berkeley Software Distribution）这一发行版的出现；DEC、HP、IBM 等公司也开发了自己的 Unix 商业版本（如 DEC's ULTRIX、IBM's AIX），Unix的生态系统日益壮大起来，但同时也埋下了许多隐患。</p>
 <p>时间很快到了80年代末、90年代初，Unix的版权问题开始显现。AT&amp;T公司的子公司Unix System Laboratories（USL）声称BSD的代码侵犯了Unix的版权、泄露了商业秘密，并滥用了商标，直至1992年，USL公司发起了诉讼。这一期间，BSD以及Unix内核的发展明显放缓，恰巧与此同时，有一位年轻人正在寻找一个Unix或者Unix-like内核，他就是我们故事的主角，林纳斯·托瓦兹（Linus Torvalds），Linux的作者。</p>
 <figure>
-  <img src="assets/images/chapter-01/Linus.jpg" alt="Linus Torvalds">
+  <img src="assets/images/chapter-01/fig-1.2-linus-torvalds.jpg" alt="Linus Torvalds">
   <figcaption>图1.2 Linus Torvalds</figcaption>
 </figure>
 
@@ -125,7 +148,7 @@
 <p>此外，Linux 的资源占用通常更低。同样一台服务器，运行 Linux 比运行 Windows Server 能留出更多 CPU 和内存给实际任务，也就意味着同样的硬件能承载更多服务。对 AI 训练、分子动力学模拟这些“吃资源”的工作来说，省下来的每一分算力都很实在。</p>
 
 <figure>
-  <img src="assets/images/chapter-01/linux-resource-monitor.png" alt="Linux 终端中显示的低资源占用监控界面">
+  <img src="assets/images/chapter-01/fig-1.3-resource-monitor.png" alt="Linux 终端中显示的低资源占用监控界面">
   <figcaption>图1.3 一台空闲的 Linux 服务器，内存仅占用约 347MB</figcaption>
 </figure>
 
@@ -153,7 +176,7 @@
 <li>广义的Linux：指以Linux内核为核心，再加上GNU工具链、系统库、图形界面等一大套软件构成的完整操作系统，常被称为GNU/Linux。</li>
 </ul>
 <figure>
-  <img src="assets/images/chapter-01/linux-distro-stack.svg" alt="Linux 发行版的层次结构">
+  <img src="assets/images/chapter-01/fig-1.4-distro-stack.svg" alt="Linux 发行版的层次结构">
   <figcaption>图1.4 Linux 发行版由内核、GNU 工具链、系统库、应用软件和包管理工具等层次构成</figcaption>
 </figure>
 <p>在真正能被我们使用的Linux操作系统中，Linux内核是整个操作系统的“大脑和心脏”，它是一个运行在计算机最底层的软件层，负责直接和硬件打交道，同时向上层用户程序提供统一的抽象接口。换句话说，内核是硬件与软件之间的唯一翻译官。</p>
@@ -163,12 +186,12 @@
 <p>接下来我们介绍几个主流的Linux发行版。</p>
 <h3 id="debian系">Debian系</h3>
 <figure>
-  <img src="assets/images/chapter-01/debian-family.svg" alt="Debian 系发行版家谱">
+  <img src="assets/images/chapter-01/fig-1.5-debian-family.svg" alt="Debian 系发行版家谱">
   <figcaption>图1.5 Debian 系主要发行版的家谱</figcaption>
 </figure>
 <p>在这张家谱的最顶端，就是 Debian 本身。它不像 Ubuntu 那样频繁发布新版本，也不追求最时髦的桌面特效，而是以稳定、自由和社区自治著称。很多衍生版之所以选择基于 Debian，正是看中了它扎实的根基。</p>
 <figure>
-  <img src="assets/images/chapter-01/debian.png" alt="Debian">
+  <img src="assets/images/chapter-01/fig-1.6-debian.png" alt="Debian">
   <figcaption>图1.6 Debian的图标</figcaption>
 </figure>
 <p>Debian系是当今Linux世界真正的“人口第一大族”，根据公开统计，全球公开互联网服务器中约 55%～60% 的机器都直接或间接流淌着Debian的血。它的家族结构非常清晰：只有一个真正的“母版”——Debian GNU/Linux，其余所有成员都是它的直系后代或再衍生。Debian系使用apt包管理工具，使用<code>apt-get</code>命令来安装软件包。现在更推荐使用 <code>apt</code> 命令，它是 <code>apt-get</code> 和 <code>apt-cache</code> 的更易用封装，带有进度条和更友好的输出。</p>
@@ -178,7 +201,7 @@
 <p>Kali Linux，这是一个旨在提供安全测试的Linux发行版。它和上面的“孙子辈”不一样，是 Debian 的直系后代，只不过它彻底抛弃了“通用操作系统”的定位，专为渗透测试、安全研究、数字取证和逆向工程而生。一定要注意，千万不能将Kali Linux当作生产服务器用，它默认使用root用户，也就是最高权限，并且关闭了几乎所有的安全加固。</p>
 <p>Raspberry Pi OS，这是一个给树莓派设备使用的Linux发行版。早年间，这款Linux发行版名叫Raspbian，2015年由树莓派基金会接手，改名为Raspberry Pi OS。这款发行版也是纯血的Debian系，官方软件仓库大部分都是直接镜像Debian，只有少量树莓派专用软件。</p>
 <figure>
-  <img src="assets/images/chapter-01/raspberry.jpeg" alt="树莓派 Zero 2 W 设备">
+  <img src="assets/images/chapter-01/fig-1.7-raspberry-pi.jpeg" alt="树莓派 Zero 2 W 设备">
   <figcaption>图1.7 树莓派 Zero 2 W 设备</figcaption>
 </figure>
 
@@ -191,7 +214,7 @@
 
 <h4 id="rhel">RHEL：企业级Linux的标杆</h4>
 <figure>
-  <img src="assets/images/chapter-01/redhat-logo.svg" alt="Red Hat 的徽标">
+  <img src="assets/images/chapter-01/fig-1.8-redhat-logo.svg" alt="Red Hat 的徽标">
   <figcaption>图1.8 Red Hat 的徽标</figcaption>
 </figure>
 
@@ -200,7 +223,7 @@
 
 <h4 id="fedora">Fedora：红帽的试验田</h4>
 <figure>
-  <img src="assets/images/chapter-01/fedora-logo.svg" alt="Fedora 的徽标">
+  <img src="assets/images/chapter-01/fig-1.9-fedora-logo.svg" alt="Fedora 的徽标">
   <figcaption>图1.9 Fedora 的徽标</figcaption>
 </figure>
 
@@ -209,7 +232,7 @@
 
 <h4 id="centos">CentOS：那个免费的午餐变了</h4>
 <figure>
-  <img src="assets/images/chapter-01/centos-stream-logo.svg" alt="CentOS Stream 的徽标">
+  <img src="assets/images/chapter-01/fig-1.10-centos-stream-logo.svg" alt="CentOS Stream 的徽标">
   <figcaption>图1.10 CentOS Stream 的徽标</figcaption>
 </figure>
 
@@ -218,7 +241,7 @@
 
 <h4 id="rocky-linux">Rocky Linux：老父亲的回归</h4>
 <figure>
-  <img src="assets/images/chapter-01/rocky-linux-logo.svg" alt="Rocky Linux 的徽标">
+  <img src="assets/images/chapter-01/fig-1.11-rocky-linux-logo.svg" alt="Rocky Linux 的徽标">
   <figcaption>图1.11 Rocky Linux 的徽标</figcaption>
 </figure>
 
@@ -227,7 +250,7 @@
 
 <h4 id="almalinux">AlmaLinux：另一条接棒者</h4>
 <figure>
-  <img src="assets/images/chapter-01/almalinux-logo.svg" alt="AlmaLinux 的徽标">
+  <img src="assets/images/chapter-01/fig-1.12-almalinux-logo.svg" alt="AlmaLinux 的徽标">
   <figcaption>图1.12 AlmaLinux 的徽标</figcaption>
 </figure>
 
@@ -238,12 +261,12 @@
 <p>看完这些发行版，你可能会觉得关系有点复杂。其实它们的血脉关系非常清晰：Fedora是上游的创新试验田，RHEL是企业级的稳定产物，而CentOS Stream、Rocky Linux、AlmaLinux则围绕RHEL形成了不同的下游生态。下面两张图可以帮助你快速建立整体印象。</p>
 
 <figure>
-  <img src="assets/images/chapter-01/redhat-family.svg" alt="红帽系发行版家谱图">
+  <img src="assets/images/chapter-01/fig-1.13-redhat-family.svg" alt="红帽系发行版家谱图">
   <figcaption>图1.13 红帽系发行版家谱：Fedora、RHEL 与下游衍生版的关系</figcaption>
 </figure>
 <p>除了血脉关系，时间线也能帮我们理解红帽系的发展历程。从 1993 年 Red Hat 公司成立，到 2020 年 CentOS Linux 转向 Stream、2021 年 Rocky Linux 和 AlmaLinux 相继发布，红帽系经历了从校园项目到企业巨头、从免费重建版繁荣到生态重新洗牌的多重转折。</p>
 <figure>
-  <img src="assets/images/chapter-01/redhat-timeline.svg" alt="红帽系关键历史事件时间线">
+  <img src="assets/images/chapter-01/fig-1.14-redhat-timeline.svg" alt="红帽系关键历史事件时间线">
   <figcaption>图1.14 红帽系关键历史事件时间线（时间轴为示意，不按严格比例绘制）</figcaption>
 </figure>
 

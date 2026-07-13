@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>延伸阅读：GNU Hurd：那个没做成的内核 - Linux操作系统与数据库教材</title>
+  <title>延伸阅读 - Linux操作系统与数据库教材</title>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -93,33 +93,53 @@
   </aside>
 
   <main class="main-content">
-<h1 id="gnu-hurd那个没做成的内核">GNU Hurd：那个没做成的内核</h1>
-<p>GNU 计划有一个伟大的目标：构建一套完全自由的类 Unix 操作系统。这个目标的大部分组件后来都实现了，唯独最核心的那块——内核，迟迟没有完成。等到一个名叫 Linux 的芬兰学生把自己的内核发布到互联网上时，GNU 的工具链突然发现，自己等了多年的搭档终于出现了。</p>
+    <h1 id="延伸阅读">延伸阅读</h1>
 
-<h2 id="gnu计划的开始">GNU 计划的开始</h2>
-<p>1984 年，理查德·斯托曼发起了 GNU 计划。他不满 AT&amp;T 把 Unix 封闭起来，立志要写出一个任何人都能自由使用、修改和分发的操作系统。这个计划的名字 GNU 本身就是一个递归缩写：GNU's Not Unix，意思是“GNU 不是 Unix”，既继承了 Unix 的设计哲学，又不沾 AT&amp;T 专有代码的边。</p>
-<p>斯托曼和他招募的志愿者从最基本的工具开始写起。编辑器、编译器、Shell、调试器、核心库，一件一件地被实现出来。到 20 世纪 80 年代末，GNU 项目已经产出了 Emacs、GCC、GDB、Bash 等核心工具。</p>
+    <p>以下文章围绕 Linux 的历史、生态和社会影响展开，帮助你从更宽广的视角理解操作系统世界。</p>
 
-<h2 id="工具链齐了缺一个内核">工具链齐了，缺一个内核</h2>
-<p>一个完整的操作系统需要很多部分，但最核心的是一个内核。内核负责管理硬件资源、调度进程、提供文件系统和网络支持。GNU 计划的外围工具越来越成熟，但内核部分却始终难产。</p>
-<p>据 GNU 项目资料记载，这个内核项目最初曾有一个叫 Alix 的名字，后来才改名为 Hurd。Hurd 的设计理念很先进，它想做一个基于微内核架构的系统，把文件系统、网络协议、设备驱动等很多原本由内核直接处理的功能，放到用户态的服务进程中去运行。这种设计理论上更灵活、更稳定，但实现起来也比传统的单体内核复杂得多。</p>
-
-<h2 id="基于mach微内核的选择">基于 Mach 微内核的选择</h2>
-<p>Hurd 选择把 Carnegie Mellon 大学开发的 Mach 微内核作为底层。微内核的哲学是把内核做得尽量小，只保留最基础的内存管理、进程间通信和调度能力，其他功能都交给用户态服务。</p>
-<p>这个方向本身没有问题，甚至有些操作系统今天仍在走微内核路线。但对 1990 年代初的 GNU 项目来说，这个选择意味着大量工程细节需要去啃。进程间通信的性能开销、服务之间的依赖关系、错误恢复机制，每一个问题都比想象中更棘手。Hurd 的进展因此明显慢于预期。</p>
-
-<h2 id="linux的出现补齐了拼图">Linux 的出现补齐了拼图</h2>
-<p>1991 年 9 月，林纳斯·托瓦兹发布了 Linux 内核的 0.01 版本。Linux 采用单体内核设计，目标很简单：先跑起来，再逐步改进。它迅速吸引了全球开发者，因为那时大家已经等了很久，GNU 的工具链齐备，缺的就是这样一个可以自由使用的内核。</p>
-<p>把 Linux 内核和 GNU 的用户空间工具组合在一起，一个完整的自由操作系统就出现了。这也是为什么许多人，包括 GNU 项目本身，坚持使用 GNU/Linux 这个名称——Linux 提供了内核，GNU 提供了运行在它上面的绝大多数基础软件，两者缺一不可。</p>
-
-<h2 id="为什么还值得提hurd">为什么还值得提 Hurd</h2>
-<p>Hurd 至今仍在缓慢开发，也曾发布过可以实际安装的版本，但它从未成为主流。我们不应当把它当成一个失败品来嘲笑。Hurd 遇到的问题，其实是操作系统设计史上真实存在的工程取舍：先进架构和快速落地之间，往往只能优先选一个。</p>
-<p>Linux 选了先落地，再进化；Hurd 选了先把架构想清楚，结果错失了时间窗口。这个对比本身，就是理解开源操作系统历史的一把钥匙。</p>
+    <ul class="toc">
+      <li>
+        <a href="case-open-source.html">
+          <span class="chapter-title">开源：从自由软件运动到人工智能时代</span>
+        </a>
+        <p class="toc-desc">从一台打印机说起，追溯开源运动半世纪历程</p>
+      </li>
+      <li>
+        <a href="case-xz-utils.html">
+          <span class="chapter-title">XZ Utils 后门事件</span>
+        </a>
+        <p class="toc-desc">2024年重大开源软件供应链攻击事件始末</p>
+      </li>
+      <li>
+        <a href="case-unix-wars.html">
+          <span class="chapter-title">Unix 战争与 BSD 诉讼案</span>
+        </a>
+        <p class="toc-desc">Unix 商业混战如何为 Linux 的诞生打开窗口</p>
+      </li>
+      <li>
+        <a href="case-gnu-hurd.html">
+          <span class="chapter-title">GNU Hurd：那个没做成的内核</span>
+        </a>
+        <p class="toc-desc">GNU 计划中最核心的内核为何迟迟未能完成</p>
+      </li>
+      <li>
+        <a href="case-linux-on-mars.html">
+          <span class="chapter-title">Linux 在火星</span>
+        </a>
+        <p class="toc-desc">NASA 火星任务中运行 Linux 的计算机</p>
+      </li>
+      <li>
+        <a href="case-android-linux.html">
+          <span class="chapter-title">Android 是不是 Linux？</span>
+        </a>
+        <p class="toc-desc">用了 Linux 内核的 Android，到底算不算 Linux</p>
+      </li>
+    </ul>
 
     <footer class="page-footer">
       <div class="next">
-        <span class="label">下一章</span>
-        <a href="case-linux-on-mars.html">Linux 在火星</a>
+        <span class="label">返回目录</span>
+        <a href="index.html">目录</a>
       </div>
     </footer>
   </main>

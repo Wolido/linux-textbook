@@ -7,11 +7,11 @@
 
   <!-- 箭头标记 -->
   <defs>
-    <marker id="arr-down-red" markerWidth="8" markerHeight="8" refX="4" refY="8" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L8,0 L4,8 Z" fill="#e74c3c"/>
+    <marker id="arr-down-red" markerWidth="6" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L6,4 L0,8 Z" fill="#e74c3c"/>
     </marker>
-    <marker id="arr-down-green" markerWidth="8" markerHeight="8" refX="4" refY="8" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L8,0 L4,8 Z" fill="#27ae60"/>
+    <marker id="arr-down-green" markerWidth="6" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L6,4 L0,8 Z" fill="#27ae60"/>
     </marker>
   </defs>
 
@@ -31,8 +31,7 @@
   <!-- 旧终端 -->
   <g transform="translate(230, 310)">
     <rect x="-110" y="-55" width="220" height="110" rx="10" fill="#2d2d2d" stroke="#e74c3c" stroke-width="2"/>
-    <rect x="-110" y="-55" width="220" height="40" rx="10" fill="#4a4a4a"/>
-    <rect x="-110" y="-15" width="220" height="10" fill="#4a4a4a"/>
+    <path d="M -110,-45 A 10,10 0 0 1 -100,-55 L 100,-55 A 10,10 0 0 1 110,-45 L 110,-15 L -110,-15 Z" fill="#4a4a4a"/>
     <circle cx="-90" cy="-35" r="4" fill="#ff5f56"/>
     <circle cx="-75" cy="-35" r="4" fill="#ffbd2e"/>
     <circle cx="-60" cy="-35" r="4" fill="#27c93f"/>
@@ -44,8 +43,7 @@
   <!-- 新终端 -->
   <g transform="translate(570, 310)">
     <rect x="-110" y="-55" width="220" height="110" rx="10" fill="#2d2d2d" stroke="#27ae60" stroke-width="2"/>
-    <rect x="-110" y="-55" width="220" height="40" rx="10" fill="#4a4a4a"/>
-    <rect x="-110" y="-15" width="220" height="10" fill="#4a4a4a"/>
+    <path d="M -110,-45 A 10,10 0 0 1 -100,-55 L 100,-55 A 10,10 0 0 1 110,-45 L 110,-15 L -110,-15 Z" fill="#4a4a4a"/>
     <circle cx="-90" cy="-35" r="4" fill="#ff5f56"/>
     <circle cx="-75" cy="-35" r="4" fill="#ffbd2e"/>
     <circle cx="-60" cy="-35" r="4" fill="#27c93f"/>
@@ -55,12 +53,14 @@
   </g>
 
   <!-- 箭头：.bashrc → 旧终端 -->
-  <path d="M280,190 Q180,230 230,255" fill="none" stroke="#e74c3c" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arr-down-red)"/>
-  <text x="210" y="205" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#e74c3c">不自动生效</text>
+  <path d="M280,190 C180,230 230,220 230,249" fill="none" stroke="#e74c3c" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arr-down-red)"/>
+  <rect x="177.5" y="211.5" width="80" height="24" rx="4" fill="#fafafa"/>
+  <text x="217.5" y="228.5" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#e74c3c">不自动生效</text>
 
   <!-- 箭头：.bashrc → 新终端 -->
-  <path d="M520,190 Q620,230 570,255" fill="none" stroke="#27ae60" stroke-width="2" marker-end="url(#arr-down-green)"/>
-  <text x="590" y="205" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#27ae60">自动生效</text>
+  <path d="M520,190 C620,230 570,220 570,249" fill="none" stroke="#27ae60" stroke-width="2" marker-end="url(#arr-down-green)"/>
+  <rect x="542.5" y="211.5" width="80" height="24" rx="4" fill="#fafafa"/>
+  <text x="582.5" y="228.5" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#27ae60">自动生效</text>
 
   <!-- 底部说明 -->
   <text x="400" y="405" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666666">.bashrc 只在启动新 Shell 时被读取，当前终端需手动 source</text>

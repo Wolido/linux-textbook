@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第八章 Web 与 API - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">目录</a></li>
+        <li><a href="preface.html">序言</a></li>
+        <li>
+          <a href="chapter-01.html">第一章 Linux的基础知识</a>
+        </li>
+        <li>
+          <a href="chapter-02.html">第二章 Shell 与命令行</a>
+        </li>
+        <li>
+          <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+        </li>
+        <li>
+          <a href="chapter-04.html">第四章 Linux 好用的工具</a>
+        </li>
+        <li>
+          <a href="chapter-05.html">第五章 Git</a>
+        </li>
+        <li>
+          <a href="chapter-06.html">第六章 Vim 文本编辑器</a>
+        </li>
+        <li>
+          <a href="chapter-07.html">第七章 网络基础</a>
+        </li>
+        <li>
+          <a href="chapter-08.html">第八章 Web 与 API</a>
+          <ul>
+            <li><a href="chapter-08.html#http浏览器和服务器之间的对话">HTTP：浏览器和服务器之间的对话</a></li>
+            <li><a href="chapter-08.html#请求方法请求头与请求体">请求方法、请求头与请求体</a></li>
+            <li><a href="chapter-08.html#网络状态码">网络状态码</a></li>
+            <li><a href="chapter-08.html#https加密的http">HTTPS：加密的 HTTP</a></li>
+            <li><a href="chapter-08.html#正向代理与反向代理">正向代理与反向代理</a></li>
+            <li><a href="chapter-08.html#ssh隧道与端口转发">SSH 隧道与端口转发</a></li>
+            <li><a href="chapter-08.html#mcp模型上下文协议">MCP：模型上下文协议</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="extended-reading.html">延伸阅读</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1 id="第八章web与api">第八章 Web 与 API</h1>
+
+    <p>前面几章，你已经学会了登录服务器、改文件、装软件、管理代码。但一台服务器真正的价值，往往不在于它本地能做什么，而在于它如何与外界交换信息。对做 AI 和材料研究的人来说，这种交换几乎每天都在发生：用 Python 脚本调用大模型 API、从公开仓库下载晶体结构数据集、在远程 Jupyter Notebook 上调参、把训练好的模型部署成服务供别人访问。</p>
+
+    <p>这些动作看起来五花八门，底层却共享同一套语言：HTTP。它规定了浏览器和服务器、脚本和接口之间如何“对话”。这一章我们就从这套对话规则出发，一路讲到加密、代理、隧道，最后看看正在快速演进中的 MCP——一种为 AI 工具链设计的新协议。</p>
+
+    <h2 id="http浏览器和服务器之间的对话">HTTP：浏览器和服务器之间的对话</h2>
+
+    <p>1990 年前后，蒂姆·伯纳斯-李在瑞士的 CERN 设计万维网时，需要一种简单的方式让一台电脑向另一台电脑请求文档。于是 HTTP（HyperText Transfer Protocol，超文本传输协议）诞生了。它的工作方式非常像写信：客户端写一封信（请求）寄给服务器，服务器读完后回一封信（响应）。两封信都有固定格式，只要双方都遵守格式，就能互相理解。</p>
+
+    <p>今天你每次打开浏览器访问 <code>https://papers.example-lab.edu</code>、每次用 <code>curl</code> 下载数据集、每次让 Python 的 <code>requests</code> 库调用模型接口，本质上都是在发这样一封信。</p>
+
+    <h3 id="从浏览器地址栏开始">从浏览器地址栏开始</h3>
+
+    <p>当你在地址栏输入一个 URL，比如 <code>https://api.example-lab.edu/v1/datasets</code>，你其实已经指定了好几件事：</p>
+
+    <ul>
+      <li><code>https://</code> 表示使用 HTTPS 协议（稍后会讲）。</li>
+      <li><code>api.example-lab.edu</code> 是服务器的主机名。</li>
+      <li><code>/v1/datasets</code> 是路径，告诉服务器你要访问哪个资源。</li>
+    </ul>
+
+    <p>浏览器拿到这个 URL 后，会先通过 DNS 把主机名解析成 IP 地址，然后建立连接，发出 HTTP 请求。</p>
+
+    <h3 id="请求与响应的往返">请求与响应的往返</h3>
+
+    <p>一个完整的 HTTP 交互只有两步：请求和响应。请求里面包含方法、路径、协议版本、若干请求头和可选的请求体；响应里面包含状态码、响应头和响应体。</p>
+
+    <p>用 <code>curl -v</code> 可以清楚地看到这次对话的全过程。下面是一个虚构的例子，请求课题组的数据集列表：</p>
+
+<pre><code class="terminal"><span class="prompt">student@workstation:~$</span> <span class="command">curl -v https://api.example-lab.edu/v1/datasets</span>
+<span class="output">* Connected to api.example-lab.edu (203.0.113.10) port 443
+&gt; GET /v1/datasets HTTP/1.1
+&gt; Host: api.example-lab.edu
+&gt; User-Agent: curl/8.4.0
+&gt; Accept: */*
+&gt;
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: application/json
+&lt;
+{"datasets":[{"id":"cathode-001","name":"LiFePO4 structures"}]}</span>
+</code></pre>
+
+    <p>以 <code>&gt;</code> 开头的是发出去的请求，以 <code>&lt;</code> 开头的是收到的响应。箭头之间的空白提醒我们：请求发出去之后，服务器需要时间处理，这段等待就是网络延迟。</p>
+
+    <figure>
+      <img src="assets/images/chapter-08/fig-8.1-http-request-response.svg" alt="HTTP 请求与响应结构示意图">
+      <figcaption>图8.1 HTTP 请求与响应结构</figcaption>
+    </figure>
+
+    <h2 id="请求方法请求头与请求体">请求方法、请求头与请求体</h2>
+
+    <p>HTTP 请求不是千篇一律的“取东西”。它用不同的“方法”表达不同的意图，用请求头补充细节，用请求体携带数据。</p>
+
+    <h3 id="常见请求方法">常见请求方法</h3>
+
+    <p>最常用的两个方法是 GET 和 POST。GET 表示“我要获取资源”，POST 表示“我要提交数据”。比如你查询数据集列表用 GET，上传新的实验结果用 POST。</p>
+
+    <h4 id="get与post">GET 与 POST</h4>
+
+    <p>GET 的请求参数通常放在 URL 里，例如 <code>/v1/datasets?material=oxide</code>。它的优点是可见、可分享、可被浏览器收藏；缺点是 URL 长度有限，不适合传输大量或敏感数据。</p>
+
+    <p>POST 的参数放在请求体里，适合提交表单、上传文件、调用模型接口。例如让大模型总结一段材料描述：</p>
+
+<pre><code class="terminal"><span class="prompt">student@workstation:~$</span> <span class="command">curl -X POST https://api.example-lab.edu/v1/chat \</span>
+<span class="command">  -H "Content-Type: application/json" \</span>
+<span class="command">  -d '{"model":"matgpt-lite","messages":[{"role":"user","content":"总结 LiFePO4 的晶体结构特点"}]}'</span>
+</code></pre>
+
+    <h4 id="putdelete与patch">PUT、DELETE 与 PATCH</h4>
+
+    <p>PUT 通常用于完整更新一个资源，DELETE 用于删除，PATCH 用于部分更新。在 RESTful API 设计中，这四个方法加上 GET 和 POST，基本可以覆盖对资源的“增删改查”。</p>
+
+    <h3 id="请求头里的关键信息">请求头里的关键信息</h3>
+
+    <p>请求头是一些键值对，告诉服务器“我是谁”“我想要什么格式”“我带了什么凭证”。常见的有：</p>
+
+    <ul>
+      <li><code>Host</code>：目标主机名，多个网站共用一台服务器时必不可少。</li>
+      <li><code>User-Agent</code>：标识客户端，比如浏览器或 Python 脚本。</li>
+      <li><code>Accept</code>：客户端希望接收的数据格式，如 <code>application/json</code>。</li>
+      <li><code>Content-Type</code>：请求体的格式，告诉服务器怎么解析 body。</li>
+      <li><code>Authorization</code>：身份凭证，常见的是 API Key 或 Token。</li>
+    </ul>
+
+    <p>调用模型 API 时，<code>Authorization</code> 头最关键。它通常长这样：</p>
+
+<pre><code class="terminal"><span class="prompt">student@workstation:~$</span> <span class="command">curl -H "Authorization: Bearer sk-example-key-123456" \</span>
+<span class="command">  https://api.example-lab.edu/v1/models</span>
+</code></pre>
+
+    <p>千万别把真实的 API Key 写进公开的代码仓库，否则就像把实验室门禁卡贴在公告栏上。</p>
+
+    <h3 id="请求体与常见格式">请求体与常见格式</h3>
+
+    <p>请求体只在 POST、PUT、PATCH 这类需要携带数据的请求里出现。最常见的格式是 JSON，因为它既简洁又能被 Python、JavaScript、Go 等语言直接解析。表单数据 <code>application/x-www-form-urlencoded</code> 和 multipart 表单则多见于网页上传文件。</p>
+
+    <p>对科研脚本来说，JSON 几乎一统天下。训练参数、查询条件、模型输入，都可以序列化成 JSON 放进请求体。</p>
+
+    <h2 id="网络状态码">网络状态码</h2>
+
+    <p>服务器收到请求后，会用状态码告诉客户端结果。状态码是三位数字，第一位代表类别。</p>
+
+    <h3 id="状态码的家族">状态码的家族</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>范围</th>
+          <th>含义</th>
+          <th>常见例子</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1xx</td>
+          <td>信息响应</td>
+          <td>100 Continue</td>
+        </tr>
+        <tr>
+          <td>2xx</td>
+          <td>成功</td>
+          <td>200 OK，201 Created</td>
+        </tr>
+        <tr>
+          <td>3xx</td>
+          <td>重定向</td>
+          <td>301 Moved Permanently，302 Found</td>
+        </tr>
+        <tr>
+          <td>4xx</td>
+          <td>客户端错误</td>
+          <td>400 Bad Request，401 Unauthorized，403 Forbidden，404 Not Found</td>
+        </tr>
+        <tr>
+          <td>5xx</td>
+          <td>服务器错误</td>
+          <td>500 Internal Server Error，502 Bad Gateway，503 Service Unavailable</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="科研场景里常见的几个码">科研场景里常见的几个码</h3>
+
+    <ul>
+      <li><strong>200 OK</strong>：请求成功，响应体里有你要的数据。</li>
+      <li><strong>400 Bad Request</strong>：请求格式不对，比如 JSON 少了一个逗号，或者参数类型错误。</li>
+      <li><strong>401 Unauthorized</strong>：没有提供凭证，或 API Key 无效。</li>
+      <li><strong>403 Forbidden</strong>：凭证有效，但权限不足，比如普通用户访问了管理员接口。</li>
+      <li><strong>404 Not Found</strong>：资源不存在，可能是 URL 拼错了。</li>
+      <li><strong>429 Too Many Requests</strong>：调用太频繁，被限流了。调用大模型 API 时很常见。</li>
+      <li><strong>500 Internal Server Error</strong>：服务器内部出错，通常是服务端代码抛了异常。</li>
+      <li><strong>502 Bad Gateway</strong>：反向代理后面的真实服务器没有正常响应，后面会讲到。</li>
+    </ul>
+
+    <p>遇到非 2xx 的状态码，先别急着重试。读一下响应体里的错误信息，往往能定位问题。</p>
+
+    <h2 id="https加密的http">HTTPS：加密的 HTTP</h2>
+
+    <p>HTTP 最大的问题是明文传输。如果有人在你和服务器之间的网络路径上监听，请求头里的 API Key、请求体里的实验数据、响应里的模型输出，都会被看得一清二楚。HTTPS 就是来解决这个问题的。</p>
+
+    <h3 id="明文传输的风险">明文传输的风险</h3>
+
+    <p>想象你在咖啡馆用公共 Wi-Fi 调用模型 API。如果接口用的是 HTTP，旁边同一网络里的恶意设备就能截获你的 <code>Authorization</code> 头，然后冒充你继续调用。更隐蔽的是，攻击者还可以篡改响应内容，比如把模型返回的正确结论改成错的。</p>
+
+    <h3 id="tls与证书">TLS 与证书</h3>
+
+    <p>HTTPS 在 HTTP 下面加了一层 TLS（Transport Layer Security，传输层安全协议）。TLS 通过非对称加密协商出对称密钥，然后用对称密钥加密后续通信。整个过程大致如下：</p>
+
+    <ol>
+      <li>客户端向服务器索要证书。</li>
+      <li>服务器把包含公钥的证书发给客户端。</li>
+      <li>客户端验证证书是否由可信机构签发、是否过期、域名是否匹配。</li>
+      <li>双方协商出会话密钥，之后的通信都用这个密钥加密。</li>
+    </ol>
+
+    <p>证书的作用就像服务器的“身份证”。浏览器地址栏的锁形图标，本质上是在告诉你：这张身份证经过了可信机构的认证。</p>
+
+    <h3 id="自签名证书与实验室环境">自签名证书与实验室环境</h3>
+
+    <p>在实验室内部，有时会遇到自签名证书——管理员自己生成、没有交给公共证书机构签名的证书。浏览器访问这类网站时会报警告，因为无法验证其真实性。如果你确认服务器是可信的（比如内网的训练平台），可以选择继续访问，但在生产环境里永远不要忽略这种警告。</p>
+
+    <h2 id="正向代理与反向代理">正向代理与反向代理</h2>
+
+    <p>代理（Proxy）是网络世界里最常见的“中间人”，但这个词在不同场景下含义不同。搞清楚正向代理和反向代理的区别，对理解实验室网络环境和部署 web 服务都很重要。</p>
+
+    <h3 id="正向代理替用户出门">正向代理替用户出门</h3>
+
+    <p>正向代理站在客户端一侧。你的电脑不直接访问外网，而是把请求发给代理服务器，由代理服务器帮你出去取数据。实验室里常见的情况：内网机器无法直接访问 PyPI 或 Hugging Face，需要配置 HTTP 代理才能下载包和模型权重。</p>
+
+    <p>配置好后，<code>curl</code>、<code>pip</code>、<code>git</code> 等工具都会把流量先发给代理：</p>
+
+<pre><code class="terminal"><span class="prompt">student@workstation:~$</span> <span class="command">export HTTP_PROXY=http://proxy.example-lab.edu:8080</span>
+<span class="prompt">student@workstation:~$</span> <span class="command">export HTTPS_PROXY=http://proxy.example-lab.edu:8080</span>
+<span class="prompt">student@workstation:~$</span> <span class="command">pip install torch --index-url https://pypi.example-lab.edu/whl/cpu</span>
+</code></pre>
+
+    <p>正向代理的好处是可以统一控制出口、审计流量、缓存常用资源；代价是配置麻烦，一旦代理宕机，外网访问就断了。</p>
+
+    <h3 id="反向代理替服务器迎客">反向代理替服务器迎客</h3>
+
+    <p>反向代理站在服务器一侧。外部用户访问的是一个统一的入口（比如 Nginx 或 Caddy），反向代理再把请求转发给后端的实际服务。它对客户端隐藏了真实服务器的数量和位置。</p>
+
+    <p>在 AI 部署中，反向代理非常常见。比如课题组把三个同学的 Jupyter Notebook 服务、一个模型推理 API、一个 Grafana 监控面板都挂在一台 Nginx 后面，外部只暴露 443 端口：</p>
+
+    <ul>
+      <li><code>/notebook/student-a</code> → 学生 A 的 Jupyter</li>
+      <li><code>/api/inference</code> → 模型推理服务</li>
+      <li><code>/monitor</code> → Grafana</li>
+    </ul>
+
+    <p>反向代理还能做负载均衡、SSL 终结、静态文件缓存，是生产环境的标配。</p>
+
+    <figure>
+      <img src="assets/images/chapter-08/fig-8.2-forward-reverse-proxy.svg" alt="正向代理与反向代理对比示意图">
+      <figcaption>图8.2 正向代理与反向代理</figcaption>
+    </figure>
+
+    <h2 id="ssh隧道与端口转发">SSH 隧道与端口转发</h2>
+
+    <p>第二章讲过用 SSH 登录远程服务器。SSH 不仅能给你一个 shell，还能在本地和远程之间安全地“搬运”网络流量，这就是端口转发。</p>
+
+    <h3 id="本地端口转发">本地端口转发</h3>
+
+    <p>最常见的是本地端口转发：你在本地机器上开一个端口，所有发到这个端口的数据都会通过 SSH 加密隧道传到远程服务器，再由远程服务器转发到目标地址。语法是 <code>ssh -L 本地端口:目标主机:目标端口 跳板机</code>。</p>
+
+    <p>比如实验室的 GPU 服务器上跑着 Jupyter Notebook，只监听内网地址 <code>127.0.0.1:8888</code>。你在家里的电脑上可以这样建立隧道：</p>
+
+<pre><code class="terminal"><span class="prompt">student@home-laptop:~$</span> <span class="command">ssh -N -L 8888:127.0.0.1:8888 student@gpu.example-lab.edu</span>
+</code></pre>
+
+    <p>之后打开浏览器访问 <code>http://localhost:8888</code>，流量会先加密传到 GPU 服务器，再转发给 Jupyter。外人看来，你只是在和 SSH 服务器通信。</p>
+
+    <figure>
+      <img src="assets/images/chapter-08/fig-8.3-ssh-local-port-forward.svg" alt="SSH 本地端口转发示意图">
+      <figcaption>图8.3 SSH 本地端口转发</figcaption>
+    </figure>
+
+    <h3 id="远程端口转发与动态代理">远程端口转发与动态代理</h3>
+
+    <p>远程端口转发正好相反：把远程服务器上的某个端口映射回本地。常用于让外网访问你本机上的服务，但配置时需要谨慎，避免暴露不必要的端口。</p>
+
+    <p>动态代理（<code>ssh -D</code>）则提供一个 SOCKS 代理端口，浏览器或其他应用可以通过它把任意流量经 SSH 隧道转发。它相当于一个简易的 VPN，适合临时绕过不可信网络。</p>
+
+    <p>端口转发很实用，但也有风险。不要把敏感服务监听在 <code>0.0.0.0</code> 上，尽量只绑定 <code>127.0.0.1</code>，并通过 SSH 隧道访问。</p>
+
+    <h2 id="mcp模型上下文协议">MCP：模型上下文协议</h2>
+
+    <p>前面说的 HTTP 和 API，都是“人写好代码，代码再调用服务”。但 AI 时代出现了一种新需求：让 AI 应用自己能发现和使用外部工具。2024 年，Anthropic 提出了 MCP（Model Context Protocol，模型上下文协议），试图为这种需求提供一套标准化接口。</p>
+
+    <p>截至本文写作时，MCP 仍在快速发展中，具体细节可能会随版本更新而变化。这里只讲它的核心思想和意义，不涉及具体安装配置。</p>
+
+    <h3 id="mcp是什么">MCP 是什么</h3>
+
+    <p>MCP 的核心思想很简单：为 AI 应用（称为 host，比如 Claude Desktop、Cursor 或某个科研助手）连接外部工具和数据源（称为 server）提供统一协议。host 不需要为每个工具写一套适配代码，只要遵守 MCP，就能“发现”并调用多个 server 提供的功能。</p>
+
+    <p>对做科研的人来说，这相当于给 AI 助手装了一个通用接口：今天让它查询材料数据库，明天让它调用 Python 计算脚本，后天让它操作实验设备——只要这些能力都封装成 MCP server，AI 助手就能按需调用。</p>
+
+    <figure>
+      <img src="assets/images/chapter-08/fig-8.4-mcp-architecture.svg" alt="MCP Host 通过 MCP Protocol 连接多个 MCP Server">
+      <figcaption>图8.4 MCP 客户端-服务器-工具关系：Host 与 Server 之间通过 MCP Protocol 通信，调用文件系统、数据库等工具</figcaption>
+    </figure>
+
+    <h3 id="mcp与api不是一回事">MCP 与 API 不是一回事</h3>
+
+    <p>传统 API 是应用直接调用服务：你的 Python 脚本知道 <code>api.example-lab.edu</code> 的接口地址、参数格式、认证方式，然后按文档发请求。MCP 则是 AI 应用通过统一协议发现和调用多个工具：host 向 MCP server 询问“你能做什么”，server 返回能力列表，host 再决定调用哪一项。</p>
+
+    <p>打个比方：传统 API 像是你亲自去每家商店买东西，每家店的结账流程都不一样；MCP 像是给 AI 助手一张通用购物卡，它进了商场自己看地图、找店铺、完成交易。</p>
+
+    <h3 id="为什么这值得初学者了解">为什么这值得初学者了解</h3>
+
+    <p>对初学者来说，MCP 最大的意义不是立刻去写 server，而是理解 AI 工具链的“接口”思维。未来的科研软件可能不再只是给人用的网页或命令行，而是同时暴露给 AI 调用的接口。学会设计清晰的函数、文档和参数格式，让你的代码容易被 AI 理解和调用，本身就是一项重要的工程能力。</p>
+
+    <p>网络协议一直在演化，从 HTTP 到 HTTPS，从 REST API 到 MCP，背后的主线始终是：让不同的机器和程序能够安全、标准地对话。掌握这条主线，你就不会被层出不穷的新名词带着跑。</p>
+
+    <footer class="page-footer">
+      <div class="prev">
+        <span class="label">上一章</span>
+        <a href="chapter-07.html">第七章 网络基础</a>
+      </div>
+      <div class="next">
+        <span class="label">下一章</span>
+        <a href="chapter-09.html">第九章 Docker</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

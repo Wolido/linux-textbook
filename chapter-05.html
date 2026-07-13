@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第五章 Git - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">目录</a></li>
+        <li><a href="preface.html">序言</a></li>
+        <li>
+          <a href="chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的“乐高”</a></li>
+            <li><a href="chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="chapter-03.html#用包管理器安装软件">用包管理器安装软件</a></li>
+            <li><a href="chapter-03.html#从源码或其他方式安装">从源码或其他方式安装</a></li>
+            <li><a href="chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-04.html">第四章 Linux 好用的工具</a>
+        </li>
+        <li>
+          <a href="chapter-05.html">第五章 Git</a>
+          <ul>
+            <li><a href="chapter-05.html#为什么科研离不开版本控制">为什么科研离不开版本控制？</a></li>
+            <li><a href="chapter-05.html#git是什么">Git 是什么？</a></li>
+            <li><a href="chapter-05.html#第一个仓库">第一个仓库</a></li>
+            <li><a href="chapter-05.html#查看历史与回退">查看历史与回退</a></li>
+            <li><a href="chapter-05.html#远程仓库与github">远程仓库与 GitHub</a></li>
+            <li><a href="chapter-05.html#分支安全地试错">分支：安全地试错</a></li>
+            <li><a href="chapter-05.html#协作fork与pullrequest">协作：Fork 与 Pull Request</a></li>
+            <li><a href="chapter-05.html#科研项目用git的好习惯">科研项目用 Git 的好习惯</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="chapter-06.html">第六章 Vim 文本编辑器</a>
+        </li>
+        <li>
+          <a href="chapter-07.html">第七章 网络基础</a>
+        </li>
+        <li>
+          <a href="chapter-08.html">第八章 Web 与 API</a>
+        </li>
+        <li>
+          <a href="chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="extended-reading.html">延伸阅读</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1 id="第五章git">第五章 Git</h1>
+
+    <p>第四章讲的工具让你操作 Linux 更顺手：提示符更聪明、找文件更快、训练不怕断线。但从这一章开始，我们要解决一个更根本的问题——怎么让代码、论文、实验记录这些会不断修改的东西，不随着时间变得一团糟。</p>
+
+    <p>做科研的人几乎都遇到过这样的场景：论文改到第七版，文件名已经从 <code>paper.tex</code> 变成 <code>paper_v3_final_导师修改_真的最终版.tex</code>；训练模型的脚本昨天还能跑，今天加了点新功能，上个月那个能复现结果的版本却找不到了；课题组三个人同时改一份代码，最后谁也不知道谁改了什么，只能靠微信群里的文件传输助手“合并”。</p>
+
+    <p>这些问题有一个共同的名字：<strong>版本控制</strong>。Git 就是目前最流行的版本控制工具。它不是只为程序员准备的——AI 训练脚本、LaTeX 论文、材料模拟输入文件、实验数据处理方法，所有会变化的东西都可以交给 Git 管理。学会了它，你就拥有了一台“时间机器”和一个“协作工作台”。</p>
+
+    <h2 id="为什么科研离不开版本控制">为什么科研离不开版本控制？</h2>
+
+    <p>在讲 Git 怎么用之前，先说说为什么需要它。很多人第一次听说 Git，会以为这是软件工程师的专属工具——“我又不写大型软件，为什么要学这个？”但真正用过的人都知道，科研场景里对版本控制的需求，可能比商业软件开发还要迫切。</p>
+
+    <h3 id="论文的最终版陷阱">论文的“最终版”陷阱</h3>
+
+    <p>写论文是最典型的例子。你打开 <code>paper.tex</code>，改了引言，保存。导师说结论要再强调一下，你又改了一遍，另存为 <code>paper_v2.tex</code>。审稿人回来提意见，你继续改，文件名变成 <code>paper_v2_revised.tex</code>。合作者又加了几段，于是出现 <code>paper_v2_revised_小明.tex</code>、<code>paper_v2_revised_小明_合并版.tex</code>。</p>
+
+    <p>再过两个月，你想找回某个被删掉的段落，却忘了它到底在哪个文件里。你只好把所有版本都打开，一个一个对比。更糟的是，你发现两个“最终版”的内容居然不一样——一个里有那条关键公式，另一个没有。哪个才是对的？</p>
+
+    <p>Git 解决的就是这个问题。它不会帮你生成五花八门的文件名，而是把每一次修改都记录成一个“快照”，并附上一句你写的说明。想看两个月前的版本？一条命令就能回到那个时间点。想比较两个版本的区别？Git 会逐行标出来。</p>
+
+    <h3 id="实验与模型的可重复性">实验与模型的可重复性</h3>
+
+    <p>做 AI 训练的同学一定懂这种痛：你跑了一个实验，loss 曲线很漂亮，测试集准确率比 baseline 高了三个点。你兴奋地截了个图，准备写进论文。第二天想复现这个结果，却发现同样的脚本、同样的数据，跑出来的数字变了。</p>
+
+    <p>为什么？可能是你中间偷偷改了一个超参数，可能是数据集预处理脚本被覆盖，可能是随机种子没固定，也可能只是你记错了自己用的是哪个 checkpoint。没有记录，复现就成了猜谜游戏。</p>
+
+    <p>Git 让“可重复”有了抓手。每次重要实验之前，你都可以把当时的代码状态提交一次，写上“使用 ResNet-34、lr=0.001、batch=64 跑 ImageNet 子集”。几个月后，哪怕你的代码已经改得面目全非，仍然可以切回那个确切的版本，重新跑出一样的结果。</p>
+
+    <p>模型文件（<code>.pth</code>、<code>.ckpt</code>）通常很大，Git 本身不适合直接存它们——后面我们会讲怎么处理。但训练脚本、配置文件、数据预处理代码，这些都应该交给 Git。</p>
+
+    <h3 id="协作时的混乱">协作时的混乱</h3>
+
+    <p>科研很少是一个人单打独斗。一个课题组里，导师把握方向，师兄负责模型，你负责数据处理和实验，还有同学写论文。四个人同时动同一份代码，如果没有统一的协作方式，很快就会乱套。</p>
+
+    <p>最常见的“协作方式”是微信传文件：<code>train_小明改.py</code>、<code>train_小红改.py</code>、<code>train_最终合并.py</code>。每个人都在自己的副本上改，最后由一个人手动把改动复制粘贴到一起。这个“合并”过程既痛苦又容易出错——你很容易漏掉某个人的修改，或者把两个互相冲突的改动硬塞在一起。</p>
+
+    <p>Git 的协作逻辑完全不同。它不是让你各改各的副本，而是让每个人在同一棵“修改树”上工作。谁改了什么、什么时候改的、为什么改，全部有记录。两个人的修改如果冲突，Git 会明确标出来，让你决定怎么合并，而不是默默覆盖。</p>
+
+    <h2 id="git是什么">Git 是什么？</h2>
+
+    <p>Git 诞生于 2005 年，作者是林纳斯·托瓦兹——没错，就是写 Linux 内核的那位。当时 Linux 内核开发用的是一个叫 BitKeeper 的商业版本控制工具，后来授权条款变了，Linux 社区没法继续免费用。林纳斯一不做二不休，花了几天时间写了一个新工具，这就是 Git。</p>
+
+    <p>Git 的设计目标很纯粹：管理 Linux 内核这种超大规模、多人协作、分支频繁的项目。所以它从诞生之初就特别快、特别可靠，也特别擅长处理分支和合并。后来它走出内核社区，成为几乎所有软件开发项目的标配，科研领域自然也不例外。</p>
+
+    <h3 id="仓库项目的快照档案馆">仓库：项目的快照档案馆</h3>
+
+    <p>Git 管理项目的基本单位叫<strong>仓库</strong>（repository，常简写成 repo）。一个仓库就是一个被 Git 盯上的目录——它可以是你的毕业论文文件夹，也可以是一个 AI 训练项目文件夹。</p>
+
+    <p>仓库里有一个隐藏的 <code>.git</code> 目录，那是 Git 的“档案馆”。你提交过的每一次修改、每一个分支、每一条历史记录，都存放在那里。只要不删除 <code>.git</code>，你随时能回到过去任何一个状态。</p>
+
+    <p>仓库分两种：<strong>本地仓库</strong>存在你自己的机器上，<strong>远程仓库</strong>存在服务器上（比如 GitHub、GitLab、课题组自建的 Gitea）。本地仓库让你自己管理版本，远程仓库让你和别人共享。后面几节我们会分别讲怎么用。</p>
+
+    <h3 id="提交一次有留言的存档">提交：一次有留言的存档</h3>
+
+    <p>Git 把每次保存称为一次<strong>提交</strong>（commit）。你可以把它理解为游戏里的存档点：你走到某个关键位置，存一下档，写一句备注“打完第一关 boss”，以后随时能读这个档。</p>
+
+    <p>但 Git 的提交比游戏存档更强大。每次提交都会记录：当时所有被跟踪文件的内容、提交的时间、提交者的名字，以及一段你自己写的说明文字。这些内容组合起来，构成一个唯一的哈希值——一长串看起来像乱码的字符，比如 <code>a1b2c3d</code>。这个哈希值就是这次提交的身份证号。</p>
+
+    <p>提交不是自动发生的，必须你主动执行 <code>git commit</code>。这意味着你可以自由决定什么时候存档、存什么、附上什么说明。写一句好的提交说明，等于给未来的自己留一张字条。</p>
+
+    <h3 id="分支平行宇宙">分支：平行宇宙</h3>
+
+    <p>分支（branch）是 Git 最迷人的设计之一。它允许你在同一个仓库里同时存在多条平行的时间线：主分支上代码稳定运行，另一条分支上你在尝试一个新算法，还有一条分支上同学在修一个 bug。三条线互不干扰，各走各的。</p>
+
+    <p>等某个分支上的尝试成熟了，你可以把它合并（merge）回主分支。如果尝试失败了，直接删掉那条分支就行，主分支毫发无伤。这种“安全地试错”的能力，让 Git 特别适合科研——科研本来就是不断试错的。</p>
+
+    <p>一个做材料模拟的同学可能这样用分支：主分支放已经验证稳定的计算脚本，<code>feature/new-potential</code> 分支测试新的势函数，<code>fix/lattice-constant</code> 分支修晶格常数计算的小 bug。三个方向并行推进，不会互相踩脚。</p>
+
+    <h3 id="工作区暂存区与版本库">工作区、暂存区与版本库</h3>
+
+    <p>Git 管理文件时，把文件分成三个层次：工作区、暂存区、版本库。理解这三层，是学会 Git 的关键。</p>
+
+    <ul>
+      <li><strong>工作区</strong>（Working Directory）就是你看到的文件。你在编辑器里改 <code>train.py</code>，改的就是工作区里的文件。</li>
+      <li><strong>暂存区</strong>（Staging Area，也叫 Index）是一个中间台。你改完文件后，用 <code>git add</code> 告诉 Git“这些改动我准备提交了”，改动就被放到暂存区。</li>
+      <li><strong>版本库</strong>（Repository）是 <code>.git</code> 目录里保存的所有历史。你执行 <code>git commit</code> 后，暂存区的内容会被永久写入版本库，成为一次新的提交。</li>
+    </ul>
+
+    <p>为什么要多一个暂存区？因为它让你可以精挑细选。比如你同时改了三个文件：一个修复了 bug，一个加了新功能，一个只是顺手调整了格式。你可以先 <code>git add</code> 修复 bug 的那个文件并提交，再 <code>git add</code> 新功能文件并提交。这样每次提交只做一件事，历史记录就特别清楚。</p>
+
+    <p>这个三层结构和它们之间的命令流转，见图 5.1。</p>
+
+    <figure>
+      <img src="assets/images/chapter-05/fig-5.1-git-three-states.svg" alt="Git 工作区、暂存区与版本库三层状态及命令流转">
+      <figcaption>图5.1 Git 三层状态：工作区 → git add → 暂存区 → git commit → 版本库</figcaption>
+    </figure>
+
+    <h2 id="第一个仓库">第一个仓库</h2>
+
+    <p>概念讲了一堆，现在动手建一个真正的仓库。我们会用一个 AI 训练项目做例子：里面有一篇 LaTeX 论文、几个 Python 脚本、一个配置文件，还有一些实验数据。</p>
+
+    <p>先确认 Git 已经安装。第二章和第三章讲过怎么装软件，Debian/Ubuntu 上直接：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install git</span>
+<span class="output">...</span>
+<span class="prompt">student@debian:~$</span> <span class="command">git --version</span>
+<span class="output">git version 2.39.5</span>
+</code></pre>
+
+    <h3 id="新建仓库还是克隆已有仓库">新建仓库还是克隆已有仓库</h3>
+
+    <p>有两种方式得到一个 Git 仓库：在本地新建，或者从远程克隆。</p>
+
+    <p>如果你从零开始一个项目，用 <code>git init</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">mkdir ~/battery-ml</span>
+<span class="prompt">student@debian:~$</span> <span class="command">cd ~/battery-ml</span>
+<span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git init</span>
+<span class="output">Initialized empty Git repository in /home/student/battery-ml/.git/</span>
+</code></pre>
+
+    <p>现在 <code>~/battery-ml</code> 就是一个 Git 仓库了。目录里多了一个 <code>.git</code>，里面存着 Git 需要的所有元数据。</p>
+
+    <p>如果你想参与一个已经存在的项目，比如课题组在 GitHub 上共享的代码库，用 <code>git clone</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">git clone https://github.com/example-lab/battery-ml.git</span>
+<span class="output">Cloning into 'battery-ml'...
+remote: Enumerating objects: 142, done.
+remote: Total 142 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (142/142), 28.45 KiB | 1.45 MiB/s, done.
+Resolving deltas: 100% (56/56), done.</span>
+</code></pre>
+
+    <p><code>git clone</code> 会把远程仓库的完整历史复制到本地，包括所有提交、分支和标签。克隆下来后，你就可以在本地随意查看和修改。</p>
+
+    <h3 id="告诉git你是谁">告诉 Git 你是谁</h3>
+
+    <p>Git 需要知道每次提交是谁做的。第一次使用时，要配置你的名字和邮箱。这个配置可以针对整个用户（<code>--global</code>），也可以只针对当前仓库。</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git config --global user.name "Li Hua"</span>
+<span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git config --global user.email "lihua@example.edu.cn"</span>
+</code></pre>
+
+    <p>用真实信息，不要用网名。这些信息会写进提交记录，以后别人（包括导师和合作者）看到提交历史，能知道是谁做的修改。</p>
+
+    <p>想查看当前配置：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git config --list</span>
+<span class="output">user.name=Li Hua
+user.email=lihua@example.edu.cn
+init.defaultbranch=main
+...</span>
+</code></pre>
+
+    <h3 id="把文件交给git">把文件交给 Git</h3>
+
+    <p>新建仓库后，Git 并不会自动跟踪所有文件。你要主动告诉它“这个文件归我管”。流程分三步：修改文件、加入暂存区、提交到版本库。</p>
+
+    <p>假设项目里已经有一个训练脚本 <code>train.py</code> 和一个配置文件 <code>config.yaml</code>。先看一下 Git 的状态：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git status</span>
+<span class="output">On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+        config.yaml
+        train.py
+
+nothing added to commit but untracked files present (use "git add" to track)</span>
+</code></pre>
+
+    <p>Git 说有两个“未跟踪文件”：<code>config.yaml</code> 和 <code>train.py</code>。它们就像还没被档案馆登记的资料，Git 知道它们存在，但还没纳入管理。</p>
+
+    <p>把它们加入暂存区：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git add train.py config.yaml</span>
+</code></pre>
+
+    <p>再跑 <code>git status</code>，你会看到这两个文件变成了“Changes to be committed”——等待被提交。</p>
+
+    <p>然后执行第一次提交：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git commit -m "初始提交：添加训练脚本和配置文件"</span>
+<span class="output">[main (root-commit) a1b2c3d] 初始提交：添加训练脚本和配置文件
+ 2 files changed, 80 insertions(+)
+ create mode 100644 config.yaml
+ create mode 100644 train.py</span>
+</code></pre>
+
+    <p><code>-m</code> 后面是提交说明。第一次提交通常叫“初始提交”或“initial commit”。提交成功后，这两个文件就正式进入版本库了。</p>
+
+    <p>现在修改一下 <code>train.py</code>，把学习率从 0.01 改成 0.001。再跑 <code>git status</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git status</span>
+<span class="output">On branch main
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+        modified:   train.py
+
+no changes added to commit (use "git add" and/or "git commit -a")</span>
+</code></pre>
+
+    <p>Git 发现 <code>train.py</code> 被修改了，但还没进入暂存区。要再次 <code>git add train.py</code>，然后 <code>git commit</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git add train.py</span>
+<span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git commit -m "降低学习率至 0.001，提升训练稳定性"</span>
+<span class="output">[main e4f5g6h] 降低学习率至 0.001，提升训练稳定性
+ 1 file changed, 1 insertion(+), 1 deletion(-)</span>
+</code></pre>
+
+    <p>从修改文件到加入暂存区，再到最终提交，文件状态的变化过程见图 5.2。</p>
+
+    <figure>
+      <img src="assets/images/chapter-05/fig-5.2-git-add-commit-flow.svg" alt="git add 与 git commit 状态变化流程">
+      <figcaption>图5.2 从 git add 到 git commit 的状态变化</figcaption>
+    </figure>
+
+    <h3 id="用gitignore避开不该跟踪的文件">用 .gitignore 避开不该跟踪的文件</h3>
+
+    <p>有些文件不应该被 Git 跟踪。比如：</p>
+
+    <ul>
+      <li>模型 checkpoint（<code>.pth</code>、<code>.ckpt</code>），动辄几百 MB 甚至几个 GB；</li>
+      <li>原始实验数据（<code>.csv</code>、<code>.npy</code>、<code>.npz</code>）；</li>
+      <li>程序运行产生的临时文件（<code>__pycache__</code>、<code>.log</code>）；</li>
+      <li>编译生成的二进制文件；</li>
+      <li>包含密码或 API 密钥的配置文件。</li>
+    </ul>
+
+    <p>这些内容如果进了 Git，会让仓库变得臃肿，甚至泄露敏感信息。解决方法是写一个 <code>.gitignore</code> 文件，列出 Git 应该忽略的文件和目录。</p>
+
+    <p>在 <code>~/battery-ml</code> 下创建 <code>.gitignore</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">cat > .gitignore << 'EOF'</span>
+<span class="output"># Python 缓存</span>
+<span class="output">__pycache__/</span>
+<span class="output">*.pyc</span>
+
+<span class="output"># 模型检查点</span>
+<span class="output">*.pth</span>
+<span class="output">*.ckpt</span>
+<span class="output">checkpoints/</span>
+
+<span class="output"># 实验数据</span>
+<span class="output">data/raw/</span>
+<span class="output">*.csv</span>
+
+<span class="output"># 日志</span>
+<span class="output">*.log</span>
+<span class="output">runs/</span>
+
+<span class="output"># 密钥</span>
+<span class="output">.env</span>
+<span class="command">EOF</span>
+</code></pre>
+
+    <p>然后把它也提交进仓库：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git add .gitignore</span>
+<span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git commit -m "添加 .gitignore，忽略 checkpoint、原始数据和日志"</span>
+</code></pre>
+
+    <p>注意 <code>.gitignore</code> 本身要被 Git 跟踪，不然别人克隆你的仓库时拿不到忽略规则。这是一个常见的初学者错误：写了 <code>.gitignore</code> 却忘了提交它。</p>
+
+    <h2 id="查看历史与回退">查看历史与回退</h2>
+
+    <p>提交几次之后，仓库里就有了一段历史。Git 提供了好几个命令来查看和回溯这段历史。</p>
+
+    <h3 id="浏览提交历史">浏览提交历史</h3>
+
+    <p><code>git log</code> 是最常用的历史查看命令。它会列出所有提交，从最新到最旧：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git log</span>
+<span class="output">commit e4f5g6h (HEAD -> main)
+Author: Li Hua &lt;lihua@example.edu.cn&gt;
+Date:   Fri Jul 10 16:30:00 2026 +0800
+
+    降低学习率至 0.001，提升训练稳定性
+
+commit a1b2c3d
+Author: Li Hua &lt;lihua@example.edu.cn&gt;
+Date:   Fri Jul 10 16:25:00 2026 +0800
+
+    初始提交：添加训练脚本和配置文件</span>
+</code></pre>
+
+    <p>每条提交显示它的哈希值、作者、时间和提交说明。哈希值不需要记全，前几位通常就够用了。</p>
+
+    <p>如果历史很长，<code>git log</code> 会进入分页模式，按 <code>q</code> 退出。想看更紧凑的格式：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git log --oneline</span>
+<span class="output">e4f5g6h 降低学习率至 0.001，提升训练稳定性
+a1b2c3d 初始提交：添加训练脚本和配置文件</span>
+</code></pre>
+
+    <p>想看某个文件的历史改动，加文件名：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git log --oneline -- train.py</span>
+<span class="output">e4f5g6h 降低学习率至 0.001，提升训练稳定性
+a1b2c3d 初始提交：添加训练脚本和配置文件</span>
+</code></pre>
+
+    <h3 id="比较差异">比较差异</h3>
+
+    <p><code>git diff</code> 用来查看差异。不加参数时，它显示工作区和暂存区之间的区别——也就是你改了但还没 <code>git add</code> 的内容：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git diff</span>
+<span class="output">diff --git a/train.py b/train.py
+index 3a4b5c6..7d8e9f0 100644
+--- a/train.py
++++ b/train.py
+@@ -10,7 +10,7 @@
+     batch_size = 32
+-    learning_rate = 0.01
++    learning_rate = 0.001
+     epochs = 100</span>
+</code></pre>
+
+    <p>输出里的 <code>-</code> 行是删除的内容，<code>+</code> 行是新增的内容。这个格式叫统一 diff（unified diff），是代码审查和论文校对时最常见的差异格式。</p>
+
+    <p>想看暂存区和上一次提交之间的差异，用 <code>git diff --cached</code>。想比较两次提交之间的差异，用 <code>git diff 提交A 提交B</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git diff a1b2c3d e4f5g6h</span>
+</code></pre>
+
+    <p>还有一个很实用的命令是 <code>git show</code>，它显示某一次提交的详细信息，包括改了哪些文件、具体改了什么：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git show e4f5g6h</span>
+</code></pre>
+
+    <h3 id="回退与撤销">回退与撤销</h3>
+
+    <p>人总会犯错。你改了一堆代码，发现方向不对，想回到之前某个干净的状态。Git 提供了几种不同程度的撤销方式。</p>
+
+    <p><strong>场景一：改乱了工作区，还没 add。</strong></p>
+
+    <p>你编辑了 <code>train.py</code>，越改越乱，想恢复到上次提交后的样子：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git restore train.py</span>
+</code></pre>
+
+    <p>这条命令会用暂存区（或最近一次提交）里的版本覆盖工作区的文件。注意：你这次修改的内容会丢失，所以用之前要确定真的不要了。</p>
+
+    <p><strong>场景二：已经 add 到暂存区，但还没 commit。</strong></p>
+
+    <p>你把文件加进了暂存区，但突然想再改一改。把文件从暂存区撤出来，但不改工作区的内容：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git restore --staged train.py</span>
+</code></pre>
+
+    <p>现在 <code>train.py</code> 回到了“已修改但未暂存”的状态，你可以继续编辑。</p>
+
+    <p><strong>场景三：已经 commit，想回到某个历史版本。</strong></p>
+
+    <p>如果你只是想看看以前某个版本的样子，不想破坏现在的工作：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git switch --detach a1b2c3d</span>
+</code></pre>
+
+    <p>这会让仓库进入“分离 HEAD”状态，你可以浏览旧版本，但不会影响主分支。注意：如果你在旧版本上做了修改并提交，这些提交会挂在分离的 HEAD 上，切换分支后可能难以找回。若想在旧版本基础上继续工作，应先执行 <code>git switch -c 新分支名</code>（或 <code>git checkout -b 新分支名</code>）切出新分支，再开始修改。</p>
+
+    <p>看完想回来：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git checkout main</span>
+</code></pre>
+
+    <p>如果你确定要放弃最近几次提交，永久地回到某个旧版本，可以用 <code>git reset</code>。但这个操作会改写历史，在已经 push 到远程仓库的分支上要特别小心。初学者建议先不急着用 <code>git reset --hard</code>，用 <code>git switch --detach</code> 看看就好。</p>
+
+    <h2 id="远程仓库与github">远程仓库与 GitHub</h2>
+
+    <p>本地仓库只能你自己用。如果要和导师、同学协作，或者只是给自己做个异地备份，就需要远程仓库。</p>
+
+    <h3 id="远程仓库是什么">远程仓库是什么</h3>
+
+    <p>远程仓库（remote repository）是存在另一台机器上的 Git 仓库。它可以是 GitHub、GitLab、Gitea 这类托管平台，也可以是你们课题组自己的服务器。</p>
+
+    <p>本地仓库和远程仓库之间可以互相同步。你把自己本地的提交<strong>推</strong>（push）到远程，也可以把远程的新提交<strong>拉</strong>（pull）到本地。远程仓库就像项目的“官方备份”和“交换中心”。</p>
+
+    <h3 id="把本地仓库推上去">把本地仓库推上去</h3>
+
+    <p>假设你已经在 GitHub 上创建了一个空仓库，地址是 <code>git@github.com:lihua/battery-ml.git</code>。现在要把本地仓库和它关联起来。</p>
+
+    <p>首先添加远程仓库：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git remote add origin git@github.com:lihua/battery-ml.git</span>
+</code></pre>
+
+    <p><code>origin</code> 是远程仓库的默认别名，就像你给联系人起的昵称。以后你可以用 <code>origin</code> 代替那串长长的地址。</p>
+
+    <p>然后推送本地分支：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git push -u origin main</span>
+<span class="output">Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (9/9), 1.23 KiB | 1.23 MiB/s, done.
+Total 9 (delta 0), reused 0 (delta 0)
+To github.com:lihua/battery-ml.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.</span>
+</code></pre>
+
+    <p><code>-u</code> 参数把本地 <code>main</code> 分支和远程 <code>main</code> 分支关联起来。以后直接 <code>git push</code> 就行，不用每次都写 <code>origin main</code>。</p>
+
+    <h3 id="从远程拉取更新">从远程拉取更新</h3>
+
+    <p>如果远程仓库有了新提交——比如你同学 push 了修改，或者你自己在另一台机器上提交了代码——你可以把它们拉回到本地。</p>
+
+    <p><code>git fetch</code> 只下载远程的更新，不自动合并：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git fetch origin</span>
+</code></pre>
+
+    <p><code>git pull</code> 则是 <code>git fetch</code> 加 <code>git merge</code> 的缩写：它先把远程更新取回来，再自动和本地分支合并：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git pull</span>
+</code></pre>
+
+    <p>如果本地和远程的修改没有冲突，<code>git pull</code> 会自动合并。如果有冲突，Git 会提示你手动解决——这和后面要讲的 branch 冲突是同一套机制。</p>
+
+    <p>本地仓库和远程仓库之间如何通过 push、pull、fetch 交换数据，见图 5.3。</p>
+
+    <figure>
+      <img src="assets/images/chapter-05/fig-5.3-local-remote-push-pull.svg" alt="本地仓库与远程仓库的 push、pull、fetch 关系">
+      <figcaption>图5.3 本地仓库与远程仓库的 push、pull、fetch 关系</figcaption>
+    </figure>
+
+    <h3 id="复用第二章的ssh密钥">复用第二章的 SSH 密钥</h3>
+
+    <p>第二章我们学过怎么用 SSH 密钥登录远程服务器。其实 Git 和 GitHub 之间也可以用 SSH 密钥认证，而且你可以复用同一对密钥。</p>
+
+    <p>如果你已经按第二章的方法生成了 <code>~/.ssh/id_ed25519.pub</code>，把它添加到 GitHub 账户的 SSH keys 里即可。添加后，Git 就会用这把私钥和 GitHub 通信，不再需要每次输入密码。</p>
+
+    <p>测试连接是否成功：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ssh -T git@github.com</span>
+<span class="output">Hi lihua! You've successfully authenticated, but GitHub does not provide shell access.</span>
+</code></pre>
+
+    <p>看到 <code>Hi lihua!</code> 就说明 SSH 密钥配置成功了。接下来 <code>git push</code> 和 <code>git pull</code> 都会走 SSH 通道，安全又省事。</p>
+
+    <p>如果你更喜欢 HTTPS 地址，也可以。GitHub 现在支持 Personal Access Token 代替密码，但配置起来比 SSH 密钥麻烦一点。对于已经在用 SSH 登录服务器的读者，直接复用 SSH 密钥是最顺手的方案。</p>
+
+    <h2 id="分支安全地试错">分支：安全地试错</h2>
+
+    <p>分支是 Git 的灵魂。前面几节我们一直在 <code>main</code> 分支上工作，这是仓库的默认主干。但真正做项目时，你应该养成一个新习惯：<strong>不要在 main 上直接做实验</strong>。</p>
+
+    <h3 id="为什么要开分支">为什么要开分支</h3>
+
+    <p>想象你正在写一篇论文，<code>main</code> 分支上是一个能编译、能提交的稳定版本。这时你突然想尝试把方法论部分重写一遍，但不确定新写法是否更好。如果你直接在 <code>main</code> 上改，改到一半发现新写法不行，想回退就会比较狼狈。</p>
+
+    <p>正确的做法是：从 <code>main</code> 分出一个新分支，比如叫 <code>rewrite-method</code>。在这个分支上随便改，改坏了就删掉，<code>main</code> 始终干净。如果改好了，再合并回 <code>main</code>。</p>
+
+    <p>做 AI 训练也一样。<code>main</code> 分支放能正常跑通 baseline 的代码，新实验开新分支：<code>experiment/attention-mechanism</code>、<code>experiment/data-augmentation</code>。每个实验独立进行，互不影响。</p>
+
+    <h3 id="创建与切换分支">创建与切换分支</h3>
+
+    <p>创建并切换到一个新分支：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git switch -c experiment/new-loss</span>
+<span class="output">Switched to a new branch 'experiment/new-loss'</span>
+</code></pre>
+
+    <p><code>-c</code> 是 create 的意思。 较早的教程可能用 <code>git checkout -b</code>，效果一样，但 <code>git switch</code> 语义更清晰，推荐新学者用它。</p>
+
+    <p>查看当前所有分支：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git branch</span>
+<span class="output">* experiment/new-loss
+  main</span>
+</code></pre>
+
+    <p>星号表示当前所在分支。现在你可以在 <code>experiment/new-loss</code> 上修改 <code>train.py</code>，尝试新的损失函数。提交之后，这些修改只存在于这个新分支上，<code>main</code> 完全不受影响。</p>
+
+    <p>想回到 main：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git switch main</span>
+</code></pre>
+
+    <h3 id="合并分支">合并分支</h3>
+
+    <p>假设 <code>experiment/new-loss</code> 上的实验效果很好，你想把改动合并回 <code>main</code>。先切换回 <code>main</code>，然后执行 <code>git merge</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git switch main</span>
+<span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git merge experiment/new-loss</span>
+<span class="output">Updating e4f5g6h..i7j8k9l
+Fast-forward
+ train.py | 5 +++++
+ 1 file changed, 5 insertions(+)</span>
+</code></pre>
+
+    <p>这次合并是“快进”（Fast-forward），因为 <code>main</code> 在实验分支创建后没有新提交，Git 直接把 <code>main</code> 指针挪到实验分支的最新提交上。合并完成后，<code>experiment/new-loss</code> 的历史就被纳入了 <code>main</code>。</p>
+
+    <p>如果 <code>main</code> 上也有了新提交，Git 就会做一次真正的合并，生成一个新的合并提交。这个提交有两个父提交，分别来自 <code>main</code> 和实验分支。</p>
+
+    <p>分支的创建、独立开发和最终合并，整个过程见图 5.4。</p>
+
+    <figure>
+      <img src="assets/images/chapter-05/fig-5.4-branch-and-merge.svg" alt="分支创建、独立开发与合并示意图">
+      <figcaption>图5.4 分支创建、独立开发与合并</figcaption>
+    </figure>
+
+    <h3 id="冲突来了怎么办">冲突来了怎么办</h3>
+
+    <p>合并并不总是顺利的。如果两个分支同时修改了同一个文件的同一处，Git 就不知道应该保留哪个版本，于是产生<strong>冲突</strong>（conflict）。</p>
+
+    <p>冲突发生时，Git 会停下来等你处理。被冲突标记的文件看起来像这样：</p>
+
+<pre><code class="terminal"><span class="output">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
+<span class="output">learning_rate = 0.001</span>
+<span class="output">=======</span>
+<span class="output">learning_rate = 0.005</span>
+<span class="output">&gt;&gt;&gt;&gt;&gt;&gt;&gt; experiment/new-loss</span>
+</code></pre>
+
+    <p><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> 到 <code>=======</code> 之间是当前分支（<code>main</code>）的内容，<code>=======</code> 到 <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; experiment/new-loss</code> 之间是要合并进来的分支的内容。你需要手动决定保留哪一边，或者把两边融合成一个新的写法。</p>
+
+    <p>处理完冲突后，再次 <code>git add</code> 和 <code>git commit</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git add train.py</span>
+<span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git commit -m "合并 experiment/new-loss：调整学习率策略"</span>
+</code></pre>
+
+    <p>冲突听起来吓人，其实它是 Git 在保护你。如果没有 Git，两个人的修改可能会悄无声息地互相覆盖。冲突逼着你们面对面（至少面对代码）决定怎么处理，反而更安全。</p>
+
+    <h2 id="协作fork与pullrequest">协作：Fork 与 Pull Request</h2>
+
+    <p>分支适合小团队内部协作。但如果想和外部项目合作，或者你是课题组新人，没有直接修改主仓库的权限，GitHub 提供了另一套 workflow：Fork 与 Pull Request。</p>
+
+    <h3 id="fork把别人的仓库复制到自己名下">Fork：把别人的仓库复制到自己名下</h3>
+
+    <p>假设你发现课题组学长维护了一个叫 <code>materials-tools</code> 的开源工具包，地址在 <code>https://github.com/senior-lab/materials-tools</code>。你想给它加一个功能，但没有直接 push 权限。</p>
+
+    <p>在 GitHub 网页上点一下 <strong>Fork</strong> 按钮，GitHub 会把这个仓库完整复制一份到你的账户下，比如 <code>https://github.com/lihua/materials-tools</code>。这个复制出来的仓库归你所有，你可以随意修改。</p>
+
+    <p>然后把它克隆到本地：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">git clone git@github.com:lihua/materials-tools.git</span>
+<span class="prompt">student@debian:~$</span> <span class="command">cd materials-tools</span>
+</code></pre>
+
+    <p>为了方便同步原仓库的更新，建议再添加一个指向原仓库的 remote：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/materials-tools$</span> <span class="command">git remote add upstream git@github.com:senior-lab/materials-tools.git</span>
+</code></pre>
+
+    <p>现在你有两个 remote：<code>origin</code> 指向你 Fork 出来的仓库，<code>upstream</code> 指向原仓库。</p>
+
+    <h3 id="发起pullrequest">发起 Pull Request</h3>
+
+    <p>在本地仓库里，从 <code>main</code> 分出一个功能分支，完成你的修改并 push 到你 Fork 的仓库：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/materials-tools$</span> <span class="command">git switch -c feature/add-cif-parser</span>
+<span class="prompt">student@debian:~/materials-tools$</span> <span class="command">git add cif_parser.py</span>
+<span class="prompt">student@debian:~/materials-tools$</span> <span class="command">git commit -m "添加 CIF 晶体结构文件解析器"</span>
+<span class="prompt">student@debian:~/materials-tools$</span> <span class="command">git push -u origin feature/add-cif-parser</span>
+</code></pre>
+
+    <p>push 之后，打开 GitHub 网页，你会看到一个提示：“你刚刚推送了分支，是否发起 Pull Request？”点那个按钮，填写标题和说明，就可以向原仓库提交合并请求。</p>
+
+    <p>Pull Request（简称 PR）的意思是：“我觉得这个改动不错，请你们审查一下，如果同意就合并到原仓库里。”</p>
+
+    <h3 id="代码审查与合并">代码审查与合并</h3>
+
+    <p>原仓库的维护者收到 PR 后，会审查你的代码。他们可能直接在 PR 下留言，指出问题或提出建议。你可以在本地继续修改，然后 push 到同一个分支，PR 会自动更新。</p>
+
+    <p>审查通过后，维护者点一下 <strong>Merge pull request</strong>，你的改动就进入原仓库了。整个流程见图 5.5。</p>
+
+    <figure>
+      <img src="assets/images/chapter-05/fig-5.5-fork-pr-merge-flow.svg" alt="Fork、Pull Request 与合并协作流程">
+      <figcaption>图5.5 Fork → PR → Merge 协作流程</figcaption>
+    </figure>
+
+    <p>Fork + PR 的模式特别适合开源贡献和跨组协作。它不仅让代码审查变得规范，也让“谁改了什么”一目了然。作为学生，如果你给某个开源科学计算工具提过 PR 并且被合并，写在简历里也是加分项。</p>
+
+    <h2 id="科研项目用git的好习惯">科研项目用 Git 的好习惯</h2>
+
+    <p>学会命令只是第一步。真正让 Git 发挥威力的，是一些长期积累的好习惯。</p>
+
+    <h3 id="提交信息要写得像给未来的自己写信">提交信息要写得像给未来的自己写信</h3>
+
+    <p>提交信息不是写给自己当下看的，是写给三个月后的自己看的。三个月后，你看到一行 <code>fix bug</code>，根本想不起是什么 bug；但如果你写的是 <code>修复当 batch_size 为 1 时损失函数出现 NaN 的问题</code>，立刻就能定位。</p>
+
+    <p>好的提交信息通常分一行标题和一段正文。标题概括这次提交做了什么，正文解释为什么做、有什么注意事项。比如：</p>
+
+<pre><code class="terminal"><span class="command">调整数据增强策略，提升小样本场景下的泛化能力</span>
+
+<span class="command">- 对训练集添加随机旋转和水平翻转</span>
+<span class="command">- 验证集保持原样，避免数据泄露</span>
+<span class="command">- 在 battery-100 子集上验证，准确率从 0.82 提升到 0.87</span>
+</code></pre>
+
+    <p>写提交信息时多花十秒钟，将来查历史时能省十分钟。</p>
+
+    <h3 id="一次提交只做一件事">一次提交只做一件事</h3>
+
+    <p>不要把你今天所有的改动都塞进一个提交里。如果你同时做了三件事：修了一个 bug、加了一个新功能、改了几处注释，最好分成三个提交。这样以后需要回退或 cherry-pick 的时候，粒度刚刚好。</p>
+
+    <p>Git 的暂存区就是为此设计的。你可以先用 <code>git add -p</code> 逐块选择要暂存的内容，把不同目的的改动分批提交。</p>
+
+    <h3 id="用标签标记重要节点">用标签标记重要节点</h3>
+
+    <p>论文投稿、模型发布、实验截止——这些重要时刻，应该用一个<strong>标签</strong>（tag）标记出来。标签就是给某个提交起一个好记的名字，比如 <code>v1.0</code>、<code>paper-submission</code>、<code>icml-rebuttal</code>。</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git tag -a v1.0 -m "论文初稿投稿版本"</span>
+<span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git push origin v1.0</span>
+</code></pre>
+
+    <p>以后任何时候，你都可以 <code>git checkout v1.0</code> 回到那个确切的代码状态。审稿人问你要原始实验代码？给这个标签就行。</p>
+
+    <h3 id="大文件和原始数据不要往仓库里塞">大文件和原始数据不要往仓库里塞</h3>
+
+    <p>这一点值得反复强调。Git 适合管理代码、配置、论文源文件——这些东西体积小、以文本为主、diff 清晰。但它不适合管理：</p>
+
+    <ul>
+      <li>训练好的模型权重（<code>.pth</code>、<code>.ckpt</code>、<code>.safetensors</code>）；</li>
+      <li>原始实验数据（<code>.csv</code>、<code>.h5</code>、<code>.mat</code>）；</li>
+      <li>生成的图片、视频、大规模中间结果。</li>
+    </ul>
+
+    <p>这些东西一旦进入 Git，就会永久留在历史记录里。即使后面删了文件，<code>.git</code> 目录里仍然存着旧版本，仓库体积会越来越大。</p>
+
+    <p>正确的做法是用 <code>.gitignore</code> 排除大文件，把大文件放到专用的存储位置：课题组 NAS、云盘、对象存储、或者 Hugging Face 的模型仓库。然后在 Git 里只保存一个下载脚本或说明文档，告诉别人怎么获取这些数据。</p>
+
+    <h3 id="备份策略本地远程定期">备份策略：本地 + 远程 + 定期</h3>
+
+    <p>Git 不是备份软件，但它能帮你实现很好的备份策略。最基本的原则是：<strong>本地有仓库，远程也有仓库，并且定期 push</strong>。</p>
+
+    <p>一个稳妥的科研 workflow 是这样的：</p>
+
+    <ul>
+      <li>每天在本地做几次有意义的提交；</li>
+      <li>下班或下机前 <code>git push</code> 到远程仓库；</li>
+      <li>重要的实验节点打标签；</li>
+      <li>大文件和原始数据另外存到 NAS 或云存储。</li>
+    </ul>
+
+    <p>这样即使你的笔记本硬盘坏了，或者服务器突然断电，代码和修改历史都在远程仓库里。配合第四章讲的 <code>tmux</code> 和 <code>crontab</code>，你甚至可以让服务器自动定时 push 备份——不过那属于进阶玩法，先把手动 push 养成习惯再说。</p>
+
+    <p>Git 不会替你思考实验设计，也不会自动写出好论文。但它能把你从“我的文件到底在哪一版”这种混乱中解救出来，让你把精力花在真正重要的地方：提出问题、设计实验、分析结果。</p>
+
+    <footer class="page-footer">
+      <div class="prev">
+        <span class="label">上一章</span>
+        <a href="chapter-04.html">第四章 Linux 好用的工具</a>
+      </div>
+      <div class="next">
+        <span class="label">下一章</span>
+        <a href="chapter-06.html">第六章 Vim 文本编辑器</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

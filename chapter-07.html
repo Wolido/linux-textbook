@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第七章 网络基础 - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">目录</a></li>
+        <li><a href="preface.html">序言</a></li>
+        <li>
+          <a href="chapter-01.html">第一章 Linux的基础知识</a>
+        </li>
+        <li>
+          <a href="chapter-02.html">第二章 Shell 与命令行</a>
+        </li>
+        <li>
+          <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+        </li>
+        <li>
+          <a href="chapter-04.html">第四章 Linux 好用的工具</a>
+        </li>
+        <li>
+          <a href="chapter-05.html">第五章 Git</a>
+        </li>
+        <li>
+          <a href="chapter-06.html">第六章 Vim 文本编辑器</a>
+        </li>
+        <li>
+          <a href="chapter-07.html">第七章 网络基础</a>
+          <ul>
+            <li><a href="chapter-07.html#为什么科研要了解网络">为什么科研要了解网络？</a></li>
+            <li><a href="chapter-07.html#tcpip协议网络通信的基本规则">TCP/IP 协议：网络通信的基本规则</a></li>
+            <li><a href="chapter-07.html#ip地址子网掩码与nat">IP 地址、子网掩码与 NAT</a></li>
+            <li><a href="chapter-07.html#路由表数据包怎么知道往哪走">路由表：数据包怎么知道往哪走</a></li>
+            <li><a href="chapter-07.html#dns域名解析">DNS：域名解析</a></li>
+            <li><a href="chapter-07.html#端口服务与防火墙">端口、服务与防火墙</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-08.html">第八章 Web 与 API</a>
+        </li>
+        <li>
+          <a href="chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="extended-reading.html">延伸阅读</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1 id="第七章网络基础">第七章 网络基础</h1>
+
+    <p>第六章学完 Vim，你在服务器上改配置文件终于不用慌了。但还有一个更基础的问题：那台服务器凭什么能下载数据集、能连上 GitHub、能让你从宿舍 SSH 登录？答案当然是网络。可网络对很多人来说像一层雾——知道它存在，出了问题却只能重启路由器。</p>
+
+    <p>这一章我们不讲网络工程师要考的证书，也不讲怎么配置企业级交换机。我们要解决的是 AI 和材料科研里最常见的几类麻烦：数据集下不动、SSH 突然连不上、实验室所有人共用一条出口、域名解析奇怪地失败。把这些搞明白，你在服务器面前就多了一份笃定。</p>
+
+    <h2 id="为什么科研要了解网络">为什么科研要了解网络？</h2>
+
+    <p>你可能会说，我又不是网管，网络不是信息中心的事吗？这话在桌面办公时代也许成立，但在科研计算里，网络几乎是你每天打交道的基础设施。</p>
+
+    <p>训练模型需要数据。CIFAR-10、ImageNet、材料晶体结构数据库、蛋白质序列库，动不动几十 GB。它们通常不在你手边的机器上，而是从公开服务器或课题组存储下载。没有网络，或者网络配置不对，训练第一步就卡死。</p>
+
+    <p>算力也常常不在本地。实验室的 GPU 服务器、学校的超算中心、租来的云主机，都要通过网络连接。第二章讲过的 SSH，本质上就是依赖网络才能工作的远程登录工具。</p>
+
+    <p>协作和代码管理更离不开网络。Git 仓库、论文在线协作、实验结果同步，全部建立在这些线缆和协议之上。</p>
+
+    <p>所以网络不是“选修课”。你可以把它理解为实验室的供水管：平时没人注意，一旦堵了，所有实验都得停。了解一点基本原理，至少能让你在出问题时分得清是“机器坏了”“配置错了”还是“网络不通”。</p>
+
+    <h2 id="tcpip协议网络通信的基本规则">TCP/IP 协议：网络通信的基本规则</h2>
+
+    <p>要让两台机器说话，得有共同语言。互联网世界最通用的共同语言就是 TCP/IP 协议族。它不是某一个协议，而是一组协议的统称，规定了数据怎么打包、怎么寻址、怎么传输、怎么校验。</p>
+
+    <h3 id="分层像寄快递一样拆任务">分层：像寄快递一样拆任务</h3>
+
+    <p>网络通信的复杂程度，堪比跨国寄快递：你要写内容、装信封、贴地址、选择运输方式、交给物流公司、空运或陆运。TCP/IP 把这件事拆成几层，每层只关心自己的任务，层与层之间通过明确的接口交接。</p>
+
+    <p>通常我们说四层模型：</p>
+
+    <ul>
+      <li><strong>应用层</strong>：直接面向程序，比如 HTTP（浏览网页）、SSH（远程登录）、DNS（域名查询）。</li>
+      <li><strong>传输层</strong>：负责端到端的可靠传输，主要是 TCP 和 UDP。TCP 像挂号信，保证送到；UDP 像明信片，快但不保证。</li>
+      <li><strong>网络层</strong>：负责把数据从源主机送到目标主机，核心是 IP 协议和路由。</li>
+      <li><strong>链路层</strong>：负责同一局域网内设备之间的实际传输，比如以太网、Wi-Fi。</li>
+    </ul>
+
+    <p>这种分层的好处是，上层不用知道下层怎么实现。你写 Python 脚本用 <code>requests</code> 下载数据，不用关心网线是铜缆还是光纤；路由器转发数据包，也不用知道里面装的是网页还是视频。</p>
+
+    <h3 id="数据封装每一层加一截信封">数据封装：每一层加一截“信封”</h3>
+
+    <p>数据从应用层往下走时，每一层都会给它加一个头部，就像把信纸装进信封，再装进快递袋。接收方则从下层往上拆，逐层去掉头部，最后把原始数据交给应用。</p>
+
+    <p>比如你要下载一个数据集文件，应用层发出 HTTP 请求；传输层加上 TCP 头部，写上源端口和目标端口；网络层加上 IP 头部，写上源 IP 和目标 IP；链路层加上 MAC 头部，准备交给交换机或路由器。</p>
+
+    <p>这个过程叫封装。它让每一层都能独立工作，也出了问题容易定位：如果是 IP 地址写错了，数据到不了对方；如果是端口写错了，数据到了对方但没人接收。</p>
+
+    <figure>
+      <img src="assets/images/chapter-07/fig-7.1-tcp-ip-layers.svg" alt="TCP/IP 分层与数据封装示意">
+      <figcaption>图7.1 TCP/IP 分层与数据封装：应用层数据向下逐层添加头部，最终通过链路层发送</figcaption>
+    </figure>
+
+    <h3 id="一个科研场景下载数据集时发生了什么">一个科研场景：下载数据集时发生了什么</h3>
+
+    <p>假设你在实验室工作站上下载一个材料晶体结构数据集，URL 是 <code>https://datasets.materials-lab.example/cifs.tar.gz</code>。从按下回车到文件开始传输，底层大致做了这些事：</p>
+
+    <ol>
+      <li>浏览器或 <code>wget</code>、<code>curl</code> 把 URL 交给应用层，构造 HTTP 请求；</li>
+      <li>传输层用 TCP 与远程服务器的 443 端口建立连接；</li>
+      <li>网络层通过 DNS 把域名翻译成 IP 地址，比如 <code>198.51.100.7</code>；</li>
+      <li>数据包经过本地路由器、校园网、运营商，最终到达目标服务器；</li>
+      <li>目标服务器逐层拆封，把 HTTP 请求交给 Web 服务，开始返回文件。</li>
+    </ol>
+
+    <p>这个过程中任何一个环节出错，你都会看到不同的症状。DNS 失败会报“域名解析错误”；路由不通会“连接超时”；防火墙拦截会“拒绝连接”。后面几节就是教你识别这些症状。</p>
+
+    <h2 id="ip地址子网掩码与nat">IP 地址、子网掩码与 NAT</h2>
+
+    <p>IP 地址是网络世界里最直接的门牌号。但和现实世界不同，一台机器可能同时拥有“对内”和“对外”两个地址，而且很多机器共享同一个对外地址。要理解这些，得从 IP 地址和 NAT 说起。</p>
+
+    <h3 id="ip地址网络世界的门牌号">IP 地址：网络世界的门牌号</h3>
+
+    <p>每台联网设备都需要一个 IP 地址，才能在网络中被找到。IPv4 地址写成四段十进制数字，比如 <code>192.168.42.10</code>，每段 0–255，总共 32 位。32 位最多大约 42 亿个地址，听起来很多，但全球的手机、电脑、服务器、IoT 设备都在抢，早就不够用。</p>
+
+    <h4 id="ipv4与ipv6">IPv4 与 IPv6</h4>
+
+    <p>IPv6 是为了解决地址耗尽而设计的，地址长度变成 128 位，写法像 <code>2001:0db8:85a3::8a2e:0370:7334</code>。科研网络通常同时支持 IPv4 和 IPv6，但很多家用路由器和旧设备仍只跑 IPv4。本章主要以 IPv4 为例，概念在 IPv6 里大同小异。</p>
+
+    <h4 id="公网地址与私网地址">公网地址与私网地址</h4>
+
+    <p>不是所有 IP 地址都能在互联网上直接路由。RFC 1918 规定了三段私有地址范围，只能用在局域网内部：</p>
+
+    <ul>
+      <li><code>10.0.0.0/8</code></li>
+      <li><code>172.16.0.0/12</code></li>
+      <li><code>192.168.0.0/16</code></li>
+    </ul>
+
+    <p>你家里的路由器、实验室的交换机，通常都会给连接的设备分配 <code>192.168.x.x</code> 这样的私网地址。这些地址在局域网内唯一，但全球互联网上可能有无数台机器都叫 <code>192.168.1.100</code>。</p>
+
+    <p>真正能在公网上被路由的地址叫公网地址，由运营商或学校网络中心分配。比如 <code>203.0.113.45</code> 就是一个公网地址示例（它来自 RFC 5737 规定的测试网段，现实公网中不会出现）。</p>
+
+    <h3 id="子网掩码划分大院里的小院子">子网掩码：划分大院里的小院子</h3>
+
+    <p>子网掩码用来区分 IP 地址的哪一部分代表“哪个院子”，哪一部分代表“院子里的哪一户”。写成 <code>255.255.255.0</code>，或者用 CIDR 表示 <code>/24</code>。</p>
+
+    <p>比如地址 <code>192.168.42.10/24</code>，前 24 位是网络号，相当于“大院”；后 8 位是主机号，相当于“户号”。同一子网内的设备可以直接通信；跨子网则需要经过网关转发。</p>
+
+    <p>科研实验室常见的配置是 <code>/24</code> 子网，能容纳 254 台主机，足够一个课题组使用。如果机器特别多，也可能用 <code>/23</code> 或更大的网段。</p>
+
+    <p>终端里查看本机 IP 和子网掩码，可以用 <code>ip addr</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@lab-workstation:~$</span> <span class="command">ip addr show eth0</span>
+<span class="output">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 52:54:00:ab:cd:ef brd ff:ff:ff:ff:ff:ff
+    inet 192.168.42.10/24 brd 192.168.42.255 scope global dynamic noprefixroute eth0
+       valid_lft 86399sec preferred_lft 86399sec</span>
+</code></pre>
+
+    <p>这里 <code>192.168.42.10/24</code> 就是本机地址和子网掩码的简写。</p>
+
+    <h3 id="nat让私网也能出门">NAT：让私网也能出门</h3>
+
+    <p>如果实验室每台机器都用私网地址，怎么访问互联网？答案是 NAT（Network Address Translation，网络地址转换）。路由器或防火墙会把私网机器的源地址改成自己的公网地址，再发出去；收到回复后，再根据记录把数据包转回给正确的私网机器。</p>
+
+    <p>这就像一个大院只有一个对外门牌号，收发室根据内部登记表把邮件分发给各家。NAT 极大缓解了 IPv4 地址不足的问题，也让内部网络多了一层隔离。</p>
+
+    <figure>
+      <img src="assets/images/chapter-07/fig-7.2-nat-public-private.svg" alt="公网 IP、私网 IP 与 NAT 关系示意">
+      <figcaption>图7.2 公网 IP、私网 IP 与 NAT：多台私网设备通过 NAT 共享一个公网地址访问互联网</figcaption>
+    </figure>
+
+    <h3 id="实验场景实验室共享公网ip">实验场景：实验室共享公网 IP</h3>
+
+    <p>很多 AI 和材料实验室的网络拓扑是这样：导师办公室有一台路由器，从学校网络中心申请到一个公网 IP，比如 <code>203.0.113.45</code>。实验室里的 GPU 服务器、工作站、打印机等设备都挂在 <code>192.168.42.0/24</code> 这个私网里。</p>
+
+    <p>当你在工作站 <code>192.168.42.10</code> 上访问 Hugging Face 或下载数据集时，数据包先走到路由器，路由器把源地址改成 <code>203.0.113.45</code>，再发送到互联网。对远程服务器来说，它只看到来自 <code>203.0.113.45</code> 的请求。</p>
+
+    <p>这也意味着，如果你想从宿舍直接 SSH 连到实验室某台机器，通常不能只写它的私网地址 <code>192.168.42.20</code>，因为宿舍网络看不到那个私网。你需要先登录到一台有公网 IP 的“跳板机”，或者配置端口转发、VPN。第二章讲过 SSH 密钥登录，现在你知道为什么它通常要配合跳板机或 VPN 使用了。</p>
+
+    <h2 id="路由表数据包怎么知道往哪走">路由表：数据包怎么知道往哪走</h2>
+
+    <p>IP 地址告诉数据包“要去哪”，路由表告诉它“怎么走”。每台联网的 Linux 主机都维护一张路由表，记录着不同目的地址应该从哪个接口、哪个网关发送。</p>
+
+    <h3 id="路由表就是路口指示牌">路由表就是路口指示牌</h3>
+
+    <p>路由表可以看作一系列规则。每条规则大致说：“如果目的地是 A，走这边；如果目的地是 B，走那边；其他情况，走默认方向。”</p>
+
+    <p>用 <code>ip route</code> 查看本机路由表：</p>
+
+<pre><code class="terminal"><span class="prompt">student@lab-workstation:~$</span> <span class="command">ip route</span>
+<span class="output">default via 192.168.42.1 dev eth0 proto dhcp metric 100
+192.168.42.0/24 dev eth0 proto kernel scope link src 192.168.42.10 metric 100</span>
+</code></pre>
+
+    <p>第一行是默认路由：所有不知道往哪走的数据包，都交给 <code>192.168.42.1</code>，从 <code>eth0</code> 出去。第二行是直连路由：目的地在 <code>192.168.42.0/24</code> 这个子网内的，直接通过 <code>eth0</code> 发送，不需要网关。</p>
+
+    <h3 id="默认网关出门的默认方向">默认网关：出门的默认方向</h3>
+
+    <p>默认网关通常是本地子网的第一个地址，比如 <code>192.168.42.1</code>。它一般是路由器或三层交换机的内网接口。数据包如果目的地不在本地子网，就会交给它，由它决定下一步。</p>
+
+    <p>在配置静态 IP 时，网关填错是最常见的错误之一。比如把网关写成 <code>192.168.42.254</code>，而那台设备实际上在 <code>192.168.42.1</code>，结果就是本机能和局域网通信，但上不了互联网。</p>
+
+    <h3 id="排查连不上网时先看哪">排查：连不上网时先看哪</h3>
+
+    <p>遇到“上不了网”，不要急着重启。可以按这个顺序排查：</p>
+
+    <ol>
+      <li>看链路：网线插了吗？Wi-Fi 连上了吗？<code>ip link</code> 显示接口状态是 UP 还是 DOWN。</li>
+      <li>看地址：<code>ip addr</code> 有没有拿到正确的 IP 和子网掩码。</li>
+      <li>ping 网关：<code>ping 192.168.42.1</code>，确认本地网络通。</li>
+      <li>ping 公网 IP：比如 <code>ping 198.51.100.7</code>，确认路由和 NAT 正常。</li>
+      <li>ping 域名：比如 <code>ping datasets.materials-lab.example</code>，确认 DNS 正常。</li>
+    </ol>
+
+    <p>如果第四步能通但第五步不通，问题通常在 DNS；如果第三步就不通，问题在本地网络或网关；如果第三步通但第四步不通，可能是路由器、NAT 或上层网络故障。</p>
+
+    <h2 id="dns域名解析">DNS：域名解析</h2>
+
+    <p>记住一串 IP 地址对人不友好，DNS（Domain Name System）就是互联网的“电话簿”，负责把人类可读的域名翻译成机器需要的 IP 地址。</p>
+
+    <h3 id="为什么需要dns">为什么需要 DNS</h3>
+
+    <p>试想如果没有 DNS，你想下载数据集得先记住 <code>198.51.100.7</code> 这串数字；服务器迁移换了地址，所有脚本都要改。域名让这些问题简单化：<code>datasets.materials-lab.example</code> 比 IP 好记，而且管理员可以在后台把域名指向新的服务器，用户无需感知。</p>
+
+    <h3 id="dns查询是怎么完成的">DNS 查询是怎么完成的</h3>
+
+    <p>当你在浏览器里输入一个域名，操作系统或浏览器里的 stub resolver 会先发起查询，我们通常把它叫做“本地解析器”；它并不亲自去问根服务器，而是把问题转发给配置好的递归 DNS 服务器，通常由 ISP 或公共 DNS（如 8.8.8.8）提供。</p>
+
+    <p>如果递归服务器没缓存这个域名，它会一层层向上查询：先问根域名服务器，根服务器告诉它去找负责 <code>.example</code> 的顶级域服务器；顶级域服务器再告诉它去找 <code>materials-lab.example</code> 的权威服务器；权威服务器最终返回对应的 IP 地址。</p>
+
+    <p>这个过程对你是透明的，通常只需几十到几百毫秒。解析结果会被缓存，一段时间内重复访问同一个域名就不需要再问一遍。</p>
+
+    <figure>
+      <img src="assets/images/chapter-07/fig-7.3-dns-resolution.svg" alt="DNS 解析流程：从客户端经本地 DNS、递归 DNS 到权威 DNS">
+      <figcaption>图7.3 DNS 解析流程：从客户端经本地 DNS、递归 DNS 到权威 DNS</figcaption>
+    </figure>
+
+    <h3 id="本地缓存与etchosts">本地缓存与 /etc/hosts</h3>
+
+    <p>在访问 DNS 服务器之前，操作系统还会先查两个地方：本地缓存和 <code>/etc/hosts</code> 文件。</p>
+
+    <p><code>/etc/hosts</code> 是一个静态映射表，格式很简单：</p>
+
+<pre><code class="terminal"><span class="comment"># /etc/hosts</span>
+<span class="output">127.0.0.1   localhost
+192.168.42.20  gpu-server
+198.51.100.7   datasets.materials-lab.example</span>
+</code></pre>
+
+    <p>如果你经常 SSH 登录实验室的 GPU 服务器，可以在 <code>/etc/hosts</code> 里给它起个别名 <code>gpu-server</code>，以后就可以 <code>ssh gpu-server</code>，不用记 IP。改这个文件需要 root 权限，用第六章学过的 Vim 就可以：</p>
+
+<pre><code class="terminal"><span class="prompt">student@lab-workstation:~$</span> <span class="command">sudo vim /etc/hosts</span>
+</code></pre>
+
+    <p>不过要注意，<code>/etc/hosts</code> 里的条目优先级通常高于 DNS。如果这里的映射写错了，比如把数据集域名指向了一个不存在的 IP，你就会遇到下一节说的那种奇怪错误。</p>
+
+    <h3 id="科研场景数据集域名解析失败">科研场景：数据集域名解析失败</h3>
+
+    <p>有一天你发现 <code>wget https://datasets.materials-lab.example/cifs.tar.gz</code> 一直报“Name or service not known”。但同实验室其他人都能下载。怎么回事？</p>
+
+    <p>先用 <code>host</code> 或 <code>dig</code> 检查 DNS 解析：</p>
+
+<pre><code class="terminal"><span class="prompt">student@lab-workstation:~$</span> <span class="command">host datasets.materials-lab.example</span>
+<span class="output">datasets.materials-lab.example has address 198.51.100.7</span>
+</code></pre>
+
+    <p>如果 <code>host</code> 能返回正确 IP，但 <code>wget</code> 不行，问题可能出在程序自己的代理设置或 SSL 证书。如果 <code>host</code> 也失败，再看本机用的 DNS 服务器：</p>
+
+<pre><code class="terminal"><span class="prompt">student@lab-workstation:~$</span> <span class="command">cat /etc/resolv.conf</span>
+<span class="output">nameserver 192.168.42.1
+nameserver 8.8.8.8</span>
+</code></pre>
+
+    <p>有时实验室为了安全，只允许使用内部 DNS。如果你手动把 <code>8.8.8.8</code> 写在前面，某些内部域名反而解析不了。把顺序改回来，或者只保留内部 DNS，问题可能就解决了。</p>
+
+    <p>还有一种可能是 <code>/etc/hosts</code> 里有旧映射。比如之前做测试时把数据集域名指向了 <code>10.0.0.5</code>，后来服务器迁移到了 <code>198.51.100.7</code>，但 hosts 文件没更新。用 Vim 删掉那条旧记录，刷新缓存，再试一次。</p>
+
+    <h2 id="端口服务与防火墙">端口、服务与防火墙</h2>
+
+    <p>数据包到了目标机器门口，还得知道敲哪扇窗。IP 地址找到机器，端口号找到机器上的具体服务。</p>
+
+    <h3 id="端口一台机器上的多个窗口">端口：一台机器上的多个窗口</h3>
+
+    <p>一台服务器可能同时运行 Web 服务、SSH 服务、数据库。网络层把数据送到这台机器的 IP 后，传输层根据端口号决定交给哪个程序。</p>
+
+    <p>端口号是一个 0–65535 的整数。0–1023 是知名端口，通常需要管理员权限才能绑定；1024–49151 是注册端口；49152–65535 是动态端口，客户端临时使用。</p>
+
+    <h3 id="常见服务与端口">常见服务与端口</h3>
+
+    <p>科研环境里经常遇到这些端口：</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>端口</th>
+          <th>服务/协议</th>
+          <th>科研场景</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>22</td>
+          <td>SSH / SCP / SFTP</td>
+          <td>远程登录服务器、传代码和模型</td>
+        </tr>
+        <tr>
+          <td>53</td>
+          <td>DNS</td>
+          <td>域名解析</td>
+        </tr>
+        <tr>
+          <td>80</td>
+          <td>HTTP</td>
+          <td>普通网页、内部文档站</td>
+        </tr>
+        <tr>
+          <td>443</td>
+          <td>HTTPS</td>
+          <td>下载数据集、访问 Web 服务</td>
+        </tr>
+        <tr>
+          <td>3306</td>
+          <td>MySQL / MariaDB</td>
+          <td>材料实验数据库存储</td>
+        </tr>
+        <tr>
+          <td>5432</td>
+          <td>PostgreSQL</td>
+          <td>科研项目管理数据库</td>
+        </tr>
+        <tr>
+          <td>6379</td>
+          <td>Redis</td>
+          <td>训练任务队列缓存</td>
+        </tr>
+        <tr>
+          <td>8080</td>
+          <td>JupyterLab / TensorBoard</td>
+          <td>交互式实验和可视化</td>
+        </tr>
+        <tr>
+          <td>27017</td>
+          <td>MongoDB</td>
+          <td>非结构化实验记录</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="防火墙不是只有坏人需要">防火墙不是只有坏人需要</h3>
+
+    <p>防火墙根据规则决定哪些流量可以进出。Linux 上常见的防火墙工具有 iptables、nftables、firewalld、ufw。学校或云服务商还可能有一层网络 ACL。</p>
+
+    <p>防火墙不是只防黑客。它也经常因为配置太严格，把你自己的合法流量挡住。比如你启动了一个 JupyterLab 在 8888 端口，但防火墙没开放 8888，同组同学就访问不了。</p>
+
+    <p>查看 Linux 上监听端口的命令是 <code>ss -tlnp</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@gpu-server:~$</span> <span class="command">ss -tlnp</span>
+<span class="output">State   Recv-Q  Send-Q  Local Address:Port  Peer Address:Port  Process
+LISTEN  0       128     0.0.0.0:22          0.0.0.0:*          users:(("sshd",pid=1234,fd=3))
+LISTEN  0       128     127.0.0.1:8080      0.0.0.0:*          users:(("python",pid=5678,fd=5))</span>
+</code></pre>
+
+    <p>这里 <code>0.0.0.0:22</code> 表示 SSH 服务在所有接口上监听 22 端口；<code>127.0.0.1:8080</code> 表示某个 Python 程序只在本地回环地址监听，外部机器连不上。</p>
+
+    <h3 id="ssh连不上端口防火墙selinux一起查">SSH 连不上？端口、防火墙、SELinux 一起查</h3>
+
+    <p>第二章讲过 SSH 远程登录。现在你知道，SSH 能不能连上，不只是密钥对不对的问题，还要过网络这一关。</p>
+
+    <p>假设你在宿舍用 <code>ssh student@203.0.113.45</code> 登录实验室跳板机，结果提示“Connection refused”。可能的原因：</p>
+
+    <ol>
+      <li>SSH 服务没运行。在服务器上检查：<code>systemctl status sshd</code>。</li>
+      <li>SSH 监听在非标准端口，但你还用默认 22。查看 <code>/etc/ssh/sshd_config</code> 里的 <code>Port</code> 配置。</li>
+      <li>防火墙拦截了 22 端口。检查 <code>sudo firewall-cmd --list-ports</code> 或 <code>sudo ufw status</code>。</li>
+      <li>SELinux 或 AppArmor 限制。RHEL/CentOS 系尤其常见，必要时检查审计日志。</li>
+      <li>路由器没做端口转发。如果目标机器在私网里，公网 IP 只是路由器，需要把 22 端口映射到私网机器。</li>
+    </ol>
+
+    <p>排查时可以先在服务器本地测试：<code>ssh localhost</code>。如果连自己都连不上，问题在 SSH 服务本身；如果连得上但外部连不上，问题在网络层或防火墙。</p>
+
+    <p>修改 <code>/etc/ssh/sshd_config</code> 时，照例用 Vim（第六章），改完记得重启服务：</p>
+
+<pre><code class="terminal"><span class="prompt">student@gpu-server:~$</span> <span class="command">sudo vim /etc/ssh/sshd_config</span>
+<span class="prompt">student@gpu-server:~$</span> <span class="command">sudo systemctl restart sshd</span>
+</code></pre>
+
+    <p>这里提醒一句：改 SSH 端口或防火墙前，最好先保留一个已经登录的会话，免得把自己锁在门外。</p>
+
+    <p>网络这一层没有魔法，它由地址、路由、端口、协议和防火墙规则共同构成。理解了这些，下一次数据集下载失败、SSH 登录超时或者域名解析异常，你就能有条不紊地排查。下一章我们会继续沿着“机器与外界通信”这条线，看看 Web 和 API 是怎么在互联网上交换数据的。</p>
+
+    <footer class="page-footer">
+      <div class="prev">
+        <span class="label">上一章</span>
+        <a href="chapter-06.html">第六章 Vim 文本编辑器</a>
+      </div>
+      <div class="next">
+        <span class="label">下一章</span>
+        <a href="chapter-08.html">第八章 Web 与 API</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

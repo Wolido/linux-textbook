@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第四章 Linux 好用的工具 - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">目录</a></li>
+        <li><a href="preface.html">序言</a></li>
+        <li>
+          <a href="chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的"乐高"</a></li>
+            <li><a href="chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="chapter-03.html#用包管理器安装软件">用包管理器安装软件</a></li>
+            <li><a href="chapter-03.html#从源码或其他方式安装">从源码或其他方式安装</a></li>
+            <li><a href="chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-04.html">第四章 Linux 好用的工具</a>
+          <ul>
+            <li><a href="chapter-04.html#更聪明的shell">更聪明的 Shell</a></li>
+            <li><a href="chapter-04.html#更好用的文件命令">更好用的文件命令</a></li>
+            <li><a href="chapter-04.html#终端美化与模糊搜索">终端美化与模糊搜索</a></li>
+            <li><a href="chapter-04.html#会话管理">会话管理：别让 SSH 断线毁了你的训练</a></li>
+            <li><a href="chapter-04.html#定时任务">定时任务：让服务器替你守夜</a></li>
+            <li><a href="chapter-04.html#压缩与归档">压缩与归档：数据打包的标准姿势</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-05.html">第五章 Git</a>
+        </li>
+
+        <li>
+          <a href="chapter-06.html">第六章 Vim 文本编辑器</a>
+        </li>
+        <li>
+          <a href="chapter-07.html">第七章 网络基础</a>
+        </li>
+        <li>
+          <a href="chapter-08.html">第八章 Web 与 API</a>
+        </li>
+        <li>
+          <a href="chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="extended-reading.html">延伸阅读</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1 id="第四章linux好用的工具">第四章 Linux 好用的工具</h1>
+
+    <p>第二章和第三章把 Linux 的日常框架搭起来了：你会走路，也知道怎么安全地装软件。但真要在服务器上日复一日地干活，“会用”和“顺手”之间还有一段距离。你会希望提示符能一眼告诉你身处何地、哪个 git 分支开着；希望凭几个零碎字符就能找到文件；希望合上笔记本后训练不会白费；希望那些定期该做的事，能交给服务器自己去守夜。这一章要解决的，就是这些摩擦——不是推翻前面的基础，而是让命令行更聪明、更不怕断线、更自动化。</p>
+
+<h2 id="更聪明的shell">更聪明的 Shell</h2>
+
+<p>第二章我们学了 Bash，记了不少命令和快捷键。Bash 够用、稳定、几乎所有 Linux 发行版都默认安装——但它是唯一的选择吗？</p>
+
+<p>打个比方：浏览器有 Chrome、Firefox、Safari，它们都能打开网页，收藏夹和标签页的用法却各不相同，总有人觉得 Chrome 的插件更好用、Firefox 更注重隐私。Shell 也是类似的道理。它们都能执行 <code>ls</code>、<code>cd</code>、<code>grep</code>，但在补全智能程度、提示符美观度、配置上手成本这几个维度上，差别还挺大。</p>
+
+<p>这一节介绍三种比 Bash “更聪明”的 Shell：zsh、fish 和 xonsh。它们不是来取代 Bash 的——你写的脚本、自动化脚本仍然应该用 Bash，保证可移植性。但它们可以让你的日常交互体验上升一个台阶：更省力的补全、更直观的语法高亮、更漂亮的信息展示。</p>
+
+<p>不过有一句话要先放在前面：如果你是第一次接触命令行，刚学完第二章，<strong>先用 Bash 打好基础</strong>。这就像学开车——方向盘和油门还没踩熟，就别急着换跑车。等你对 <code>ls</code>、<code>cd</code>、<code>grep</code>、管道这些概念已经很熟了，命令行的肌肉记忆也建立起来了，再回来看这一节，你会更清楚自己到底想要什么。</p>
+
+<h3 id="zsh">zsh — 插件生态最丰富的 Shell</h3>
+
+<p>Bash 默认的 Tab 补全比较朴素：敲 <code>git c</code> 再按 Tab，它可能只会把 <code>commit</code>、<code>checkout</code>、<code>clone</code> 列出来让你选。但如果你装了 zsh 的 git 插件，它会直接在补全候选里显示每个子命令的简短说明——比如 <code>commit -- record changes to repository</code>。不用再切到浏览器查手册，思路不会断。</p>
+
+<p>这就是 zsh 最大的卖点：<strong>插件系统</strong>。zsh（Z Shell）本身兼容 Bash 的绝大多数语法，你会的 Bash 命令在 zsh 里一个都不浪费。但它在 Bash 的基础上加了三样东西：更智能的 Tab 补全、拼写纠错（比如你敲 <code>sl</code> 它会问你是不是想敲 <code>ls</code>）、以及一套主题系统，让你可以定制提示符的外观——把当前 git 分支、Python 虚拟环境、命令执行时间都显示在提示符里。</p>
+
+<p>单独装 zsh 只能解锁基础功能，真正好用的是搭配 <strong>Oh My Zsh</strong>——一个社区驱动的 zsh 配置框架。它把几百个插件和主题打包在一起，你只需要在配置文件里写一行就能启用。</p>
+
+<p>在 Debian/Ubuntu 上安装 zsh 并切换到它：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install zsh</span>
+<span class="output">...</span>
+<span class="prompt">student@debian:~$</span> <span class="command">chsh -s /bin/zsh</span>
+<span class="output">Password:</span></code></pre>
+
+<p><code>chsh</code>（change shell）修改的是你的默认登录 Shell。改完之后，下次登录就会自动进入 zsh。如果你想立刻试试效果，也可以直接敲 <code>zsh</code> 打开一个 zsh 会话——这时候并不会改默认 Shell，只是一个临时体验，输 <code>exit</code> 就能回到 Bash。</p>
+
+<p>安装 Oh My Zsh：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span></code></pre>
+
+<p>第三章提醒过，<code>curl | sh</code> 这种一键脚本要先确认来源，最好把脚本下载下来审阅再执行。这里用的是 Oh My Zsh 官方仓库的地址，确认域名无误后再运行。</p>
+
+<p>装好之后，你的家目录下会多一个 <code>.zshrc</code> 文件，里面有一个 <code>plugins=()</code> 的配置行。推荐加三个插件：<code>git</code> 是 Oh My Zsh 内置的，不用额外安装；<code>zsh-autosuggestions</code> 和 <code>zsh-syntax-highlighting</code> 则需要先用 <code>git clone</code> 下载：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">git clone https://github.com/zsh-users/zsh-autosuggestions \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions</span>
+<span class="prompt">student@debian:~$</span> <span class="command">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+  ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting</span></code></pre>
+
+<p>安装完成后，在 <code>.zshrc</code> 中找到 <code>plugins=()</code> 这一行，改成：</p>
+
+<pre><code>plugins=(git zsh-autosuggestions zsh-syntax-highlighting)</code></pre>
+
+<p>改完执行 <code>source ~/.zshrc</code> 使其生效。</p>
+
+<p><code>zsh-autosuggestions</code> 会根据你的历史命令，在你敲字时用灰色提示补全建议——按一下右箭头就能采纳。比如你昨天敲过 <code>ssh student@gpu-lab01</code>，今天刚打完 <code>ssh</code>，后面就自动浮现出来了。<code>zsh-syntax-highlighting</code> 则是实时检查你输入的命令语法：有效的命令显示为绿色，打错了的显示为红色，还没敲完的路径显示下划线。这两个插件装好之后，命令行的交互体验会从“盲打”变成“有导航”。</p>
+
+<p>Oh My Zsh 还自带几百个主题。默认的 <code>robbyrussell</code> 主题会在提示符里显示当前 git 分支和仓库状态，对于经常用 git 管理代码的同学非常实用。如果你做 AI 训练，经常在不同 Python 虚拟环境里切换，也有很多主题可以显示当前激活的 conda 或 venv 环境名。</p>
+
+<h3 id="fish">fish — 开箱即用的友好 Shell</h3>
+
+<p>zsh 强大，但需要配置。装 zsh、装 Oh My Zsh、挑插件、改 <code>.zshrc</code>——这一套走下来，虽然不算难，但总归要花些时间。有没有一个 Shell，装完就能用，不用折腾？有，就是 fish。</p>
+
+<p>fish（Friendly Interactive SHell）的设计哲学和 zsh 完全不同。它不做兼容 Bash——这是故意的。fish 的语法和 Bash 不兼容，你写的 Bash 脚本不能用 fish 来执行。但这恰恰让 fish 可以甩掉历史包袱，做一套更清爽的交互体验。</p>
+
+<p>装完 fish，不需要装任何插件，你就能得到：彩色语法高亮（命令打对了是蓝色，打错了是红色）、基于历史的自动建议（灰色文字，右箭头采纳）、以及一个网页版配置界面（在浏览器里用鼠标勾选主题和配色，不用改配置文件）。</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install fish</span>
+<span class="output">...</span>
+<span class="prompt">student@debian:~$</span> <span class="command">fish</span>
+<span class="output">Welcome to fish, the friendly interactive shell</span>
+<span class="prompt">student@debian ~></span></code></pre>
+
+<p>注意提示符变了——fish 默认用 <code>~></code> 而不是 <code>$</code>，当前目录用波浪线简写显示。刚一进入，你可能就会注意到刚才说的自动建议：fish 会默默记住你敲过的命令，下次敲类似前缀时用灰色字补出来。你甚至不需要按 Tab——它直接就显示在光标后面了。</p>
+
+<p>怎么打开那个网页配置界面？在 fish 里敲：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian ~></span> <span class="command">fish_config</span></code></pre>
+
+<p>浏览器会自动打开一个本地页面，你可以在里面选配色主题、预览提示符样式、查看已定义的函数和缩写，全部用鼠标点击完成。对于刚从图形界面过来的同学，这个体验非常友好。</p>
+
+<p>不过，fish 有个必须说清楚的问题：<strong>它和 Bash 不兼容</strong>。这意味着你在网上搜到的大多数 Shell 脚本（比如 <code>setup.sh</code>、<code>train.sh</code>）不能直接用 fish 执行。实际工作中的正确做法是：<strong>把 fish 当作交互 Shell，写脚本仍然用 Bash</strong>。脚本文件第一行写上 <code>#!/bin/bash</code>，它们就和 fish 没关系了，互不干扰。你的日常敲命令用 fish 享受自动补全，自动化脚本交给 Bash 保证兼容性——鱼与熊掌可以兼得。</p>
+
+<p>Debian/Ubuntu 上装 fish 同样用 <code>sudo apt install fish</code>。如果想设成默认 Shell，也可以用 <code>chsh -s /usr/bin/fish</code>，但建议先用 <code>fish</code> 进入试一段时间，确认自己习惯它的操作方式之后再改默认。</p>
+
+<h3 id="xonsh">xonsh — Python 和 Shell 的混血儿</h3>
+
+<p>如果你每天的工作流是这样的：在终端里 <code>ls</code> 查看数据文件 → 打开 Python 写几行 pandas 做统计 → 用 <code>cp</code> 把结果挪到共享目录 → 再开 Python 画图——那你一定感受过在两种语言之间来回切换的割裂感。Shell 命令和 Python 表达式明明是处理同一批数据，却要写在两个窗口里，连变量都不能共享。</p>
+
+<p>xonsh 就是为了解决这个痛点而生的。它的名字读作“conch”（海螺），但含义很直白：xon + sh = Python-powered shell。xonsh 的语法是 Python 3 的一个超集——这意味着你可以在 Shell 里直接写 Python 表达式，同时也能执行普通的 Shell 命令。变量、循环、函数全部用 Python 语法，但 <code>ls</code>、<code>cd</code>、<code>grep</code> 这些命令照用不误。</p>
+
+<p>安装 xonsh：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">pip install xonsh</span>
+<span class="output">...</span>
+<span class="prompt">student@debian:~$</span> <span class="command">xonsh</span>
+<span class="prompt">student@debian ~ @</span></code></pre>
+
+<p>进入 xonsh 之后，它的提示符末尾是一个 <code>@</code>，提醒你现在是在 Python 语境里。下面看几个例子，感受一下“混写”的魅力。</p>
+
+<p>在 Bash 里，如果你想批量创建 10 个目录（<code>exp_1</code> 到 <code>exp_10</code>），得写一个循环：</p>
+
+<pre><code class="terminal"><span class="comment"># Bash 写法</span>
+<span class="prompt">student@debian:~$</span> <span class="command">for i in {1..10}; do mkdir exp_$i; done</span></code></pre>
+
+<p>在 xonsh 里，你可以直接用 Python 的 <code>for</code> 循环：</p>
+
+<pre><code class="terminal"><span class="comment"># xonsh 写法</span>
+<span class="prompt">student@debian ~ @ </span><span class="command">for i in range(1, 11):</span>
+<span class="command">    mkdir exp_@(i)</span></code></pre>
+
+<p><code>@(i)</code> 是 xonsh 的关键语法：它告诉 xonsh“把 Python 变量 <code>i</code> 的值嵌入到 Shell 命令里”。所以当 <code>i=1</code> 时，<code>mkdir exp_@(i)</code> 就变成了 <code>mkdir exp_1</code>。</p>
+
+<p>再比如，你有一个材料模拟的输出文件，想用 Python 快速统计其中某类原子的出现次数。在常规工作流里，你可能先用 <code>grep</code> 筛选再用 Python 解析，或者把文件路径写死在 Python 脚本里。在 xonsh 里，一行就能搞定：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian ~ @ </span><span class="command">lines = $(cat structure.xyz).splitlines()</span>
+<span class="prompt">student@debian ~ @ </span><span class="command">print(len([l for l in lines if 'Fe' in l]))</span></code></pre>
+
+<p><code>$(cat structure.xyz)</code> 用 Shell 命令读取文件内容，返回一个 Python 字符串，然后你就可以直接对这个字符串做 Python 操作。Shell 和 Python 之间的那道墙消失了。</p>
+
+<p>xonsh 适合的人群非常明确：做数据科学、AI 训练、科学计算的 Python 重度用户。如果你每天用 numpy、pandas、matplotlib，而 Shell 只是用来导航目录和启动脚本，xonsh 能让你少开不少终端窗口。但它对初学者的门槛也不低——你得同时熟悉 Python 和 Shell 的基本概念，才能理解 <code>@()</code> 和 <code>$()</code> 的区别。所以把它放在“知道有这么个东西”的级别就好，不用急着切换。</p>
+
+<h3 id="我该选哪个">我该选哪个？</h3>
+
+<p>四个 Shell 摆在面前，选谁？答案不复杂：看你现在最需要什么。</p>
+
+<figure>
+  <img src="assets/images/chapter-04/fig-4.1-shell-selection-spectrum.svg" alt="Shell 选型定位光谱图">
+  <figcaption>图4.1 Shell 选型定位：兼容性与配置成本的权衡</figcaption>
+</figure>
+
+<ul>
+<li><strong>Bash</strong>：够用、稳定、无处不在。如果你刚学完第二章，对补全和提示符还没有特别的感觉，继续用 Bash 完全没问题。它像一双普通的运动鞋——款式朴素，但什么路都能走。</li>
+<li><strong>zsh + Oh My Zsh</strong>：如果你已经开始频繁使用 git、经常在多个目录和虚拟环境之间切换，想让提示符告诉你更多信息（“现在在哪个分支？Python 用的是哪个环境？”），zsh 的插件生态能帮你把提示符变成一个信息面板。</li>
+<li><strong>fish</strong>：如果你不想花时间配置，但又想拥有彩色语法高亮和自动建议，fish 装完就能用。代价是和 Bash 语法不兼容——脚本仍然用 Bash 写。</li>
+<li><strong>xonsh</strong>：如果你每天在 Python 和 Shell 之间横跳，想在命令行里直接用 Python 变量和表达式，xonsh 是你的菜。但需要 Python 功底。</li>
+</ul>
+
+<p>我的建议：<strong>先用 Bash 把基础走稳</strong>。等你每天在命令行里待的时间超过一两个小时，开始觉得“要是 Tab 补全再聪明一点就好了”“要是提示符能显示 git 分支就好了”，自然就会想来翻这一节。到那时候，挑 zsh 或 fish 装上，花十分钟配好，你会感觉像是从手动挡换成了自动挡——目的地没变，但开车的过程轻松了很多。</p>
+
+<p>xonsh 比较特殊。如果你的日常就是 Python + 命令行，而且你已经很熟悉 Python 了，直接试试也无妨。但对于大多数读者，把 Bash、zsh 或 fish 用熟了再考虑 xonsh，可能更合适。</p>
+
+<h2 id="更好用的文件命令">更好用的文件命令</h2>
+
+<p>第二章我们学了 <code>ls</code>、<code>cat</code>、<code>find</code>、<code>grep</code>、<code>rm</code>——这些命令够用，放在任何一台 Linux 机器上都能干活。但它们有点像一台老式黑白电视：能看，不享受。默认输出没有颜色、没有行号、没有语法高亮，找文件要敲一长串参数，删文件没有后悔药。</p>
+
+<p>这一节介绍五个工具：eza、bat、fd、ripgrep、trash-cli。它们不会替代你已学会的命令——eza 背后还是 <code>ls</code> 的逻辑，bat 做的还是 <code>cat</code> 的事。它们只是把输出变得更漂亮、更好读、更不容易出错。换个说法：你第二章学的是考驾照用的手动挡桑塔纳，现在要试的是带倒车影像的自动挡。</p>
+
+<h3 id="eza">eza — ls 的现代替代</h3>
+
+<p>你在第二章用的 <code>ls</code>，取决于发行版的配置，可能黑白一片，也可能有点颜色（因为很多发行版会悄悄帮你配一个 <code>alias ls='ls --color=auto'</code>）。但不管有没有颜色，<code>ls</code> 都不会告诉你：哪些文件被 git 修改过？隐藏文件和普通文件分得清吗？目录和普通文件呢？</p>
+
+<p>eza 是 exa 的继任者——exa 的作者停更之后，社区 fork 出了 eza 继续维护。用 Rust 重写的，默认彩色输出，而且天生就懂 git、文件类型图标、树状显示这些 <code>ls</code> 做不到的事情。安装稍微注意一下：eza 在 Debian 12 的默认仓库里没有，需要从 backports 安装。先确认 backports 源已启用，然后：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install -t bookworm-backports eza</span>
+<span class="output">...</span></code></pre>
+
+<p>如果没启用 backports，用 <code>sudo vim /etc/apt/sources.list</code> 加上 <code>deb http://deb.debian.org/debian bookworm-backports main</code>，<code>sudo apt update</code> 之后再装。Ubuntu 和其他发行版一般直接 <code>sudo apt install eza</code> 就行。</p>
+
+<p>常用选项就这几个：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">eza -l</span>             <span class="comment"># 长格式，类似 ls -l，但带颜色和图标</span>
+<span class="prompt">student@debian:~$</span> <span class="command">eza -a</span>             <span class="comment"># 包含隐藏文件</span>
+<span class="prompt">student@debian:~$</span> <span class="command">eza -la</span>            <span class="comment"># 长格式 + 隐藏文件</span>
+<span class="prompt">student@debian:~$</span> <span class="command">eza --tree</span>         <span class="comment"># 树状显示目录结构</span>
+<span class="prompt">student@debian:~$</span> <span class="command">eza -l --git</span>       <span class="comment"># 显示 git 状态（M=修改、A=新增）</span></code></pre>
+
+<p><code>eza --tree</code> 在查看项目目录结构时特别实用。比如你的毕业设计目录里塞了数据、脚本、论文草稿，一层层 <code>cd</code> 进去看太慢了——一个 <code>eza --tree</code> 就能看到全貌。<code>eza -l --git</code> 则让你在列文件的时候就一眼看到哪些改过、哪些是新增的，不用单独跑 <code>git status</code>。</p>
+
+<p>想让 eza 完全接管 <code>ls</code> 的位置，在 <code>.bashrc</code> 里加两行：</p>
+
+<pre><code>alias ls='eza'
+alias ll='eza -l'</code></pre>
+
+<p>改完 <code>source ~/.bashrc</code> 生效。以后你敲 <code>ls</code>，效果就已经是 eza 的了。</p>
+
+<h3 id="bat">bat — cat 的代码高亮版</h3>
+
+<p><code>cat</code> 做的事情很纯粹：把文件内容原样甩到你屏幕上。对于一个配置文件，你可能还行；但如果你在终端里 <code>cat train.py</code> 看一个几十行的 Python 训练脚本，没有行号、没有语法高亮、满屏白字——读起来是真的累。</p>
+
+<p>bat 可以理解为“会打扮自己的 cat”。它会自动识别文件类型（Python、JSON、Markdown、YAML……），给关键字、字符串、注释等加上不同的颜色，还附带行号、自动分页，甚至能在行首标注哪些内容是 git 刚刚修改过的。</p>
+
+<p>安装要注意一个坑：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install bat</span>
+<span class="output">...</span>
+<span class="prompt">student@debian:~$</span> <span class="command">bat</span>
+<span class="output">bash: bat: command not found</span></code></pre>
+
+<p>装了却找不到命令？这是因为 Debian/Ubuntu 的软件源里已经有一个叫 <code>bacula-console-qt</code> 的老软件占用了 <code>bat</code> 这个名字（它和我们的 bat 完全是两码事）。所以在 Debian/Ubuntu 上，bat 的命令名被改成了 <strong><code>batcat</code></strong>。你用 <code>batcat</code> 就能正常使用了。其他发行版（Arch、Fedora 等）没有这个冲突，直接敲 <code>bat</code> 就行。</p>
+
+<p>用 bat 看一个 Python 训练脚本：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">batcat train.py</span>
+<span class="output">───────┬──────────────────────────────────────────
+       │ File: train.py
+───────┼──────────────────────────────────────────
+   1   │ </span><span class="highlight">import</span> torch
+<span class="output">   2   │ </span><span class="highlight">import</span> torch.nn <span class="highlight">as</span> nn
+<span class="output">   3   │ </span>
+<span class="output">   4   │ </span><span class="highlight">class</span> <span class="highlight">MLP</span>(nn.Module):
+<span class="output">   5   │     </span><span class="highlight">def</span> <span class="highlight">__init__</span>(<span class="highlight">self</span>):
+<span class="output">   6   │         </span><span class="highlight">super</span>().<span class="highlight">__init__</span>()
+<span class="output">...   │</span></code></pre>
+
+<p>对比一下：<code>cat train.py</code> 是满屏白字挤在一起，<code>batcat train.py</code> 有行号、有关键字高亮、顶部还有文件名和分隔线。读配置文件（<code>.bashrc</code>、<code>docker-compose.yml</code>）或者在服务器上快速浏览别人的代码时，bat 比 cat 舒服太多。而且即使文件很长，bat 也会自动调用 <code>less</code> 做分页，不会把终端刷爆。</p>
+
+<h3 id="fd">fd — find 的直觉版</h3>
+
+<p><code>find</code> 是第二章学过的最强大的查找工具——但也是最不直觉的一个。想找当前目录下所有 .log 文件，你得写：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">find . -name "*.log"</span></code></pre>
+
+<p><code>find</code> 的思路是“你要我找什么，我把所有条件一个个列出来”：路径、匹配类型（按名称、按大小、按时间……）、匹配模式。这在写脚本时很灵活，但日常敲命令时，你只是想快速找一个东西，不想每次都在脑子里翻译一遍 <code>find</code> 的语法。</p>
+
+<p>fd 就是为这个场景设计的。它的默认行为就是你最常用的需求：在当前目录下按文件名搜索。安装：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install fd-find</span>
+<span class="output">...</span></code></pre>
+
+<p>和 bat 一样，Debian/Ubuntu 上命令名是 <strong><code>fdfind</code></strong>（其他发行版直接是 <code>fd</code>）。</p>
+
+<p>看几个最常用的场景：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">fdfind "*.log"</span>          <span class="comment"># 找所有 .log 文件（等价于 find . -name "*.log"）</span>
+<span class="prompt">student@debian:~$</span> <span class="command">fdfind -t d</span>              <span class="comment"># 只找目录（-t = type, d = directory）</span>
+<span class="prompt">student@debian:~$</span> <span class="command">fdfind -e py</span>              <span class="comment"># 按扩展名找 .py 文件（比 "*.py" 更精确）</span>
+<span class="prompt">student@debian:~$</span> <span class="command">fdfind loss</span>               <span class="comment"># 找文件名中包含 "loss" 的文件</span></code></pre>
+
+<p>fd 有三个默认行为值得单独说一下：第一，它默认忽略 <code>.gitignore</code> 里列出的文件和目录，搜出来的结果不会包含 <code>node_modules</code>、<code>__pycache__</code> 这些垃圾；第二，输出自带颜色，不同类型的文件用不同颜色显示；第三，搜索模式默认就是正则表达式。比如你有一批实验日志文件，命名规则是 <code>exp_001.log</code> 到 <code>exp_100.log</code>，用 <code>fdfind "exp_\d+\.log"</code> 就能全部匹配到。</p>
+
+<p>如果你在做 AI 训练，经常要在项目里找特定类型的文件——比如找出所有的 checkpoint 文件（<code>fdfind -e pth</code>）、找出所有 YAML 配置文件（<code>fdfind -e yml</code>），fd 会让这个过程从“想半天怎么写 find”变成“随手敲出来”。</p>
+
+<h3 id="ripgrep">ripgrep (rg) — grep 的涡轮版</h3>
+
+<p><code>grep</code> 是文本搜索的标配，哪台 Linux 上都有。但它有两个问题：第一，速度——在一个几十 MB 的代码库里搜一个关键词，<code>grep</code> 要逐行扫描所有文件，包括那些你根本不想搜的二进制文件和 <code>.git</code> 目录；第二，默认行为不够贴心——不会自动跳过 <code>.gitignore</code> 里列出的文件，不会给匹配内容高亮。</p>
+
+<p>ripgrep 用 Rust 重写了 grep 的核心逻辑，把正则引擎和文件遍历都做了深度优化。命令名是 <code>rg</code>，两个字母，敲起来也省事：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install ripgrep</span>
+<span class="output">...</span>
+<span class="prompt">student@debian:~$</span> <span class="command">rg "accuracy"</span>            <span class="comment"># 在项目里搜索"accuracy"</span>
+<span class="prompt">student@debian:~$</span> <span class="command">rg -l "TODO"</span>               <span class="comment"># 只列出包含"TODO"的文件名</span>
+<span class="prompt">student@debian:~$</span> <span class="command">rg -c "error"</span>               <span class="comment"># 统计每个文件里"error"出现的次数</span>
+<span class="prompt">student@debian:~$</span> <span class="command">rg -t py "class MLP"</span>        <span class="comment"># 只在 .py 文件里搜索</span></code></pre>
+
+<p>ripgrep 好在这几个地方：默认忽略 <code>.gitignore</code> 和隐藏文件，不会去翻 <code>.git</code> 目录和 <code>node_modules</code>；忽略二进制文件（你不会想在一个 .pth 模型文件里搜文本）；输出默认带颜色，匹配的关键词高亮显示；对于大项目，速度比 <code>grep</code> 快一个数量级。</p>
+
+<p>举个例子。你在调试一个材料模拟程序，想找代码里所有调用 <code>compute_energy</code> 函数的地方。用 <code>grep -r "compute_energy" .</code> 可能要等几秒，而且输出里会夹杂一堆 build 目录和缓存文件里的误匹配。用 <code>rg "compute_energy"</code> 不仅秒出结果，还会自动帮你过滤掉那些噪音目录，输出的匹配行自带行号和颜色，一眼就能看到哪个文件、第几行、怎么调用的。</p>
+
+<p>ripgrep 的包名叫 <code>ripgrep</code>，命令叫 <code>rg</code>——这个在 Debian/Ubuntu 上没有命名冲突，装完直接 <code>rg</code> 就能用。</p>
+
+<h3 id="trashcli">trash-cli — 给 rm 装个回收站</h3>
+
+<p>第二章我们专门强调过：<code>rm</code> 没有回收站，删了就没了。这是 Linux 命令行最令人紧张的地方——<code>rm -rf</code> 一旦敲下去，找不回来。</p>
+
+<p>trash-cli 就是来解决这个痛点的。它不替代 <code>rm</code>，而是给你一个更安全的手动选项：把文件移进系统的回收站，而不是直接抹掉。在你确认不需要之前，文件都存在回收站里，随时可以恢复。</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install trash-cli</span>
+<span class="output">...</span></code></pre>
+
+<p>四个命令，一看就懂：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">trash-put old_log.txt</span>         <span class="comment"># 把文件丢进回收站</span>
+<span class="prompt">student@debian:~$</span> <span class="command">trash-list</span>                     <span class="comment"># 查看回收站里有什么</span>
+<span class="output">2024-03-15 14:22:30 /home/student/old_log.txt</span>
+<span class="prompt">student@debian:~$</span> <span class="command">trash-restore</span>                  <span class="comment"># 交互式恢复（会问你恢复哪个文件）</span>
+<span class="prompt">student@debian:~$</span> <span class="command">trash-empty</span>                    <span class="comment"># 清空回收站（这次就真删了）</span></code></pre>
+
+<p>使用场景很明确：当你对某个文件“可能还需要，但暂时不想看到它”的时候，用 <code>trash-put</code> 而不是 <code>rm</code>。比如做完一批实验，生成了几十个中间结果文件，你不太确定后面会不会用到——直接 <code>rm</code> 太冒险，留着又占地方。<code>trash-put</code> 就是为这种“模糊删除”设计的。</p>
+
+<p><strong>有一件事绝对不能做：不要把 <code>alias rm='trash-put'</code>。</strong> 这个 alias 看起来很聪明——给 <code>rm</code> 加个安全带嘛——但实际上很危险。你会养成“<code>rm</code> 可以恢复”的肌肉记忆。等你 SSH 到一台没配这个 alias 的服务器上，或者写脚本时用 <code>rm</code>，它就会按默认行为直接删除，而你脑子里还以为有回收站兜底。trash-cli 是手动保险，不是自动驾驶——你要有意识地选择在什么时候用它。</p>
+
+<h3 id="如何记忆">如何记忆</h3>
+
+<p>五个工具，一头一尾最好记：eza、bat、fd、ripgrep 是四个替代品，trash-cli 是一个安全网。</p>
+
+<p>口诀就一句话：<strong>ls 换 eza，cat 换 bat，find 换 fd，grep 换 rg</strong>。四个命令对四个命令，甚至有点押韵。</p>
+
+<p>Debian/Ubuntu 上的命令名坑也再重复一遍——这是踩坑率最高的两个：</p>
+
+<ul>
+<li><code>bat</code> → <code>batcat</code>（被 <code>bacula-console-qt</code> 占了名字）</li>
+<li><code>fd</code> → <code>fdfind</code>（被另一个软件占了名字）</li>
+<li><code>eza</code>、<code>rg</code>、<code>trash-put</code> ——这些没有冲突，直接用</li>
+</ul>
+
+<p>如果你用的是 Arch、Fedora 或者其他发行版，<code>bat</code> 和 <code>fd</code> 就没有这个坑，直接敲原名就行。</p>
+
+<p>最后，这五个工具不是“学了第二章就马上要装”的。你可以先用原生命令把第二章的东西练熟。等你发现自己每天都频繁地 <code>ls</code>、<code>cat</code> 看代码、<code>find</code> 找文件、<code>grep</code> 搜日志——到那个时候，花十分钟把这五个工具装上，你会觉得命令行突然好用了很多。</p>
+
+<h2 id="终端美化与模糊搜索">终端美化与模糊搜索</h2>
+
+<p>前两节讲了 Shell 和文件命令——都是关于“做什么”和“怎么做”。但终端还有一个容易被忽略的维度：它长什么样、好不好看、好不好找东西。</p>
+
+<p>终端美化不是花里胡哨。想象你 ssh 到一台服务器，提示符只显示一个 <code>$</code>——你不知道自己在哪个目录、用的是什么 Python 环境、git 在哪个分支。每次都得多敲一条 <code>pwd</code> 或 <code>git branch</code> 才能确认，思路被打断。好的提示符让你一眼看见这些信息，不需要额外操作。</p>
+
+<p>模糊搜索解决的是另一个日常痛点：“我知道有这个文件，但忘了放哪了。”你大概记得文件名里有个“alloy”或者“accuracy”，但不想一层层 <code>cd</code> 进去翻。模糊搜索让你边打字边筛选，结果实时出现。</p>
+
+<p>这一节介绍三个工具：starship（统一提示符美化）、fzf（模糊搜索一切）、yazi（终端里的文件管理器）。它们都只需要几分钟就能装好，但能让终端体验上升一大截。</p>
+
+<h3 id="starship">starship — 一个提示符，适配所有 Shell</h3>
+
+<p>第一节我们讲了 zsh、fish、xonsh 三种 Shell。它们各有各的提示符配置方式：zsh 靠主题系统，fish 用 <code>fish_config</code> 网页改，Bash 要手写 <code>PS1</code> 变量。问题是——如果你同时用 Bash 写脚本、fish 做交互，想让两个 Shell 的提示符长得一样，你得分别配置两套。以后想改一个细节（比如加上 Python 虚拟环境显示），又得改两处。</p>
+
+<p>starship 解决的就是这个问题：<strong>写一份配置，在所有 Shell 里用同一套提示符</strong>。不管你用的是 Bash、zsh、fish、xonsh、甚至 Windows 上的 PowerShell，装上 starship 之后，所有 Shell 的提示符自动统一成一种风格。</p>
+
+<p>starship 用 Rust 写的，速度极快——你敲回车到提示符出现，几乎感觉不到延迟。它自带几十个模块：当前目录、git 分支和状态（有没有未提交的修改）、命令执行耗时（超过一定阈值的命令会显示“花了多少秒”）、Python 虚拟环境名、Node.js 版本、Docker 上下文……你只需要在配置文件里写一行就能启用一个模块。</p>
+
+<p>安装 starship。它在 Debian 12 的默认仓库里没有，推荐用官网的一键安装脚本：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">curl -sS https://starship.rs/install.sh | sh</span>
+<span class="output">...</span>
+<span class="output">&gt; Configuration
+&gt; Please setup the following line in your shell config file.
+&gt; 
+&gt;   eval "$(starship init bash)"</span></code></pre>
+
+<p>和第三章提醒的一样，<code>curl | sh</code> 这种脚本要先确认来源，最好把脚本下载下来审阅再执行。starship.rs 是官方域名，确认无误后再运行。</p>
+
+<p>安装脚本会自动检测你的系统架构，下载对应的二进制文件，放到 <code>/usr/local/bin/</code> 下。装完之后，在 <code>.bashrc</code> 末尾加一行：</p>
+
+<pre><code>eval "$(starship init bash)"</code></pre>
+
+<p>然后 <code>source ~/.bashrc</code>。提示符立刻变样——你会看到当前目录、git 分支（如果有的话），背景色和箭头分隔符让不同信息块一目了然。</p>
+
+<p>如果你用的是 zsh，把上面那行里的 <code>bash</code> 换成 <code>zsh</code>，加到 <code>.zshrc</code> 即可。fish 的写法不同——因为 fish 的初始化方式与 Bash/zsh 不同，推荐用 <code>source</code> 管道语法直接加载 starship，需要在 <code>~/.config/fish/config.fish</code> 末尾加一行 <code>starship init fish | source</code>。同一份 starship 配置（默认在 <code>~/.config/starship.toml</code>）在所有 Shell 里生效。</p>
+
+<p>想自定义？在 <code>~/.config/starship.toml</code> 里加几个模块。比如你想让 starship 显示当前激活的 Python 虚拟环境：</p>
+
+<pre><code>[python]
+format = "via [🐍 $version](bold green) "</code></pre>
+
+<p>改完 <code>source ~/.bashrc</code> 生效。以后再激活 venv 或 conda 环境，提示符上会自动出现 <code>🐍 3.11</code> 这样的标记——你再也不会在错误的环境里跑训练脚本了。</p>
+
+<p>有一点值得强调：<strong>starship 只改提示符，不改 Shell 行为</strong>。你的 Tab 补全、快捷键、别名、函数……统统不受影响。它和你用的 zsh/fish/bash 完全兼容。你可以把 starship 理解为提示符的“主题引擎”——外表变了，内核还是你熟悉的 Shell。</p>
+
+<h3 id="fzf">fzf — 模糊搜索一切</h3>
+
+<p>第二章学了 <code>find</code>，这一章前面又学了 <code>fd</code>——它们都能帮你找文件，但前提是你要知道文件名的<strong>大致拼写</strong>。可现实中你记住的往往是碎片信息：“那个关于钛合金的 csv”“那份上周改过的实验配置 yaml”“那个叫 loss 什么的 Python 脚本”。你不知道全名，也不记得放在哪个子目录里了。</p>
+
+<p>fzf 就是为这种“模糊记忆”设计的。它的全称是 fuzzy finder——模糊查找器。核心体验就四个字：<strong>打字即筛选</strong>。你敲任何字符，列表实时缩小到只包含这些字符的条目（不要求字符连续），敲错了也没关系——退格就行。</p>
+
+<p>fzf 在 Debian 12 的仓库里有，直接装：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install fzf</span>
+<span class="output">...</span></code></pre>
+
+<p>不过 Debian/Ubuntu 默认不会自动启用 fzf 的交互快捷键，装完后还需要 source shell 集成脚本。以 Bash 为例：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">source /usr/share/doc/fzf/examples/key-bindings.bash</span>
+<span class="prompt">student@debian:~$</span> <span class="command">source /usr/share/doc/fzf/examples/completion.bash</span></code></pre>
+
+<p>这两个脚本分别负责快捷键和目录补全。不同发行版或安装方式下，路径可能不同：zsh 用户把文件名里的 <code>bash</code> 换成 <code>zsh</code>；从 GitHub 手动安装 fzf 时，脚本可能在 <code>~/.fzf/shell/</code> 之类的地方。按你的实际环境调整即可。</p>
+
+<p>启用之后，fzf 提供三个好用的快捷键：</p>
+
+<ul>
+<li><strong><code>Ctrl+T</code></strong>：在当前目录（含子目录）模糊搜索文件，回车把文件路径填到命令行上。场景：“那个合金数据 csv 在哪来着？”</li>
+<li><strong><code>Ctrl+R</code></strong>：模糊搜索命令历史。Bash 默认的 <code>Ctrl+R</code> 是连续子串匹配，一次只显示一条结果，要反复按 <code>Ctrl+R</code> 轮转；fzf 的 <code>Ctrl+R</code> 则是模糊匹配，会一次性列出所有候选。场景：“昨天那条很长的 <code>ffmpeg</code> 命令是什么？”</li>
+<li><strong><code>cd **&lt;Tab&gt;</code></strong>：模糊搜索目录并跳转。场景：“那个实验结果目录叫什么来着？”</li>
+</ul>
+
+<p>来感受一下 <code>Ctrl+R</code> 的差别。Bash 的 <code>Ctrl+R</code> 按连续子串查找：你敲 <code>gpu</code>，它只会找包含连续 <code>gpu</code> 的历史命令，而且一次只显示一条，想多看几个就得反复按 <code>Ctrl+R</code>。fzf 的 <code>Ctrl+R</code> 则把所有匹配的历史命令列在一个可滚动的列表里，还支持字符不连续的模糊匹配——敲 <code>sgl</code> 也能命中 <code>ssh student@gpu-lab-01</code>。上下箭头选中，回车执行。</p>
+
+<p><code>Ctrl+T</code> 也一样好用。按下去，当前目录的所有文件列出来，你开始敲关键字，fzf 实时过滤。比如你的项目里有一个 <code>experiments/2024-03/tensile_test_TC4_annealed.csv</code>，你只记得“tensile”——敲 <code>tensile</code>，候选列表就只剩这一个文件，回车就把它的完整路径填到命令行上。</p>
+
+<p>fzf 不止能搜文件和命令历史。它真正强大的地方在于：<strong>任何能输出文本列表的命令，都可以用 fzf 做交互式筛选</strong>。把输出用管道交给 fzf：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">rg "accuracy" | fzf</span>          <span class="comment"># 在 ripgrep 的搜索结果里模糊筛选</span>
+<span class="prompt">student@debian:~$</span> <span class="command">fd --type f | fzf</span>              <span class="comment"># 在当前项目所有文件里模糊搜索</span>
+<span class="prompt">student@debian:~$</span> <span class="command">ps aux | fzf</span>                   <span class="comment"># 模糊搜索运行中的进程，快速找 PID</span>
+<span class="prompt">student@debian:~$</span> <span class="command">apt list --installed | fzf</span>      <span class="comment"># 在已安装的包中模糊搜索</span></code></pre>
+
+<p>做材料模拟的同学可能在项目里有一堆输入文件和输出日志，名字长得差不多——<code>md_npt_300K.in</code>、<code>md_nvt_500K.in</code>、<code>md_npt_300K.log</code>……用 <code>fd | fzf</code>，敲 <code>npt 300</code> 就能快速缩小到目标文件，不用在几十个文件名里一个个肉眼筛选。</p>
+
+<h3 id="yazi">yazi — 终端里的文件管理器</h3>
+
+<p><code>cd</code> + <code>ls</code> 的组合在熟悉的目录里够用：你知道项目结构，知道数据放在 <code>data/</code> 下、脚本在 <code>src/</code> 下，两三步就跳过去了。但如果是探索一个陌生的目录——比如导师甩给你的一个公开数据集压缩包，解压之后三十个子目录、上百个文件，命名规则你不清楚——你就陷入了经典的循环：<code>ls</code>、<code>cd 某个目录</code>、<code>ls</code>、哦不对、<code>cd ..</code>、<code>ls</code>、<code>cd 另一个目录</code>……来回跳，很累。</p>
+
+<p>yazi 就是这个问题的解。它是一个终端里的双栏文件管理器：左边是目录树，右边是当前选中文件的预览。支持 vim 式快捷键（<code>j</code>/<code>k</code> 上下移动，<code>h</code>/<code>l</code> 前进后退），在 Kitty、WezTerm 等现代终端里还能直接预览图片。</p>
+
+<p>安装需要注意：yazi 比较新，Debian 12 的默认仓库里还没有。一个更稳当的办法是用社区维护的第三方 apt 源 <code>debian.griffo.io</code> 来安装。先说明一下：这不是 yazi 官方源，也不是 Debian/Ubuntu 官方源，而是非官方的社区源；要不要添加、信不信任，由你自己判断。如果决定用，按下面命令一步步来：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo mkdir -p /etc/apt/keyrings</span>
+<span class="prompt">student@debian:~$</span> <span class="command">curl -sS https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | sudo gpg --dearmor --yes -o /etc/apt/keyrings/debian.griffo.io.gpg</span>
+<span class="prompt">student@debian:~$</span> <span class="command">echo "deb [signed-by=/etc/apt/keyrings/debian.griffo.io.gpg] https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | sudo tee /etc/apt/sources.list.d/debian.griffo.io.list</span>
+<span class="prompt">student@debian:~$</span> <span class="command">sudo apt update</span>
+<span class="output">...</span>
+<span class="prompt">student@debian:~$</span> <span class="command">sudo apt install yazi</span>
+<span class="output">...</span></code></pre>
+
+<p>装好之后，进入 yazi：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">yazi</span></code></pre>
+
+<p>你会看到一个分栏界面。左边是当前目录的文件列表，右边是选中文件的预览。基本操作就几个键——和 vim 一样：</p>
+
+<ul>
+<li><code>j</code> / <code>k</code>：在文件列表中向下/向上移动</li>
+<li><code>l</code>：进入选中的目录（或预览文件内容）</li>
+<li><code>h</code>：返回上一级目录</li>
+<li><code>q</code>：退出 yazi</li>
+<li><strong>空格键</strong>：选中/取消选中当前文件</li>
+<li><code>y</code>：复制选中的文件</li>
+<li><code>p</code>：粘贴</li>
+</ul>
+
+<p>yazi 的预览功能值得单独说一下。选中一个 Python 文件，右边会自动显示语法高亮的代码；选中一个 Markdown 文件，右边渲染成带格式的文本；选中一张图片，如果终端支持（Kitty、WezTerm、iTerm2），右边直接显示图片内容。对于数据文件，yazi 会显示文件大小、修改时间等元信息。你可以在不打开任何外部程序的情况下，快速“扫一眼”文件内容。</p>
+
+<p>什么场景最适合 yazi？举两个例子：</p>
+
+<ol>
+<li><strong>浏览下载的实验数据集</strong>。公开数据集（比如 Materials Project 导出的结构文件、ImageNet 子集）往往包含多层目录和 README。用 yazi，你在左边浏览目录树，右边实时预览每个文件的内容——看到 POSCAR 格式的结构文件，右边就能看到原子坐标；看到 CSV，右边显示前几行数据。</li>
+<li><strong>在几十个模型 checkpoint 里找到想要的</strong>。训练过程中你存了 <code>model_epoch_10.pth</code>、<code>model_epoch_20.pth</code>……一直到 <code>model_epoch_100.pth</code>。文件名几乎一样，用 <code>ls</code> 看不出区别。yazi 的预览栏会显示文件大小和修改时间——通常最后一次修改的 checkpoint 就是你想要的。</li>
+</ol>
+
+<p>yazi 不是 <code>cd</code> + <code>ls</code> 的替代品——你在自己熟悉的项目里，<code>cd</code> 两下就到了，不需要开 yazi。它真正的价值是<strong>探索陌生目录</strong>时让你少敲几十次 <code>ls</code> 和 <code>cd</code>。装好放在那里，该用的时候打开，平时还是 <code>cd</code> + <code>ls</code>，两不耽误。</p>
+
+<h3 id="什么时候用哪个">什么时候用哪个</h3>
+
+<p>三个工具各管一摊：starship 让你的提示符好看且有用——装一次，配所有 Shell；fzf 让你在命令历史和文件系统里快速搜索；yazi 适合在陌生目录里浏览和整理文件。</p>
+
+<h2 id="会话管理">会话管理：别让 SSH 断线毁了你的训练</h2>
+
+<p>你正在服务器上跑一个训练任务，预计要跑 8 小时。你关上笔记本回家，第二天早上打开一看——SSH 断了，训练进程没了。</p>
+
+<p>这不是服务器的问题，是你没做会话管理。</p>
+
+<p>SSH 连接很脆弱：网络抖动、笔记本合盖休眠、Wi-Fi 切换、IP 地址租约到期——随便哪一个都能断掉你的连接。SSH 一断，在这个终端里跑的所有前台程序，都会被操作系统发一个 SIGHUP（hangup）信号，然后结束掉。你的训练脚本、数据处理、材料模拟——不管跑了多久，全白费了。</p>
+
+<p>这一节不是选修课，是必修课。不管你搞 AI 训练、做第一性原理计算、还是跑分子动力学模拟，只要你的任务运行时间超过你喝一杯咖啡的功夫，就必须做会话管理。</p>
+
+<p>三个工具解决问题：tmux 保底——你的“永不断线终端”；bg / fg / jobs 应对临时切换——不需要装任何东西；最后我们会讲怎么把它们组合成一个顺畅的工作流。</p>
+
+<h3 id="tmux">tmux — 永不断线的终端</h3>
+
+<p>tmux 是一个终端复用器（terminal multiplexer）。名字很唬人，翻译成人话就是三件事：</p>
+
+<ol>
+<li>在服务器上创建一个“会话”（session），你在里面跑的任何程序，都绑在这个会话上，而不是绑在 SSH 连接上。</li>
+<li>SSH 断了？会话还在，程序继续跑。</li>
+<li>下次 SSH 回来，重新接入这个会话——就像什么都没发生过。</li>
+</ol>
+
+<p>装 tmux：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install tmux</span>
+<span class="output">...</span></code></pre>
+
+<p>tmux 有三个核心概念，记住三个词就够了：<strong>session</strong>（会话）、<strong>window</strong>（窗口）、<strong>pane</strong>（窗格）。它们的关系像俄罗斯套娃：一个 tmux 服务器可以有多个 session；一个 session 可以有多个 window（像浏览器的多个标签页）；一个 window 可以拆成多个 pane（上下或左右分屏）。</p>
+
+<figure>
+  <img src="assets/images/chapter-04/fig-4.2-tmux-hierarchy.svg" alt="tmux 的 session、window、pane 层级结构示意图">
+  <figcaption>图4.2 tmux 的层级结构：session ⊃ window ⊃ pane</figcaption>
+</figure>
+
+<p>对于会话管理这个场景，你只需要关心 session。创建一个叫 <code>train</code> 的会话：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">tmux new -s train</span></code></pre>
+
+<p>回车之后，你会进入一个新“世界”：底部出现一条绿色的状态栏，显示会话名和当前时间。这就是 tmux 会话。在这个世界里，你可以正常运行任何命令——<code>python train.py</code>、<code>vim model.py</code>、<code>htop</code> 监控 GPU——和普通终端完全一样。</p>
+
+<p>关键操作来了：<strong>脱离会话</strong>。按 <code>Ctrl+B</code>，松开，再按 <code>D</code>。你会回到普通终端，屏幕上显示 <code>[detached (from session train)]</code>。但注意——训练脚本还在服务器上跑着，毫发无伤。你现在可以安全地关掉笔记本，回家。</p>
+
+<p>第二天早上，SSH 到服务器，重新接入：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">tmux attach -t train</span></code></pre>
+
+<p>回到昨晚的 tmux 会话，训练输出还在屏幕上滚动——或者已经跑完了，结果摆在眼前。八小时没白费。</p>
+
+<p>几个你可能需要的补充命令：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">tmux ls</span>              <span class="comment"># 列出所有会话</span>
+<span class="output">train: 1 windows (created Thu Jul 10 22:15:30 2026)</span>
+<span class="prompt">student@debian:~$</span> <span class="command">tmux kill-session -t train</span> <span class="comment"># 结束一个会话</span></code></pre>
+
+<p>在 tmux 会话里面，还有几个常用快捷键：</p>
+
+<ul>
+<li><code>Ctrl+B</code> 然后 <code>C</code>：新建一个 window（底部状态栏会多一个标签）</li>
+<li><code>Ctrl+B</code> 然后 <code>"</code>：当前 window 上下分屏（水平分割）</li>
+<li><code>Ctrl+B</code> 然后 <code>%</code>：当前 window 左右分屏（垂直分割）</li>
+<li><code>Ctrl+B</code> 然后方向键：在窗格之间切换</li>
+</ul>
+
+<p>典型场景：一个 pane 跑着 <code>python train.py</code>，另一个 pane 里 <code>watch -n 1 nvidia-smi</code> 监控 GPU 使用率——一个屏幕，两个视角，不用开两个 SSH 窗口。</p>
+
+<p>有一点特别值得强调：<strong>tmux 也保护你免受“不小心关了终端窗口”的伤害</strong>。即使你就在本机跑任务，没连 SSH——比如用笔记本做数据处理，终端不小心点了个 ×——tmux 里的程序也不会受影响。重新打开终端，<code>tmux attach</code> 就回来了。从这个角度说，即使不连远程服务器，tmux 也值得装一个。</p>
+
+<h3 id="bgfgjobs">bg、fg、jobs — 前台后台切换</h3>
+
+<p>tmux 解决的是“长期存活”的问题——任务要跑几个小时甚至几天。但日常使用中，还有一个更轻量的场景：你正在终端里跑一个程序，突然想暂时回到命令行做点别的事，但又不想把程序关掉。</p>
+
+<p>比如你在 <code>vim</code> 里改训练参数，想 <code>ls</code> 看一眼日志文件名，但 vim 占着终端。或者跑着 <code>python analyze.py</code> 分析了五分钟，发现参数写错了，想暂停、改参数、恢复。</p>
+
+<p>这时候你需要的是 Shell 内建的任务控制——<code>bg</code>、<code>fg</code>、<code>jobs</code>。不需要装任何东西，Bash 自带。</p>
+
+<p>一个程序在终端里有三种状态：</p>
+
+<ul>
+<li><strong>前台运行</strong>（foreground）：占着终端，你不能输入下一条命令。</li>
+<li><strong>后台运行</strong>（background）：程序在跑，但终端还给你，可以继续敲命令。</li>
+<li><strong>暂停</strong>（stopped）：程序被挂起，不占用 CPU，等你决定是放回前台还是后台。</li>
+</ul>
+
+<p>五条操作，四句命令加一个快捷键：</p>
+
+<table>
+<tr><th>操作</th><th>命令</th><th>效果</th></tr>
+<tr><td>直接在后台启动</td><td><code>command &</code></td><td>程序在后台跑，立刻拿回终端</td></tr>
+<tr><td>暂停当前前台程序</td><td><code>Ctrl+Z</code></td><td>程序进入 stopped 状态</td></tr>
+<tr><td>让暂停的程序在后台继续</td><td><code>bg</code></td><td>stopped → background running</td></tr>
+<tr><td>把后台/暂停的程序拉回前台</td><td><code>fg</code></td><td>background/stopped → foreground</td></tr>
+<tr><td>查看所有后台和暂停任务</td><td><code>jobs</code></td><td>列出任务编号、状态、命令</td></tr>
+</table>
+
+<p>来几个实际场景。</p>
+
+<p><strong>场景一：启动训练后立刻拿回终端。</strong></p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/project$</span> <span class="command">python train.py &</span>
+<span class="output">[1] 18473</span>
+<span class="prompt">student@debian:~/project$</span> <span class="comment"># 终端立刻还给你了</span></code></pre>
+
+<p><code>[1]</code> 是任务编号，<code>18473</code> 是进程 PID。训练在后台跑着，你可以继续敲 <code>ls</code>、<code>vim config.yaml</code>，互不干扰。唯一的问题是——训练的输出会混在你的终端里，有点乱。这时候就该用 tmux 了，但如果你只是想快速看一眼别的文件，<code>&</code> 足够了。</p>
+
+<p><strong>场景二：跑着程序发现要改参数，暂停→改→恢复。</strong></p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/project$</span> <span class="command">python analyze.py --lr 0.01</span>
+<span class="output">Epoch 1/100, loss=2.345</span>
+<span class="output">Epoch 2/100, loss=1.892</span>
+<span class="comment"># 等等，学习率设错了！应该是 0.001</span>
+<span class="comment"># 按 Ctrl+Z</span>
+<span class="output">^Z</span>
+<span class="output">[1]+  Stopped                 python analyze.py --lr 0.01</span>
+<span class="prompt">student@debian:~/project$</span> <span class="command">python analyze.py --lr 0.001 &</span> <span class="comment"># 用正确参数重新跑</span>
+<span class="prompt">student@debian:~/project$</span> <span class="command">fg</span>                            <span class="comment"># 诶，还是想把旧的恢复看一眼</span>
+<span class="output">python analyze.py --lr 0.01</span></code></pre>
+
+<p><code>Ctrl+Z</code> 不会杀死程序——只是把它挂起来。你可以在这期间做任何事情（改参数、查文件、甚至跑另一个脚本），然后 <code>fg</code> 把它拉回来。这在调试阶段特别有用。</p>
+
+<p><strong>场景三：看看有哪些后台任务。</strong></p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/project$</span> <span class="command">jobs</span>
+<span class="output">[1]-  Running                 python train.py &</span>
+<span class="output">[2]+  Stopped                 python analyze.py --lr 0.01</span></code></pre>
+
+<p><code>+</code> 标记的是“当前任务”——<code>fg</code> 不带参数时默认操作的这一个。如果你有多个任务，可以用 <code>fg %1</code>、<code>fg %2</code> 指定要拉哪个。</p>
+
+<p>bg / fg 有一个必须说明的局限：<strong>它们只在当前终端有效</strong>。SSH 断了，这个终端没了，后台任务一样会丢。这就是为什么需要 tmux——bg 是短跑选手，快速、轻便、适合几十秒到几分钟的临时操作；tmux 是马拉松选手，稳定、持久、适合几小时到几天的长期任务。</p>
+
+<h3 id="该怎么组合使用">该怎么组合使用</h3>
+
+<p>学完 tmux 又学了 bg/fg，你可能在想：到底什么时候用哪个？</p>
+
+<p>一句话口诀：<strong>“长时间跑的任务用 tmux，临时后台用 <code>&</code>，暂停看一眼用 <code>Ctrl+Z</code>。”</strong></p>
+
+<p>它们不是互斥的——你完全可以在 tmux 会话里使用 bg/fg。一个典型的工作流是这样的：</p>
+
+<pre><code class="terminal"><span class="comment"># 下午上课，SSH 到实验室服务器</span>
+<span class="prompt">you@laptop:~$</span> <span class="command">ssh student@gpu-lab</span>
+<span class="comment"># 进入 tmux，创建一个工作会话</span>
+<span class="prompt">student@gpu-lab:~$</span> <span class="command">tmux new -s work</span>
+<span class="comment"># 在 tmux 里启动训练</span>
+<span class="prompt">student@gpu-lab:~/project$</span> <span class="command">python train.py</span>
+<span class="output">Epoch 1/200, loss=2.345</span>
+<span class="comment"># 突然想检查一下数据预处理有没有问题——Ctrl+Z 暂停训练</span>
+<span class="output">^Z</span>
+<span class="output">[1]+  Stopped                 python train.py</span>
+<span class="prompt">student@gpu-lab:~/project$</span> <span class="command">ls data/</span>
+<span class="prompt">student@gpu-lab:~/project$</span> <span class="command">cat data/README.md</span>
+<span class="comment"># 没问题，恢复训练</span>
+<span class="prompt">student@gpu-lab:~/project$</span> <span class="command">fg</span>
+<span class="output">Epoch 2/200, loss=2.123</span>
+<span class="comment"># 下课了，脱离 tmux 会话</span>
+<span class="comment"># Ctrl+B D</span>
+<span class="output">[detached (from session work)]</span>
+<span class="comment"># 回宿舍，重新连上</span>
+<span class="prompt">you@laptop:~$</span> <span class="command">ssh student@gpu-lab</span>
+<span class="prompt">student@gpu-lab:~$</span> <span class="command">tmux attach -t work</span>
+<span class="comment"># 训练还在跑，一切正常</span></code></pre>
+
+<figure>
+  <img src="assets/images/chapter-04/fig-4.3-tmux-workflow.svg" alt="tmux 典型工作流示意图">
+  <figcaption>图4.3 tmux 典型工作流：SSH 登录 → 创建 session → 启动训练 → detach → 回家后重新 attach</figcaption>
+</figure>
+
+<p>这个工作流覆盖了材料/AI 学生最典型的日常：SSH 到服务器训练模型 → 偶尔暂停看一眼别的东西 → 下课回家 → 到家接着看结果。全程没有因为网络断开、笔记本合盖而丢失进度。</p>
+
+<p>最后，记三个要点：</p>
+
+<ol>
+<li><strong>tmux 是保命工具</strong>——只要训练时间超过半小时，先进 tmux 再启动。养成肌肉记忆。</li>
+<li><strong><code>&</code> 和 <code>Ctrl+Z</code> 是日常便利</strong>——不离开当前终端就能临时切换，但别用它替代 tmux。</li>
+<li><strong>两者可以一起用</strong>——在 tmux 里用 <code>Ctrl+Z</code> 暂停训练是常态操作，不矛盾。</li>
+</ol>
+
+<h2 id="定时任务">定时任务：让服务器替你守夜</h2>
+
+<p>科研里有太多“定期要做”的事。每周备份一次实验数据。每天凌晨清理过期的日志文件。每小时检查训练跑完了没有。每半小时把模型检查点同步到 NAS。</p>
+
+<p>这些事都不难——一条 <code>tar</code>、一行 <code>rsync</code>、一个脚本就能搞定。难的是记得按时做。半夜三点爬起来备份数据？闹钟响了，你关了继续睡。手动做重复的事情，人是靠不住的。</p>
+
+<p>Linux 的解决方案叫 <strong>crontab</strong>——一个定时任务调度器。你写好“什么时间、干什么事”，剩下的交给系统。服务器不会忘、不会偷懒、不会睡过头。</p>
+
+<h3 id="crontab基本语法">crontab 的基本语法</h3>
+
+<p>crontab 是“cron table”的缩写——cron 是那个在后台一直跑着的调度守护进程，table 就是你写的那张“排班表”。每个用户有自己的 crontab 表，互不干扰。你的定时任务只在你名下执行，不会影响别人。</p>
+
+<p>先学会两条命令，后面用得上：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">crontab -e</span>    <span class="comment"># 编辑自己的定时任务表</span>
+<span class="prompt">student@debian:~$</span> <span class="command">crontab -l</span>    <span class="comment"># 列出当前所有定时任务</span></code></pre>
+
+<p>第一次执行 <code>crontab -e</code> 时，系统会问你用哪个编辑器：</p>
+
+<pre><code class="terminal"><span class="output">Select an editor.  To change later, run 'select-editor'.
+  1. /bin/nano        &lt;---- easiest
+  2. /usr/bin/vim.basic
+  3. /usr/bin/vim.tiny
+  4. /bin/ed
+
+Choose 1-4 [1]:</span></code></pre>
+
+<p>选 <strong>nano</strong>（一般是 1）。这个选择以后可以改，不用纠结。nano 的好处是底部有操作提示——<code>^O</code> 保存、<code>^X</code> 退出——不用像 vim 那样还要记退出命令。</p>
+
+<p>选好编辑器之后，你会看到一个空文件（或者已有的 crontab 内容）。每条定时任务占一行，格式是固定的：</p>
+
+<pre><code class="terminal"><span class="comment"># 格式：分 时 日 月 星期 命令</span>
+<span class="command"><span class="highlight">* * * * *</span> /path/to/command</span></code></pre>
+
+<p>五个时间字段，顺序从左到右是：<strong>分、时、日、月、星期</strong>。每个字段的取值范围：</p>
+
+<table>
+<tr><th>字段</th><th>含义</th><th>取值范围</th></tr>
+<tr><td>分</td><td>一小时里的第几分钟</td><td>0-59</td></tr>
+<tr><td>时</td><td>一天里的第几小时</td><td>0-23（0 是午夜）</td></tr>
+<tr><td>日</td><td>一个月里的第几天</td><td>1-31</td></tr>
+<tr><td>月</td><td>一年里的第几月</td><td>1-12</td></tr>
+<tr><td>星期</td><td>一周里的第几天</td><td>0-7（0 和 7 都表示周日）</td></tr>
+</table>
+
+<figure>
+  <img src="assets/images/chapter-04/fig-4.4-crontab-fields.svg" alt="crontab 五个时间字段示意图">
+  <figcaption>图4.4 crontab 时间字段：分 · 时 · 日 · 月 · 星期</figcaption>
+</figure>
+
+<p>记住这个顺序有个土办法：“<strong>分时日月星</strong>”——五个字，正好对上。</p>
+
+<p><code>*</code> 的含义是“每个”。<code>* * * * *</code> 就是每个月、每个星期几、每天、每小时、每分钟——换句话说，<strong>每分钟执行一次</strong>。别直接跑这个——你会被淹没的。</p>
+
+<p>看几个实际例子，看完就懂了：</p>
+
+<pre><code class="terminal"><span class="comment"># 每天凌晨 2:00 执行备份脚本</span>
+<span class="command">0 2 * * * /home/student/backup.sh</span>
+
+<span class="comment"># 每小时整点检查一次 GPU 状态</span>
+<span class="command">0 * * * * /usr/bin/python3 /home/student/check_gpu.py</span>
+
+<span class="comment"># 每 30 分钟同步一次数据</span>
+<span class="command">*/30 * * * * rsync -a ~/data/ /backup/data/</span>
+
+<span class="comment"># 每月 1 号零时打包项目</span>
+<span class="command">0 0 1 * * tar -czf ~/monthly_backup.tar.gz ~/project/</span></code></pre>
+
+<p>逐条解释一下：</p>
+
+<ul>
+<li><strong>第二条</strong>：<code>0 * * * *</code>——分=0（整点），时=*（每个小时）。每小时整点执行一次。注意我写了 <code>/usr/bin/python3</code> 而不是 <code>python3</code>——稍后解释原因。</li>
+<li><strong>第三条</strong>：<code>*/30</code> 是 cron 特有的写法，意思是“每 30”。等价于第 0 分钟和第 30 分钟各执行一次。所以每半小时同步一次实验数据到备份目录。</li>
+<li><strong>第四条</strong>：<code>0 0 1 * *</code>——分=0、时=0（午夜 0 点）、日=1（每月第 1 天）、月=*、星期=*。每月 1 号零时打包整个项目目录。</li>
+</ul>
+
+<p>写好任务之后，用 <code>crontab -l</code> 确认一下：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">crontab -l</span>
+<span class="output"># Edit this file to introduce tasks to be run by cron.
+# 
+# m h  dom mon dow   command</span>
+<span class="command">0 2 * * * /home/student/backup.sh</span>
+<span class="command">0 * * * * /usr/bin/python3 /home/student/check_gpu.py</span>
+<span class="command">*/30 * * * * rsync -a ~/data/ /backup/data/</span>
+<span class="command">0 0 1 * * tar -czf ~/monthly_backup.tar.gz ~/project/</span></code></pre>
+
+<p>crontab 文件编辑完、保存那一刻，cron 守护进程就会自动加载新配置。不需要重启任何服务。</p>
+
+<h3 id="crontab常见坑">常见坑与好习惯</h3>
+
+<p>crontab 看起来很简单——五个时间加一个命令。但有几个坑，几乎每个初学者都会踩一遍。提前知道，能省很多 debug 时间。</p>
+
+<p><strong>坑 1：环境变量不一样。</strong> 你在终端里能跑 <code>python3 train.py</code>，写进 crontab 可能就不行了。原因很简单：crontab 执行环境和你登录后的 Shell 环境不是同一个。crontab 的 <code>PATH</code> 只有 <code>/usr/bin:/bin</code> 两三个目录——你装的程序可能在其他地方，crontab 找不到。</p>
+
+<p>先确认程序在哪个位置：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">which python3</span>
+<span class="output">/usr/bin/python3</span></code></pre>
+
+<p>两个解法任选其一：</p>
+
+<ul>
+<li>在 crontab 文件最上面加一行 <code>PATH=/usr/local/bin:/usr/bin:/bin</code>（把你需要的目录都写进去）</li>
+<li>直接写绝对路径：<code>/usr/bin/python3 /home/student/train.py</code> 而不是 <code>python3 /home/student/train.py</code></li>
+</ul>
+
+<p>推荐第二个——写绝对路径——最省事。不管 cron 的环境变量怎么变，都能找到程序。</p>
+
+<p><strong>坑 2：输出去哪了？</strong> 你写的定时任务会在后台静默执行。如果脚本出错了，你看不到报错。如果脚本有正常输出，你看不到结果。crontab 的默认行为是把所有输出通过系统邮件发给用户——但绝大多数 Linux 服务器根本没配邮件系统，这些输出就丢了。</p>
+
+<p>解决方案：手动指定输出去哪。在命令后面加重定向：</p>
+
+<pre><code class="terminal"><span class="comment"># 把正常输出和错误输出都追加到日志文件</span>
+<span class="command">0 2 * * * /home/student/backup.sh >> /home/student/backup.log 2>&1</span></code></pre>
+
+<p><code>>></code> 是追加（不覆盖已有日志），<code>2>&1</code> 的意思是“把标准错误（2）也重定向到标准输出（1）去的地方”——也就是同一个日志文件。这样不管是正常信息还是报错，都写到 <code>backup.log</code>。哪天想起来看一眼，就知道定时任务昨晚成没成功。</p>
+
+<p><strong>坑 3：百分号要转义。</strong> 在 crontab 里，<code>%</code> 被解释成换行符（历史遗留的设计），所以如果你想在命令里用 <code>date +%Y%m%d</code> 生成日期字符串，crontab 会把 <code>%</code> 当成特殊字符处理，导致命令失败。</p>
+
+<p>解决：每个 <code>%</code> 前面加一个反斜杠——<code>\%</code>。</p>
+
+<pre><code class="terminal"><span class="comment"># 错误写法（% 会被 crontab 误解析）</span>
+<span class="command">0 2 * * * tar -czf ~/backup_$(date +%Y%m%d).tar.gz ~/project/</span>
+
+<span class="comment"># 正确写法</span>
+<span class="command">0 2 * * * tar -czf ~/backup_$(date +\%Y\%m\%d).tar.gz ~/project/</span></code></pre>
+
+<p>如果你觉得加反斜杠太丑，可以把这条命令写成一个脚本，然后 crontab 只调脚本——脚本里不用转义。这是更干净的做法。</p>
+
+<p><strong>好习惯 1：先用无害命令测试。</strong> 写完 crontab 别急着放真实任务。先用一条无伤大雅的命令验证 crontab 在正常工作：</p>
+
+<pre><code class="terminal"><span class="comment"># 每分钟往临时文件里写一行记录</span>
+<span class="command">* * * * * echo "cron test at $(date)" >> /tmp/cron_test</span></code></pre>
+
+<p>等一两分钟，<code>cat /tmp/cron_test</code> 看看有没有新内容。有——说明 crontab 生效了。再把它删掉（<code>crontab -e</code> 里删掉这行），换成你的真实任务。</p>
+
+<p><strong>好习惯 2：用 <code>crontab -l</code> 检查。</strong> 每次编辑完都跑一遍 <code>crontab -l</code>，确认自己写了什么。crontab 里多写一个 <code>*</code> 或者少写一个 <code>*</code>，效果天差地别。想设每天一次，结果设成每分钟一次——这种事故太常见了。</p>
+
+<p><strong>好习惯 3：开机自动执行。</strong> crontab 支持 <code>@reboot</code> 这个特殊时间——字面意思，在系统启动时执行一次：</p>
+
+<pre><code class="terminal"><span class="comment"># 每次开机时自动启动你的服务</span>
+<span class="command">@reboot /home/student/start_services.sh</span></code></pre>
+
+<p>如果你的实验室服务器偶尔会重启（停电、维护、内核升级），可以写一个 <code>@reboot</code> 任务，自动拉起你的 Jupyter、TensorBoard 或者自定义监控脚本。这样就算服务器重启了，也不用手动登上去一个个启动服务。</p>
+
+<h3 id="crontab科研场景">科研场景举例</h3>
+
+<p>前面讲的是语法和坑，现在看三个贴近你日常的场景。每个例子的命令都会拆开讲清楚，而不是丢给你一行不知所云的咒语。</p>
+
+<p><strong>场景 1：定期清理实验日志。</strong> 你做材料模拟，每次跑 LAMMPS 或 VASP 都会生成一堆 .log 文件。30 天前的日志大概率不会再看了，但占着磁盘空间。让 crontab 每天凌晨 3 点自动清理：</p>
+
+<pre><code class="terminal"><span class="command">0 3 * * * find ~/experiments/ -name "*.log" -mtime +30 -delete</span></code></pre>
+
+<p>这条命令拆开看：<code>find ~/experiments/</code> 在实验目录下搜索；<code>-name "*.log"</code> 只匹配以 .log 结尾的文件；<code>-mtime +30</code> 筛选“修改时间距今超过 30 天”的文件（mtime = modification time，+30 表示大于 30 天）；<code>-delete</code> 删除匹配到的文件。四个条件串起来：在实验目录下，找到所有 30 天前改过的 .log 文件，删掉。</p>
+
+<p>注意：<code>-delete</code> 是直接删除，不进回收站。先用 <code>-print</code> 替换 <code>-delete</code> 跑一遍，确认列出来的文件确实是你想删的，再换成 <code>-delete</code>。</p>
+
+<p><strong>场景 2：监控训练进程。</strong> 你丢了一个训练任务在服务器上跑，回家睡觉了。但训练可能因为各种原因崩掉——显存溢出、数据文件突然不可读、某个 epoch 报了 NaN。崩了你不知道，第二天早上发现 GPU 空转了一宿。让 crontab 每 10 分钟检查一次：</p>
+
+<pre><code class="terminal"><span class="command">*/10 * * * * pgrep -f train.py || echo "Training stopped at $(date)" >> ~/alerts.log</span></code></pre>
+
+<p><code>pgrep -f train.py</code> 在进程列表里搜索包含 <code>train.py</code> 的命令行。如果有匹配的进程，<code>pgrep</code> 返回成功（退出码 0）；如果没有，返回失败（退出码非 0）。<code>||</code> 是 Shell 的“或”操作符——前面失败才执行后面。整条命令的逻辑：“找训练进程 → 没找到 → 写一条告警日志。”</p>
+
+<p>你不需要每秒盯着终端看——只需要第二天早上 <code>cat ~/alerts.log</code>，如果里面没有新记录，说明训练一整夜都健康跑着。如果有记录，看一眼时间戳，就知道是凌晨几点崩的。</p>
+
+<p><strong>场景 3：自动备份模型检查点到 NAS。</strong> 训练深度学习模型时，checkpoint 是你的命。代码可以重写，但训练了好几天的模型权重丢了就只能从头再来。每 6 小时自动同步一次 checkpoint 到网络存储：</p>
+
+<pre><code class="terminal"><span class="command">0 */6 * * * rsync -az ~/checkpoints/ user@nas:/backup/checkpoints/</span></code></pre>
+
+<p><code>rsync -az</code> 里，<code>-a</code> 是归档模式（保留权限、时间戳，递归复制），<code>-z</code> 是传输时压缩（省带宽）。<code>~/checkpoints/</code> 是本地的 checkpoint 目录，<code>user@nas:/backup/checkpoints/</code> 是远程 NAS 上的目标路径。</p>
+
+<p><code>0 */6 * * *</code> 拆解：分=0（整点），时=*/6（每 6 小时）。所以执行时间是 0:00、6:00、12:00、18:00——每天四次。</p>
+
+<p>rsync 的好处是增量同步——只传有变化的文件，不会每次都把所有 checkpoint 重新拷贝一遍。即使你的 checkpoint 文件有几百 MB，只有最新几个 epoch 的权重变化了，rsync 就只传这几个。</p>
+
+<p>三个场景总结一下：定期清理省空间，监控进程省心，自动备份保命。都是你做材料模拟或 AI 训练时切实会遇到的事。花五分钟配好 crontab，以后就不用每次都手动去做了。</p>
+
+<h2 id="压缩与归档">压缩与归档：数据打包的标准姿势</h2>
+
+<p>科研里总会遇到“打包”的场景。导师让你把整个项目发过去看看——代码、数据、论文草稿，散在十几个目录里。实验做完了，原始数据要归档保存，硬盘虽大但也不是无限的。从网上下了一个数据集，文件名后缀是 <code>.tar.gz</code>，双击打不开。这些场景有一个共性：你需要把一堆文件捆起来，而且最好能压小一点。</p>
+
+<p>Windows 上你习惯右键“压缩到 zip”，一个操作搞定。Linux 上没有右键菜单给你点——但思路是一样的，只是工具不同：<strong>tar 负责打包，gzip 负责压缩。</strong>两个工具各干各的，组合在一起就是 Linux 世界里的“压缩包”。</p>
+
+<p>tar 的全称是 tape archive——磁带归档。这个名字暴露了它的年龄：它最初是为磁带备份设计的，把一堆文件串行写到一个磁带上。你今天用的 tar，做的事情本质上没变：把多个文件和目录捆成一个 <code>.tar</code> 文件。但它<strong>不压缩</strong>——一个 100MB 的目录打成 tar，大小还是 100MB。tar 只是个打包绳，不是压缩机。</p>
+
+<p>压缩是 gzip 的活。gzip 接过 tar 打好的包，把它压成一个 <code>.tar.gz</code> 文件（也常缩写成 <code>.tgz</code>）。先打包、后压缩——这就是 Linux 上处理归档的两步。好消息是，tar 命令里直接带了调用 gzip 的选项，所以你一条命令就能完成“打包+压缩”，不用分两步手动操作。</p>
+
+<figure>
+  <img src="assets/images/chapter-04/fig-4.5-tar-gzip-flow.svg" alt="tar 打包与 gzip 压缩的两步流程示意图">
+  <figcaption>图4.5 tar 打包 + gzip 压缩的两步流程</figcaption>
+</figure>
+
+<p>直接看命令。打包并压缩一个目录：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">tar -czf project.tar.gz ~/project/</span></code></pre>
+
+<p>三个选项拆开看：</p>
+
+<ul>
+<li><code>-c</code>：create，创建归档</li>
+<li><code>-z</code>：用 gzip 压缩</li>
+<li><code>-f</code>：file，指定归档文件名——<strong>f 必须是最后一个选项，后面紧跟你想要的文件名</strong></li>
+</ul>
+
+<p>解压就反过来：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">tar -xzf project.tar.gz</span></code></pre>
+
+<p><code>-x</code> 是 extract（解压），<code>-z</code> 和 <code>-f</code> 同上。这条命令会把 <code>project.tar.gz</code> 解压到<strong>当前目录</strong>。如果你在 <code>/tmp</code> 下执行它，东西就散在 <code>/tmp</code> 里——稍后讲怎么指定目标目录。</p>
+
+<p>有时候你下载了一个压缩包，想先看看里面有什么再决定解不解。用 <code>-t</code>（list）代替 <code>-x</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">tar -tzf project.tar.gz</span>
+<span class="output">project/
+project/src/
+project/src/train.py
+project/data/
+project/data/input.csv
+project/README.md</span></code></pre>
+
+<p>只列出内容，不实际解压——安全、快速。在你对压缩包内容完全没概念的时候，这条命令应该成为你的第一反应。</p>
+
+<p>解压到指定目录用 <code>-C</code>（大写 C）：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">tar -xzf project.tar.gz -C /tmp/</span></code></pre>
+
+<p>这会把压缩包的内容全部解到 <code>/tmp/</code> 下面，而不是当前目录。下载数据集的时候特别常用——你不会希望几十个文件直接散在 <code>~</code> 目录里。</p>
+
+<p>gzip 不是唯一的压缩方式。tar 还支持另外两种压缩算法，区别在选项上：</p>
+
+<ul>
+<li><strong>bzip2（<code>-j</code>）</strong>：压缩率比 gzip 高一点，速度慢一点。后缀 <code>.tar.bz2</code>。创建用 <code>tar -cjf</code>，解压用 <code>tar -xjf</code>。</li>
+<li><strong>xz（<code>-J</code>）</strong>：压缩率最高、速度最慢。后缀 <code>.tar.xz</code>。创建用 <code>tar -cJf</code>，解压用 <code>tar -xJf</code>。</li>
+</ul>
+
+<p>选哪个？一句话：<strong>日常用 <code>.tar.gz</code></strong>——够快也够小，压缩解压都不耽误事；<strong>长期归档用 <code>.tar.xz</code></strong>——不在乎多等几分钟，在乎省下来的硬盘空间。bzip2 夹在中间，现在用得越来越少了，知道有 <code>-j</code> 这个选项就行，碰到了不会懵。</p>
+
+<p>tar 有几个坑，几乎每个人都踩过。提前知道，省得 debug 时抓狂。</p>
+
+<p><strong>坑 1：<code>-f</code> 的位置。</strong> <code>tar -cfz project.tar.gz</code> 是<strong>错的</strong>。因为 <code>-f</code> 后面需要紧跟文件名，tar 会认为 <code>z</code> 就是文件名——于是它创建了一个叫 <code>z</code> 的文件，而不是用 gzip 压缩。正确写法是 <code>tar -czf project.tar.gz</code>——把 <code>z</code> 放在 <code>f</code> 前面。</p>
+
+<p><strong>坑 2：tar bomb。</strong> 有些压缩包解开后，不是整齐地放进一个目录，而是把一堆文件直接散落在当前目录。比如你在 <code>~</code> 下解了一个数据集，结果 <code>~</code> 里突然多了 200 个 CSV 文件，跟你的其他文件混在一起——这就是所谓的 tar bomb。防它的方法很简单：解压前先用 <code>tar -tzf</code> 预览一眼。如果第一层是一堆文件名而不是一个统一的目录，你就知道要自己先建一个目录再解进去：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">mkdir dataset && tar -xzf data.tar.gz -C dataset/</span></code></pre>
+
+<p><strong>坑 3：覆盖不提示。</strong> 解压时如果目标位置已经有同名文件，tar 会<strong>直接覆盖</strong>，不问你、不警告。不像图形界面会弹一个“文件已存在，是否替换？”的对话框。所以在解压到一个可能有同名文件的目录之前，先想清楚——或者先 <code>tar -tzf</code> 看看包里有哪些文件。</p>
+
+<p>最后，三个你可能会用到的实际命令，照着改路径就行：</p>
+
+<pre><code class="terminal"><span class="comment"># 把实验结果打包存档</span>
+<span class="prompt">student@debian:~$</span> <span class="command">tar -czf results_2026-07-11.tar.gz ~/experiments/results/</span>
+
+<span class="comment"># 把下载的材料晶体学数据解压到 datasets 目录</span>
+<span class="prompt">student@debian:~$</span> <span class="command">tar -xzf cif_data.tar.gz -C ~/datasets/</span>
+
+<span class="comment"># 打包所有 PyTorch 模型检查点</span>
+<span class="prompt">student@debian:~$</span> <span class="command">tar -czf model_checkpoints.tar.gz ~/project/checkpoints/</span></code></pre>
+
+<p>tar 命令有一个流传很广的笑话：没有人能不看手册就记住 tar 的选项顺序。所以不用背。记住两个组合就够了——<code>tar -czf</code>（创建）和 <code>tar -xzf</code>（解压）。其他的，到时候 <code>man tar</code>。</p>
+
+    <footer class="page-footer">
+      <div class="prev">
+        <span class="label">上一章</span>
+        <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+      </div>
+      <div class="next">
+        <span class="label">下一章</span>
+        <a href="chapter-05.html">第五章 Git</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

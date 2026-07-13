@@ -33,10 +33,19 @@
 
   <!-- 详细说明 -->
   <g transform="translate(400, 230)">
-    <text x="-180" y="0" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">- 普通文件</text>
-    <text x="-90" y="0" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">r=读 w=写 x=执行</text>
-    <text x="40" y="0" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">仅可读</text>
-    <text x="170" y="0" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">仅可读</text>
+    <!-- 文件类型 -->
+    <text x="-180" y="-8" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">-</text>
+    <text x="-180" y="10" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">普通文件</text>
+
+    <!-- 所有者权限 -->
+    <text x="-90" y="-8" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">r=读 w=写</text>
+    <text x="-90" y="10" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">x=执行</text>
+
+    <!-- 所属组权限 -->
+    <text x="40" y="1" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">仅可读</text>
+
+    <!-- 其他用户权限 -->
+    <text x="170" y="1" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">仅可读</text>
   </g>
 
   <!-- 示例命令 -->

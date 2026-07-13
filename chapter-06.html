@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第六章 Vim 文本编辑器 - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">目录</a></li>
+        <li><a href="preface.html">序言</a></li>
+        <li>
+          <a href="chapter-01.html">第一章 Linux的基础知识</a>
+        </li>
+        <li>
+          <a href="chapter-02.html">第二章 Shell 与命令行</a>
+        </li>
+        <li>
+          <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+        </li>
+        <li>
+          <a href="chapter-04.html">第四章 Linux 好用的工具</a>
+        </li>
+        <li>
+          <a href="chapter-05.html">第五章 Git</a>
+        </li>
+        <li>
+          <a href="chapter-06.html">第六章 Vim 文本编辑器</a>
+          <ul>
+            <li><a href="chapter-06.html#为什么服务器上还得学vim">为什么服务器上还得学 Vim？</a></li>
+            <li><a href="chapter-06.html#vim的三种模式">Vim 的三种模式</a></li>
+            <li><a href="chapter-06.html#打开编辑保存退出">打开、编辑、保存、退出</a></li>
+            <li><a href="chapter-06.html#移动光标与基础编辑">移动光标与基础编辑</a></li>
+            <li><a href="chapter-06.html#查找与替换">查找与替换</a></li>
+            <li><a href="chapter-06.html#多文件与分屏">多文件与分屏</a></li>
+            <li><a href="chapter-06.html#配置vimrc">配置 .vimrc</a></li>
+            <li><a href="chapter-06.html#现代替代方案了解即可">现代替代方案（了解即可）</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-07.html">第七章 网络基础</a>
+        </li>
+        <li>
+          <a href="chapter-08.html">第八章 Web 与 API</a>
+        </li>
+        <li>
+          <a href="chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="extended-reading.html">延伸阅读</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1 id="第六章vim文本编辑器">第六章 Vim 文本编辑器</h1>
+
+    <p>第五章讲完 Git，你的代码和论文总算有了“时光机”。但还有一个更日常的问题没解决：当你通过 SSH 连上课题组的服务器，面对一行行配置文件和 Python 脚本时，到底用什么来改它们？</p>
+
+    <p>在本地笔记本上，你可能习惯 VS Code、PyCharm 或者 Sublime，鼠标点一点就能改。但远程服务器上往往没有图形界面，即使有，把代码来回同步也很麻烦。这时候你需要一个能在终端里直接工作的文本编辑器。而在 Linux 世界里，最常青、最无处不在的终端编辑器就是 Vim。</p>
+
+    <p>这一章的任务不是把你变成 Vim 高手，而是让你在最常见的场景里不卡壳：打开一个文件、改几行配置、保存退出、查找替换一个变量名。学完这些，至少下一次服务器上需要改训练脚本时，你不会手足无措。</p>
+
+    <h2 id="为什么服务器上还得学vim">为什么服务器上还得学 Vim？</h2>
+
+    <p>很多人第一次听说 Vim，反应是：“都什么年代了，还用这种老古董？”这个质疑很合理。Vim 的前身 Vi 诞生于 1976 年，比 Linux 还早十几年。它长得不现代，入门曲线陡峭，刚开始甚至不知道怎么退出。但它有一个无可替代的优势：<strong>几乎所有 Linux 服务器上都预装了它</strong>。</p>
+
+    <p>想象这样一个场景：深夜十一点，你通过 SSH 连上实验室的 GPU 服务器（第二章讲过怎么用 SSH 和密钥登录），准备跑一组对比实验。刚启动训练，发现 <code>config.yaml</code> 里写错了学习率。你不可能在这个时候打开本地的 VS Code，再远程同步过去；更不可能让 IT 管理员临时给你装一个图形编辑器。你需要的，是在终端里几秒钟内打开文件、改完、保存、重启训练。</p>
+
+<pre><code class="terminal"><span class="prompt">student@lab-server:~/battery-ml$</span> <span class="command">vim config.yaml</span>
+<span class="comment"># 改完学习率，保存退出</span>
+<span class="prompt">student@lab-server:~/battery-ml$</span> <span class="command">python train.py --config config.yaml</span>
+</code></pre>
+
+    <p>Vim 就是那个兜底工具。它不像 Nano 那样简单好懂，也不像 Emacs 那样自成一体，更不像 VS Code 那样华丽。但它是服务器环境下的“通用语言”：不管这台机器装的是 RHEL、Ubuntu 还是 CentOS，也不管你有没有 sudo 权限，<code>vim</code> 大概率都能用。</p>
+
+    <p>对做 AI 和材料科研的人来说，这种“兜底”能力尤其重要。训练脚本、Slurm 任务提交文件、Conda 环境配置、LaTeX 论文源文件，这些东西经常在服务器上直接修改。你当然可以每次都把文件下载到本地、改完再上传，但如果修改很频繁，这种来回搬运本身就是一种低效。</p>
+
+    <p>所以学 Vim 的理由可以总结成一句话：<strong>不是为了炫技，而是为了在只剩终端可用的时候，依然能干活</strong>。</p>
+
+    <h2 id="vim的三种模式">Vim 的三种模式</h2>
+
+    <p>Vim 最让新手困惑的地方，是它的“模式”概念。普通编辑器里，你打开文件就能直接打字；Vim 却不是这样。它把编辑行为拆成了三种模式，每种模式下同样的按键含义完全不同。理解了这一点，Vim 就学了一半。</p>
+
+    <h3 id="正常模式">正常模式：移动和发号施令</h3>
+
+    <p>打开 Vim 后，你默认处在<strong>正常模式</strong>（Normal Mode）。在这个模式下，你不能直接输入文字——没错，你敲的字母会被当成命令。比如按 <code>j</code> 是光标下移，按 <code>dd</code> 是删除一整行，按 <code>u</code> 是撤销。</p>
+
+    <p>这个设计一开始很反直觉：我想输入一个 <code>j</code>，它怎么往下跑了？但背后的逻辑是，编辑代码和配置文件时，<strong>移动光标、删除、复制、粘贴</strong>这些操作的频率，远远高于连续输入大段文字。正常模式让这些高频操作可以用最近的键位完成，不用每次都伸手去够方向键或鼠标。</p>
+
+    <h3 id="插入模式">插入模式：像普通编辑器一样打字</h3>
+
+    <p>当你真正需要输入文字时，要进入<strong>插入模式</strong>（Insert Mode）。最常用的进入方式是按 <code>i</code>——也就是 insert 的首字母。按下 <code>i</code> 后，屏幕下方通常会显示 <code>-- INSERT --</code>，这时候你就可以正常打字了。</p>
+
+    <p><code>i</code> 在光标前插入，<code>a</code> 在光标后插入，<code>o</code> 在当前行下方新开一行插入，三者只是入口位置不同。</p>
+
+    <p>改完想回到正常模式，按 <code>Esc</code>。很多新手会忘了这一步，结果一直卡在插入模式，想保存文件却发现 <code>:w</code> 被输入成了文字。记住一个口诀：<strong>不编辑就回正常模式</strong>。</p>
+
+    <h3 id="命令行模式">命令行模式：保存、退出和高级操作</h3>
+
+    <p>第三种是<strong>命令行模式</strong>（Command-line Mode）。在正常模式下按冒号 <code>:</code>，光标会跳到屏幕底部，等待你输入命令。保存文件用 <code>:w</code>，退出用 <code>:q</code>，保存并退出用 <code>:wq</code> 或 <code>:x</code>。</p>
+
+    <p>查找和替换也在这里进行：<code>/pattern</code> 查找，<code>:%s/old/new/g</code> 全局替换。我们后面会细讲这些命令。</p>
+
+    <h3 id="三种模式怎么切换">三种模式怎么切换</h3>
+
+    <p>三种模式的关系可以画成一张简单的图。正常模式是中心枢纽：从正常模式按 <code>i</code> 进入插入模式，按 <code>:</code> 进入命令行模式；插入模式和命令行模式都要先按 <code>Esc</code> 回到正常模式，再决定下一步。</p>
+
+    <figure>
+      <img src="assets/images/chapter-06/fig-6.1-vim-modes.svg" alt="Vim 的三种模式及切换按键">
+      <figcaption>图6.1 Vim 的三种模式及切换按键：Normal、Insert、Command-line 三种状态，以及 i、a、o、Esc、:、:q、:wq 等切换与退出按键</figcaption>
+    </figure>
+
+    <p>这张图建议你刚开始用 Vim 时贴在桌边。最常见的卡壳不是忘了某个命令，而是忘了自己现在处于哪种模式。按 <code>Esc</code> 回到正常模式，通常能把你从各种混乱中救出来。</p>
+
+    <h2 id="打开编辑保存退出">打开、编辑、保存、退出</h2>
+
+    <p>模式概念清楚之后，接下来就是最常用的操作闭环：打开文件、改东西、保存、退出。这个闭环熟练了，80% 的 Vim 使用场景你就都能应付。</p>
+
+    <h3 id="打开文件">打开文件</h3>
+
+    <p>在终端里用 <code>vim</code> 命令加文件名就能打开。如果文件不存在，Vim 会新建一个空白文件，等你保存时才真正创建。</p>
+
+<pre><code class="terminal"><span class="prompt">student@lab-server:~/battery-ml$</span> <span class="command">vim config.yaml</span>
+<span class="prompt">student@lab-server:~/battery-ml$</span> <span class="command">vim train.py</span>
+</code></pre>
+
+    <p>你也可以一次打开多个文件，或者用通配符：</p>
+
+<pre><code class="terminal"><span class="prompt">student@lab-server:~/battery-ml$</span> <span class="command">vim *.py</span>
+</code></pre>
+
+    <p>打开后，Vim 会先处在正常模式。如果你此时就开始打字，屏幕上不会正常显示文字，而是触发各种命令。这是每个 Vim 初学者都踩过的坑。</p>
+
+    <h3 id="编辑与保存">编辑与保存</h3>
+
+    <p>假设你打开的是训练脚本 <code>train.py</code>，想改学习率。操作流程是：</p>
+
+    <ol>
+      <li>用方向键或 <code>hjkl</code> 把光标移动到要改的数字上；</li>
+      <li>按 <code>i</code> 进入插入模式；</li>
+      <li>修改数字；</li>
+      <li>按 <code>Esc</code> 回到正常模式；</li>
+      <li>输入 <code>:w</code> 保存。</li>
+    </ol>
+
+<pre><code class="terminal"><span class="comment"># 在 Vim 内部</span>
+<span class="command">i</span>                    <span class="comment"># 进入插入模式</span>
+<span class="command">0.001</span>                <span class="comment"># 把 0.01 改成 0.001</span>
+<span class="command">Esc</span>                  <span class="comment"># 回到正常模式</span>
+<span class="command">:w</span>                   <span class="comment"># 保存</span>
+</code></pre>
+
+    <p>保存时屏幕下方会显示类似 <code>"train.py" 45L, 1.2K written</code> 的字样，表示写入成功。如果文件是只读的，Vim 会提示你用 <code>:w!</code> 强制写入，但通常你需要有对应的文件权限（第三章讲过权限和 chmod）。</p>
+
+    <h3 id="退出文件">退出文件</h3>
+
+    <p>保存完想退出，回到正常模式后输入 <code>:q</code>。如果已经保存过，文件会干净地关闭；如果还有未保存的修改，Vim 会拒绝退出，怕你误丢东西。</p>
+
+<pre><code class="terminal"><span class="comment"># 已保存，正常退出</span>
+<span class="command">:q</span>
+
+<span class="comment"># 有未保存修改，强制退出且不保存</span>
+<span class="command">:q!</span>
+
+<span class="comment"># 保存并退出，一步完成</span>
+<span class="command">:wq</span>
+</code></pre>
+
+    <p>还有一个快捷键组合 <code>ZZ</code>（大写 Z，按两次），效果等同于 <code>:wq</code>。不用按回车，按完直接退出。这个快捷键在需要快速收工时很方便。</p>
+
+    <p>打开、编辑、保存、退出的完整流程见图 6.2。</p>
+
+    <figure>
+      <img src="assets/images/chapter-06/fig-6.2-vim-workflow.svg" alt="Vim 启动、编辑、保存、退出流程">
+      <figcaption>图6.2 Vim 启动、编辑、保存、退出流程：从 vim filename 启动，经过模式切换、文本编辑、保存，到 :q 或 :wq 退出的完整流程</figcaption>
+    </figure>
+
+    <h2 id="移动光标与基础编辑">移动光标与基础编辑</h2>
+
+    <p>学会了打开和保存，下一步是在文件里自由移动。Vim 的正常模式把最常用的移动键放在了主键区，目的是让你的手指不用离开打字位置。</p>
+
+    <h3 id="移动光标">移动光标</h3>
+
+    <p>最基本的四个方向键是 <code>h</code>、<code>j</code>、<code>k</code>、<code>l</code>，分别对应左、下、上、右。刚开始你可能觉得方向键更顺手，但练熟这四个键后，编辑效率会明显提升。</p>
+
+    <p>除了单字符移动，Vim 还支持按词移动：</p>
+
+    <ul>
+      <li><code>w</code>：跳到下一个单词开头；</li>
+      <li><code>b</code>：跳到当前或上一个单词开头；</li>
+      <li><code>e</code>：跳到当前或下一个单词结尾。</li>
+    </ul>
+
+    <p>在大文件里快速定位：</p>
+
+    <ul>
+      <li><code>gg</code>：跳到文件第一行；</li>
+      <li><code>G</code>：跳到文件最后一行；</li>
+      <li><code>42G</code> 或 <code>:42</code>：跳到第 42 行。</li>
+    </ul>
+
+    <p>这些命令看起来零散，但组合起来很强大。比如你要改配置文件里第 30 行的 batch size，可以 <code>:30</code> 直接定位，按 <code>w</code> 几次找到数字，再 <code>i</code> 进入插入模式修改。</p>
+
+    <h3 id="删除复制与粘贴">删除、复制与粘贴</h3>
+
+    <p>删除一行用 <code>dd</code>，复制一行用 <code>yy</code>，粘贴用 <code>p</code>。这三个命令是 Vim 里最高频的组合之一。</p>
+
+    <ul>
+      <li><code>dd</code>：删除光标所在行，同时把它放进剪贴板；</li>
+      <li><code>yy</code>：复制光标所在行；</li>
+      <li><code>p</code>：在光标下方（或后方）粘贴；</li>
+      <li><code>x</code>：删除光标下的一个字符。</li>
+    </ul>
+
+    <p>如果你要删除多行，可以在命令前加数字。比如 <code>3dd</code> 会删除从光标所在行开始的连续三行，<code>5yy</code> 会复制连续五行。这比用鼠标选中再按 Delete 快得多，尤其在你想删掉一整段重复代码时。</p>
+
+<pre><code class="terminal"><span class="comment"># 在 Vim 内部</span>
+<span class="command">3dd</span>                  <span class="comment"># 删除三行</span>
+<span class="command">p</span>                    <span class="comment"># 把它们贴到别处</span>
+</code></pre>
+
+    <h3 id="撤销与重做">撤销与重做</h3>
+
+    <p>改错了不用慌。<code>u</code> 是撤销，<code>Ctrl+r</code> 是重做。这两个快捷键和正常模式下的其他命令一样，按完立刻生效，不用按回车。</p>
+
+    <p>一个实用的技巧是：在插入模式里写了一大段文字，发现不对，直接按 <code>Esc</code> 再连续按 <code>u</code>，可以把刚才输入的内容一次性撤销。Vim 会把一次插入模式到退出之间的所有输入，当作一个完整的修改单元。</p>
+
+    <h2 id="查找与替换">查找与替换</h2>
+
+    <p>做科研改代码时，经常需要批量替换变量名或参数名。比如你把模型里的 <code>learning_rate</code> 统一改成 <code>lr</code>，或者把材料模拟脚本里的元素符号从 <code>Li</code> 改成 <code>Na</code>。Vim 的查找替换功能能帮你快速完成这类任务。</p>
+
+    <h3 id="查找">查找</h3>
+
+    <p>在正常模式下按 <code>/</code>，然后输入要查找的内容，再按回车。Vim 会从光标位置向下搜索。</p>
+
+<pre><code class="terminal"><span class="comment"># 在 Vim 内部</span>
+<span class="command">/learning_rate</span>       <span class="comment"># 查找 learning_rate</span>
+<span class="command">n</span>                    <span class="comment"># 跳到下一个匹配</span>
+<span class="command">N</span>                    <span class="comment"># 跳到上一个匹配</span>
+</code></pre>
+
+    <p>如果想向上搜索，用 <code>?</code> 代替 <code>/</code>。搜索结果会高亮显示，如果高亮一直留在屏幕上有点碍眼，可以输入 <code>:nohlsearch</code> 或简写 <code>:noh</code> 清除。</p>
+
+    <h3 id="替换">替换</h3>
+
+    <p>替换命令的格式是 <code>:s/旧内容/新内容/选项</code>。最常用的是全局替换：</p>
+
+<pre><code class="terminal"><span class="comment"># 在 Vim 内部</span>
+<span class="command">:%s/learning_rate/lr/g</span>   <span class="comment"># 全文替换</span>
+</code></pre>
+
+    <p>这里 <code>%</code> 表示整个文件，<code>s</code> 是 substitute，<code>g</code> 是 global（每行所有匹配都替换，不只是第一个）。如果你只想替换当前行，可以省略 <code>%</code>：</p>
+
+<pre><code class="terminal"><span class="comment"># 在 Vim 内部</span>
+<span class="command">:s/learning_rate/lr/g</span>    <span class="comment"># 只替换当前行</span>
+</code></pre>
+
+    <p>如果担心替换错，可以加 <code>c</code> 选项，让 Vim 每次替换前都询问你：</p>
+
+<pre><code class="terminal"><span class="comment"># 在 Vim 内部</span>
+<span class="command">:%s/learning_rate/lr/gc</span>   <span class="comment"># 逐个确认</span>
+</code></pre>
+
+    <p>这个 <code>c</code> 选项在处理大段文字时特别有用。比如你只想替换部分匹配项，Vim 会停在每一处问你 <code>replace with lr (y/n/a/q/l/^E/^Y)?</code>，按 <code>y</code> 确认、<code>n</code> 跳过、<code>q</code> 退出。</p>
+
+    <h2 id="多文件与分屏">多文件与分屏</h2>
+
+    <p>实际工作中，你很少只打开一个文件。改训练脚本时可能同时要看配置文件，写论文时可能要在正文和参考文献之间来回切换。Vim 支持同时打开多个文件，也支持把屏幕分成几个区域。</p>
+
+    <h3 id="同时打开多个文件">同时打开多个文件</h3>
+
+    <p>启动 Vim 时直接跟多个文件名：</p>
+
+<pre><code class="terminal"><span class="prompt">student@lab-server:~/battery-ml$</span> <span class="command">vim train.py config.yaml</span>
+</code></pre>
+
+    <p>进入 Vim 后，用以下命令在文件之间切换：</p>
+
+    <ul>
+      <li><code>:next</code> 或 <code>:n</code>：切换到下一个文件；</li>
+      <li><code>:prev</code> 或 <code>:N</code>：切换到上一个文件；</li>
+      <li><code>:files</code>：查看当前打开的所有文件。</li>
+    </ul>
+
+    <p>如果你忘了当前编辑的是哪个文件，可以输入 <code>Ctrl+g</code>，Vim 会在底部显示当前文件名、行号和修改状态。</p>
+
+    <h3 id="分屏">分屏</h3>
+
+    <p>在多个文件之间来回切容易晕，尤其是需要对照的时候。Vim 的分屏功能可以把屏幕切成上下或左右几块，每块显示不同文件。</p>
+
+    <ul>
+      <li><code>:split</code> 或 <code>:sp</code>：水平分屏；</li>
+      <li><code>:vsplit</code> 或 <code>:vsp</code>：垂直分屏；</li>
+      <li><code>Ctrl+w w</code>：在分屏之间切换光标；</li>
+      <li><code>Ctrl+w q</code>：关闭当前分屏。</li>
+    </ul>
+
+    <p>比如你可以左边打开 <code>train.py</code>，右边打开 <code>config.yaml</code>，对照着改。改完一边按 <code>Ctrl+w w</code> 跳到另一边，不需要退出 Vim 再重新打开。</p>
+
+<pre><code class="terminal"><span class="comment"># 在 Vim 内部</span>
+<span class="command">:vsplit config.yaml</span>   <span class="comment"># 垂直分屏打开 config.yaml</span>
+<span class="command">Ctrl+w w</span>              <span class="comment"># 光标跳到另一个窗口</span>
+</code></pre>
+
+    <p>分屏对于改配置特别实用。你可以把原始配置和备份配置并排放在一起，一眼看出改了哪些地方，避免把 <code>True</code> 错写成 <code>False</code>。</p>
+
+    <h2 id="配置vimrc">配置 .vimrc</h2>
+
+    <p>刚装好的 Vim 非常朴素：没有语法高亮、没有行号、Tab 键可能显示为 8 个空格。这些默认设置对写代码很不友好。好在 Vim 有一个配置文件 <code>.vimrc</code>，放在你的家目录下，可以一次性把它调教成顺手的工具。</p>
+
+    <h3 id="一份minimal的vimrc">一份 minimal 的 .vimrc</h3>
+
+    <p>网上有很多“史上最强 .vimrc”，动辄两三百行，装了十几个插件。对初学者来说，那些配置不是帮忙，是添乱。你不需要一开始就那么复杂，先保证基本体验就够了。</p>
+
+    <p>在家目录创建 <code>.vimrc</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@lab-server:~$</span> <span class="command">vim ~/.vimrc</span>
+</code></pre>
+
+    <p>写入以下内容：</p>
+
+<pre><code class="terminal"><span class="comment">" 显示行号</span>
+<span class="command">set number</span>
+<span class="comment">" 启用语法高亮</span>
+<span class="command">syntax on</span>
+<span class="comment">" 把 Tab 扩展成空格</span>
+<span class="command">set expandtab</span>
+<span class="comment">" 一个 Tab 显示为 4 个空格</span>
+<span class="command">set tabstop=4</span>
+<span class="comment">" 自动缩进宽度</span>
+<span class="command">set shiftwidth=4</span>
+<span class="comment">" 搜索时高亮匹配</span>
+<span class="command">set hlsearch</span>
+<span class="comment">" 输入搜索内容时实时高亮</span>
+<span class="command">set incsearch</span>
+<span class="comment">" 智能缩进</span>
+<span class="command">set smartindent</span>
+</code></pre>
+
+    <p>保存退出后，下次打开 Vim 就会生效。每一行前面的双引号 <code>"</code> 是 Vim 配置文件里的注释符号，表示后面的文字是说明，不是配置命令。</p>
+
+    <h3 id="配置前后的对比">配置前后的对比</h3>
+
+    <p>配置前打开 <code>train.py</code>，屏幕上一片白，行号没有，Python 关键字也看不出颜色。配置后，关键字、字符串、注释会有不同颜色，行号在左侧整齐排列，按 Tab 会自动变成四个空格——对 Python 这种靠缩进区分代码块的语法尤其重要。</p>
+
+    <p>图 6.3 展示了同一段代码在默认 Vim 和配置好 .vimrc 后的效果对比。</p>
+
+    <figure>
+      <img src="assets/images/chapter-06/fig-6.3-vimrc-before-after.svg" alt=".vimrc 配置前后 Vim 界面对比">
+      <figcaption>图6.3 .vimrc 配置前后 Vim 界面对比：默认界面与配置行号、语法高亮、自动缩进后的效果对比</figcaption>
+    </figure>
+
+    <p>这里要提醒一句：不要从网上复制一大段看不懂的 .vimrc。很多配置会改变默认行为，比如改快捷键、加插件管理器，出了问题你连怎么恢复都不知道。先理解上面这几行，等遇到具体需求再慢慢加。</p>
+
+    <h2 id="现代替代方案了解即可">现代替代方案（了解即可）</h2>
+
+    <p>Vim 不是唯一的终端编辑器。如果你只是偶尔修改一个配置文件，或者实在受不了 Vim 的模式切换，也有其他选择。</p>
+
+    <h3 id="nano">Nano：最简单易懂</h3>
+
+    <p>Nano 是另一个常见的终端编辑器，比 Vim 友好得多。打开文件后，底部会显示常用快捷键，比如 <code>Ctrl+O</code> 保存、<code>Ctrl+X</code> 退出。你不需要记模式，直接就能打字。</p>
+
+    <p>Nano 适合“打开 → 改一行 → 保存退出”这种极简场景。但它的功能也弱一些：没有 Vim 强大的宏、分屏和批量替换。如果你的修改稍微复杂一点，Vim 还是更快。</p>
+
+    <h3 id="emacs">Emacs：另一个极端</h3>
+
+    <p>Emacs 和 Vim 一样历史悠久，但设计理念完全不同。Emacs 的口号是“伪装成编辑器的操作系统”，它几乎什么都能做：收发邮件、浏览网页、管理任务。学习曲线同样陡峭，不过方向不同——Vim 难在模式，Emacs 难在海量快捷键。</p>
+
+    <p>对科研学生来说，Emacs 的 Org mode 很有名，适合管理实验笔记和 TODO。但如果你只是需要在服务器上改脚本，Emacs 可能太重了。</p>
+
+    <h3 id="vscode与远程开发">VS Code 与远程开发</h3>
+
+    <p>如果你本地机器性能足够，网络也通畅，VS Code 的 Remote-SSH 扩展是体验最好的方案。它让你在本地 VS Code 窗口里直接编辑远程服务器上的文件，保留语法高亮、补全、调试等所有功能。</p>
+
+    <p>第四章提到过一些让命令行更顺手的工具，VS Code 的远程开发可以看作是它们的延伸：你在本地熟悉的图形环境里操作远程文件。但前提是你能稳定连接服务器，而且服务器允许这种远程开发所需的端口转发。在某些安全策略严格的课题组机器上，这条路不一定走得通。</p>
+
+    <p>所以我的建议是：平时可以用 VS Code 远程开发提高效率，但 <strong>Vim 依然是必须会的保底技能</strong>。总有一天你会遇到只能 SSH、没有图形界面、Nano 还没装的情况，那时候 Vim 能救场。</p>
+
+    <p>学 Vim 不用追求速度和多指并用。先把打开、保存、退出、查找替换练熟，再慢慢记移动命令和 .vimrc 配置。它不会让你写代码的速度翻倍，但会让你在服务器面前不再慌张。下一章，我们就从这台服务器出发，看看它怎么与外面的世界通信。</p>
+
+    <footer class="page-footer">
+      <div class="prev">
+        <span class="label">上一章</span>
+        <a href="chapter-05.html">第五章 Git</a>
+      </div>
+      <div class="next">
+        <span class="label">下一章</span>
+        <a href="chapter-07.html">第七章 网络基础</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

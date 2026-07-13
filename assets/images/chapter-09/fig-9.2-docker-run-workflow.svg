@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
+  <title>docker run 工作流程</title>
+  <desc>展示在终端执行 docker run ubuntu 后，Docker Client、Docker Daemon 如何检查本地镜像、必要时从 Registry 拉取，并最终创建并启动容器。</desc>
+
+  <defs>
+    <marker id="arrow-9.2" markerWidth="8" markerHeight="10" refX="0" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,5 L0,10 Z" fill="#0d47a1"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="520" fill="#fafafa"/>
+
+  <text x="400" y="42" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="18" font-weight="bold" fill="#0d47a1">docker run 工作流程</text>
+
+  <!-- 终端命令框 -->
+  <g transform="translate(400,80)">
+    <rect x="-120" y="-22" width="240" height="44" rx="8" fill="#1e1e1e"/>
+    <text x="-98" y="7" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="14" fill="#4caf50">$</text>
+    <text x="-78" y="7" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="14" fill="#ffffff">docker run ubuntu</text>
+  </g>
+
+  <!-- Docker Client -->
+  <g transform="translate(400,150)">
+    <rect x="-75" y="-22" width="150" height="44" rx="8" fill="#42a5f5"/>
+    <text x="0" y="6" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="15" font-weight="bold" fill="#ffffff">Docker Client</text>
+  </g>
+
+  <!-- Docker Daemon -->
+  <g transform="translate(400,230)">
+    <rect x="-75" y="-22" width="150" height="44" rx="8" fill="#1565c0"/>
+    <text x="0" y="6" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="15" font-weight="bold" fill="#ffffff">Docker Daemon</text>
+  </g>
+
+  <!-- 检查本地镜像 -->
+  <g transform="translate(400,310)">
+    <rect x="-110" y="-25" width="220" height="50" rx="8" fill="#e3f2fd" stroke="#0d47a1" stroke-width="2"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">检查本地镜像</text>
+    <text x="0" y="20" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">是否存在 ubuntu 镜像？</text>
+  </g>
+
+  <!-- 从 Registry 拉取 -->
+  <g transform="translate(620,310)">
+    <rect x="-90" y="-25" width="180" height="50" rx="8" fill="#ef5350"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#ffffff">从 Docker Hub</text>
+    <text x="0" y="20" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#ffffff">/ Registry 拉取</text>
+  </g>
+
+  <!-- 创建并启动容器 -->
+  <g transform="translate(400,430)">
+    <rect x="-100" y="-25" width="200" height="50" rx="8" fill="#0d47a1"/>
+    <text x="0" y="-2" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="15" font-weight="bold" fill="#ffffff">创建并启动容器</text>
+    <text x="0" y="20" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#e3f2fd">container running</text>
+  </g>
+
+  <!-- 流程箭头 -->
+  <!-- Terminal → Client -->
+  <line x1="400" y1="102" x2="400" y2="120" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.2)"/>
+
+  <!-- Client → Daemon -->
+  <line x1="400" y1="172" x2="400" y2="200" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.2)"/>
+
+  <!-- Daemon → Check -->
+  <line x1="400" y1="252" x2="400" y2="277" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.2)"/>
+
+  <!-- Check → Create（镜像已存在） -->
+  <line x1="400" y1="335" x2="400" y2="397" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.2)"/>
+  <text x="425" y="370" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">镜像已存在</text>
+
+  <!-- Check → Pull（镜像不存在） -->
+  <line x1="510" y1="310" x2="522" y2="310" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.2)"/>
+  <text x="565" y="295" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#ef5350">镜像不存在</text>
+
+  <!-- Pull → Create -->
+  <line x1="620" y1="335" x2="507" y2="401" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.2)"/>
+
+  <!-- 底部说明 -->
+  <text x="400" y="495" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#666666">本地无镜像时会自动从 Registry 拉取，随后创建并启动容器</text>
+</svg>

@@ -6,16 +6,16 @@
   <rect width="800" height="340" fill="#fafafa"/>
 
   <!-- 左侧终端：普通用户 -->
-  <g transform="translate(60, 60)">
+  <g transform="translate(65, 60)">
     <!-- 终端外框 -->
-    <rect x="0" y="0" width="330" height="220" rx="10" fill="#2d2d2d" stroke="#1565c0" stroke-width="2"/>
+    <rect x="0" y="0" width="300" height="220" rx="10" fill="#2d2d2d" stroke="#1565c0" stroke-width="2"/>
     <!-- 标题栏 -->
-    <rect x="0" y="0" width="330" height="36" rx="10" fill="#4a4a4a"/>
-    <rect x="0" y="26" width="330" height="10" fill="#4a4a4a"/>
+    <rect x="0" y="0" width="300" height="36" rx="10" fill="#4a4a4a"/>
+    <rect x="0" y="26" width="300" height="10" fill="#4a4a4a"/>
     <circle cx="22" cy="18" r="5" fill="#ff5f56"/>
     <circle cx="42" cy="18" r="5" fill="#ffbd2e"/>
     <circle cx="62" cy="18" r="5" fill="#27c93f"/>
-    <text x="165" y="22" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#f0f0f0">普通用户</text>
+    <text x="150" y="22" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#f0f0f0">普通用户</text>
 
     <!-- 终端内容 -->
     <text x="20" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#f0f0f0">alice@server:~</text>
@@ -24,20 +24,20 @@
     <text x="20" y="100" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ff5252">ls: 无法打开目录 '/root': 权限不够</text>
 
     <!-- 说明 -->
-    <text x="165" y="265" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666666">提示符以 $ 结尾，权限受限</text>
+    <text x="150" y="265" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666666">提示符以 $ 结尾，权限受限</text>
   </g>
 
   <!-- 右侧终端：root 用户 -->
-  <g transform="translate(430, 60)">
+  <g transform="translate(435, 60)">
     <!-- 终端外框 -->
-    <rect x="0" y="0" width="330" height="220" rx="10" fill="#2d2d2d" stroke="#e74c3c" stroke-width="2"/>
+    <rect x="0" y="0" width="300" height="220" rx="10" fill="#2d2d2d" stroke="#e74c3c" stroke-width="2"/>
     <!-- 标题栏 -->
-    <rect x="0" y="0" width="330" height="36" rx="10" fill="#4a4a4a"/>
-    <rect x="0" y="26" width="330" height="10" fill="#4a4a4a"/>
+    <rect x="0" y="0" width="300" height="36" rx="10" fill="#4a4a4a"/>
+    <rect x="0" y="26" width="300" height="10" fill="#4a4a4a"/>
     <circle cx="22" cy="18" r="5" fill="#ff5f56"/>
     <circle cx="42" cy="18" r="5" fill="#ffbd2e"/>
     <circle cx="62" cy="18" r="5" fill="#27c93f"/>
-    <text x="165" y="22" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#f0f0f0">root 用户</text>
+    <text x="150" y="22" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#f0f0f0">root 用户</text>
 
     <!-- 终端内容 -->
     <text x="20" y="70" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#f0f0f0">root@server:~</text>
@@ -46,9 +46,9 @@
     <text x="20" y="100" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#66bb6a">anaconda3  data  install.log</text>
 
     <!-- 说明 -->
-    <text x="165" y="265" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666666">提示符以 # 结尾，拥有最高权限</text>
+    <text x="150" y="265" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666666">提示符以 # 结尾，拥有最高权限</text>
   </g>
 
   <!-- 对比符号 -->
-  <text x="400" y="170" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#0d47a1">VS</text>
+  <text x="400" y="170" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="700" fill="#0d47a1">VS</text>
 </svg>
