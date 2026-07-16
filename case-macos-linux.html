@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>延伸阅读 - Linux操作系统与数据库教材</title>
+  <title>延伸阅读：macOS 是不是 Linux？ - Linux操作系统与数据库教材</title>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -93,71 +93,34 @@
   </aside>
 
   <main class="main-content">
-    <h1 id="延伸阅读">延伸阅读</h1>
+<h1 id="macos是不是linux">macOS 是不是 Linux？</h1>
+<p>一句话：不是。虽然 macOS 和 Linux 看起来有点像——都有终端、都能跑命令行、文件系统也都从 <code>/</code> 开始——但它们的内核、血统和发展路线完全不同。之所以容易混淆，是因为它们都属于更大的“Unix 系”家族，彼此有不少相似之处。</p>
 
-    <p>以下文章围绕 Linux 的历史、生态和社会影响展开，帮助你从更宽广的视角理解操作系统世界。</p>
+<h2 id="macos的unix血统">macOS 的 Unix 血统</h2>
+<p>macOS 的内核叫 XNU，把 BSD 的代码和 Carnegie Mellon 大学的 Mach 微内核揉在一起。这套技术最早来自 NeXT 公司的 NeXTSTEP 操作系统；1997 年苹果收购 NeXT 后，把它变成 Mac OS X 的核心，后来又一路演进到今天的 macOS 和 iOS。</p>
+<p>因此，macOS 不是从 Linux 发展来的，而是从 BSD/Unix 这条线发展来的。macOS 甚至通过了 The Open Group 的 UNIX 认证，可以合法地自称 Unix。</p>
 
-    <ul class="toc">
-      <li>
-        <a href="case-unix-wars.html">
-          <span class="chapter-title">Unix 战争与 BSD 诉讼案</span>
-        </a>
-        <p class="toc-desc">Unix 商业混战如何为 Linux 的诞生打开窗口</p>
-      </li>
-      <li>
-        <a href="case-gnu-hurd.html">
-          <span class="chapter-title">GNU Hurd：那个没做成的内核</span>
-        </a>
-        <p class="toc-desc">GNU 计划中最核心的内核为何迟迟未能完成</p>
-      </li>
-      <li>
-        <a href="case-linux-on-mars.html">
-          <span class="chapter-title">Linux 在火星</span>
-        </a>
-        <p class="toc-desc">NASA 火星任务中运行 Linux 的计算机</p>
-      </li>
-      <li>
-        <a href="case-android-linux.html">
-          <span class="chapter-title">Android 是不是 Linux？</span>
-        </a>
-        <p class="toc-desc">用了 Linux 内核的 Android，到底算不算 Linux</p>
-      </li>
-      <li>
-        <a href="case-macos-linux.html">
-          <span class="chapter-title">macOS 是不是 Linux？</span>
-        </a>
-        <p class="toc-desc">macOS 与 Linux 像在哪里，区别又在哪里</p>
-      </li>
-      <li>
-        <a href="case-posix.html">
-          <span class="chapter-title">POSIX 是什么？</span>
-        </a>
-        <p class="toc-desc">Unix 世界的通用接口标准，让命令和脚本跨系统通用</p>
-      </li>
-      <li>
-        <a href="case-open-source.html">
-          <span class="chapter-title">开源：从自由软件运动到人工智能时代</span>
-        </a>
-        <p class="toc-desc">从一台打印机说起，追溯开源运动半世纪历程</p>
-      </li>
-      <li>
-        <a href="case-xz-utils.html">
-          <span class="chapter-title">XZ Utils 后门事件</span>
-        </a>
-        <p class="toc-desc">2024年重大开源软件供应链攻击事件始末</p>
-      </li>
-      <li>
-        <a href="case-linux-gui.html">
-          <span class="chapter-title">Linux 的图形界面：不只是命令行的反面</span>
-        </a>
-        <p class="toc-desc">Linux 桌面的底层架构、常见桌面环境与远程图形界面方案</p>
-      </li>
-    </ul>
+<h2 id="为什么看起来和linux很像">为什么看起来和 Linux 很像</h2>
+<p>macOS 和 Linux 都受过 Unix 影响。两者都支持 <a href="case-posix.html">POSIX 标准</a>，都有 Shell（macOS 默认 zsh，也能用 bash），文件系统也是 <code>/bin</code>、<code>/usr</code>、<code>/etc</code> 这样的树形结构。很多在 Linux 上常用的命令，比如 <code>ls</code>、<code>grep</code>、<code>ps</code>，在 macOS 的终端里也能用。</p>
+<p>对初学者来说，最大的共同点就是“终端文化”。你在 macOS 里打开“终端”，运行 <code>ls</code> 或 <code>top</code>，会感觉跟在 Linux 里差别不大。但这种相似更像是表亲之间的相像，不是同一个人。</p>
+
+<h2 id="核心区别在哪里">核心区别在哪里</h2>
+<p>真正区分 macOS 和 Linux 的，是下面四点：</p>
+<ul>
+  <li>内核不同： macOS 用 XNU，Linux 用 Linux Kernel。进程调度、内存管理、驱动模型都有差异，Linux 驱动不能直接拿到 macOS 上用。</li>
+  <li>许可证与开源程度： Linux 内核在 GPL 下开源，可自由查看和修改；macOS 是闭源商业软件，图形界面和大量框架并不公开。</li>
+  <li>系统工具链： Linux 发行版多用 GNU 工具链，macOS 则常用 BSD 工具，<code>sed</code>、<code>tar</code>、<code>ps</code> 等命令的选项和 Linux 版本常有差别，写脚本时容易踩坑。</li>
+  <li>生态： macOS 运行在苹果封闭生态里，只能装在苹果硬件上；Linux 是开放的发行版生态，能在各种硬件上安装，发行版众多。</li>
+</ul>
+
+<h2 id="结论">结论</h2>
+<p>所以，macOS 不是 Linux。更准确的说法是：macOS 是类 Unix 操作系统，属于 Unix 系，但不是 Linux 家族。它跟 Linux 是“远房亲戚”——有共同的长辈 Unix，但各自走了完全不同的路。</p>
+<p>下次再有人问“macOS 是不是 Linux”，你可以这样回答：不是 Linux，但它是 Unix；它长得像 Linux，那是因为它们从同一个老师那里学过东西。</p>
 
     <footer class="page-footer">
       <div class="next">
-        <span class="label">返回目录</span>
-        <a href="index.html">目录</a>
+        <span class="label">下一章</span>
+        <a href="index.html">返回目录</a>
       </div>
     </footer>
   </main>

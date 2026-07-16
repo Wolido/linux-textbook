@@ -113,15 +113,15 @@
 
 <p>这一节介绍三种比 Bash “更聪明”的 Shell：zsh、fish 和 xonsh。它们不是来取代 Bash 的——你写的脚本、自动化脚本仍然应该用 Bash，保证可移植性。但它们可以让你的日常交互体验上升一个台阶：更省力的补全、更直观的语法高亮、更漂亮的信息展示。</p>
 
-<p>不过有一句话要先放在前面：如果你是第一次接触命令行，刚学完第二章，<strong>先用 Bash 打好基础</strong>。这就像学开车——方向盘和油门还没踩熟，就别急着换跑车。等你对 <code>ls</code>、<code>cd</code>、<code>grep</code>、管道这些概念已经很熟了，命令行的肌肉记忆也建立起来了，再回来看这一节，你会更清楚自己到底想要什么。</p>
+<p>不过有一句话要先放在前面：如果你是第一次接触命令行，刚学完第二章，先用 Bash 打好基础。这就像学开车——方向盘和油门还没踩熟，就别急着换跑车。等你对 <code>ls</code>、<code>cd</code>、<code>grep</code>、管道这些概念已经很熟了，命令行的肌肉记忆也建立起来了，再回来看这一节，你会更清楚自己到底想要什么。</p>
 
 <h3 id="zsh">zsh — 插件生态最丰富的 Shell</h3>
 
 <p>Bash 默认的 Tab 补全比较朴素：敲 <code>git c</code> 再按 Tab，它可能只会把 <code>commit</code>、<code>checkout</code>、<code>clone</code> 列出来让你选。但如果你装了 zsh 的 git 插件，它会直接在补全候选里显示每个子命令的简短说明——比如 <code>commit -- record changes to repository</code>。不用再切到浏览器查手册，思路不会断。</p>
 
-<p>这就是 zsh 最大的卖点：<strong>插件系统</strong>。zsh（Z Shell）本身兼容 Bash 的绝大多数语法，你会的 Bash 命令在 zsh 里一个都不浪费。但它在 Bash 的基础上加了三样东西：更智能的 Tab 补全、拼写纠错（比如你敲 <code>sl</code> 它会问你是不是想敲 <code>ls</code>）、以及一套主题系统，让你可以定制提示符的外观——把当前 git 分支、Python 虚拟环境、命令执行时间都显示在提示符里。</p>
+<p>这就是 zsh 最大的卖点：插件系统。zsh（Z Shell）本身兼容 Bash 的绝大多数语法，你会的 Bash 命令在 zsh 里一个都不浪费。但它在 Bash 的基础上加了三样东西：更智能的 Tab 补全、拼写纠错（比如你敲 <code>sl</code> 它会问你是不是想敲 <code>ls</code>）、以及一套主题系统，让你可以定制提示符的外观——把当前 git 分支、Python 虚拟环境、命令执行时间都显示在提示符里。</p>
 
-<p>单独装 zsh 只能解锁基础功能，真正好用的是搭配 <strong>Oh My Zsh</strong>——一个社区驱动的 zsh 配置框架。它把几百个插件和主题打包在一起，你只需要在配置文件里写一行就能启用。</p>
+<p>单独装 zsh 只能解锁基础功能，真正好用的是搭配 Oh My Zsh——一个社区驱动的 zsh 配置框架。它把几百个插件和主题打包在一起，你只需要在配置文件里写一行就能启用。</p>
 
 <p>在 Debian/Ubuntu 上安装 zsh 并切换到它：</p>
 
@@ -177,7 +177,7 @@
 
 <p>浏览器会自动打开一个本地页面，你可以在里面选配色主题、预览提示符样式、查看已定义的函数和缩写，全部用鼠标点击完成。对于刚从图形界面过来的同学，这个体验非常友好。</p>
 
-<p>不过，fish 有个必须说清楚的问题：<strong>它和 Bash 不兼容</strong>。这意味着你在网上搜到的大多数 Shell 脚本（比如 <code>setup.sh</code>、<code>train.sh</code>）不能直接用 fish 执行。实际工作中的正确做法是：<strong>把 fish 当作交互 Shell，写脚本仍然用 Bash</strong>。脚本文件第一行写上 <code>#!/bin/bash</code>，它们就和 fish 没关系了，互不干扰。你的日常敲命令用 fish 享受自动补全，自动化脚本交给 Bash 保证兼容性——鱼与熊掌可以兼得。</p>
+<p>不过，fish 有个必须说清楚的问题：它和 Bash 不兼容。这意味着你在网上搜到的大多数 Shell 脚本（比如 <code>setup.sh</code>、<code>train.sh</code>）不能直接用 fish 执行。实际工作中的正确做法是：把 fish 当作交互 Shell，写脚本仍然用 Bash。脚本文件第一行写上 <code>#!/bin/bash</code>，它们就和 fish 没关系了，互不干扰。你的日常敲命令用 fish 享受自动补全，自动化脚本交给 Bash 保证兼容性——鱼与熊掌可以兼得。</p>
 
 <p>Debian/Ubuntu 上装 fish 同样用 <code>sudo apt install fish</code>。如果想设成默认 Shell，也可以用 <code>chsh -s /usr/bin/fish</code>，但建议先用 <code>fish</code> 进入试一段时间，确认自己习惯它的操作方式之后再改默认。</p>
 
@@ -228,13 +228,13 @@
 </figure>
 
 <ul>
-<li><strong>Bash</strong>：够用、稳定、无处不在。如果你刚学完第二章，对补全和提示符还没有特别的感觉，继续用 Bash 完全没问题。它像一双普通的运动鞋——款式朴素，但什么路都能走。</li>
-<li><strong>zsh + Oh My Zsh</strong>：如果你已经开始频繁使用 git、经常在多个目录和虚拟环境之间切换，想让提示符告诉你更多信息（“现在在哪个分支？Python 用的是哪个环境？”），zsh 的插件生态能帮你把提示符变成一个信息面板。</li>
-<li><strong>fish</strong>：如果你不想花时间配置，但又想拥有彩色语法高亮和自动建议，fish 装完就能用。代价是和 Bash 语法不兼容——脚本仍然用 Bash 写。</li>
-<li><strong>xonsh</strong>：如果你每天在 Python 和 Shell 之间横跳，想在命令行里直接用 Python 变量和表达式，xonsh 是你的菜。但需要 Python 功底。</li>
+<li>Bash：够用、稳定、无处不在。如果你刚学完第二章，对补全和提示符还没有特别的感觉，继续用 Bash 完全没问题。它像一双普通的运动鞋——款式朴素，但什么路都能走。</li>
+<li>zsh + Oh My Zsh：如果你已经开始频繁使用 git、经常在多个目录和虚拟环境之间切换，想让提示符告诉你更多信息（“现在在哪个分支？Python 用的是哪个环境？”），zsh 的插件生态能帮你把提示符变成一个信息面板。</li>
+<li>fish：如果你不想花时间配置，但又想拥有彩色语法高亮和自动建议，fish 装完就能用。代价是和 Bash 语法不兼容——脚本仍然用 Bash 写。</li>
+<li>xonsh：如果你每天在 Python 和 Shell 之间横跳，想在命令行里直接用 Python 变量和表达式，xonsh 是你的菜。但需要 Python 功底。</li>
 </ul>
 
-<p>我的建议：<strong>先用 Bash 把基础走稳</strong>。等你每天在命令行里待的时间超过一两个小时，开始觉得“要是 Tab 补全再聪明一点就好了”“要是提示符能显示 git 分支就好了”，自然就会想来翻这一节。到那时候，挑 zsh 或 fish 装上，花十分钟配好，你会感觉像是从手动挡换成了自动挡——目的地没变，但开车的过程轻松了很多。</p>
+<p>我的建议：先用 Bash 把基础走稳。等你每天在命令行里待的时间超过一两个小时，开始觉得“要是 Tab 补全再聪明一点就好了”“要是提示符能显示 git 分支就好了”，自然就会想来翻这一节。到那时候，挑 zsh 或 fish 装上，花十分钟配好，你会感觉像是从手动挡换成了自动挡——目的地没变，但开车的过程轻松了很多。</p>
 
 <p>xonsh 比较特殊。如果你的日常就是 Python + 命令行，而且你已经很熟悉 Python 了，直接试试也无妨。但对于大多数读者，把 Bash、zsh 或 fish 用熟了再考虑 xonsh，可能更合适。</p>
 
@@ -285,7 +285,7 @@ alias ll='eza -l'</code></pre>
 <span class="prompt">student@debian:~$</span> <span class="command">bat</span>
 <span class="output">bash: bat: command not found</span></code></pre>
 
-<p>装了却找不到命令？这是因为 Debian/Ubuntu 的软件源里已经有一个叫 <code>bacula-console-qt</code> 的老软件占用了 <code>bat</code> 这个名字（它和我们的 bat 完全是两码事）。所以在 Debian/Ubuntu 上，bat 的命令名被改成了 <strong><code>batcat</code></strong>。你用 <code>batcat</code> 就能正常使用了。其他发行版（Arch、Fedora 等）没有这个冲突，直接敲 <code>bat</code> 就行。</p>
+<p>装了却找不到命令？这是因为 Debian/Ubuntu 的软件源里已经有一个叫 <code>bacula-console-qt</code> 的老软件占用了 <code>bat</code> 这个名字（它和我们的 bat 完全是两码事）。所以在 Debian/Ubuntu 上，bat 的命令名被改成了 <code>batcat</code>。你用 <code>batcat</code> 就能正常使用了。其他发行版（Arch、Fedora 等）没有这个冲突，直接敲 <code>bat</code> 就行。</p>
 
 <p>用 bat 看一个 Python 训练脚本：</p>
 
@@ -316,7 +316,7 @@ alias ll='eza -l'</code></pre>
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install fd-find</span>
 <span class="output">...</span></code></pre>
 
-<p>和 bat 一样，Debian/Ubuntu 上命令名是 <strong><code>fdfind</code></strong>（其他发行版直接是 <code>fd</code>）。</p>
+<p>和 bat 一样，Debian/Ubuntu 上命令名是 <code>fdfind</code>（其他发行版直接是 <code>fd</code>）。</p>
 
 <p>看几个最常用的场景：</p>
 
@@ -367,13 +367,13 @@ alias ll='eza -l'</code></pre>
 
 <p>使用场景很明确：当你对某个文件“可能还需要，但暂时不想看到它”的时候，用 <code>trash-put</code> 而不是 <code>rm</code>。比如做完一批实验，生成了几十个中间结果文件，你不太确定后面会不会用到——直接 <code>rm</code> 太冒险，留着又占地方。<code>trash-put</code> 就是为这种“模糊删除”设计的。</p>
 
-<p><strong>有一件事绝对不能做：不要把 <code>alias rm='trash-put'</code>。</strong> 这个 alias 看起来很聪明——给 <code>rm</code> 加个安全带嘛——但实际上很危险。你会养成“<code>rm</code> 可以恢复”的肌肉记忆。等你 SSH 到一台没配这个 alias 的服务器上，或者写脚本时用 <code>rm</code>，它就会按默认行为直接删除，而你脑子里还以为有回收站兜底。trash-cli 是手动保险，不是自动驾驶——你要有意识地选择在什么时候用它。</p>
+<p>有一件事绝对不能做：不要把 <code>alias rm='trash-put'</code>。 这个 alias 看起来很聪明——给 <code>rm</code> 加个安全带嘛——但实际上很危险。你会养成“<code>rm</code> 可以恢复”的肌肉记忆。等你 SSH 到一台没配这个 alias 的服务器上，或者写脚本时用 <code>rm</code>，它就会按默认行为直接删除，而你脑子里还以为有回收站兜底。trash-cli 是手动保险，不是自动驾驶——你要有意识地选择在什么时候用它。</p>
 
 <h3 id="如何记忆">如何记忆</h3>
 
 <p>五个工具，一头一尾最好记：eza、bat、fd、ripgrep 是四个替代品，trash-cli 是一个安全网。</p>
 
-<p>口诀就一句话：<strong>ls 换 eza，cat 换 bat，find 换 fd，grep 换 rg</strong>。四个命令对四个命令，甚至有点押韵。</p>
+<p>口诀就一句话：ls 换 eza，cat 换 bat，find 换 fd，grep 换 rg。四个命令对四个命令，甚至有点押韵。</p>
 
 <p>Debian/Ubuntu 上的命令名坑也再重复一遍——这是踩坑率最高的两个：</p>
 
@@ -401,7 +401,7 @@ alias ll='eza -l'</code></pre>
 
 <p>第一节我们讲了 zsh、fish、xonsh 三种 Shell。它们各有各的提示符配置方式：zsh 靠主题系统，fish 用 <code>fish_config</code> 网页改，Bash 要手写 <code>PS1</code> 变量。问题是——如果你同时用 Bash 写脚本、fish 做交互，想让两个 Shell 的提示符长得一样，你得分别配置两套。以后想改一个细节（比如加上 Python 虚拟环境显示），又得改两处。</p>
 
-<p>starship 解决的就是这个问题：<strong>写一份配置，在所有 Shell 里用同一套提示符</strong>。不管你用的是 Bash、zsh、fish、xonsh、甚至 Windows 上的 PowerShell，装上 starship 之后，所有 Shell 的提示符自动统一成一种风格。</p>
+<p>starship 解决的就是这个问题：写一份配置，在所有 Shell 里用同一套提示符。不管你用的是 Bash、zsh、fish、xonsh、甚至 Windows 上的 PowerShell，装上 starship 之后，所有 Shell 的提示符自动统一成一种风格。</p>
 
 <p>starship 用 Rust 写的，速度极快——你敲回车到提示符出现，几乎感觉不到延迟。它自带几十个模块：当前目录、git 分支和状态（有没有未提交的修改）、命令执行耗时（超过一定阈值的命令会显示“花了多少秒”）、Python 虚拟环境名、Node.js 版本、Docker 上下文……你只需要在配置文件里写一行就能启用一个模块。</p>
 
@@ -431,13 +431,13 @@ format = "via [🐍 $version](bold green) "</code></pre>
 
 <p>改完 <code>source ~/.bashrc</code> 生效。以后再激活 venv 或 conda 环境，提示符上会自动出现 <code>🐍 3.11</code> 这样的标记——你再也不会在错误的环境里跑训练脚本了。</p>
 
-<p>有一点值得强调：<strong>starship 只改提示符，不改 Shell 行为</strong>。你的 Tab 补全、快捷键、别名、函数……统统不受影响。它和你用的 zsh/fish/bash 完全兼容。你可以把 starship 理解为提示符的“主题引擎”——外表变了，内核还是你熟悉的 Shell。</p>
+<p>有一点值得强调：starship 只改提示符，不改 Shell 行为。你的 Tab 补全、快捷键、别名、函数……统统不受影响。它和你用的 zsh/fish/bash 完全兼容。你可以把 starship 理解为提示符的“主题引擎”——外表变了，内核还是你熟悉的 Shell。</p>
 
 <h3 id="fzf">fzf — 模糊搜索一切</h3>
 
-<p>第二章学了 <code>find</code>，这一章前面又学了 <code>fd</code>——它们都能帮你找文件，但前提是你要知道文件名的<strong>大致拼写</strong>。可现实中你记住的往往是碎片信息：“那个关于钛合金的 csv”“那份上周改过的实验配置 yaml”“那个叫 loss 什么的 Python 脚本”。你不知道全名，也不记得放在哪个子目录里了。</p>
+<p>第二章学了 <code>find</code>，这一章前面又学了 <code>fd</code>——它们都能帮你找文件，但前提是你要知道文件名的大致拼写。可现实中你记住的往往是碎片信息：“那个关于钛合金的 csv”“那份上周改过的实验配置 yaml”“那个叫 loss 什么的 Python 脚本”。你不知道全名，也不记得放在哪个子目录里了。</p>
 
-<p>fzf 就是为这种“模糊记忆”设计的。它的全称是 fuzzy finder——模糊查找器。核心体验就四个字：<strong>打字即筛选</strong>。你敲任何字符，列表实时缩小到只包含这些字符的条目（不要求字符连续），敲错了也没关系——退格就行。</p>
+<p>fzf 就是为这种“模糊记忆”设计的。它的全称是 fuzzy finder——模糊查找器。核心体验就四个字：打字即筛选。你敲任何字符，列表实时缩小到只包含这些字符的条目（不要求字符连续），敲错了也没关系——退格就行。</p>
 
 <p>fzf 在 Debian 12 的仓库里有，直接装：</p>
 
@@ -454,16 +454,16 @@ format = "via [🐍 $version](bold green) "</code></pre>
 <p>启用之后，fzf 提供三个好用的快捷键：</p>
 
 <ul>
-<li><strong><code>Ctrl+T</code></strong>：在当前目录（含子目录）模糊搜索文件，回车把文件路径填到命令行上。场景：“那个合金数据 csv 在哪来着？”</li>
-<li><strong><code>Ctrl+R</code></strong>：模糊搜索命令历史。Bash 默认的 <code>Ctrl+R</code> 是连续子串匹配，一次只显示一条结果，要反复按 <code>Ctrl+R</code> 轮转；fzf 的 <code>Ctrl+R</code> 则是模糊匹配，会一次性列出所有候选。场景：“昨天那条很长的 <code>ffmpeg</code> 命令是什么？”</li>
-<li><strong><code>cd **&lt;Tab&gt;</code></strong>：模糊搜索目录并跳转。场景：“那个实验结果目录叫什么来着？”</li>
+<li><code>Ctrl+T</code>：在当前目录（含子目录）模糊搜索文件，回车把文件路径填到命令行上。场景：“那个合金数据 csv 在哪来着？”</li>
+<li><code>Ctrl+R</code>：模糊搜索命令历史。Bash 默认的 <code>Ctrl+R</code> 是连续子串匹配，一次只显示一条结果，要反复按 <code>Ctrl+R</code> 轮转；fzf 的 <code>Ctrl+R</code> 则是模糊匹配，会一次性列出所有候选。场景：“昨天那条很长的 <code>ffmpeg</code> 命令是什么？”</li>
+<li><code>cd **&lt;Tab&gt;</code>：模糊搜索目录并跳转。场景：“那个实验结果目录叫什么来着？”</li>
 </ul>
 
 <p>来感受一下 <code>Ctrl+R</code> 的差别。Bash 的 <code>Ctrl+R</code> 按连续子串查找：你敲 <code>gpu</code>，它只会找包含连续 <code>gpu</code> 的历史命令，而且一次只显示一条，想多看几个就得反复按 <code>Ctrl+R</code>。fzf 的 <code>Ctrl+R</code> 则把所有匹配的历史命令列在一个可滚动的列表里，还支持字符不连续的模糊匹配——敲 <code>sgl</code> 也能命中 <code>ssh student@gpu-lab-01</code>。上下箭头选中，回车执行。</p>
 
 <p><code>Ctrl+T</code> 也一样好用。按下去，当前目录的所有文件列出来，你开始敲关键字，fzf 实时过滤。比如你的项目里有一个 <code>experiments/2024-03/tensile_test_TC4_annealed.csv</code>，你只记得“tensile”——敲 <code>tensile</code>，候选列表就只剩这一个文件，回车就把它的完整路径填到命令行上。</p>
 
-<p>fzf 不止能搜文件和命令历史。它真正强大的地方在于：<strong>任何能输出文本列表的命令，都可以用 fzf 做交互式筛选</strong>。把输出用管道交给 fzf：</p>
+<p>fzf 不止能搜文件和命令历史。它真正强大的地方在于：任何能输出文本列表的命令，都可以用 fzf 做交互式筛选。把输出用管道交给 fzf：</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">rg "accuracy" | fzf</span>          <span class="comment"># 在 ripgrep 的搜索结果里模糊筛选</span>
 <span class="prompt">student@debian:~$</span> <span class="command">fd --type f | fzf</span>              <span class="comment"># 在当前项目所有文件里模糊搜索</span>
@@ -499,7 +499,7 @@ format = "via [🐍 $version](bold green) "</code></pre>
 <li><code>l</code>：进入选中的目录（或预览文件内容）</li>
 <li><code>h</code>：返回上一级目录</li>
 <li><code>q</code>：退出 yazi</li>
-<li><strong>空格键</strong>：选中/取消选中当前文件</li>
+<li>空格键：选中/取消选中当前文件</li>
 <li><code>y</code>：复制选中的文件</li>
 <li><code>p</code>：粘贴</li>
 </ul>
@@ -509,11 +509,11 @@ format = "via [🐍 $version](bold green) "</code></pre>
 <p>什么场景最适合 yazi？举两个例子：</p>
 
 <ol>
-<li><strong>浏览下载的实验数据集</strong>。公开数据集（比如 Materials Project 导出的结构文件、ImageNet 子集）往往包含多层目录和 README。用 yazi，你在左边浏览目录树，右边实时预览每个文件的内容——看到 POSCAR 格式的结构文件，右边就能看到原子坐标；看到 CSV，右边显示前几行数据。</li>
-<li><strong>在几十个模型 checkpoint 里找到想要的</strong>。训练过程中你存了 <code>model_epoch_10.pth</code>、<code>model_epoch_20.pth</code>……一直到 <code>model_epoch_100.pth</code>。文件名几乎一样，用 <code>ls</code> 看不出区别。yazi 的预览栏会显示文件大小和修改时间——通常最后一次修改的 checkpoint 就是你想要的。</li>
+<li>浏览下载的实验数据集。公开数据集（比如 Materials Project 导出的结构文件、ImageNet 子集）往往包含多层目录和 README。用 yazi，你在左边浏览目录树，右边实时预览每个文件的内容——看到 POSCAR 格式的结构文件，右边就能看到原子坐标；看到 CSV，右边显示前几行数据。</li>
+<li>在几十个模型 checkpoint 里找到想要的。训练过程中你存了 <code>model_epoch_10.pth</code>、<code>model_epoch_20.pth</code>……一直到 <code>model_epoch_100.pth</code>。文件名几乎一样，用 <code>ls</code> 看不出区别。yazi 的预览栏会显示文件大小和修改时间——通常最后一次修改的 checkpoint 就是你想要的。</li>
 </ol>
 
-<p>yazi 不是 <code>cd</code> + <code>ls</code> 的替代品——你在自己熟悉的项目里，<code>cd</code> 两下就到了，不需要开 yazi。它真正的价值是<strong>探索陌生目录</strong>时让你少敲几十次 <code>ls</code> 和 <code>cd</code>。装好放在那里，该用的时候打开，平时还是 <code>cd</code> + <code>ls</code>，两不耽误。</p>
+<p>yazi 不是 <code>cd</code> + <code>ls</code> 的替代品——你在自己熟悉的项目里，<code>cd</code> 两下就到了，不需要开 yazi。它真正的价值是探索陌生目录时让你少敲几十次 <code>ls</code> 和 <code>cd</code>。装好放在那里，该用的时候打开，平时还是 <code>cd</code> + <code>ls</code>，两不耽误。</p>
 
 <h3 id="什么时候用哪个">什么时候用哪个</h3>
 
@@ -546,7 +546,7 @@ format = "via [🐍 $version](bold green) "</code></pre>
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sudo apt install tmux</span>
 <span class="output">...</span></code></pre>
 
-<p>tmux 有三个核心概念，记住三个词就够了：<strong>session</strong>（会话）、<strong>window</strong>（窗口）、<strong>pane</strong>（窗格）。它们的关系像俄罗斯套娃：一个 tmux 服务器可以有多个 session；一个 session 可以有多个 window（像浏览器的多个标签页）；一个 window 可以拆成多个 pane（上下或左右分屏）。</p>
+<p>tmux 有三个核心概念，记住三个词就够了：session（会话）、window（窗口）、pane（窗格）。它们的关系像俄罗斯套娃：一个 tmux 服务器可以有多个 session；一个 session 可以有多个 window（像浏览器的多个标签页）；一个 window 可以拆成多个 pane（上下或左右分屏）。</p>
 
 <figure>
   <img src="assets/images/chapter-04/fig-4.2-tmux-hierarchy.svg" alt="tmux 的 session、window、pane 层级结构示意图">
@@ -559,7 +559,7 @@ format = "via [🐍 $version](bold green) "</code></pre>
 
 <p>回车之后，你会进入一个新“世界”：底部出现一条绿色的状态栏，显示会话名和当前时间。这就是 tmux 会话。在这个世界里，你可以正常运行任何命令——<code>python train.py</code>、<code>vim model.py</code>、<code>htop</code> 监控 GPU——和普通终端完全一样。</p>
 
-<p>关键操作来了：<strong>脱离会话</strong>。按 <code>Ctrl+B</code>，松开，再按 <code>D</code>。你会回到普通终端，屏幕上显示 <code>[detached (from session train)]</code>。但注意——训练脚本还在服务器上跑着，毫发无伤。你现在可以安全地关掉笔记本，回家。</p>
+<p>关键操作来了：脱离会话。按 <code>Ctrl+B</code>，松开，再按 <code>D</code>。你会回到普通终端，屏幕上显示 <code>[detached (from session train)]</code>。但注意——训练脚本还在服务器上跑着，毫发无伤。你现在可以安全地关掉笔记本，回家。</p>
 
 <p>第二天早上，SSH 到服务器，重新接入：</p>
 
@@ -584,7 +584,7 @@ format = "via [🐍 $version](bold green) "</code></pre>
 
 <p>典型场景：一个 pane 跑着 <code>python train.py</code>，另一个 pane 里 <code>watch -n 1 nvidia-smi</code> 监控 GPU 使用率——一个屏幕，两个视角，不用开两个 SSH 窗口。</p>
 
-<p>有一点特别值得强调：<strong>tmux 也保护你免受“不小心关了终端窗口”的伤害</strong>。即使你就在本机跑任务，没连 SSH——比如用笔记本做数据处理，终端不小心点了个 ×——tmux 里的程序也不会受影响。重新打开终端，<code>tmux attach</code> 就回来了。从这个角度说，即使不连远程服务器，tmux 也值得装一个。</p>
+<p>有一点特别值得强调：tmux 也保护你免受“不小心关了终端窗口”的伤害。即使你就在本机跑任务，没连 SSH——比如用笔记本做数据处理，终端不小心点了个 ×——tmux 里的程序也不会受影响。重新打开终端，<code>tmux attach</code> 就回来了。从这个角度说，即使不连远程服务器，tmux 也值得装一个。</p>
 
 <h3 id="bgfgjobs">bg、fg、jobs — 前台后台切换</h3>
 
@@ -597,9 +597,9 @@ format = "via [🐍 $version](bold green) "</code></pre>
 <p>一个程序在终端里有三种状态：</p>
 
 <ul>
-<li><strong>前台运行</strong>（foreground）：占着终端，你不能输入下一条命令。</li>
-<li><strong>后台运行</strong>（background）：程序在跑，但终端还给你，可以继续敲命令。</li>
-<li><strong>暂停</strong>（stopped）：程序被挂起，不占用 CPU，等你决定是放回前台还是后台。</li>
+<li>前台运行（foreground）：占着终端，你不能输入下一条命令。</li>
+<li>后台运行（background）：程序在跑，但终端还给你，可以继续敲命令。</li>
+<li>暂停（stopped）：程序被挂起，不占用 CPU，等你决定是放回前台还是后台。</li>
 </ul>
 
 <p>五条操作，四句命令加一个快捷键：</p>
@@ -615,7 +615,7 @@ format = "via [🐍 $version](bold green) "</code></pre>
 
 <p>来几个实际场景。</p>
 
-<p><strong>场景一：启动训练后立刻拿回终端。</strong></p>
+<p>场景一：启动训练后立刻拿回终端。</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~/project$</span> <span class="command">python train.py &</span>
 <span class="output">[1] 18473</span>
@@ -623,7 +623,7 @@ format = "via [🐍 $version](bold green) "</code></pre>
 
 <p><code>[1]</code> 是任务编号，<code>18473</code> 是进程 PID。训练在后台跑着，你可以继续敲 <code>ls</code>、<code>vim config.yaml</code>，互不干扰。唯一的问题是——训练的输出会混在你的终端里，有点乱。这时候就该用 tmux 了，但如果你只是想快速看一眼别的文件，<code>&</code> 足够了。</p>
 
-<p><strong>场景二：跑着程序发现要改参数，暂停→改→恢复。</strong></p>
+<p>场景二：跑着程序发现要改参数，暂停→改→恢复。</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~/project$</span> <span class="command">python analyze.py --lr 0.01</span>
 <span class="output">Epoch 1/100, loss=2.345</span>
@@ -638,7 +638,7 @@ format = "via [🐍 $version](bold green) "</code></pre>
 
 <p><code>Ctrl+Z</code> 不会杀死程序——只是把它挂起来。你可以在这期间做任何事情（改参数、查文件、甚至跑另一个脚本），然后 <code>fg</code> 把它拉回来。这在调试阶段特别有用。</p>
 
-<p><strong>场景三：看看有哪些后台任务。</strong></p>
+<p>场景三：看看有哪些后台任务。</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~/project$</span> <span class="command">jobs</span>
 <span class="output">[1]-  Running                 python train.py &</span>
@@ -646,13 +646,13 @@ format = "via [🐍 $version](bold green) "</code></pre>
 
 <p><code>+</code> 标记的是“当前任务”——<code>fg</code> 不带参数时默认操作的这一个。如果你有多个任务，可以用 <code>fg %1</code>、<code>fg %2</code> 指定要拉哪个。</p>
 
-<p>bg / fg 有一个必须说明的局限：<strong>它们只在当前终端有效</strong>。SSH 断了，这个终端没了，后台任务一样会丢。这就是为什么需要 tmux——bg 是短跑选手，快速、轻便、适合几十秒到几分钟的临时操作；tmux 是马拉松选手，稳定、持久、适合几小时到几天的长期任务。</p>
+<p>bg / fg 有一个必须说明的局限：它们只在当前终端有效。SSH 断了，这个终端没了，后台任务一样会丢。这就是为什么需要 tmux——bg 是短跑选手，快速、轻便、适合几十秒到几分钟的临时操作；tmux 是马拉松选手，稳定、持久、适合几小时到几天的长期任务。</p>
 
 <h3 id="该怎么组合使用">该怎么组合使用</h3>
 
 <p>学完 tmux 又学了 bg/fg，你可能在想：到底什么时候用哪个？</p>
 
-<p>一句话口诀：<strong>“长时间跑的任务用 tmux，临时后台用 <code>&</code>，暂停看一眼用 <code>Ctrl+Z</code>。”</strong></p>
+<p>一句话口诀：“长时间跑的任务用 tmux，临时后台用 <code>&</code>，暂停看一眼用 <code>Ctrl+Z</code>。”</p>
 
 <p>它们不是互斥的——你完全可以在 tmux 会话里使用 bg/fg。一个典型的工作流是这样的：</p>
 
@@ -689,9 +689,9 @@ format = "via [🐍 $version](bold green) "</code></pre>
 <p>最后，记三个要点：</p>
 
 <ol>
-<li><strong>tmux 是保命工具</strong>——只要训练时间超过半小时，先进 tmux 再启动。养成肌肉记忆。</li>
-<li><strong><code>&</code> 和 <code>Ctrl+Z</code> 是日常便利</strong>——不离开当前终端就能临时切换，但别用它替代 tmux。</li>
-<li><strong>两者可以一起用</strong>——在 tmux 里用 <code>Ctrl+Z</code> 暂停训练是常态操作，不矛盾。</li>
+<li>tmux 是保命工具——只要训练时间超过半小时，先进 tmux 再启动。养成肌肉记忆。</li>
+<li><code>&</code> 和 <code>Ctrl+Z</code> 是日常便利——不离开当前终端就能临时切换，但别用它替代 tmux。</li>
+<li>两者可以一起用——在 tmux 里用 <code>Ctrl+Z</code> 暂停训练是常态操作，不矛盾。</li>
 </ol>
 
 <h2 id="定时任务">定时任务：让服务器替你守夜</h2>
@@ -700,7 +700,7 @@ format = "via [🐍 $version](bold green) "</code></pre>
 
 <p>这些事都不难——一条 <code>tar</code>、一行 <code>rsync</code>、一个脚本就能搞定。难的是记得按时做。半夜三点爬起来备份数据？闹钟响了，你关了继续睡。手动做重复的事情，人是靠不住的。</p>
 
-<p>Linux 的解决方案叫 <strong>crontab</strong>——一个定时任务调度器。你写好“什么时间、干什么事”，剩下的交给系统。服务器不会忘、不会偷懒、不会睡过头。</p>
+<p>Linux 的解决方案叫 crontab——一个定时任务调度器。你写好“什么时间、干什么事”，剩下的交给系统。服务器不会忘、不会偷懒、不会睡过头。</p>
 
 <h3 id="crontab基本语法">crontab 的基本语法</h3>
 
@@ -721,14 +721,14 @@ format = "via [🐍 $version](bold green) "</code></pre>
 
 Choose 1-4 [1]:</span></code></pre>
 
-<p>选 <strong>nano</strong>（一般是 1）。这个选择以后可以改，不用纠结。nano 的好处是底部有操作提示——<code>^O</code> 保存、<code>^X</code> 退出——不用像 vim 那样还要记退出命令。</p>
+<p>选 nano（一般是 1）。这个选择以后可以改，不用纠结。nano 的好处是底部有操作提示——<code>^O</code> 保存、<code>^X</code> 退出——不用像 vim 那样还要记退出命令。</p>
 
 <p>选好编辑器之后，你会看到一个空文件（或者已有的 crontab 内容）。每条定时任务占一行，格式是固定的：</p>
 
 <pre><code class="terminal"><span class="comment"># 格式：分 时 日 月 星期 命令</span>
 <span class="command"><span class="highlight">* * * * *</span> /path/to/command</span></code></pre>
 
-<p>五个时间字段，顺序从左到右是：<strong>分、时、日、月、星期</strong>。每个字段的取值范围：</p>
+<p>五个时间字段，顺序从左到右是：分、时、日、月、星期。每个字段的取值范围：</p>
 
 <table>
 <tr><th>字段</th><th>含义</th><th>取值范围</th></tr>
@@ -744,9 +744,9 @@ Choose 1-4 [1]:</span></code></pre>
   <figcaption>图4.4 crontab 时间字段：分 · 时 · 日 · 月 · 星期</figcaption>
 </figure>
 
-<p>记住这个顺序有个土办法：“<strong>分时日月星</strong>”——五个字，正好对上。</p>
+<p>记住这个顺序有个土办法：“分时日月星”——五个字，正好对上。</p>
 
-<p><code>*</code> 的含义是“每个”。<code>* * * * *</code> 就是每个月、每个星期几、每天、每小时、每分钟——换句话说，<strong>每分钟执行一次</strong>。别直接跑这个——你会被淹没的。</p>
+<p><code>*</code> 的含义是“每个”。<code>* * * * *</code> 就是每个月、每个星期几、每天、每小时、每分钟——换句话说，每分钟执行一次。别直接跑这个——你会被淹没的。</p>
 
 <p>看几个实际例子，看完就懂了：</p>
 
@@ -765,9 +765,9 @@ Choose 1-4 [1]:</span></code></pre>
 <p>逐条解释一下：</p>
 
 <ul>
-<li><strong>第二条</strong>：<code>0 * * * *</code>——分=0（整点），时=*（每个小时）。每小时整点执行一次。注意我写了 <code>/usr/bin/python3</code> 而不是 <code>python3</code>——稍后解释原因。</li>
-<li><strong>第三条</strong>：<code>*/30</code> 是 cron 特有的写法，意思是“每 30”。等价于第 0 分钟和第 30 分钟各执行一次。所以每半小时同步一次实验数据到备份目录。</li>
-<li><strong>第四条</strong>：<code>0 0 1 * *</code>——分=0、时=0（午夜 0 点）、日=1（每月第 1 天）、月=*、星期=*。每月 1 号零时打包整个项目目录。</li>
+<li>第二条：<code>0 * * * *</code>——分=0（整点），时=*（每个小时）。每小时整点执行一次。注意我写了 <code>/usr/bin/python3</code> 而不是 <code>python3</code>——稍后解释原因。</li>
+<li>第三条：<code>*/30</code> 是 cron 特有的写法，意思是“每 30”。等价于第 0 分钟和第 30 分钟各执行一次。所以每半小时同步一次实验数据到备份目录。</li>
+<li>第四条：<code>0 0 1 * *</code>——分=0、时=0（午夜 0 点）、日=1（每月第 1 天）、月=*、星期=*。每月 1 号零时打包整个项目目录。</li>
 </ul>
 
 <p>写好任务之后，用 <code>crontab -l</code> 确认一下：</p>
@@ -787,7 +787,7 @@ Choose 1-4 [1]:</span></code></pre>
 
 <p>crontab 看起来很简单——五个时间加一个命令。但有几个坑，几乎每个初学者都会踩一遍。提前知道，能省很多 debug 时间。</p>
 
-<p><strong>坑 1：环境变量不一样。</strong> 你在终端里能跑 <code>python3 train.py</code>，写进 crontab 可能就不行了。原因很简单：crontab 执行环境和你登录后的 Shell 环境不是同一个。crontab 的 <code>PATH</code> 只有 <code>/usr/bin:/bin</code> 两三个目录——你装的程序可能在其他地方，crontab 找不到。</p>
+<p>坑 1：环境变量不一样。 你在终端里能跑 <code>python3 train.py</code>，写进 crontab 可能就不行了。原因很简单：crontab 执行环境和你登录后的 Shell 环境不是同一个。crontab 的 <code>PATH</code> 只有 <code>/usr/bin:/bin</code> 两三个目录——你装的程序可能在其他地方，crontab 找不到。</p>
 
 <p>先确认程序在哪个位置：</p>
 
@@ -803,7 +803,7 @@ Choose 1-4 [1]:</span></code></pre>
 
 <p>推荐第二个——写绝对路径——最省事。不管 cron 的环境变量怎么变，都能找到程序。</p>
 
-<p><strong>坑 2：输出去哪了？</strong> 你写的定时任务会在后台静默执行。如果脚本出错了，你看不到报错。如果脚本有正常输出，你看不到结果。crontab 的默认行为是把所有输出通过系统邮件发给用户——但绝大多数 Linux 服务器根本没配邮件系统，这些输出就丢了。</p>
+<p>坑 2：输出去哪了？ 你写的定时任务会在后台静默执行。如果脚本出错了，你看不到报错。如果脚本有正常输出，你看不到结果。crontab 的默认行为是把所有输出通过系统邮件发给用户——但绝大多数 Linux 服务器根本没配邮件系统，这些输出就丢了。</p>
 
 <p>解决方案：手动指定输出去哪。在命令后面加重定向：</p>
 
@@ -812,7 +812,7 @@ Choose 1-4 [1]:</span></code></pre>
 
 <p><code>>></code> 是追加（不覆盖已有日志），<code>2>&1</code> 的意思是“把标准错误（2）也重定向到标准输出（1）去的地方”——也就是同一个日志文件。这样不管是正常信息还是报错，都写到 <code>backup.log</code>。哪天想起来看一眼，就知道定时任务昨晚成没成功。</p>
 
-<p><strong>坑 3：百分号要转义。</strong> 在 crontab 里，<code>%</code> 被解释成换行符（历史遗留的设计），所以如果你想在命令里用 <code>date +%Y%m%d</code> 生成日期字符串，crontab 会把 <code>%</code> 当成特殊字符处理，导致命令失败。</p>
+<p>坑 3：百分号要转义。 在 crontab 里，<code>%</code> 被解释成换行符（历史遗留的设计），所以如果你想在命令里用 <code>date +%Y%m%d</code> 生成日期字符串，crontab 会把 <code>%</code> 当成特殊字符处理，导致命令失败。</p>
 
 <p>解决：每个 <code>%</code> 前面加一个反斜杠——<code>\%</code>。</p>
 
@@ -824,16 +824,16 @@ Choose 1-4 [1]:</span></code></pre>
 
 <p>如果你觉得加反斜杠太丑，可以把这条命令写成一个脚本，然后 crontab 只调脚本——脚本里不用转义。这是更干净的做法。</p>
 
-<p><strong>好习惯 1：先用无害命令测试。</strong> 写完 crontab 别急着放真实任务。先用一条无伤大雅的命令验证 crontab 在正常工作：</p>
+<p>好习惯 1：先用无害命令测试。 写完 crontab 别急着放真实任务。先用一条无伤大雅的命令验证 crontab 在正常工作：</p>
 
 <pre><code class="terminal"><span class="comment"># 每分钟往临时文件里写一行记录</span>
 <span class="command">* * * * * echo "cron test at $(date)" >> /tmp/cron_test</span></code></pre>
 
 <p>等一两分钟，<code>cat /tmp/cron_test</code> 看看有没有新内容。有——说明 crontab 生效了。再把它删掉（<code>crontab -e</code> 里删掉这行），换成你的真实任务。</p>
 
-<p><strong>好习惯 2：用 <code>crontab -l</code> 检查。</strong> 每次编辑完都跑一遍 <code>crontab -l</code>，确认自己写了什么。crontab 里多写一个 <code>*</code> 或者少写一个 <code>*</code>，效果天差地别。想设每天一次，结果设成每分钟一次——这种事故太常见了。</p>
+<p>好习惯 2：用 <code>crontab -l</code> 检查。 每次编辑完都跑一遍 <code>crontab -l</code>，确认自己写了什么。crontab 里多写一个 <code>*</code> 或者少写一个 <code>*</code>，效果天差地别。想设每天一次，结果设成每分钟一次——这种事故太常见了。</p>
 
-<p><strong>好习惯 3：开机自动执行。</strong> crontab 支持 <code>@reboot</code> 这个特殊时间——字面意思，在系统启动时执行一次：</p>
+<p>好习惯 3：开机自动执行。 crontab 支持 <code>@reboot</code> 这个特殊时间——字面意思，在系统启动时执行一次：</p>
 
 <pre><code class="terminal"><span class="comment"># 每次开机时自动启动你的服务</span>
 <span class="command">@reboot /home/student/start_services.sh</span></code></pre>
@@ -844,7 +844,7 @@ Choose 1-4 [1]:</span></code></pre>
 
 <p>前面讲的是语法和坑，现在看三个贴近你日常的场景。每个例子的命令都会拆开讲清楚，而不是丢给你一行不知所云的咒语。</p>
 
-<p><strong>场景 1：定期清理实验日志。</strong> 你做材料模拟，每次跑 LAMMPS 或 VASP 都会生成一堆 .log 文件。30 天前的日志大概率不会再看了，但占着磁盘空间。让 crontab 每天凌晨 3 点自动清理：</p>
+<p>场景 1：定期清理实验日志。 你做材料模拟，每次跑 LAMMPS 或 VASP 都会生成一堆 .log 文件。30 天前的日志大概率不会再看了，但占着磁盘空间。让 crontab 每天凌晨 3 点自动清理：</p>
 
 <pre><code class="terminal"><span class="command">0 3 * * * find ~/experiments/ -name "*.log" -mtime +30 -delete</span></code></pre>
 
@@ -852,7 +852,7 @@ Choose 1-4 [1]:</span></code></pre>
 
 <p>注意：<code>-delete</code> 是直接删除，不进回收站。先用 <code>-print</code> 替换 <code>-delete</code> 跑一遍，确认列出来的文件确实是你想删的，再换成 <code>-delete</code>。</p>
 
-<p><strong>场景 2：监控训练进程。</strong> 你丢了一个训练任务在服务器上跑，回家睡觉了。但训练可能因为各种原因崩掉——显存溢出、数据文件突然不可读、某个 epoch 报了 NaN。崩了你不知道，第二天早上发现 GPU 空转了一宿。让 crontab 每 10 分钟检查一次：</p>
+<p>场景 2：监控训练进程。 你丢了一个训练任务在服务器上跑，回家睡觉了。但训练可能因为各种原因崩掉——显存溢出、数据文件突然不可读、某个 epoch 报了 NaN。崩了你不知道，第二天早上发现 GPU 空转了一宿。让 crontab 每 10 分钟检查一次：</p>
 
 <pre><code class="terminal"><span class="command">*/10 * * * * pgrep -f train.py || echo "Training stopped at $(date)" >> ~/alerts.log</span></code></pre>
 
@@ -860,7 +860,7 @@ Choose 1-4 [1]:</span></code></pre>
 
 <p>你不需要每秒盯着终端看——只需要第二天早上 <code>cat ~/alerts.log</code>，如果里面没有新记录，说明训练一整夜都健康跑着。如果有记录，看一眼时间戳，就知道是凌晨几点崩的。</p>
 
-<p><strong>场景 3：自动备份模型检查点到 NAS。</strong> 训练深度学习模型时，checkpoint 是你的命。代码可以重写，但训练了好几天的模型权重丢了就只能从头再来。每 6 小时自动同步一次 checkpoint 到网络存储：</p>
+<p>场景 3：自动备份模型检查点到 NAS。 训练深度学习模型时，checkpoint 是你的命。代码可以重写，但训练了好几天的模型权重丢了就只能从头再来。每 6 小时自动同步一次 checkpoint 到网络存储：</p>
 
 <pre><code class="terminal"><span class="command">0 */6 * * * rsync -az ~/checkpoints/ user@nas:/backup/checkpoints/</span></code></pre>
 
@@ -876,9 +876,9 @@ Choose 1-4 [1]:</span></code></pre>
 
 <p>科研里总会遇到“打包”的场景。导师让你把整个项目发过去看看——代码、数据、论文草稿，散在十几个目录里。实验做完了，原始数据要归档保存，硬盘虽大但也不是无限的。从网上下了一个数据集，文件名后缀是 <code>.tar.gz</code>，双击打不开。这些场景有一个共性：你需要把一堆文件捆起来，而且最好能压小一点。</p>
 
-<p>Windows 上你习惯右键“压缩到 zip”，一个操作搞定。Linux 上没有右键菜单给你点——但思路是一样的，只是工具不同：<strong>tar 负责打包，gzip 负责压缩。</strong>两个工具各干各的，组合在一起就是 Linux 世界里的“压缩包”。</p>
+<p>Windows 上你习惯右键“压缩到 zip”，一个操作搞定。Linux 上没有右键菜单给你点——但思路是一样的，只是工具不同：tar 负责打包，gzip 负责压缩。两个工具各干各的，组合在一起就是 Linux 世界里的“压缩包”。</p>
 
-<p>tar 的全称是 tape archive——磁带归档。这个名字暴露了它的年龄：它最初是为磁带备份设计的，把一堆文件串行写到一个磁带上。你今天用的 tar，做的事情本质上没变：把多个文件和目录捆成一个 <code>.tar</code> 文件。但它<strong>不压缩</strong>——一个 100MB 的目录打成 tar，大小还是 100MB。tar 只是个打包绳，不是压缩机。</p>
+<p>tar 的全称是 tape archive——磁带归档。这个名字暴露了它的年龄：它最初是为磁带备份设计的，把一堆文件串行写到一个磁带上。你今天用的 tar，做的事情本质上没变：把多个文件和目录捆成一个 <code>.tar</code> 文件。但它不压缩——一个 100MB 的目录打成 tar，大小还是 100MB。tar 只是个打包绳，不是压缩机。</p>
 
 <p>压缩是 gzip 的活。gzip 接过 tar 打好的包，把它压成一个 <code>.tar.gz</code> 文件（也常缩写成 <code>.tgz</code>）。先打包、后压缩——这就是 Linux 上处理归档的两步。好消息是，tar 命令里直接带了调用 gzip 的选项，所以你一条命令就能完成“打包+压缩”，不用分两步手动操作。</p>
 
@@ -896,14 +896,14 @@ Choose 1-4 [1]:</span></code></pre>
 <ul>
 <li><code>-c</code>：create，创建归档</li>
 <li><code>-z</code>：用 gzip 压缩</li>
-<li><code>-f</code>：file，指定归档文件名——<strong>f 必须是最后一个选项，后面紧跟你想要的文件名</strong></li>
+<li><code>-f</code>：file，指定归档文件名——f 必须是最后一个选项，后面紧跟你想要的文件名</li>
 </ul>
 
 <p>解压就反过来：</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">tar -xzf project.tar.gz</span></code></pre>
 
-<p><code>-x</code> 是 extract（解压），<code>-z</code> 和 <code>-f</code> 同上。这条命令会把 <code>project.tar.gz</code> 解压到<strong>当前目录</strong>。如果你在 <code>/tmp</code> 下执行它，东西就散在 <code>/tmp</code> 里——稍后讲怎么指定目标目录。</p>
+<p><code>-x</code> 是 extract（解压），<code>-z</code> 和 <code>-f</code> 同上。这条命令会把 <code>project.tar.gz</code> 解压到当前目录。如果你在 <code>/tmp</code> 下执行它，东西就散在 <code>/tmp</code> 里——稍后讲怎么指定目标目录。</p>
 
 <p>有时候你下载了一个压缩包，想先看看里面有什么再决定解不解。用 <code>-t</code>（list）代替 <code>-x</code>：</p>
 
@@ -926,21 +926,21 @@ project/README.md</span></code></pre>
 <p>gzip 不是唯一的压缩方式。tar 还支持另外两种压缩算法，区别在选项上：</p>
 
 <ul>
-<li><strong>bzip2（<code>-j</code>）</strong>：压缩率比 gzip 高一点，速度慢一点。后缀 <code>.tar.bz2</code>。创建用 <code>tar -cjf</code>，解压用 <code>tar -xjf</code>。</li>
-<li><strong>xz（<code>-J</code>）</strong>：压缩率最高、速度最慢。后缀 <code>.tar.xz</code>。创建用 <code>tar -cJf</code>，解压用 <code>tar -xJf</code>。</li>
+<li>bzip2（<code>-j</code>）：压缩率比 gzip 高一点，速度慢一点。后缀 <code>.tar.bz2</code>。创建用 <code>tar -cjf</code>，解压用 <code>tar -xjf</code>。</li>
+<li>xz（<code>-J</code>）：压缩率最高、速度最慢。后缀 <code>.tar.xz</code>。创建用 <code>tar -cJf</code>，解压用 <code>tar -xJf</code>。</li>
 </ul>
 
-<p>选哪个？一句话：<strong>日常用 <code>.tar.gz</code></strong>——够快也够小，压缩解压都不耽误事；<strong>长期归档用 <code>.tar.xz</code></strong>——不在乎多等几分钟，在乎省下来的硬盘空间。bzip2 夹在中间，现在用得越来越少了，知道有 <code>-j</code> 这个选项就行，碰到了不会懵。</p>
+<p>选哪个？一句话：日常用 <code>.tar.gz</code>——够快也够小，压缩解压都不耽误事；长期归档用 <code>.tar.xz</code>——不在乎多等几分钟，在乎省下来的硬盘空间。bzip2 夹在中间，现在用得越来越少了，知道有 <code>-j</code> 这个选项就行，碰到了不会懵。</p>
 
 <p>tar 有几个坑，几乎每个人都踩过。提前知道，省得 debug 时抓狂。</p>
 
-<p><strong>坑 1：<code>-f</code> 的位置。</strong> <code>tar -cfz project.tar.gz</code> 是<strong>错的</strong>。因为 <code>-f</code> 后面需要紧跟文件名，tar 会认为 <code>z</code> 就是文件名——于是它创建了一个叫 <code>z</code> 的文件，而不是用 gzip 压缩。正确写法是 <code>tar -czf project.tar.gz</code>——把 <code>z</code> 放在 <code>f</code> 前面。</p>
+<p>坑 1：<code>-f</code> 的位置。 <code>tar -cfz project.tar.gz</code> 是错的。因为 <code>-f</code> 后面需要紧跟文件名，tar 会认为 <code>z</code> 就是文件名——于是它创建了一个叫 <code>z</code> 的文件，而不是用 gzip 压缩。正确写法是 <code>tar -czf project.tar.gz</code>——把 <code>z</code> 放在 <code>f</code> 前面。</p>
 
-<p><strong>坑 2：tar bomb。</strong> 有些压缩包解开后，不是整齐地放进一个目录，而是把一堆文件直接散落在当前目录。比如你在 <code>~</code> 下解了一个数据集，结果 <code>~</code> 里突然多了 200 个 CSV 文件，跟你的其他文件混在一起——这就是所谓的 tar bomb。防它的方法很简单：解压前先用 <code>tar -tzf</code> 预览一眼。如果第一层是一堆文件名而不是一个统一的目录，你就知道要自己先建一个目录再解进去：</p>
+<p>坑 2：tar bomb。 有些压缩包解开后，不是整齐地放进一个目录，而是把一堆文件直接散落在当前目录。比如你在 <code>~</code> 下解了一个数据集，结果 <code>~</code> 里突然多了 200 个 CSV 文件，跟你的其他文件混在一起——这就是所谓的 tar bomb。防它的方法很简单：解压前先用 <code>tar -tzf</code> 预览一眼。如果第一层是一堆文件名而不是一个统一的目录，你就知道要自己先建一个目录再解进去：</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">mkdir dataset && tar -xzf data.tar.gz -C dataset/</span></code></pre>
 
-<p><strong>坑 3：覆盖不提示。</strong> 解压时如果目标位置已经有同名文件，tar 会<strong>直接覆盖</strong>，不问你、不警告。不像图形界面会弹一个“文件已存在，是否替换？”的对话框。所以在解压到一个可能有同名文件的目录之前，先想清楚——或者先 <code>tar -tzf</code> 看看包里有哪些文件。</p>
+<p>坑 3：覆盖不提示。 解压时如果目标位置已经有同名文件，tar 会直接覆盖，不问你、不警告。不像图形界面会弹一个“文件已存在，是否替换？”的对话框。所以在解压到一个可能有同名文件的目录之前，先想清楚——或者先 <code>tar -tzf</code> 看看包里有哪些文件。</p>
 
 <p>最后，三个你可能会用到的实际命令，照着改路径就行：</p>
 

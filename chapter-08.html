@@ -221,14 +221,14 @@
     <h3 id="科研场景里常见的几个码">科研场景里常见的几个码</h3>
 
     <ul>
-      <li><strong>200 OK</strong>：请求成功，响应体里有你要的数据。</li>
-      <li><strong>400 Bad Request</strong>：请求格式不对，比如 JSON 少了一个逗号，或者参数类型错误。</li>
-      <li><strong>401 Unauthorized</strong>：没有提供凭证，或 API Key 无效。</li>
-      <li><strong>403 Forbidden</strong>：凭证有效，但权限不足，比如普通用户访问了管理员接口。</li>
-      <li><strong>404 Not Found</strong>：资源不存在，可能是 URL 拼错了。</li>
-      <li><strong>429 Too Many Requests</strong>：调用太频繁，被限流了。调用大模型 API 时很常见。</li>
-      <li><strong>500 Internal Server Error</strong>：服务器内部出错，通常是服务端代码抛了异常。</li>
-      <li><strong>502 Bad Gateway</strong>：反向代理后面的真实服务器没有正常响应，后面会讲到。</li>
+      <li>200 OK：请求成功，响应体里有你要的数据。</li>
+      <li>400 Bad Request：请求格式不对，比如 JSON 少了一个逗号，或者参数类型错误。</li>
+      <li>401 Unauthorized：没有提供凭证，或 API Key 无效。</li>
+      <li>403 Forbidden：凭证有效，但权限不足，比如普通用户访问了管理员接口。</li>
+      <li>404 Not Found：资源不存在，可能是 URL 拼错了。</li>
+      <li>429 Too Many Requests：调用太频繁，被限流了。调用大模型 API 时很常见。</li>
+      <li>500 Internal Server Error：服务器内部出错，通常是服务端代码抛了异常。</li>
+      <li>502 Bad Gateway：反向代理后面的真实服务器没有正常响应，后面会讲到。</li>
     </ul>
 
     <p>遇到非 2xx 的状态码，先别急着重试。读一下响应体里的错误信息，往往能定位问题。</p>

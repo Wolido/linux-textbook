@@ -330,7 +330,7 @@ S003|王磊</span>
 
     <p>用来唯一标识一行记录的字段叫主键（Primary Key）。在我们的例子里，<code>sample_id</code> 就是主键。它不能重复，也不能为空。一个样品不管有多少条测试记录，<code>sample_id</code> 永远是它的“身份证号”。</p>
 
-    <p>外键（Foreign Key）则是指向另一张表主键的字段。比如 <code>measurements</code> 表里可以有一列 <code>sample_id</code>，它的值必须对应 <code>samples</code> 表里某个真实存在的 <code>sample_id</code>。外键约束能防止你插入一条“属于不存在样品”的测试记录，但<strong>SQLite 默认并不启用外键检查</strong>，需要手动开启。</p>
+    <p>外键（Foreign Key）则是指向另一张表主键的字段。比如 <code>measurements</code> 表里可以有一列 <code>sample_id</code>，它的值必须对应 <code>samples</code> 表里某个真实存在的 <code>sample_id</code>。外键约束能防止你插入一条“属于不存在样品”的测试记录，但 SQLite 默认并不启用外键检查，需要手动开启。</p>
 
     <figure>
       <img src="assets/images/chapter-10/fig-10.2-join-relationship.svg" alt="主外键关系与 JOIN 示意">

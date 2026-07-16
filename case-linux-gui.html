@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>延伸阅读：Linux 的图形界面：不只是命令行的反面 - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">目录</a></li>
+        <li><a href="preface.html">序言</a></li>
+        <li>
+          <a href="chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的“乐高”</a></li>
+            <li><a href="chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="chapter-03.html#用包管理器安装软件">用包管理器安装软件</a></li>
+            <li><a href="chapter-03.html#从源码或其他方式安装">从源码或其他方式安装</a></li>
+            <li><a href="chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-04.html">第四章 Linux 好用的工具</a>
+        </li>
+        <li>
+          <a href="chapter-05.html">第五章 Git</a>
+        </li>
+
+        <li>
+          <a href="chapter-06.html">第六章 Vim 文本编辑器</a>
+        </li>
+        <li>
+          <a href="chapter-07.html">第七章 网络基础</a>
+        </li>
+        <li>
+          <a href="chapter-08.html">第八章 Web 与 API</a>
+        </li>
+        <li>
+          <a href="chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="extended-reading.html">延伸阅读</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+<h1 id="linux的图形界面不只是命令行的反面">Linux 的图形界面：不只是命令行的反面</h1>
+<p>第二章一上来就讲命令行，可能会让你觉得：Linux 的世界是不是就只有黑底白字的终端？其实不然。Linux 不仅有图形界面，而且它的图形界面历史相当丰富，选择也相当多。只不过对于服务器和科研计算来说，命令行更常用，所以本书才以命令行为主线。这篇文章作为补充，带你看看 Linux 桌面的另一面。</p>
+
+<h2 id="图形界面不是命令行的替代品而是另一种工具">图形界面不是命令行的替代品，而是另一种工具</h2>
+<p>很多初学者会把 GUI 和 CLI 对立起来，仿佛会了命令行就不需要鼠标，或者习惯了图形界面就永远进不了终端。其实两者更像是螺丝刀和扳手：有的螺丝只能用螺丝刀拧，有的螺母只能用扳手拆，真正干活的人往往两个都在工具箱里。</p>
+<p>图形界面的长处很直观。它用图标、菜单、窗口把程序的功能摆在眼前，你不需要记住命令的名字和参数，点点鼠标就能完成操作。第一次接触一台新电脑、预览图片、整理文件夹、写文档、浏览网页，GUI 通常更顺手。它的学习曲线更像“爬坡”：一开始很容易，越往后越发现自己的动作被鼠标限制住了。</p>
+<p>命令行则相反。刚看过去黑漆漆一片，连从哪下手都不知道；但一旦学会用几个基本命令组合，你就能批量处理文件、自动化任务、远程操作服务器。它的学习曲线像“下台阶”：开头陡，后面越走越宽。</p>
+
+<p>所以并不存在“真正的高手只用命令行”或者“Linux 用户必须抛弃鼠标”这种说法。Linux 的图形界面不是命令行的反面，而是同一张桌子上的另一把椅子。你坐哪把，取决于你要干什么。</p>
+<p>所以并不存在“真正的高手只用命令行”或者“Linux 用户必须抛弃鼠标”这种说法。Linux 的图形界面不是命令行的反面，而是同一张桌子上的另一把椅子。你坐哪把，取决于你要干什么。</p>
+
+<h2 id="linux图形界面的骨架x11与wayland">Linux 图形界面的骨架：X11 与 Wayland</h2>
+<p>打开 Linux 桌面时，你看到的是一个完整的桌面环境：壁纸、任务栏、开始菜单、窗口动画。但这些看得见的东西下面，其实还有一层负责“画窗口”的基础设施。这层基础设施就像舞台的后台：观众看到的是演员和灯光，后台负责搭台、递道具、控制幕布。</p>
+<p>在 Linux 世界里，这个后台长期以来由 X11（也叫 X Window System）担当。X11 1984 年诞生于麻省理工学院，比 Linux 内核还早。它的设计思路是“客户端—服务器”：真正的图形程序（客户端）可以向 X 服务器请求“帮我画一个窗口”“把这个像素改成红色”。这种架构有个好处：程序和它显示的界面可以不在同一台机器上。你在 A 电脑上运行程序，却可以让 B 电脑负责显示。</p>
+<p>但 X11 毕竟太老了。它的安全模型、性能、对现代显卡和多触控的支持都有些力不从心。于是 Linux 社区从 2008 年开始设计 Wayland，目标是取代 X11。Wayland 更简单直接：程序自己负责画好自己的窗口，然后统一交给合成器（compositor）显示出来。少了中间商赚差价，动画更流畅，功耗也更低。</p>
+<p>不过，X11 积累了三十多年的生态，想一下子换掉并不容易。很多专业软件、屏幕录像工具、远程桌面方案都深度依赖 X11。所以直到现在，主流发行版有的默认 Wayland，有的默认 X11，有的让用户登录时自己选择。对初学者来说，知道有这两层骨架就够了：如果某天你的 Linux 桌面有点“怪”，比如某个老程序闪退、录屏软件不工作，可以考虑是不是在 X11 和 Wayland 之间切换一下试试。</p>
+
+<h2 id="桌面环境gnomekdeplasmaxfcematecinnamon等">桌面环境：GNOME、KDE Plasma、XFCE、MATE、Cinnamon 等</h2>
+<p>X11 或 Wayland 只负责“把窗口画出来”，但窗口长什么样、有没有开始菜单、任务栏放哪边、图标什么风格，这些由更上一层的桌面环境决定。Linux 的桌面环境有很多种，每一种都有自己的性格，像极了不同装修风格的房间。</p>
+<p>GNOME 是现在很多发行版的默认选择，比如 Fedora、Ubuntu（长期以来）。它的设计哲学是简洁：顶部一条状态栏，左侧一个 Activities 概览，剩下的空间尽量留给应用。有人喜欢它干净利落，也有人觉得它自定义选项太少。</p>
+<p>KDE Plasma 则是另一个极端。它提供了极其丰富的设置选项：任务栏可以放上下左右任意一边，窗口装饰、图标主题、启动器样式、小部件几乎全能改。如果你喜欢把桌面调到完全符合自己的习惯，KDE Plasma 会很有吸引力。它背后的 Qt 技术栈也让很多程序看起来精致统一。</p>
+<p>XFCE 走的是轻量路线。它的外观可能不如 GNOME 和 KDE 现代，但资源占用小、启动快，适合老电脑或者不想被桌面占用太多内存的人。很多 Raspberry Pi 用户或旧笔记本用户会选它。</p>
+<p>MATE 可以看作 GNOME 2 的精神续作。GNOME 3 改成现代风格后，一部分老用户怀念原来的经典双层面板布局，于是 MATE 项目把这些元素保留了下来。如果你从 Windows XP 时代过来，MATE 的界面会让你感到很亲切。</p>
+<p>Cinnamon 则是 Linux Mint 团队基于 GNOME 3 技术开发的一套桌面。它在现代外观和传统操作习惯之间找平衡：底部任务栏、开始菜单、系统托盘一应俱全，对从 Windows 转过来的用户特别友好。</p>
+<p>除了这些，还有 LXQt、Budgie、Deepin 桌面等等。Linux 桌面的“可替换性”正是它的魅力之一：不喜欢现在的风格？换一套就是了，通常不需要重装系统。</p>
+
+<h2 id="linux桌面发行版有哪些">Linux 桌面发行版有哪些</h2>
+<p>第一章已经介绍过发行版的概念。到了桌面领域，发行版的选择更加丰富。我们可以把它们粗略分成几类。</p>
+<p>面向新手的友好型发行版：Ubuntu、Linux Mint、Pop!_OS、Zorin OS。这些发行版安装简单，驱动和常用软件预装得比较全，社区也大。第一次安装 Linux 桌面，通常从它们开始最省心。</p>
+<p>面向技术爱好者的滚动更新发行版：Arch Linux、openSUSE Tumbleweed、Manjaro。滚动更新意味着你不需要每隔几年“升级大版本”，系统始终保持较新的软件。但这也意味着偶尔会遇到新软件带来的小麻烦，适合愿意折腾、爱学习的人。</p>
+<p>面向稳定性的长期支持发行版：Debian Stable、Ubuntu LTS、RHEL/CentOS Stream、openSUSE Leap。这些版本更新周期长，适合需要稳定环境的工作站或实验室电脑。本书实验环境里常用的 Debian 和 Ubuntu 就属于这一类。</p>
+<p>面向特定用途的发行版：Kali Linux 面向安全测试，SteamOS 面向游戏掌机，Raspberry Pi OS 面向树莓派。它们把通用发行版包上了一层针对场景的工具和配置。</p>
+<p>发行版和桌面环境并不是一一绑定的。比如 Ubuntu 默认用 GNOME，但也可以安装 Kubuntu（KDE 版 Ubuntu）、Xubuntu（XFCE 版 Ubuntu）。这种组合自由，是 Linux 桌面和 Windows、macOS 很不一样的地方。</p>
+
+<h2 id="linux桌面的现实为什么还没占领个人电脑">Linux 桌面的现实：为什么还没占领个人电脑</h2>
+<p>既然 Linux 桌面这么丰富，为什么我们在日常生活中看到的个人电脑大多还是 Windows 和 macOS？这是一个经常被讨论的问题。</p>
+<p>首先是历史惯性。Windows 从 1990 年代起就和 PC 硬件绑定销售，企业和学校的软件生态、使用习惯、IT 支持流程都是围绕 Windows 建立的。macOS 则依托苹果完整的硬件生态。Linux 桌面起步晚，又分散成很多发行版，没有一家商业公司拥有足够资源去统一推广。</p>
+<p>其次是软件生态。主流办公套件、专业设计软件、大型商业游戏在 Windows 和 macOS 上的支持仍然更完善。虽然 Linux 上有 LibreOffice、GIMP、Blender、Steam 等优秀替代品，但某些行业软件确实没有 Linux 版本，或者需要通过兼容层运行。</p>
+<p>第三是碎片化。Linux 桌面百花齐放是优点，也是缺点。软件开发者要面对不同的发行版、不同的库版本、不同的打包格式（deb、rpm、AppImage、Flatpak、Snap），测试成本比 macOS 或 Windows 高不少。</p>
+<p>不过，Linux 桌面一直在进步。Valve 的 Steam Deck 掌机让 Linux 游戏性能大幅提升；WSL 让 Windows 用户也能方便地接触 Linux；很多开发者、科研工作者、数据科学家本身就长期在 Linux 桌面上工作。它或许不会“占领”个人电脑，但它已经稳稳占据了一个不可或缺的位置。</p>
+
+<h2 id="远程图形界面x11转发vncrdp等">远程图形界面：X11 转发、VNC、RDP 等</h2>
+<p>第二章讲远程连接时，主要说的是 SSH 命令行。但有时候，你确实需要在远程服务器上跑一个带图形界面的程序，比如远程打开一个可视化工具、调试一个需要窗口的应用。这时候就需要远程图形界面技术。</p>
+<p>X11 转发是最“Linux 原生”的方案。因为 X11 本来就是客户端—服务器架构，SSH 可以把它套上一层加密隧道：程序在远程服务器上运行，窗口却显示在你的本地电脑上。你只需要在 SSH 命令里加 <code>-X</code> 或 <code>-Y</code>：</p>
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ssh -X student@gpu-lab01</span></code></pre>
+<p>登录后运行图形程序，窗口就会像本地程序一样弹出来。不过 X11 转发对网络延迟比较敏感，而且 Wayland 环境下支持不如 X11 完善。</p>
+<p>VNC（Virtual Network Computing）则是把完整桌面画面传过来。你在服务器上运行一个 VNC 服务器，本地用 VNC 客户端连接，就像坐在服务器显示器前一样。它适合需要完整桌面、而不是单个窗口的场景，但画面压缩和延迟通常比 X11 转发明显。</p>
+<p>RDP（Remote Desktop Protocol）是微软开发的远程桌面协议，但 Linux 上也有 xrdp 等实现。Windows 用户远程连接 Linux 桌面时，RDP 常常最顺手，因为 Windows 自带远程桌面客户端。</p>
+<p>总的来说：单个 Linux 图形程序用 X11 转发；需要完整桌面用 VNC；从 Windows 连过来用 RDP 最方便。</p>
+
+<h2 id="wslgwindows用户跑linux图形程序">WSLg：Windows 用户跑 Linux 图形程序</h2>
+<p>如果你用的是 Windows 10/11，又不想装双系统或虚拟机，微软提供了一个很巧妙的方案：WSL（Windows Subsystem for Linux）。WSL 让你在 Windows 里运行一个 Linux 环境，最初只有命令行，后来加入了 WSLg，支持直接运行 Linux 图形程序。</p>
+<p>WSLg 的原理大致是：Windows 上跑一个基于 Wayland 的显示服务器，Linux 子系统里的图形程序把画面交给它，它再整合进 Windows 桌面。对你来说，体验就是：在 WSL 终端里敲下 <code>gimp</code> 或 <code>firefox</code>，一个 Linux 程序的窗口就出现在 Windows 任务栏里，和原生 Windows 窗口并排摆放。</p>
+<p>这对学习 Linux 的人来说非常友好。你可以继续用熟悉的 Windows 桌面和 Office，同时在 WSL 里练习命令行、跑 Python 脚本、使用 Linux 下的科研工具。等以后需要真正的 Linux 服务器或桌面时，再迁移也更容易。</p>
+<p>当然，WSL 不是完整的 Linux。它共享 Windows 内核的一部分，性能和兼容性跟原生 Linux 有差距。但对“想先试试 Linux 图形程序”的人来说，它已经足够好用。</p>
+
+<h2 id="总结怎么选">总结：怎么选</h2>
+<p>学了这一章，你可能会问：我到底该用 Linux 桌面，还是坚持命令行？答案是：看场景，也可以两者都用。</p>
+<ul>
+  <li>如果你的主要需求是服务器管理、批量数据处理、远程计算、自动化脚本，命令行仍然是最高效的选择。</li>
+  <li>如果你希望日常办公、浏览网页、写文档、偶尔跑一些可视化工具，现代 Linux 桌面完全可以胜任。</li>
+  <li>如果你还不确定，可以先在 Windows 上通过 WSLg 体验 Linux 命令行和图形程序，再决定是否装一台真正的 Linux 桌面。</li>
+  <li>如果你决定尝试 Linux 桌面，可以从 Ubuntu、Linux Mint 或 Fedora 开始，搭配默认桌面环境即可。</li>
+</ul>
+<p>Linux 最大的特点从来不是“必须用命令行”，而是“你可以自己决定用什么”。图形界面和命令行都是这条路上的选项，选对了工具，路才会好走。</p>
+
+    <footer class="page-footer">
+      <div class="next">
+        <span class="label">下一章</span>
+        <a href="index.html">返回目录</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

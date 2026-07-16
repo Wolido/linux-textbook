@@ -109,7 +109,7 @@
 
     <p>做科研的人几乎都遇到过这样的场景：论文改到第七版，文件名已经从 <code>paper.tex</code> 变成 <code>paper_v3_final_导师修改_真的最终版.tex</code>；训练模型的脚本昨天还能跑，今天加了点新功能，上个月那个能复现结果的版本却找不到了；课题组三个人同时改一份代码，最后谁也不知道谁改了什么，只能靠微信群里的文件传输助手“合并”。</p>
 
-    <p>这些问题有一个共同的名字：<strong>版本控制</strong>。Git 就是目前最流行的版本控制工具。它不是只为程序员准备的——AI 训练脚本、LaTeX 论文、材料模拟输入文件、实验数据处理方法，所有会变化的东西都可以交给 Git 管理。学会了它，你就拥有了一台“时间机器”和一个“协作工作台”。</p>
+    <p>这些问题有一个共同的名字：版本控制。Git 就是目前最流行的版本控制工具。它不是只为程序员准备的——AI 训练脚本、LaTeX 论文、材料模拟输入文件、实验数据处理方法，所有会变化的东西都可以交给 Git 管理。学会了它，你就拥有了一台“时间机器”和一个“协作工作台”。</p>
 
     <h2 id="为什么科研离不开版本控制">为什么科研离不开版本控制？</h2>
 
@@ -149,15 +149,15 @@
 
     <h3 id="仓库项目的快照档案馆">仓库：项目的快照档案馆</h3>
 
-    <p>Git 管理项目的基本单位叫<strong>仓库</strong>（repository，常简写成 repo）。一个仓库就是一个被 Git 盯上的目录——它可以是你的毕业论文文件夹，也可以是一个 AI 训练项目文件夹。</p>
+    <p>Git 管理项目的基本单位叫仓库（repository，常简写成 repo）。一个仓库就是一个被 Git 盯上的目录——它可以是你的毕业论文文件夹，也可以是一个 AI 训练项目文件夹。</p>
 
     <p>仓库里有一个隐藏的 <code>.git</code> 目录，那是 Git 的“档案馆”。你提交过的每一次修改、每一个分支、每一条历史记录，都存放在那里。只要不删除 <code>.git</code>，你随时能回到过去任何一个状态。</p>
 
-    <p>仓库分两种：<strong>本地仓库</strong>存在你自己的机器上，<strong>远程仓库</strong>存在服务器上（比如 GitHub、GitLab、课题组自建的 Gitea）。本地仓库让你自己管理版本，远程仓库让你和别人共享。后面几节我们会分别讲怎么用。</p>
+    <p>仓库分两种：本地仓库存在你自己的机器上，远程仓库存在服务器上（比如 GitHub、GitLab、课题组自建的 Gitea）。本地仓库让你自己管理版本，远程仓库让你和别人共享。后面几节我们会分别讲怎么用。</p>
 
     <h3 id="提交一次有留言的存档">提交：一次有留言的存档</h3>
 
-    <p>Git 把每次保存称为一次<strong>提交</strong>（commit）。你可以把它理解为游戏里的存档点：你走到某个关键位置，存一下档，写一句备注“打完第一关 boss”，以后随时能读这个档。</p>
+    <p>Git 把每次保存称为一次提交（commit）。你可以把它理解为游戏里的存档点：你走到某个关键位置，存一下档，写一句备注“打完第一关 boss”，以后随时能读这个档。</p>
 
     <p>但 Git 的提交比游戏存档更强大。每次提交都会记录：当时所有被跟踪文件的内容、提交的时间、提交者的名字，以及一段你自己写的说明文字。这些内容组合起来，构成一个唯一的哈希值——一长串看起来像乱码的字符，比如 <code>a1b2c3d</code>。这个哈希值就是这次提交的身份证号。</p>
 
@@ -176,9 +176,9 @@
     <p>Git 管理文件时，把文件分成三个层次：工作区、暂存区、版本库。理解这三层，是学会 Git 的关键。</p>
 
     <ul>
-      <li><strong>工作区</strong>（Working Directory）就是你看到的文件。你在编辑器里改 <code>train.py</code>，改的就是工作区里的文件。</li>
-      <li><strong>暂存区</strong>（Staging Area，也叫 Index）是一个中间台。你改完文件后，用 <code>git add</code> 告诉 Git“这些改动我准备提交了”，改动就被放到暂存区。</li>
-      <li><strong>版本库</strong>（Repository）是 <code>.git</code> 目录里保存的所有历史。你执行 <code>git commit</code> 后，暂存区的内容会被永久写入版本库，成为一次新的提交。</li>
+      <li>工作区（Working Directory）就是你看到的文件。你在编辑器里改 <code>train.py</code>，改的就是工作区里的文件。</li>
+      <li>暂存区（Staging Area，也叫 Index）是一个中间台。你改完文件后，用 <code>git add</code> 告诉 Git“这些改动我准备提交了”，改动就被放到暂存区。</li>
+      <li>版本库（Repository）是 <code>.git</code> 目录里保存的所有历史。你执行 <code>git commit</code> 后，暂存区的内容会被永久写入版本库，成为一次新的提交。</li>
     </ul>
 
     <p>为什么要多一个暂存区？因为它让你可以精挑细选。比如你同时改了三个文件：一个修复了 bug，一个加了新功能，一个只是顺手调整了格式。你可以先 <code>git add</code> 修复 bug 的那个文件并提交，再 <code>git add</code> 新功能文件并提交。这样每次提交只做一件事，历史记录就特别清楚。</p>
@@ -429,7 +429,7 @@ index 3a4b5c6..7d8e9f0 100644
 
     <p>人总会犯错。你改了一堆代码，发现方向不对，想回到之前某个干净的状态。Git 提供了几种不同程度的撤销方式。</p>
 
-    <p><strong>场景一：改乱了工作区，还没 add。</strong></p>
+    <p>场景一：改乱了工作区，还没 add。</p>
 
     <p>你编辑了 <code>train.py</code>，越改越乱，想恢复到上次提交后的样子：</p>
 
@@ -438,7 +438,7 @@ index 3a4b5c6..7d8e9f0 100644
 
     <p>这条命令会用暂存区（或最近一次提交）里的版本覆盖工作区的文件。注意：你这次修改的内容会丢失，所以用之前要确定真的不要了。</p>
 
-    <p><strong>场景二：已经 add 到暂存区，但还没 commit。</strong></p>
+    <p>场景二：已经 add 到暂存区，但还没 commit。</p>
 
     <p>你把文件加进了暂存区，但突然想再改一改。把文件从暂存区撤出来，但不改工作区的内容：</p>
 
@@ -447,7 +447,7 @@ index 3a4b5c6..7d8e9f0 100644
 
     <p>现在 <code>train.py</code> 回到了“已修改但未暂存”的状态，你可以继续编辑。</p>
 
-    <p><strong>场景三：已经 commit，想回到某个历史版本。</strong></p>
+    <p>场景三：已经 commit，想回到某个历史版本。</p>
 
     <p>如果你只是想看看以前某个版本的样子，不想破坏现在的工作：</p>
 
@@ -471,7 +471,7 @@ index 3a4b5c6..7d8e9f0 100644
 
     <p>远程仓库（remote repository）是存在另一台机器上的 Git 仓库。它可以是 GitHub、GitLab、Gitea 这类托管平台，也可以是你们课题组自己的服务器。</p>
 
-    <p>本地仓库和远程仓库之间可以互相同步。你把自己本地的提交<strong>推</strong>（push）到远程，也可以把远程的新提交<strong>拉</strong>（pull）到本地。远程仓库就像项目的“官方备份”和“交换中心”。</p>
+    <p>本地仓库和远程仓库之间可以互相同步。你把自己本地的提交推（push）到远程，也可以把远程的新提交拉（pull）到本地。远程仓库就像项目的“官方备份”和“交换中心”。</p>
 
     <h3 id="把本地仓库推上去">把本地仓库推上去</h3>
 
@@ -541,7 +541,7 @@ branch 'main' set up to track 'origin/main'.</span>
 
     <h2 id="分支安全地试错">分支：安全地试错</h2>
 
-    <p>分支是 Git 的灵魂。前面几节我们一直在 <code>main</code> 分支上工作，这是仓库的默认主干。但真正做项目时，你应该养成一个新习惯：<strong>不要在 main 上直接做实验</strong>。</p>
+    <p>分支是 Git 的灵魂。前面几节我们一直在 <code>main</code> 分支上工作，这是仓库的默认主干。但真正做项目时，你应该养成一个新习惯：不要在 main 上直接做实验。</p>
 
     <h3 id="为什么要开分支">为什么要开分支</h3>
 
@@ -600,7 +600,7 @@ Fast-forward
 
     <h3 id="冲突来了怎么办">冲突来了怎么办</h3>
 
-    <p>合并并不总是顺利的。如果两个分支同时修改了同一个文件的同一处，Git 就不知道应该保留哪个版本，于是产生<strong>冲突</strong>（conflict）。</p>
+    <p>合并并不总是顺利的。如果两个分支同时修改了同一个文件的同一处，Git 就不知道应该保留哪个版本，于是产生冲突（conflict）。</p>
 
     <p>冲突发生时，Git 会停下来等你处理。被冲突标记的文件看起来像这样：</p>
 
@@ -629,7 +629,7 @@ Fast-forward
 
     <p>假设你发现课题组学长维护了一个叫 <code>materials-tools</code> 的开源工具包，地址在 <code>https://github.com/senior-lab/materials-tools</code>。你想给它加一个功能，但没有直接 push 权限。</p>
 
-    <p>在 GitHub 网页上点一下 <strong>Fork</strong> 按钮，GitHub 会把这个仓库完整复制一份到你的账户下，比如 <code>https://github.com/lihua/materials-tools</code>。这个复制出来的仓库归你所有，你可以随意修改。</p>
+    <p>在 GitHub 网页上点一下 Fork 按钮，GitHub 会把这个仓库完整复制一份到你的账户下，比如 <code>https://github.com/lihua/materials-tools</code>。这个复制出来的仓库归你所有，你可以随意修改。</p>
 
     <p>然后把它克隆到本地：</p>
 
@@ -662,7 +662,7 @@ Fast-forward
 
     <p>原仓库的维护者收到 PR 后，会审查你的代码。他们可能直接在 PR 下留言，指出问题或提出建议。你可以在本地继续修改，然后 push 到同一个分支，PR 会自动更新。</p>
 
-    <p>审查通过后，维护者点一下 <strong>Merge pull request</strong>，你的改动就进入原仓库了。整个流程见图 5.5。</p>
+    <p>审查通过后，维护者点一下 Merge pull request，你的改动就进入原仓库了。整个流程见图 5.5。</p>
 
     <figure>
       <img src="assets/images/chapter-05/fig-5.5-fork-pr-merge-flow.svg" alt="Fork、Pull Request 与合并协作流程">
@@ -698,7 +698,7 @@ Fast-forward
 
     <h3 id="用标签标记重要节点">用标签标记重要节点</h3>
 
-    <p>论文投稿、模型发布、实验截止——这些重要时刻，应该用一个<strong>标签</strong>（tag）标记出来。标签就是给某个提交起一个好记的名字，比如 <code>v1.0</code>、<code>paper-submission</code>、<code>icml-rebuttal</code>。</p>
+    <p>论文投稿、模型发布、实验截止——这些重要时刻，应该用一个标签（tag）标记出来。标签就是给某个提交起一个好记的名字，比如 <code>v1.0</code>、<code>paper-submission</code>、<code>icml-rebuttal</code>。</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git tag -a v1.0 -m "论文初稿投稿版本"</span>
 <span class="prompt">student@debian:~/battery-ml$</span> <span class="command">git push origin v1.0</span>
@@ -722,7 +722,7 @@ Fast-forward
 
     <h3 id="备份策略本地远程定期">备份策略：本地 + 远程 + 定期</h3>
 
-    <p>Git 不是备份软件，但它能帮你实现很好的备份策略。最基本的原则是：<strong>本地有仓库，远程也有仓库，并且定期 push</strong>。</p>
+    <p>Git 不是备份软件，但它能帮你实现很好的备份策略。最基本的原则是：本地有仓库，远程也有仓库，并且定期 push。</p>
 
     <p>一个稳妥的科研 workflow 是这样的：</p>
 

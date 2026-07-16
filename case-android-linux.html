@@ -94,28 +94,28 @@
 
   <main class="main-content">
 <h1 id="android是不是linux">Android 是不是 Linux？</h1>
-<p>如果你去网上搜索“Android 是不是 Linux”，通常会得到两种截然相反的答案：有人说是，因为 Android 确实用了 Linux 内核；也有人说不是，因为 Android 跟我们在电脑上用的 Linux 完全不一样。这两种说法其实都没错，只是它们说的“Linux”不是同一个意思。</p>
+<p>如果你上网搜“Android 是不是 Linux”，通常会看到两种相反的答案：有人说是，因为 Android 确实用了 Linux 内核；也有人说不是，因为 Android 跟电脑上装的 Ubuntu、Fedora 完全不是一回事。两种说法都没错，区别只在于它们说的“Linux”是不是同一个意思。</p>
 
 <h2 id="android用了linux内核">Android 用了 Linux 内核</h2>
-<p>从最底层看，Android 确实是基于 Linux 内核的。Google 从 Linux Kernel 源码出发，针对移动设备做了不少修改：电源管理、内存管理、驱动模型、触摸屏和传感器支持，都有 Android 自己的一套东西。但内核的核心机制，比如进程调度、文件系统、网络协议栈，仍然来自 Linux。</p>
-<p>Google 选择 Linux 内核是有实际考虑的。Linux 已经能运行在大量不同架构的硬件上，开源、免费、网络协议栈成熟，而且拥有一整套成熟的驱动生态。对于需要快速适配五花八门手机芯片的 Android 来说，Linux 是一个现成的、可靠的地基。</p>
-<p>所以，如果“Linux”指的是 Linux 内核，那么 Android 毫无疑问是 Linux 的一个变体。</p>
+<p>从最底层看，Android 确实是基于 Linux 内核的。Google 从 Linux Kernel 源码出发，针对移动设备做了不少修改：电源管理、内存管理、驱动模型、触摸屏和传感器支持，都有自己的一套。但内核里最核心的机制，比如进程调度、文件系统、网络协议栈，仍然来自 Linux。</p>
+<p>Google 选 Linux 是有实际考虑的。Linux 已经能跑在各种不同架构的硬件上，开源、免费、网络协议栈成熟，还有一整套驱动生态。对于需要快速适配五花八门手机芯片的 Android 来说，Linux 是一个现成又可靠的地基。</p>
+<p>所以，如果“Linux”指的是 Linux 内核，那 Android 毫无疑问是 Linux 的一个变体。</p>
 
 <h2 id="但用户空间完全不同">但用户空间完全不同</h2>
-<p>我们平时说的 Ubuntu、Fedora、Debian 这些 Linux 发行版，除了内核，还包括一整套 GNU 工具链：Bash、GCC、Glibc 等等。它们的应用程序运行在 X11 或 Wayland 图形环境上，包管理用 apt、dnf 或 pacman，遵循的是类 Unix 的传统结构。</p>
-<p>Android 完全不是这样。它不用 GNU 工具链，而是用 Bionic C 库；不用 X11 或 Wayland，而是自己的 SurfaceFlinger 图形系统；不用 apt 或 dnf，而是 APK 安装包和 Google Play 生态。Android 的应用运行在 ART（Android Runtime）之上，开发者写 Java 或 Kotlin，而不是直接调用 Linux 的系统调用。</p>
-<p>Android 还有自己独立的硬件抽象层（HAL）。在典型 Linux 发行版里，驱动通常直接和内核打交道；而在 Android 里，Google 通过 HAL 把硬件访问封装成标准接口，这样手机厂商既可以使用专有驱动，又能保证上层框架的统一。这一套架构让 Android 能够同时照顾开放性和商业化需求，但也让它和 GNU/Linux 越走越远。</p>
+<p>我们平时说的 Ubuntu、Fedora、Debian 这些 Linux 发行版，除了内核，还包括一整套 GNU 工具链：Bash、GCC、Glibc 等等。应用程序跑在 X11 或 Wayland 图形环境上，包管理用 apt、dnf 或 pacman，遵循的是类 Unix 的传统结构。</p>
+<p>Android 完全不一样。它不用 GNU 工具链，而用 Bionic C 库；不用 X11 或 Wayland，而用自己的 SurfaceFlinger 图形系统；不用 apt 或 dnf，而用 APK 安装包和 Google Play 生态。Android 的应用跑在 ART（Android Runtime）之上，开发者写 Java 或 Kotlin，而不是直接调用 Linux 的系统调用。</p>
+<p>Android 还有自己独立的硬件抽象层 HAL。在典型 Linux 发行版里，驱动通常直接和内核打交道；而在 Android 里，Google 通过 HAL 把硬件访问封装成标准接口，这样手机厂商既能用专有驱动，又能保证上层框架统一。这套架构让 Android 兼顾了开放性和商业化，但也让它和 GNU/Linux 越走越远。</p>
 
 <h2 id="linux的两层含义">Linux 的两层含义</h2>
-<p>这就是为什么关于 Android 是不是 Linux 会有争论。这个词在不同语境下有两层含义：</p>
+<p>所以关于 Android 是不是 Linux 的争论，其实是语义之争。这个词在不同语境下有两层意思：</p>
 <ul>
   <li>狭义上，Linux 指 Linux 内核。按这个定义，Android 基于 Linux。</li>
-  <li>广义上，Linux 指以 Linux 内核加 GNU 工具链构成的完整操作系统，也就是常说的 GNU/Linux。按这个定义，Android 不是典型的 Linux 发行版。</li>
+  <li>广义上，Linux 指 Linux 内核加 GNU 工具链构成的完整操作系统，也就是常说的 GNU/Linux。按这个定义，Android 不是典型的 Linux 发行版。</li>
 </ul>
 
 <h2 id="结论怎么说最准确">结论：怎么说最准确</h2>
-<p>最稳妥的说法是：Android 基于 Linux 内核，但它不是 Linux 发行版，也不是 GNU/Linux 系统。它借用了 Linux 内核的底层能力，却构建了一个完全不同的用户空间和应用生态。</p>
-<p>Google 官方的态度也很能说明问题。Android 的开放源代码项目叫 AOSP（Android Open Source Project），它明确把自己和 Linux 发行版区分开来。AOSP 包含 Linux 内核，但更大头是 Android 自己的框架、库和运行时。</p>
+<p>最稳妥的说法是：Android 基于 Linux 内核，但它不是 Linux 发行版，也不是 GNU/Linux 系统。它借用了 Linux 内核的底层能力，却搭了一个完全不同的用户空间和应用生态。</p>
+<p>Google 官方的态度也很能说明问题。Android 的开放源代码项目叫 <a href="https://android.googlesource.com/">AOSP</a>（Android Open Source Project），它明确把自己和 Linux 发行版区分开来。AOSP 里包含 Linux 内核，但更大头是 Android 自己的框架、库和运行时。</p>
 <p>下次再有人为这个问题争论，你可以直接告诉他：争的不是事实，而是定义。</p>
 
     <footer class="page-footer">

@@ -7,7 +7,6 @@
 - 不再依赖 MkDocs 或任何构建工具，所有页面均为可直接打开的静态 HTML。
 - 教材页面存放在项目根目录，样式与脚本分别位于 `assets/css/` 与 `assets/js/`。
 - 图片资源统一存放在 `assets/images/`。
-- 旧版 Markdown/MkDocs 源文件已归档至 `archive/` 目录，仅作历史备份。
 
 ## 文件结构
 
@@ -22,7 +21,6 @@ Linux操作系统与数据库教材/
 │   ├── css/style.css       # 全局样式
 │   ├── js/nav.js           # 导航与高亮脚本
 │   └── images/             # 图片资源
-├── archive/                # 历史归档（Markdown/MkDocs 源文件）
 └── README.md               # 本说明
 ```
 

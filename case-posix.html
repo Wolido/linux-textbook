@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>延伸阅读：POSIX 是什么？ - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="index.html">目录</a></li>
+        <li><a href="preface.html">序言</a></li>
+        <li>
+          <a href="chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的“乐高”</a></li>
+            <li><a href="chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="chapter-03.html#用包管理器安装软件">用包管理器安装软件</a></li>
+            <li><a href="chapter-03.html#从源码或其他方式安装">从源码或其他方式安装</a></li>
+            <li><a href="chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="chapter-04.html">第四章 Linux 好用的工具</a>
+        </li>
+        <li>
+          <a href="chapter-05.html">第五章 Git</a>
+        </li>
+
+        <li>
+          <a href="chapter-06.html">第六章 Vim 文本编辑器</a>
+        </li>
+        <li>
+          <a href="chapter-07.html">第七章 网络基础</a>
+        </li>
+        <li>
+          <a href="chapter-08.html">第八章 Web 与 API</a>
+        </li>
+        <li>
+          <a href="chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="extended-reading.html">延伸阅读</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+<h1 id="posix是什么">POSIX 是什么？</h1>
+<p>一句话：POSIX 是一套“操作系统的通用接口规范”。它规定了操作系统应该提供哪些命令、文件路径、系统调用和编程接口，让程序在不同系统之间更容易移植。Linux 和 macOS 看起来很像，很大程度上就是因为它们都遵循了 POSIX。</p>
+
+<h2 id="全称与含义">全称与含义</h2>
+<p>POSIX 的全称是 Portable Operating System Interface，中文常译为“可移植操作系统接口”。名字里的 X 来自 UNIX，读作 /ˈpɒzɪks/，习惯上直接叫“POSIX”。</p>
+<p>注意，POSIX 本身不是一个操作系统，也不是某个具体软件。它更像一本“约定手册”：如果你希望自己的系统长得像 Unix、能被 Unix 程序员熟悉，那就应该按照这本手册来实现命令和接口。</p>
+
+<h2 id="历史背景unix分化后为什么需要统一接口">历史背景：Unix 分化后为什么需要统一接口</h2>
+<p>上世纪 70 年代，Unix 诞生后很快流行起来。但因为源代码授权给多家公司和大学，大家各自改造，逐渐分化出 System V、BSD、SunOS、AIX、HP-UX 等许多版本。</p>
+<p>问题随之而来：同样一段 C 程序，在 A 家的 Unix 上能编译运行，到了 B 家的 Unix 上可能就报错；同一个 Shell 脚本，在这台服务器上正常，换到另一台就行为不同。每个系统都加了各自的“小扩展”，程序员苦不堪言。</p>
+<p>为了结束这种混乱，IEEE 在 1988 年推出了 IEEE Std 1003 标准，后来被称为 POSIX。它的目标很简单：定义一套大家共同遵守的最小接口集合。只要系统符合 POSIX，软件就不需要为每个 Unix 变体单独重写。</p>
+
+<h2 id="主要内容命令文件系统进程线程与信号">主要内容：命令、文件系统、进程、线程与信号</h2>
+<p>POSIX 的内容很多，初学者不需要背下来，但要知道它大概覆盖了哪些方面：</p>
+<ul>
+  <li>Shell 与常用命令： 规定了 <code>ls</code>、<code>cd</code>、<code>grep</code>、<code>awk</code>、<code>ps</code> 等命令的基本行为，以及管道 <code>|</code>、重定向 <code>&gt;</code>、环境变量、脚本语法等。</li>
+  <li>文件系统路径： 规定以 <code>/</code> 为根目录，<code>/bin</code>、<code>/etc</code>、<code>/home</code>（或 <code>/Users</code>）等目录的含义，以及路径分隔符、文件权限模型。</li>
+  <li>进程管理： 规定进程如何创建（<code>fork</code>）、替换（<code>exec</code>）、等待（<code>wait</code>）、退出并返回状态码，以及 <code>ps</code>、<code>kill</code> 等命令。</li>
+  <li>线程： POSIX 线程（Pthreads）定义了跨系统的多线程编程接口，比如创建线程、加锁、条件变量等。</li>
+  <li>信号： 规定进程间如何用信号通信，例如 <code>SIGINT</code>（Ctrl+C）、<code>SIGTERM</code>、<code>SIGKILL</code> 的含义和默认处理方式。</li>
+  <li>系统调用与 C 语言接口： 规定打开文件（<code>open</code>）、读写（<code>read</code>/<code>write</code>）、关闭（<code>close</code>）、创建管道（<code>pipe</code>）等函数的原型和行为。</li>
+</ul>
+<p>可以把 POSIX 理解为 Unix 世界的“普通话”：只要大家会说这种话，交流就不会太费劲。</p>
+
+<h2 id="与linuxmacos和windows的关系">与 Linux、macOS 和 Windows 的关系</h2>
+<p>POSIX 不是某个系统的专属标准，而是一把尺子，用来衡量一个系统“像不像 Unix”。</p>
+<ul>
+  <li>Linux： Linux 内核加上 GNU 工具链后，基本符合 POSIX。这也是 Linux 发行版能直接运行大量 Unix 软件的原因。</li>
+  <li>macOS： macOS 通过了 UNIX 认证，自然也满足 POSIX。它的底层是 BSD 一脉，所以有些命令的选项和 GNU/Linux 略有不同，但大体接口一致。</li>
+  <li>Windows： Windows 本身不是 POSIX 系统，它的原生 API 完全不同。但 Windows 提供了 WSL（Windows Subsystem for Linux）、Cygwin、MSYS2 等兼容层，让你能在 Windows 上运行 POSIX 风格的命令和程序。</li>
+</ul>
+<p>所以，一个系统“符合 POSIX”并不意味着它跟 Linux 一模一样，而是说它提供了足够通用的接口，让熟悉 Linux/macOS 的人不会完全陌生。</p>
+
+<h2 id="实际意义为什么同样的命令和脚本能通用">实际意义：为什么同样的命令和脚本能通用</h2>
+<p>POSIX 最大的实际价值，就是“可移植性”。</p>
+<p>想象一下：你写了一个 Shell 脚本，里面用 <code>ls</code> 列文件、用 <code>grep</code> 过滤、用 <code>&gt;</code> 重定向输出、用 <code>$?</code> 判断上一条命令是否成功。只要这些用法都是 POSIX 标准支持的，你就可以把它从 Ubuntu 拷贝到 macOS，甚至拷贝到 FreeBSD，大概率都能跑。</p>
+<p>同样，用 C 语言调用 <code>open()</code>、<code>read()</code>、<code>fork()</code> 的程序，也更容易在不同 Unix-like 系统上编译。</p>
+<p>当然，POSIX 只规定了“共同底线”。很多系统还会提供自己的扩展，比如 GNU 版本的命令常常带额外选项，macOS 的 BSD 版本也有差异。写脚本时如果追求最强可移植性，最好使用 POSIX 标准里的通用写法，而不是某个发行版的专属扩展。</p>
+
+<h2 id="总结">总结</h2>
+<p>POSIX 是 Unix 世界的一本“共同约定”。它规定了 Shell 命令、文件路径、进程管理、线程、信号和系统调用等接口，让不同系统之间保持足够的相似性。</p>
+<p>Linux 和 macOS 的内核、血统完全不同，但你在它们终端里输入的命令却很像，正是因为它们都讲 POSIX 这门“普通话”。理解了 POSIX，你就能明白：操作系统之间的相似，不只是长得像，而是背后有一整套标准在支撑。</p>
+
+    <footer class="page-footer">
+      <div class="next">
+        <span class="label">下一章</span>
+        <a href="index.html">返回目录</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="assets/js/nav.js" defer></script>
+</body>
+</html>

@@ -119,6 +119,8 @@
 
 <p>当然，这并不是说图形界面一无是处。探索一个陌生的文件夹、预览图片、第一次接触某个软件时，鼠标和图标往往更直观。命令行与图形界面不是敌人，而是不同场景下的工具。GUI 适合探索，CLI 适合批量与复现。本书的重点放在 CLI，正是因为后面我们要处理的计算任务，大多属于批量与复现的范畴。</p>
 
+<p>如果你想了解 Linux 图形界面的完整面貌——它的底层架构、常见桌面环境、发行版选择以及远程图形界面的用法，可以参考延伸阅读<a href="case-linux-gui.html">Linux 的图形界面：不只是命令行的反面</a>。</p>
+
 <figure>
   <img src="assets/images/chapter-02/fig-2.1-cli-vs-gui.svg" alt="命令行 vs 图形界面对比图">
   <figcaption>图2.1 命令行 vs 图形界面</figcaption>
@@ -219,6 +221,46 @@
 
 <p>如果一切正常，你会看到当前目录下的文件列表。请记住：不是终端认识 <code>ls</code>，而是终端背后的 Shell 认识它。</p>
 
+<h3 id="内核操作系统的心脏和交警">内核：操作系统的心脏和交警</h3>
+
+<p>前面我们把内核比作了餐厅的后厨厨师，这个比喻能帮你记住“真正干活的是内核”，但内核的角色其实比一个厨师更复杂。它更像是整个城市的基础设施：发电厂、自来水厂、交通信号灯、道路网络，全都归它管。没有它，应用程序就像停在空地上的汽车，有油也跑不起来。</p>
+
+<p>内核是什么？ 内核（Kernel）是操作系统最核心、最底层的一层软件。它直接运行在硬件之上，负责把 CPU、内存、硬盘、网卡这些硬件资源管理起来，并给上层程序提供统一的访问接口。你看到的桌面、浏览器、Shell、Python 脚本，甚至本书后面要讲的 Docker 和数据库，最终都得通过内核才能真正使用硬件。</p>
+
+<p>内核的主要职责可以分成五大块：</p>
+<ul>
+  <li>进程管理： 决定现在让哪个程序使用 CPU。你在终端里同时运行训练脚本、听歌、后台下载文件，内核会快速在它们之间切换，让每个程序都觉得自己“独占”了 CPU。</li>
+  <li>内存管理： 给每个程序分配和回收内存，防止它们互相踩踏。如果物理内存不够用，内核还会把暂时不用的数据换到硬盘上的交换空间（swap），让系统不至于立刻崩溃。</li>
+  <li>文件系统： 帮你把硬盘上的 0 和 1 组织成文件和目录，并提供打开、读取、写入、删除等统一接口。不管你是存在机械硬盘、SSD 还是网络存储，内核都尽量让上层程序用同一套方式访问。</li>
+  <li>设备驱动： 让操作系统认识各种硬件：键盘、鼠标、显卡、网卡、打印机……每个硬件都有自己独特的“脾气”，驱动程序就是内核和硬件之间的翻译官。Linux 内核内置了大量驱动，所以插上常见硬件通常能直接工作。</li>
+  <li>网络栈： 处理数据包的发送和接收，把应用程序要传的数据打包成网络协议能识别的格式，再交给网卡发出去。你通过 SSH 登录服务器、浏览器访问网页，底层都依赖内核的网络栈。</li>
+</ul>
+
+<p>如果把计算机比作一家大公司，内核就是总经理办公室加后勤中心：它不但决定资源怎么分配，还亲自处理所有和“外面世界”（硬件、网络）打交道的事务。</p>
+
+<p>用户态与内核态</p>
+
+<p>为了安全和稳定，Linux 把程序运行分成两种状态。普通程序（比如你的 Python 脚本、浏览器、Shell 本身）运行在用户态，只能访问自己的内存和有限的资源；内核运行在内核态，拥有访问全部硬件和系统数据的权限。两者之间的边界就像银行柜台：客户（用户态）不能自己进金库拿钱，只能填单请求，柜员（内核）核实后再帮你操作。</p>
+
+<p>这种区分有两个好处。第一，一个程序崩溃通常只会影响它自己，不会把整个系统带崩。第二，用户程序不能随便读写其他程序的内存或修改关键系统配置，从而降低了恶意软件和误操作的风险。</p>
+
+<p>系统调用：用户程序请内核帮忙的“申请单”</p>
+
+<p>用户态程序需要内核帮忙时，会提交一张“申请单”，这张单子就叫系统调用（system call）。比如你想打开一个文件，Shell 会代表你发起一个 <code>open</code> 系统调用；你想创建一个新进程运行另一个程序，内核会收到 <code>fork</code>/<code>exec</code> 系统调用；你想通过网络发送数据，内核会处理 <code>send</code> 相关的调用。</p>
+
+<p>在命令行里，你输入的每条命令几乎都会触发一系列系统调用。以 <code>ls</code> 为例：Shell 找到 <code>/bin/ls</code> 后，请求内核把它加载成进程；内核分配内存、读取磁盘上的程序文件、安排 CPU 运行；<code>ls</code> 运行后又要通过系统调用打开目录、读取文件信息，再把结果返回给 Shell。整个过程快得你几乎察觉不到，但内核一直在背后忙碌。</p>
+
+<p>为什么初学者需要知道这些？</p>
+
+<p>了解内核不是为了让你去读几百万行 C 代码，而是为了在遇到下面这些情况时，知道问题大概出在哪一层：</p>
+<ul>
+  <li>命令到底在哪里执行？ 你敲的命令是 Shell 翻译的，但真正调度 CPU、读写磁盘、收发网络数据的是内核。</li>
+  <li>权限从哪里来？ 普通用户和 root 用户的区别，本质上是内核在检查你的身份后，决定允不允许你发起某些系统调用。所以提示符里的 <code>$</code> 和 <code>#</code>，背后是内核在把关。</li>
+  <li>为什么有些操作需要 root？ 修改系统配置、安装全局软件、监听 1024 以下的网络端口、直接访问某些硬件设备，这些都会触及内核的资源分配和安全边界，因此需要更高的权限。</li>
+</ul>
+
+<p>先建立这个意识就够了：命令行不是直接操作硬件，而是通过 Shell 向内核发请求。随着后面学习权限、网络、Docker 和数据库，你会越来越深刻地体会到内核在这张图景中的中心位置。</p>
+
 <h3 id="bash只是众多shell中的一种">Bash 只是众多 Shell 中的一种</h3>
 
 <p>Shell 不是某一个具体软件的名字，而是一类程序的统称。就像“浏览器”可以指 Chrome、Firefox、Safari 一样，Shell 也有很多种：sh、bash、zsh、fish……它们的大致职责相同，但语法细节、提示符样式和扩展功能各有差异。</p>
@@ -290,7 +332,7 @@
 
 <h3 id="bash配置文件bashrcbash_profileprofile">Bash 配置文件：<code>.bashrc</code>、<code>.bash_profile</code>、<code>.profile</code></h3>
 
-<p>每次 Bash 启动时，它都会去读取几个隐藏文件，把里面的设置加载进来。这些文件通常位于你的家目录下，文件名以点开头，所以 <code>ls</code> 默认看不到它们。最常被提到的有三个：</p>
+<p>每次 Bash 启动时，它都会去读取几个隐藏文件，把里面的设置加载进来。这些配置文件通常位于你的家目录下，文件名以点开头，所以 <code>ls</code> 默认看不到它们。最常被提到的有三个：</p>
 
 <ul>
 <li><code>.bashrc</code>：每次打开新的交互式 Shell（比如新开一个终端窗口）时读取。适合放别名、函数和每次都要生效的个性化设置。</li>
@@ -477,7 +519,7 @@ Host gpu
 
 <h2 id="文件系统从根目录开始的世界">文件系统：从 / 开始的世界</h2>
 
-<p>通过 SSH 登录到服务器后，你第一眼看到的提示符里总会有一个目录，比如 <code>~</code> 或 <code>~/project</code>。它们不是随便写在那里装饰，而是在告诉你：你现在站在文件系统的哪个角落。Linux 的文件系统看起来和 Windows 很不一样——没有 C 盘、D 盘，也没有“我的电脑”里那一排盘符。它是一棵从 <code>/</code> 开始的大树，所有文件和目录都挂在这棵树上。理解这棵树的基本结构，是你在命令行里不迷路的第一步。</p>
+<p>通过 SSH 登录到服务器后，你第一眼看到的提示符里总会有一个目录，比如 <code>~</code> 或 <code>~/project</code>。它们不是随便写在那里装饰，而是在告诉你：你现在站在文件系统的哪个角落。Linux 的文件系统看起来和 Windows 很不一样——没有 C 盘、D 盘，也没有“我的电脑”里那一排盘符。它是一棵从 <code>/</code> 开始的根目录大树，所有文件和目录都挂在这棵树上。理解这棵树的基本结构，是你在命令行里不迷路的第一步。</p>
 
 <h3 id="没有c盘一切从开始">没有 C 盘，一切从 <code>/</code> 开始</h3>
 
@@ -625,7 +667,7 @@ Host gpu
 <pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">rm README.md</span>
 <span class="prompt">student@debian:~/ai-materials$</span> <span class="command">rm -r experiments/2026/07</span></code></pre>
 
-<p>这里必须停下来强调一件严肃的事：<strong><code>rm</code> 删除的文件不会进回收站，也没有“撤销”按钮。</strong> 在 Linux 上，一旦 <code>rm</code> 执行成功，文件系统只是把这些数据标记为“可覆盖”，普通用户几乎不可能原样恢复。训练了一个星期的模型权重、跑了一个月的模拟结果，可能因为一条手滑的命令就永远消失。</p>
+<p>这里必须停下来强调一件严肃的事：<code>rm</code> 删除的文件不会进回收站，也没有“撤销”按钮。 在 Linux 上，一旦 <code>rm</code> 执行成功，文件系统只是把这些数据标记为“可覆盖”，普通用户几乎不可能原样恢复。训练了一个星期的模型权重、跑了一个月的模拟结果，可能因为一条手滑的命令就永远消失。</p>
 
 <p>所以，删除前先 <code>ls</code> 确认目标，是命令行里最重要的肌肉记忆之一：</p>
 
@@ -660,7 +702,7 @@ Host gpu
 
 <p>第一条命令把日志文件重命名，第二条把它移进 <code>archive/</code> 目录。如果 <code>archive/</code> 里已经有一个 <code>train_old.log</code>，<code>mv</code> 会默认覆盖它，不会提前打招呼。</p>
 
-<p><strong>覆盖是命令行里最容易发生的“静默事故”。</strong> 因为 <code>cp</code> 和 <code>mv</code> 都不会像图形界面那样弹窗问你“是否替换”。执行前，先用 <code>ls</code> 看看目标目录里有没有同名文件：</p>
+<p>覆盖是命令行里最容易发生的“静默事故”。 因为 <code>cp</code> 和 <code>mv</code> 都不会像图形界面那样弹窗问你“是否替换”。执行前，先用 <code>ls</code> 看看目标目录里有没有同名文件：</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">ls archive/</span>
 <span class="prompt">student@debian:~/ai-materials$</span> <span class="command">mv train_old.log archive/</span></code></pre>
@@ -732,7 +774,7 @@ Host gpu
 <span class="prompt">student@debian:~/ai-materials$</span> <span class="command">ls</span>
 <span class="output">result_A.txt  result_B.txt  result_C.txt</span></code></pre>
 
-<p>通配符威力很大，误用也很危险。一条 <code>rm *.log</code> 可能删掉你本来想保留的日志。使用前先 <code>ls</code> 预览匹配结果，是避免批量事故的最佳办法：</p>
+<p>通配符威力很大，误用也很危险。 一条 <code>rm *.log</code> 可能删掉你本来想保留的日志。使用前先 <code>ls</code> 预览匹配结果，是避免批量事故的最佳办法：</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">ls *.log</span>
 <span class="prompt">student@debian:~/ai-materials$</span> <span class="command">rm *.log</span></code></pre>
@@ -798,7 +840,7 @@ Host gpu
 
 <p>对于动辄上 GB 的模型权重或材料数据库，断点续传能省下大量时间和带宽。如果服务器需要半夜挂机下载，还可以把 <code>wget</code> 放进后台，或者配合 <code>nohup</code> 使用。</p>
 
-<p>需要提醒的是，<strong>只从可信来源下载文件。</strong> 从陌生网站下载的二进制文件、脚本或数据集可能包含恶意代码。公开数据集尽量使用官网或论文提供的链接；不要下载来历不明的脚本。如果下载的是可执行文件或脚本，最好先用 <code>md5sum</code>/<code>sha256sum</code> 校验官方公布的哈希值，或先在一个临时目录/虚拟机中检查内容，不要直接运行。</p>
+<p>需要提醒的是，只从可信来源下载文件。 从陌生网站下载的二进制文件、脚本或数据集可能包含恶意代码。公开数据集尽量使用官网或论文提供的链接；不要下载来历不明的脚本。如果下载的是可执行文件或脚本，最好先用 <code>md5sum</code>/<code>sha256sum</code> 校验官方公布的哈希值，或先在一个临时目录/虚拟机中检查内容，不要直接运行。</p>
 
 <h3 id="历史与补全让终端替你记">历史与补全：让终端替你记</h3>
 
@@ -806,7 +848,7 @@ Host gpu
 
 <p>按上箭头，终端会调出你刚才执行过的命令；继续按上箭头，可以往前翻阅更早的历史。如果按过了头，按下箭头又能退回来。训练模型时那条长长的命令，比如 <code>python train.py --config configs/resnet50.yaml --epochs 200 --batch-size 32</code>，不必每次重新敲，按几下上箭头就能召回。</p>
 
-<p>想看完整的历史列表，用 <code>history</code>：</p>
+<p>想看完整的历史列表，用 <code>history</code> 查看命令历史：</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">history</span>
 <span class="output">  1  ls</span>
@@ -876,7 +918,7 @@ Host gpu
 
 <pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">echo "finished" &gt;&gt; notes.txt</span></code></pre>
 
-<p>用 <code>&gt;&gt;</code> 很安全，因为它不会擦掉 <code>notes.txt</code> 里已有的记录。但如果你写成 <code>echo "finished" &gt; notes.txt</code>，而 <code>notes.txt</code> 里本来写着昨天的重要参数，那昨天那条记录就会被一声不响地覆盖掉。<strong><code>&gt;</code> 覆盖后几乎无法恢复</strong>，使用前要确认你真的不需要旧内容。</p>
+<p>用 <code>&gt;&gt;</code> 很安全，因为它不会擦掉 <code>notes.txt</code> 里已有的记录。但如果你写成 <code>echo "finished" &gt; notes.txt</code>，而 <code>notes.txt</code> 里本来写着昨天的重要参数，那昨天那条记录就会被一声不响地覆盖掉。<code>&gt;</code> 覆盖后几乎无法恢复，使用前要确认你真的不需要旧内容。</p>
 
 <p>重定向也常用于把搜索结果保存成报告：</p>
 
@@ -884,7 +926,7 @@ Host gpu
 
 <p>这条命令把所有 <code>*.log</code> 里包含 <code>accuracy</code> 的行都写进 <code>summary.txt</code>。之后你可以用 <code>cat summary.txt</code> 或 <code>less summary.txt</code> 慢慢看，也可以把它下载到本地做进一步分析。</p>
 
-<p>除了把输出“写出去”，还可以把输入“引进来”。小于号 <code>&lt;</code> 让命令从文件读取输入，而不是从键盘读取。例如：</p>
+<p>除了把输出“写出去”，还可以把输入“引进来”。小于号 <code>&lt;</code> 让命令从文件读取输入，而不是从键盘读取。这种方向叫输入重定向。例如：</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">sort &lt; unsorted.txt &gt; sorted.txt</span></code></pre>
 
