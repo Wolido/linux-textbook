@@ -1,55 +1,65 @@
-# Linux操作系统与数据库教材
+# Linux操作系统与数据库
 
-本项目是《Linux操作系统与数据库》教材的**纯 HTML 静态站点**，面向人工智能时代的 Linux 操作系统与数据库基础教学。
+面向人工智能与材料科学学习者的 Linux 基础教材。
 
-## 项目简介
+> 纯 HTML 静态站点，无需构建工具，克隆后可直接打开浏览。
 
-- 不再依赖 MkDocs 或任何构建工具，所有页面均为可直接打开的静态 HTML。
-- 教材页面存放在项目根目录，样式与脚本分别位于 `assets/css/` 与 `assets/js/`。
-- 图片资源统一存放在 `assets/images/`。
+> **本书仍在编写中，大量内容有待修订和完善。**
+
+## 适合谁读
+
+- 刚接触 Linux 的大学生或自学者
+- 需要为 AI / 数据科学打基础的材料、计算机等相关专业学生
+- 想系统了解 Linux 命令行、Git、Docker、数据库等实用技能的开发者
+
+## 内容概览
+
+全书共 12 章 + 一个延伸阅读合集。
+
+| 章节 | 内容 |
+|------|------|
+| 第一章 | Linux 的基础知识 |
+| 第二章 | Shell 与命令行 |
+| 第三章 | 用户、权限与软件安装 |
+| 第四章 | Linux 好用的工具 |
+| 第五章 | Git |
+| 第六章 | Vim 文本编辑器 |
+| 第七章 | 网络基础 |
+| 第八章 | Web 与 API |
+| 第九章 | Docker |
+| 第十章 | 数据库 |
+| 第十一章 | DuckDB |
+| 第十二章 | 结语 |
+
+**延伸阅读**还包含 XZ Utils 后门事件、Android/Linux 关系、GNU Hurd、macOS 与 Linux、开源运动、Unix 战争等多个专题案例。
 
 ## 文件结构
 
 ```
-Linux操作系统与数据库教材/
-├── index.html              # 封面与全书目录
-├── preface.html            # 序言
-├── chapter-01.html         # 第一章 Linux的基础知识
-├── case-xz-utils.html      # 延伸阅读：XZ Utils 后门事件
-├── template.html           # 新增章节模板
+linux-textbook/
+├── index.html               # 封面与全书目录
+├── preface.html             # 序言
+├── chapter-01.html ~ 11     # 各章正文
+├── extended-reading.html    # 延伸阅读索引
+├── case-*.html              # 延伸阅读案例
+├── template.html            # 章节模板
 ├── assets/
-│   ├── css/style.css       # 全局样式
-│   ├── js/nav.js           # 导航与高亮脚本
-│   └── images/             # 图片资源
-└── README.md               # 本说明
+│   ├── css/style.css        # 全局样式
+│   ├── js/nav.js            # 导航与高亮脚本
+│   └── images/              # 图片资源
+└── README.md
 ```
 
 ## 本地预览
 
-### 方式一：直接双击打开
+### 直接打开
 
-用浏览器直接双击打开 `index.html`，即可通过 `file://` 协议离线浏览教材。首页、侧边栏与页脚链接均使用相对路径，可正常跳转。
+用浏览器打开 `index.html`，即可通过 `file://` 协议离线浏览。所有链接使用相对路径，可正常跳转。
 
-### 方式二：启动本地 HTTP 服务
+## 贡献
 
-在项目根目录运行以下命令：
+发现错误或有改进建议？欢迎提交 [Issue](https://github.com/Wolido/linux-textbook/issues) 或 Pull Request。
 
-```bash
-python3 -m http.server 8000
-```
+## 许可证
 
-然后在浏览器访问：
-
-```
-http://127.0.0.1:8000
-```
-
-> 提示：使用 HTTP 服务可以最真实地验证图片、脚本与链接的加载情况，推荐在修改后使用此方式检查。
-
-## 新增章节流程
-
-1. 复制 `template.html`，重命名为目标章节文件，例如 `chapter-new.html`。
-2. 替换页面标题、正文内容以及页脚的“上一章 / 下一章”链接。
-3. 在 `index.html` 的“全书目录”中新增对应条目。
-4. 更新 `index.html`、`preface.html`、`chapter-01.html`、`case-xz-utils.html`、`template.html` 以及新增页面中的侧边栏导航，确保顺序一致。
-5. 启动本地 HTTP 服务，检查新增页面与图片均可正常访问。
+本作品采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans) 许可证。
