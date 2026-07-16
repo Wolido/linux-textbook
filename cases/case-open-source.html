@@ -207,7 +207,11 @@
 
 <p>另一个例子是 Elastic。Elasticsearch 和 Kibana 最初使用 Apache 2.0，吸引了大量社区和企业用户。但当 AWS 等云厂商推出托管的 Elasticsearch 服务并分得大量收入后，Elastic 于 2021 年将这两款产品从 Apache 2.0 改为 SSPL 与 Elastic 许可证双许可。AWS 则针锋相对地基于最后一个 Apache 2.0 版本 fork 出了 OpenSearch。这场争端成为开源公司与云厂商利益冲突的标志性事件。</p>
 
-<p>Redis 也在 2024 年宣布将其模块和核心项目的许可证从 BSD 改为 RSAL（Redis Source Available License）与 SSPL 双许可，理由同样是防止云厂商无偿商业化。这些案例表明，许可证从来不是单纯的法律技术，而是商业模式和竞争策略的延伸。</p>
+<p>Redis 的经历则更“一波三折”。Redis 核心长期采用宽松的 BSD-3-Clause 许可证，但在 2024 年 3 月，Redis 公司宣布从 7.4 版本起改为 RSALv2（Redis Source Available License）与 SSPLv1 双许可，目的同样是防止云厂商无偿把 Redis 包装成托管服务卖钱。由于 SSPLv1 并未被 OSI 认定为开源许可证，这一变动在当时被广泛理解为“Redis 不再开源”。</p>
+
+<p>事情在 2025 年又出现反转。Redis 创始人 antirez（Salvatore Sanfilippo）回归公司后推动许可证回调，同年 5 月 Redis 8.0 正式发布，在保留 RSALv2 和 SSPLv1 的同时，新增了 OSI 认可的 AGPLv3 作为可选许可证，并且把免费产品名称从“Redis Community Edition”改成了“Redis Open Source”。也就是说，Redis 8.0 及以后的用户可以在 AGPLv3、RSALv2、SSPLv1 三种许可中任选其一。而 Redis 7.2 及更早版本仍然保持 BSD-3-Clause，7.4.x 到 7.8.x 则仍是 RSALv2/SSPLv1 双许可。</p>
+
+<p>许可证的反复也让社区产生了不信任感。2024 年 Redis 改许可后，Linux 基金会联合 AWS、Google Cloud、Oracle、华为等厂商推出了社区分支 Valkey，基于 Redis 7.2.4 继续开发，并坚持采用 BSD-3-Clause 许可证，作为 Redis 的开放替代方案。这些案例表明，许可证从来不是单纯的法律技术，而是商业模式、社区信任与竞争策略的延伸。</p>
 
 <h2 id="开源的商业模式">4. 开源的商业模式</h2>
 
@@ -227,13 +231,13 @@
 
 <p>“Open Core”模式则是把核心功能开源，把高级功能、管理界面、企业插件闭源收费。GitLab 是典型例子：社区版（CE）开源，企业版（EE）增加审计、合规、高级 CI/CD 等功能。这种模式的好处是降低了用户试用门槛，坏处是社区贡献者和付费用户之间的边界经常引发争议。</p>
 
-<p>到了云计算时代，“开源 + SaaS”成为最主流的变现路径。项目本身开源，厂商通过提供托管服务、按量计费来盈利。Databricks 之于 Apache Spark、Confluent 之于 Apache Kafka、MongoDB Atlas 之于 MongoDB，都是这种模式。它的风险在于：如果云巨头也提供同样的托管服务，原创厂商可能竞争不过对方的规模和渠道，这正是 Elastic、MongoDB、Redis 相继变更许可证的深层原因。</p>
+<p>到了云计算时代，“开源 + SaaS”成为最主流的变现路径。项目本身开源，厂商通过提供托管服务、按量计费来盈利。Databricks 之于 Apache Spark、Confluent 之于 Apache Kafka、MongoDB Atlas 之于 MongoDB，都是这种模式。它的风险在于：如果云巨头也提供同样的托管服务，原创厂商可能竞争不过对方的规模和渠道，这正是 Elastic、MongoDB、Redis 等公司相继变更许可证，以及社区出现 Valkey 等替代分支的深层原因。</p>
 
 <h3 id="云厂商与开源项目的张力">云厂商与开源项目的张力</h3>
 
 <p>云厂商与开源项目的关系，是近十年开源经济中最紧张的话题之一。AWS、Google Cloud、Azure 等大型云服务商可以快速把热门开源项目包装成托管服务，向客户提供“一键部署”，却很少把由此产生的收入回馈给上游项目。开源公司投入大量资源开发软件，云厂商坐享其成，这种“搭便车”问题在 SaaS 时代被放大了。</p>
 
-<p>Elasticsearch、MongoDB、Redis 的许可证变更，本质上都是对这种张力的回应。它们试图用更严格的许可证迫使云厂商要么付费合作，要么自己 fork。但社区对此看法不一：支持者认为这是保护创新的必要手段；反对者认为这背离了开源精神，会把用户推向真正的开源替代品。</p>
+<p>Elasticsearch、MongoDB、Redis 的许可证变更，以及 Valkey、OpenSearch 等社区分支的兴起，本质上都是这种张力的体现。它们试图用更严格的许可证迫使云厂商要么付费合作，要么自己 fork。但社区对此看法不一：支持者认为这是保护创新的必要手段；反对者认为这背离了开源精神，会把用户推向真正的开源替代品。</p>
 
 <p>这场博弈没有标准答案。说白了，开源软件的“自由”是有经济成本的。当成本主要由少数维护者或一家公司承担，而收益被更广泛的市场收割时，原有的平衡就会破裂。</p>
 
