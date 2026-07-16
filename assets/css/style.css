@@ -419,6 +419,11 @@ hr {
   font-weight: 600;
 }
 
+.page-footer .footer-separator {
+  color: var(--muted);
+  user-select: none;
+}
+
 /* Cover / index */
 .cover {
   text-align: center;
@@ -513,6 +518,10 @@ hr {
 
   .page-footer .next {
     text-align: left;
+  }
+
+  .page-footer .footer-separator {
+    display: none;
   }
 }
 
