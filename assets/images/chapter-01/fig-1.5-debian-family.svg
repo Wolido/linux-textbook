@@ -98,26 +98,26 @@
 
   <!-- Branch lines from Ubuntu to desktop derivatives -->
   <line x1="230" y1="305" x2="230" y2="320" class="arrow-light"/>
-  <line x1="130" y1="320" x2="340" y2="320" class="arrow-light"/>
-  <line x1="130" y1="320" x2="130" y2="350" class="arrow-light" marker-end="url(#arrow)"/>
-  <line x1="235" y1="320" x2="235" y2="350" class="arrow-light" marker-end="url(#arrow)"/>
-  <line x1="340" y1="320" x2="340" y2="350" class="arrow-light" marker-end="url(#arrow)"/>
+  <line x1="125" y1="320" x2="335" y2="320" class="arrow-light"/>
+  <line x1="125" y1="320" x2="125" y2="340" class="arrow-light" marker-end="url(#arrow)"/>
+  <line x1="230" y1="320" x2="230" y2="340" class="arrow-light" marker-end="url(#arrow)"/>
+  <line x1="335" y1="320" x2="335" y2="340" class="arrow-light" marker-end="url(#arrow)"/>
 
   <!-- Linux Mint -->
-  <g transform="translate(130, 375)">
+  <g transform="translate(125, 375)">
     <rect x="-50" y="-25" width="100" height="50" rx="8" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5" filter="url(#shadow)"/>
     <text x="0" y="7" class="sub-box-label">Linux Mint</text>
   </g>
 
   <!-- Deepin / 优麒麟 -->
-  <g transform="translate(235, 375)">
+  <g transform="translate(230, 375)">
     <rect x="-50" y="-25" width="100" height="50" rx="8" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5" filter="url(#shadow)"/>
     <text x="0" y="-1" class="sub-box-label">Deepin /</text>
     <text x="0" y="17" class="sub-box-label">优麒麟</text>
   </g>
 
   <!-- Pop!_OS -->
-  <g transform="translate(340, 375)">
+  <g transform="translate(335, 375)">
     <rect x="-50" y="-25" width="100" height="50" rx="8" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5" filter="url(#shadow)"/>
     <text x="0" y="7" class="sub-box-label">Pop!_OS</text>
   </g>
