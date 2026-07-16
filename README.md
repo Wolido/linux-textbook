@@ -42,7 +42,9 @@ linux-textbook/
 ├── preface.html             # 序言
 ├── chapter-01.html ~ 11     # 各章正文
 ├── extended-reading.html    # 延伸阅读索引
-├── case-*.html              # 延伸阅读案例
+├── cases/                   # 延伸阅读案例
+│   ├── case-*.html
+│   └── template-case.html   # case 页模板
 ├── template.html            # 章节模板
 ├── assets/
 │   ├── css/style.css        # 全局样式

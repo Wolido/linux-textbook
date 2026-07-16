@@ -6,7 +6,22 @@
 (function () {
   'use strict';
 
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const currentUrl = new URL(window.location.href);
+  const currentPath = currentUrl.pathname;
+
+  function resolve(href) {
+    return new URL(href, currentUrl);
+  }
+
+  function samePath(href) {
+    return resolve(href).pathname === currentPath;
+  }
+
+  function sameLink(href) {
+    const resolved = resolve(href);
+    return resolved.pathname === currentPath && resolved.hash === currentUrl.hash;
+  }
+
   const sidebarLinks = document.querySelectorAll('.sidebar nav a');
 
   // Highlight current page link in the sidebar.
@@ -18,16 +33,25 @@
     const href = link.getAttribute('href');
     if (!href) return;
 
-    const resolved = new URL(href, window.location.href);
-
-    if (resolved.pathname === window.location.pathname && resolved.hash === window.location.hash) {
+    if (sameLink(href)) {
       exactMatch = link;
     }
 
-    if (href.split('#')[0] === currentPath && !pageMatch) {
+    if (samePath(href) && !pageMatch) {
       pageMatch = link;
     }
   });
+
+  // Case pages live under the "延伸阅读" section; keep its TOC link highlighted.
+  if (!exactMatch && !pageMatch && currentPath.includes('/cases/')) {
+    sidebarLinks.forEach(function (link) {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      if (resolve(href).pathname.split('/').pop() === 'extended-reading.html') {
+        pageMatch = link;
+      }
+    });
+  }
 
   const activeLink = exactMatch || pageMatch;
   if (activeLink) {
@@ -41,7 +65,7 @@
     const isCurrentChapter = Array.from(li.querySelectorAll('a')).some(function (link) {
       const href = link.getAttribute('href');
       if (!href) return false;
-      return href.split('#')[0] === currentPath;
+      return samePath(href);
     });
 
     if (!isCurrentChapter) {
