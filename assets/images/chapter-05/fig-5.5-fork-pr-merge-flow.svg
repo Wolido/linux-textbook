@@ -59,24 +59,24 @@
   </g>
 
   <!-- 箭头 1：Fork -->
-  <line x1="150" y1="180" x2="216" y2="180" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
-  <text x="187" y="124" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#0d47a1">Fork</text>
+  <line x1="150" y1="180" x2="166" y2="180" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="162" y="124" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#0d47a1">Fork</text>
 
   <!-- 箭头 2：git clone -->
-  <line x1="274" y1="180" x2="340" y2="180" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
-  <text x="311" y="124" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" font-weight="bold" fill="#0d47a1">git clone</text>
+  <line x1="274" y1="180" x2="290" y2="180" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="286" y="124" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" font-weight="bold" fill="#0d47a1">git clone</text>
 
   <!-- 箭头 3：修改 -->
-  <line x1="398" y1="180" x2="464" y2="180" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
-  <text x="435" y="124" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">修改</text>
+  <line x1="398" y1="180" x2="414" y2="180" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="410" y="124" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">修改</text>
 
   <!-- 箭头 4：git push -->
-  <line x1="522" y1="180" x2="588" y2="180" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
-  <text x="559" y="124" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" font-weight="bold" fill="#0d47a1">git push</text>
+  <line x1="522" y1="180" x2="538" y2="180" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="534" y="124" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" font-weight="bold" fill="#0d47a1">git push</text>
 
   <!-- 箭头 5：Merge -->
-  <line x1="646" y1="180" x2="712" y2="180" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
-  <text x="683" y="124" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#0d47a1">Merge</text>
+  <line x1="646" y1="180" x2="662" y2="180" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="658" y="124" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#0d47a1">Merge</text>
 
   <!-- 底部说明 -->
   <text x="400" y="305" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">Fork 复制仓库到个人账户，修改后通过 PR 请求原仓库维护者审阅并合并</text>
