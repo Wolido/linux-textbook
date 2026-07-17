@@ -27,7 +27,7 @@
     <text x="170" y="336" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Hypervisor</text>
 
     <!-- VM 1 -->
-    <g transform="translate(52,80)">
+    <g transform="translate(12,80)">
       <rect width="96" height="210" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
       <rect width="96" height="34" rx="6" fill="#1565c0"/>
       <rect x="0" y="22" width="96" height="12" fill="#1565c0"/>
@@ -39,7 +39,7 @@
     </g>
 
     <!-- VM 2 -->
-    <g transform="translate(162,80)">
+    <g transform="translate(122,80)">
       <rect width="96" height="210" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
       <rect width="96" height="34" rx="6" fill="#1565c0"/>
       <rect x="0" y="22" width="96" height="12" fill="#1565c0"/>
@@ -51,7 +51,7 @@
     </g>
 
     <!-- VM 3 -->
-    <g transform="translate(272,80)">
+    <g transform="translate(232,80)">
       <rect width="96" height="210" rx="6" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
       <rect width="96" height="34" rx="6" fill="#1565c0"/>
       <rect x="0" y="22" width="96" height="12" fill="#1565c0"/>
@@ -66,9 +66,9 @@
     <line x1="170" y1="370" x2="170" y2="358" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
 
     <!-- 箭头：Hypervisor → VM -->
-    <line x1="100" y1="310" x2="100" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
-    <line x1="210" y1="310" x2="210" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
-    <line x1="320" y1="310" x2="320" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+    <line x1="60" y1="310" x2="60" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+    <line x1="170" y1="310" x2="170" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+    <line x1="280" y1="310" x2="280" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
   </g>
 
   <!-- 右侧面板：容器 -->
@@ -85,7 +85,7 @@
     <text x="170" y="336" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Docker Engine</text>
 
     <!-- Container 1 -->
-    <g transform="translate(52,80)">
+    <g transform="translate(12,80)">
       <rect width="96" height="210" rx="6" fill="#e3f2fd" stroke="#42a5f5" stroke-width="2"/>
       <rect width="96" height="34" rx="6" fill="#42a5f5"/>
       <rect x="0" y="22" width="96" height="12" fill="#42a5f5"/>
@@ -97,7 +97,7 @@
     </g>
 
     <!-- Container 2 -->
-    <g transform="translate(162,80)">
+    <g transform="translate(122,80)">
       <rect width="96" height="210" rx="6" fill="#e3f2fd" stroke="#42a5f5" stroke-width="2"/>
       <rect width="96" height="34" rx="6" fill="#42a5f5"/>
       <rect x="0" y="22" width="96" height="12" fill="#42a5f5"/>
@@ -109,7 +109,7 @@
     </g>
 
     <!-- Container 3 -->
-    <g transform="translate(272,80)">
+    <g transform="translate(232,80)">
       <rect width="96" height="210" rx="6" fill="#e3f2fd" stroke="#42a5f5" stroke-width="2"/>
       <rect width="96" height="34" rx="6" fill="#42a5f5"/>
       <rect x="0" y="22" width="96" height="12" fill="#42a5f5"/>
@@ -124,14 +124,14 @@
     <line x1="170" y1="370" x2="170" y2="358" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
 
     <!-- 箭头：Docker Engine → Container -->
-    <line x1="100" y1="310" x2="100" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
-    <line x1="210" y1="310" x2="210" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
-    <line x1="320" y1="310" x2="320" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+    <line x1="60" y1="310" x2="60" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+    <line x1="170" y1="310" x2="170" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
+    <line x1="280" y1="310" x2="280" y2="298" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.1)"/>
 
-    <!-- 共享内核标注 -->
-    <text x="170" y="420" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">容器共享 Host OS 内核</text>
+    <!-- 共享内核标注（置于面板标题下方作为副标题，避免与 Host OS 条/面板边框重叠） -->
+    <text x="170" y="68" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#0d47a1">容器共享 Host OS 内核</text>
   </g>
 
   <!-- 底部说明：容器更轻量 -->
-  <text x="400" y="525" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#ef5350">容器更轻量：无需完整 Guest OS，启动更快、资源占用更少</text>
+  <text x="400" y="517" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#ef5350">容器更轻量：无需完整 Guest OS，启动更快、资源占用更少</text>
 </svg>

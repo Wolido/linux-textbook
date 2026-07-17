@@ -7,10 +7,10 @@
 
   <!-- 箭头标记 -->
   <defs>
-    <marker id="arrow-blue-diag" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+    <marker id="arrow-blue-diag" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="strokeWidth">
       <path d="M0,0 L8,4 L0,8 Z" fill="#0d47a1"/>
     </marker>
-    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+    <marker id="arrow-orange" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="strokeWidth">
       <path d="M0,0 L8,4 L0,8 Z" fill="#e67e22"/>
     </marker>
   </defs>
@@ -22,14 +22,14 @@
   <g transform="translate(160, 100)">
     <rect x="-55" y="-25" width="110" height="50" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
     <text x="0" y="-2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="600" fill="#0d47a1">alice</text>
-    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">用户账号</text>
+    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">用户账号</text>
   </g>
 
   <!-- 用户 bob -->
   <g transform="translate(160, 190)">
     <rect x="-55" y="-25" width="110" height="50" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
     <text x="0" y="-2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="600" fill="#0d47a1">bob</text>
-    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">用户账号</text>
+    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">用户账号</text>
   </g>
 
   <!-- 组列标题 -->
@@ -39,35 +39,35 @@
   <g transform="translate(400, 100)">
     <rect x="-65" y="-25" width="130" height="50" rx="8" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
     <text x="0" y="-2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="600" fill="#1b5e20">student</text>
-    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">学生组</text>
+    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">学生组</text>
   </g>
 
   <!-- 组 lab_group -->
   <g transform="translate(400, 190)">
     <rect x="-65" y="-25" width="130" height="50" rx="8" fill="#e8f5e9" stroke="#27ae60" stroke-width="2"/>
     <text x="0" y="-2" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="600" fill="#1b5e20">lab_group</text>
-    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">实验室组</text>
+    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">实验室组</text>
   </g>
 
   <!-- 共享目录 -->
   <g transform="translate(640, 145)">
     <rect x="-85" y="-35" width="170" height="70" rx="8" fill="#fff3e0" stroke="#e67e22" stroke-width="2"/>
     <text x="0" y="-6" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600" fill="#e65100">/data/lab</text>
-    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">lab_group 共享目录</text>
+    <text x="0" y="18" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">lab_group 共享目录</text>
   </g>
 
   <!-- 箭头：alice → student -->
-  <line x1="215" y1="100" x2="335" y2="100" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-blue-diag)"/>
+  <line x1="215" y1="100" x2="319" y2="100" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-blue-diag)"/>
 
   <!-- 箭头：alice → lab_group -->
-  <line x1="215" y1="115" x2="335" y2="175" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-blue-diag)"/>
+  <line x1="215" y1="115" x2="320.7" y2="167.8" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-blue-diag)"/>
 
   <!-- 箭头：bob → lab_group -->
-  <line x1="215" y1="190" x2="335" y2="190" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-blue-diag)"/>
+  <line x1="215" y1="190" x2="319" y2="190" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-blue-diag)"/>
 
   <!-- 箭头：lab_group → /data/lab -->
-  <line x1="465" y1="190" x2="555" y2="165" stroke="#e67e22" stroke-width="2" marker-end="url(#arrow-orange)"/>
+  <line x1="465" y1="190" x2="539.6" y2="169.3" stroke="#e67e22" stroke-width="2" marker-end="url(#arrow-orange)"/>
 
   <!-- 图例 -->
-  <text x="400" y="360" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666666">箭头表示“属于”关系；组拥有共享目录，组内成员可协同访问</text>
+  <text x="400" y="360" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666">箭头表示“属于”关系；组拥有共享目录，组内成员可协同访问</text>
 </svg>

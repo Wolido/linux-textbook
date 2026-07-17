@@ -23,7 +23,7 @@
     <text x="0" y="54" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50">v1.24.x</text>
 
     <rect x="-90" y="75" width="180" height="40" rx="6" fill="#ffffff" stroke="#42a5f5" stroke-width="1.5"/>
-    <text x="0" y="100" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">旧项目依赖</text>
+    <text x="0" y="100" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">旧项目依赖</text>
   </g>
 
   <!-- 环境 2 -->
@@ -41,7 +41,7 @@
     <text x="0" y="54" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50">v2.0+</text>
 
     <rect x="-90" y="75" width="180" height="40" rx="6" fill="#ffffff" stroke="#27ae60" stroke-width="1.5"/>
-    <text x="0" y="100" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">新项目依赖</text>
+    <text x="0" y="100" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">新项目依赖</text>
   </g>
 
   <!-- 隔离分隔线 -->

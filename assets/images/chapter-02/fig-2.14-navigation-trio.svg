@@ -22,7 +22,7 @@
     </g>
 
     <text x="144" y="230" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#2c3e50">我在哪？</text>
-    <text x="144" y="254" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666">显示当前目录</text>
+    <text x="144" y="254" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666">显示当前目录</text>
 
     <!-- ls 卡片 -->
     <rect x="296" y="70" width="208" height="200" rx="12" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
@@ -38,7 +38,7 @@
     </g>
 
     <text x="400" y="230" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#2c3e50">这里有什么？</text>
-    <text x="400" y="254" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666">列出目录内容</text>
+    <text x="400" y="254" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666">列出目录内容</text>
 
     <!-- cd 卡片 -->
     <rect x="552" y="70" width="208" height="200" rx="12" fill="#ffffff" stroke="#e67e22" stroke-width="2"/>
@@ -53,11 +53,11 @@
     </g>
 
     <text x="656" y="230" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#2c3e50">我想去哪？</text>
-    <text x="656" y="254" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666">切换当前目录</text>
+    <text x="656" y="254" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666">切换当前目录</text>
   </g>
 
-  <!-- 横向连接箭头（卡片之间） -->
-  <g stroke="#2c3e50" stroke-width="2" fill="none">
+  <!-- 横向连接箭头（卡片之间，连线 stroke-width=3 与 3px 箭杆一致） -->
+  <g stroke="#2c3e50" stroke-width="3" fill="none">
     <line x1="248" y1="170" x2="296" y2="170"/>
     <line x1="504" y1="170" x2="552" y2="170"/>
   </g>

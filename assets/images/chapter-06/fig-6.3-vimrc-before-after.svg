@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" width="800" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
   <title>.vimrc 配置前后 Vim 界面对比</title>
   <desc>对比默认 Vim 界面与配置行号、语法高亮、自动缩进后的 Vim 界面，展示 .vimrc 的视觉效果。</desc>
 
@@ -10,7 +10,7 @@
   </defs>
 
   <!-- 背景 -->
-  <rect width="800" height="480" fill="#fafafa"/>
+  <rect width="800" height="540" fill="#fafafa"/>
 
   <!-- 标题 -->
   <text x="400" y="42" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="bold" fill="#0d47a1">.vimrc 配置前后 Vim 界面对比</text>
@@ -28,13 +28,13 @@
     <!-- 窗口标题 -->
     <text x="165" y="24" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#cccccc">Default Vim</text>
     <!-- 状态行 -->
-    <text x="20" y="305" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#999999">"hello.py" [noeol] 2L, 32B</text>
+    <text x="20" y="305" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#999999">"hello.py" [noeol] 2L, 32B</text>
     <!-- 代码内容（无行号、无高亮、无缩进） -->
     <text x="20" y="75" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#e0e0e0">def hello():</text>
     <text x="20" y="105" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#e0e0e0">print("Hello, Vim!")</text>
     <!-- 标签 -->
-    <text x="165" y="355" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">默认 Vim</text>
-    <text x="165" y="378" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">无行号、无语法高亮、无自动缩进</text>
+    <text x="165" y="348" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">默认 Vim</text>
+    <text x="165" y="370" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">无行号、无语法高亮、无自动缩进</text>
   </g>
 
   <!-- 右侧终端：配置 .vimrc 后 -->
@@ -50,7 +50,7 @@
     <!-- 窗口标题 -->
     <text x="165" y="24" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#cccccc">Configured Vim</text>
     <!-- 状态行 -->
-    <text x="20" y="305" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#999999">"hello.py" 2L, 32B</text>
+    <text x="20" y="305" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#999999">"hello.py" 2L, 32B</text>
     <!-- 代码内容（行号 + 语法高亮 + 自动缩进） -->
     <!-- 行号 -->
     <text x="20" y="75" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#666666">1</text>
@@ -63,13 +63,13 @@
       <tspan fill="#42a5f5">    print</tspan><tspan fill="#e0e0e0">(</tspan><tspan fill="#27c93f">"Hello, Vim!"</tspan><tspan fill="#e0e0e0">)</tspan>
     </text>
     <!-- 标签 -->
-    <text x="165" y="355" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">配置 .vimrc 后</text>
-    <text x="165" y="378" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">行号、语法高亮、自动缩进</text>
+    <text x="165" y="348" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">配置 .vimrc 后</text>
+    <text x="165" y="370" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">行号、语法高亮、自动缩进</text>
   </g>
 
   <!-- 中间箭头：表示变化 -->
   <line x1="390" y1="250" x2="412" y2="250" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
 
   <!-- 底部说明 -->
-  <text x="400" y="455" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">一份简单的 .vimrc 就能让编辑体验更接近现代编辑器</text>
+  <text x="400" y="496" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">一份简单的 .vimrc 就能让编辑体验更接近现代编辑器</text>
 </svg>

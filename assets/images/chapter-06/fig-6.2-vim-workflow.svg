@@ -25,63 +25,63 @@
   </g>
 
   <!-- 步骤 2：进入 Normal 模式 -->
-  <g transform="translate(400, 160)">
+  <g transform="translate(400, 165)">
     <rect x="-130" y="-22" width="260" height="44" rx="8" fill="#1565c0"/>
     <text x="0" y="6" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#ffffff">进入 Normal（普通模式）</text>
   </g>
 
   <!-- 步骤 3：按 i 进入 Insert 模式 -->
-  <g transform="translate(400, 225)">
+  <g transform="translate(400, 235)">
     <rect x="-130" y="-22" width="260" height="44" rx="8" fill="#1565c0"/>
     <text x="0" y="6" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#ffffff">按 i 进入 Insert（插入模式）</text>
   </g>
 
   <!-- 步骤 4：编辑文本 -->
-  <g transform="translate(400, 290)">
+  <g transform="translate(400, 305)">
     <rect x="-130" y="-22" width="260" height="44" rx="8" fill="#42a5f5"/>
     <text x="0" y="6" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#ffffff">编辑文本</text>
   </g>
 
   <!-- 步骤 5：按 Esc 回到 Normal 模式 -->
-  <g transform="translate(400, 355)">
+  <g transform="translate(400, 375)">
     <rect x="-130" y="-22" width="260" height="44" rx="8" fill="#1565c0"/>
     <text x="0" y="6" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#ffffff">按 Esc 回到 Normal 模式</text>
   </g>
 
   <!-- 步骤 6：输入 :w 保存 -->
-  <g transform="translate(400, 420)">
+  <g transform="translate(400, 445)">
     <rect x="-130" y="-22" width="260" height="44" rx="8" fill="#0d47a1"/>
     <text x="0" y="6" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#ffffff">输入 :w 保存文件</text>
   </g>
 
   <!-- 步骤 7：输入 :q 或 :wq 退出 -->
-  <g transform="translate(400, 485)">
+  <g transform="translate(400, 515)">
     <rect x="-130" y="-22" width="260" height="44" rx="8" fill="#ef5350"/>
     <text x="0" y="6" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#ffffff">输入 :q 或 :wq 退出 Vim</text>
   </g>
 
   <!-- 箭头 1：启动 -->
-  <line x1="400" y1="117" x2="400" y2="130" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <line x1="400" y1="117" x2="400" y2="135" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
 
   <!-- 箭头 2：i -->
-  <line x1="400" y1="182" x2="400" y2="195" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
-  <text x="430" y="192" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" font-weight="bold" fill="#0d47a1">i</text>
+  <line x1="400" y1="187" x2="400" y2="205" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="430" y="204" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" font-weight="bold" fill="#0d47a1">i</text>
 
   <!-- 箭头 3：编辑 -->
-  <line x1="400" y1="247" x2="400" y2="260" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <line x1="400" y1="257" x2="400" y2="275" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
 
   <!-- 箭头 4：Esc -->
-  <line x1="400" y1="312" x2="400" y2="325" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
-  <text x="430" y="322" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" font-weight="bold" fill="#0d47a1">Esc</text>
+  <line x1="400" y1="327" x2="400" y2="345" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="430" y="344" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" font-weight="bold" fill="#0d47a1">Esc</text>
 
   <!-- 箭头 5：: -->
-  <line x1="400" y1="377" x2="400" y2="390" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
-  <text x="430" y="387" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" font-weight="bold" fill="#0d47a1">:</text>
+  <line x1="400" y1="397" x2="400" y2="415" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="430" y="414" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" font-weight="bold" fill="#0d47a1">:</text>
 
   <!-- 箭头 6：退出 -->
-  <line x1="400" y1="442" x2="400" y2="455" stroke="#ef5350" stroke-width="3" marker-end="url(#arrow-red)"/>
-  <text x="430" y="452" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" font-weight="bold" fill="#ef5350">:q / :wq</text>
+  <line x1="400" y1="467" x2="400" y2="485" stroke="#ef5350" stroke-width="3" marker-end="url(#arrow-red)"/>
+  <text x="430" y="484" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" font-weight="bold" fill="#ef5350">:q / :wq</text>
 
   <!-- 底部说明 -->
-  <text x="400" y="565" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">编辑前按 i，编辑后先 Esc 回到普通模式，再执行保存或退出命令</text>
+  <text x="400" y="570" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">编辑前按 i，编辑后先 Esc 回到普通模式，再执行保存或退出命令</text>
 </svg>

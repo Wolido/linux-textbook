@@ -12,7 +12,7 @@
     <rect x="0" y="0" width="240" height="110" rx="8" fill="#1565c0"/>
     <text x="120" y="40" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="17" font-weight="500" fill="#ffffff">登录时</text>
     <text x="120" y="66" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#bbdefb">Login Shell</text>
-    <text x="120" y="90" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#ffffff">如 SSH 首次登录</text>
+    <text x="120" y="90" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#ffffff">如 SSH 首次登录</text>
   </g>
 
   <!-- 场景 2：打开新终端 -->
@@ -20,40 +20,40 @@
     <rect x="0" y="0" width="240" height="110" rx="8" fill="#1565c0"/>
     <text x="120" y="40" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="17" font-weight="500" fill="#ffffff">打开新终端</text>
     <text x="120" y="66" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#bbdefb">Interactive Shell</text>
-    <text x="120" y="90" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#ffffff">如本地新终端窗口</text>
+    <text x="120" y="90" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#ffffff">如本地新终端窗口</text>
   </g>
 
   <!-- 节点连线：登录时 → .bash_profile -->
   <path d="M259.69,189.61 L260.31,190.39 L195.00,242.64 L197.19,245.38 L190,246 L192.19,239.13 L194.38,241.86 Z" fill="#1565c0"/>
-  <text x="252" y="212" text-anchor="start" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#1565c0">读取</text>
+  <text x="252" y="212" text-anchor="start" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#1565c0">读取</text>
 
   <!-- 节点连线：打开新终端 → .bashrc -->
   <path d="M539.69,190.39 L540.31,189.61 L605.63,241.86 L607.81,239.13 L610,246 L602.81,245.38 L605.00,242.64 Z" fill="#1565c0"/>
-  <text x="536" y="212" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#1565c0">读取</text>
+  <text x="536" y="212" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#1565c0">读取</text>
 
-  <!-- 文件卡片 -->
-  <g transform="translate(100, 250)">
+  <!-- 文件卡片（三张卡片拉开间距，为 fallback 标签留出空间） -->
+  <g transform="translate(80, 250)">
     <rect x="0" y="0" width="180" height="90" rx="8" fill="#ecf0f1" stroke="#1565c0" stroke-width="2"/>
     <text x="90" y="38" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="600" fill="#2c3e50">.bash_profile</text>
-    <text x="90" y="64" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">登录时优先读取</text>
+    <text x="90" y="64" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">登录时优先读取</text>
   </g>
 
-  <g transform="translate(310, 250)">
+  <g transform="translate(330, 250)">
     <rect x="0" y="0" width="180" height="90" rx="8" fill="#ecf0f1" stroke="#7f8c8d" stroke-width="2"/>
     <text x="90" y="38" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="600" fill="#2c3e50">.profile</text>
-    <text x="90" y="64" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">无 .bash_profile 时读</text>
+    <text x="90" y="64" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">无 .bash_profile 时读</text>
   </g>
 
-  <g transform="translate(520, 250)">
+  <g transform="translate(560, 250)">
     <rect x="0" y="0" width="180" height="90" rx="8" fill="#ecf0f1" stroke="#27ae60" stroke-width="2"/>
     <text x="90" y="38" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="600" fill="#2c3e50">.bashrc</text>
-    <text x="90" y="64" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">交互式 Shell 读取</text>
+    <text x="90" y="64" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">交互式 Shell 读取</text>
   </g>
 
-  <!-- .bash_profile → .profile 的 fallback 节点连线 -->
-  <line x1="280" y1="295" x2="300" y2="295" stroke="#7f8c8d" stroke-width="2" stroke-dasharray="5 3"/>
-  <path d="M300,291 L300,299 L306,295 L300,291 Z" fill="#7f8c8d"/>
-  <text x="295" y="240" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#7f8c8d">fallback</text>
+  <!-- .bash_profile → .profile 的 fallback 节点连线（尖端留 4px 间隙指向 .profile 左边缘） -->
+  <line x1="260" y1="295" x2="320" y2="295" stroke="#7f8c8d" stroke-width="2" stroke-dasharray="5 3"/>
+  <path d="M320,291 L320,299 L326,295 L320,291 Z" fill="#7f8c8d"/>
+  <text x="295" y="283" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#7f8c8d">fallback</text>
 
   <!-- 修改后重新加载 -->
   <g transform="translate(150, 380)">

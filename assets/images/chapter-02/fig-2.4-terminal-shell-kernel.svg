@@ -30,33 +30,33 @@
     <text x="390" y="492" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#bbdefb">CPU / Memory / Disk</text>
   </g>
 
-  <!-- 输入命令箭头（蓝色，向下，2px 杆） -->
+  <!-- 输入命令箭头（蓝色，向下，2px 杆；标签置于箭杆左侧，避免压线） -->
   <!-- 层 1 → 层 2 -->
   <line x1="330" y1="126" x2="330" y2="172" stroke="#0d47a1" stroke-width="2"/>
   <path d="M330,178 L334,172 L326,172 Z" fill="#0d47a1"/>
-  <text x="330" y="156" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#0d47a1">输入命令</text>
+  <text x="318" y="160" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#0d47a1">输入命令</text>
   <!-- 层 2 → 层 3 -->
   <line x1="330" y1="254" x2="330" y2="300" stroke="#0d47a1" stroke-width="2"/>
   <path d="M330,306 L334,300 L326,300 Z" fill="#0d47a1"/>
-  <text x="330" y="284" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#0d47a1">输入命令</text>
+  <text x="318" y="288" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#0d47a1">输入命令</text>
   <!-- 层 3 → 层 4 -->
   <line x1="330" y1="382" x2="330" y2="428" stroke="#0d47a1" stroke-width="2"/>
   <path d="M330,434 L334,428 L326,428 Z" fill="#0d47a1"/>
-  <text x="330" y="412" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#0d47a1">输入命令</text>
+  <text x="318" y="416" text-anchor="end" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#0d47a1">输入命令</text>
 
-  <!-- 返回结果箭头（灰色，向上，2px 杆） -->
+  <!-- 返回结果箭头（灰色，向上，2px 杆；标签置于箭杆右侧，避免压线） -->
   <!-- 层 2 → 层 1 -->
   <line x1="450" y1="178" x2="450" y2="132" stroke="#757575" stroke-width="2"/>
   <path d="M450,126 L454,132 L446,132 Z" fill="#757575"/>
-  <text x="450" y="156" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#757575">返回结果</text>
+  <text x="462" y="160" text-anchor="start" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#757575">返回结果</text>
   <!-- 层 3 → 层 2 -->
   <line x1="450" y1="306" x2="450" y2="260" stroke="#757575" stroke-width="2"/>
   <path d="M450,254 L454,260 L446,260 Z" fill="#757575"/>
-  <text x="450" y="284" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#757575">返回结果</text>
+  <text x="462" y="288" text-anchor="start" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#757575">返回结果</text>
   <!-- 层 4 → 层 3 -->
   <line x1="450" y1="434" x2="450" y2="388" stroke="#757575" stroke-width="2"/>
   <path d="M450,382 L454,388 L446,388 Z" fill="#757575"/>
-  <text x="450" y="412" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#757575">返回结果</text>
+  <text x="462" y="416" text-anchor="start" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#757575">返回结果</text>
 
   <!-- 场景示例 -->
   <g>

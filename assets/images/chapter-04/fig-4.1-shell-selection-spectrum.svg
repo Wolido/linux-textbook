@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 555" width="800" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
   <title>Shell 选型定位光谱</title>
   <desc>以 Bash 兼容性为纵轴、配置复杂度/上手成本为横轴，定位 Bash、zsh、fish、xonsh 四种 Shell 的适用场景。</desc>
 
   <defs>
-    <marker id="arrowhead" markerWidth="8" markerHeight="12" refX="0" refY="6" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L8,6 L0,12 Z" fill="#0d47a1"/>
+    <marker id="arrowhead" markerWidth="6" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L6,4 L0,8 Z" fill="#0d47a1"/>
     </marker>
   </defs>
 
   <!-- 页面背景 -->
-  <rect width="800" height="520" fill="#fafafa"/>
+  <rect width="800" height="555" fill="#fafafa"/>
 
   <!-- 标题 -->
   <text x="400" y="42" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="bold" fill="#0d47a1">Shell 选型定位：兼容性与配置成本的权衡</text>
@@ -21,33 +21,33 @@
 
   <!-- 轴标签 -->
   <text x="420" y="460" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#333333">配置复杂度 / 上手成本：低 → 高</text>
-  <text x="120" y="485" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">开箱即用</text>
-  <text x="690" y="485" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">需要折腾配置</text>
+  <text x="120" y="485" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">开箱即用</text>
+  <text x="690" y="485" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">需要折腾配置</text>
 
   <text x="70" y="260" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#333333">Bash 兼容性</text>
-  <text x="120" y="80" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">高（兼容 Bash 脚本）</text>
-  <text x="120" y="445" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">低（语法不兼容）</text>
+  <text x="120" y="80" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">高（兼容 Bash 脚本）</text>
+  <text x="120" y="445" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">低（语法不兼容）</text>
 
   <!-- 数据点：Bash -->
   <circle cx="220" cy="160" r="12" fill="#1565c0"/>
   <text x="240" y="130" text-anchor="start" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#1565c0">Bash</text>
-  <text x="240" y="148" text-anchor="start" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#666666">够用、稳定、默认安装</text>
+  <text x="240" y="148" text-anchor="start" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">够用、稳定、默认安装</text>
 
   <!-- 数据点：zsh -->
   <circle cx="660" cy="160" r="12" fill="#42a5f5"/>
   <text x="640" y="130" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#42a5f5">zsh + Oh My Zsh</text>
-  <text x="640" y="148" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#666666">插件丰富、提示符信息多</text>
+  <text x="640" y="148" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">插件丰富、提示符信息多</text>
 
   <!-- 数据点：fish -->
   <circle cx="220" cy="380" r="12" fill="#0d47a1"/>
   <text x="240" y="350" text-anchor="start" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">fish</text>
-  <text x="240" y="368" text-anchor="start" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#666666">开箱即用、语法高亮</text>
+  <text x="240" y="368" text-anchor="start" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">开箱即用、语法高亮</text>
 
   <!-- 数据点：xonsh -->
   <circle cx="420" cy="380" r="12" fill="#ef5350"/>
   <text x="440" y="350" text-anchor="start" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#ef5350">xonsh</text>
-  <text x="440" y="368" text-anchor="start" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#666666">Python 语法、数据科学</text>
+  <text x="440" y="368" text-anchor="start" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">Python 语法、数据科学</text>
 
   <!-- 底部建议 -->
-  <text x="400" y="510" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">建议：新手先用 Bash；需要插件选 zsh；想不配置选 fish；Python 重度用户选 xonsh</text>
+  <text x="400" y="510" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">建议：新手先用 Bash；需要插件选 zsh；想不配置选 fish；Python 重度用户选 xonsh</text>
 </svg>

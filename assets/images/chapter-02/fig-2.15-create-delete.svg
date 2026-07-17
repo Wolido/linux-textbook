@@ -18,12 +18,12 @@
     <g transform="translate(144, 170)">
       <rect x="-28" y="-36" width="56" height="72" rx="4" fill="#90caf9" stroke="#1565c0" stroke-width="2"/>
       <path d="M-4,-36 L4,-36 L4,-24 L-4,-24 Z" fill="#1565c0"/>
-      <text x="0" y="12" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#0d47a1">notes</text>
-      <text x="0" y="28" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#0d47a1">.txt</text>
+      <text x="0" y="12" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#0d47a1">notes</text>
+      <text x="0" y="28" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#0d47a1">.txt</text>
     </g>
 
     <text x="144" y="262" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="500" fill="#2c3e50">创建空文件</text>
-    <text x="144" y="286" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666">从无到有</text>
+    <text x="144" y="286" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666">从无到有</text>
   </g>
 
   <!-- mkdir 卡片 -->
@@ -40,7 +40,7 @@
     </g>
 
     <text x="400" y="262" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="500" fill="#2c3e50">创建目录</text>
-    <text x="400" y="286" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666">建立新文件夹</text>
+    <text x="400" y="286" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666">建立新文件夹</text>
   </g>
 
   <!-- rm 卡片 -->
@@ -62,7 +62,7 @@
     </g>
 
     <text x="656" y="262" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" font-weight="500" fill="#2c3e50">删除文件</text>
-    <text x="656" y="286" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#e74c3c">不可逆，谨慎使用</text>
+    <text x="656" y="286" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#e74c3c">不可逆，谨慎使用</text>
   </g>
 
   <!-- 底部提示 -->

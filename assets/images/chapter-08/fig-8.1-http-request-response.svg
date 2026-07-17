@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 580" width="800" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
   <title>HTTP 请求与响应结构</title>
   <desc>左右对比 HTTP 请求和响应的组成部分：请求行/状态行、请求头/响应头、请求体/响应体。</desc>
 
-  <rect width="800" height="560" fill="#fafafa"/>
+  <rect width="800" height="580" fill="#fafafa"/>
 
   <text x="400" y="42" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="18" font-weight="bold" fill="#0d47a1">HTTP 请求与响应结构</text>
 
@@ -16,12 +16,12 @@
 
     <!-- 请求行 -->
     <rect x="0" y="44" width="330" height="60" fill="#e3f2fd"/>
-    <text x="16" y="68" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" fill="#0d47a1">请求行</text>
+    <text x="16" y="68" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#0d47a1">请求行</text>
     <text x="16" y="90" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="14" font-weight="bold" fill="#0d47a1">GET /index.html HTTP/1.1</text>
 
     <!-- 请求头 -->
     <rect x="0" y="104" width="330" height="140" fill="#bbdefb"/>
-    <text x="16" y="128" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" fill="#0d47a1">请求头</text>
+    <text x="16" y="128" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#0d47a1">请求头</text>
     <text x="16" y="154" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="13" fill="#0d47a1">Host: example.com</text>
     <text x="16" y="178" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="13" fill="#0d47a1">User-Agent: curl/8.4</text>
     <text x="16" y="202" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="13" fill="#0d47a1">Accept: text/html</text>
@@ -29,7 +29,7 @@
 
     <!-- 请求体 -->
     <rect x="0" y="244" width="330" height="156" fill="#90caf9"/>
-    <text x="16" y="268" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" fill="#0d47a1">请求体</text>
+    <text x="16" y="268" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#0d47a1">请求体</text>
     <text x="16" y="296" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="14" fill="#0d47a1">{ "key": "value" }</text>
   </g>
 
@@ -42,12 +42,12 @@
 
     <!-- 状态行 -->
     <rect x="0" y="44" width="330" height="60" fill="#e3f2fd"/>
-    <text x="16" y="68" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" fill="#0d47a1">状态行</text>
+    <text x="16" y="68" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#0d47a1">状态行</text>
     <text x="16" y="90" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="14" font-weight="bold" fill="#0d47a1">HTTP/1.1 200 OK</text>
 
     <!-- 响应头 -->
     <rect x="0" y="104" width="330" height="140" fill="#bbdefb"/>
-    <text x="16" y="128" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" fill="#0d47a1">响应头</text>
+    <text x="16" y="128" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#0d47a1">响应头</text>
     <text x="16" y="154" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="13" fill="#0d47a1">Content-Type: text/html</text>
     <text x="16" y="178" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="13" fill="#0d47a1">Content-Length: 1234</text>
     <text x="16" y="202" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="13" fill="#0d47a1">Server: nginx/1.24</text>
@@ -55,9 +55,9 @@
 
     <!-- 响应体 -->
     <rect x="0" y="244" width="330" height="156" fill="#90caf9"/>
-    <text x="16" y="268" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="12" fill="#0d47a1">响应体</text>
+    <text x="16" y="268" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#0d47a1">响应体</text>
     <text x="16" y="296" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="14" fill="#0d47a1">&lt;html&gt;Hello&lt;/html&gt;</text>
   </g>
 
-  <text x="400" y="535" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#666666">请求由客户端发往服务器；响应由服务器返回给客户端</text>
+  <text x="400" y="535" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#666666">请求由客户端发往服务器；响应由服务器返回给客户端</text>
 </svg>

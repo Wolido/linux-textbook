@@ -12,7 +12,7 @@
   <g transform="translate(40, 110)">
     <rect x="0" y="0" width="160" height="80" rx="10" fill="#1565c0"/>
     <text x="80" y="36" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="600" fill="#ffffff">cat train.log</text>
-    <text x="80" y="62" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#bbdefb">输出原始日志</text>
+    <text x="80" y="62" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#bbdefb">输出原始日志</text>
   </g>
 
   <!-- 箭头 1：cat → grep -->
@@ -22,7 +22,7 @@
   <g transform="translate(320, 110)">
     <rect x="0" y="0" width="160" height="80" rx="10" fill="#27ae60"/>
     <text x="80" y="36" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="600" fill="#ffffff">grep "Loss"</text>
-    <text x="80" y="62" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#d5f5e3">过滤出 Loss 行</text>
+    <text x="80" y="62" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#d5f5e3">过滤出 Loss 行</text>
   </g>
 
   <!-- 箭头 2：grep → wc -->
@@ -32,7 +32,7 @@
   <g transform="translate(600, 110)">
     <rect x="0" y="0" width="160" height="80" rx="10" fill="#e67e22"/>
     <text x="80" y="36" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="600" fill="#ffffff">wc -l</text>
-    <text x="80" y="62" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#fdebd0">统计行数</text>
+    <text x="80" y="62" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#fdebd0">统计行数</text>
   </g>
 
   <!-- 底部说明 -->

@@ -30,39 +30,38 @@
   <g transform="translate(480,140)">
     <!-- Layer 0: FROM -->
     <rect y="240" width="240" height="56" rx="6" fill="#0d47a1"/>
-    <text x="120" y="274" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Layer 0：FROM ubuntu:22.04</text>
+    <text x="120" y="274" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Layer 0：FROM ubuntu:22.04</text>
 
     <!-- Layer 1: RUN -->
     <rect y="180" width="240" height="56" rx="6" fill="#1565c0"/>
-    <text x="120" y="214" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="bold" fill="#ffffff">Layer 1：RUN install python3</text>
+    <text x="120" y="214" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#ffffff">Layer 1：RUN install python3</text>
 
     <!-- Layer 2: COPY -->
     <rect y="120" width="240" height="56" rx="6" fill="#42a5f5"/>
-    <text x="120" y="154" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="bold" fill="#0d47a1">Layer 2：COPY app.py</text>
+    <text x="120" y="154" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">Layer 2：COPY app.py</text>
 
     <!-- Layer 3: CMD -->
     <rect y="60" width="240" height="56" rx="6" fill="#90caf9"/>
-    <text x="120" y="94" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" font-weight="bold" fill="#0d47a1">Layer 3：CMD 启动应用</text>
+    <text x="120" y="94" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">Layer 3：CMD 启动应用</text>
 
-    <!-- 堆叠方向标注 -->
-    <text x="120" y="330" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">自下而上叠加</text>
-    <line x1="120" y1="312" x2="120" y2="40" stroke="#0d47a1" stroke-width="1" stroke-dasharray="4,4"/>
-    <polygon points="120,32 116,42 124,42" fill="#0d47a1"/>
+    <!-- 堆叠方向标注（置于层堆叠左侧空白走廊 x=-52，避开层内文字及 Layer0 左下角；2px 虚线 + 与全图统一的 8×10 marker 头，比例协调） -->
+    <text x="-52" y="307" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#0d47a1">自下而上叠加</text>
+    <line x1="-52" y1="285" x2="-52" y2="65" stroke="#0d47a1" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-9.3)"/>
   </g>
 
   <!-- 连接箭头：指令 → 对应层 -->
   <!-- FROM → Layer 0 -->
-  <path d="M360,225 L380,225 L380,408 L472,408" fill="none" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.3)"/>
+  <path d="M360,225 L366,225 L366,152 L750,152 L750,408 L728,408" fill="none" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.3)"/>
 
   <!-- RUN → Layer 1 -->
-  <path d="M360,285 L400,285 L400,348 L472,348" fill="none" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.3)"/>
+  <path d="M360,285 L374,285 L374,160 L746,160 L746,348 L728,348" fill="none" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.3)"/>
 
   <!-- COPY → Layer 2 -->
-  <path d="M360,345 L420,345 L420,288 L472,288" fill="none" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.3)"/>
+  <path d="M360,345 L382,345 L382,168 L742,168 L742,288 L728,288" fill="none" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.3)"/>
 
   <!-- CMD → Layer 3 -->
-  <path d="M360,405 L440,405 L440,228 L472,228" fill="none" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.3)"/>
+  <path d="M360,405 L390,405 L390,176 L738,176 L738,228 L728,228" fill="none" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-9.3)"/>
 
   <!-- 底部说明 -->
-  <text x="400" y="525" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#666666">Dockerfile 每行指令生成一个只读层；未改动的层可直接复用缓存，修改某层后其上所有层需重新构建</text>
+  <text x="400" y="517" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#666666">Dockerfile 每行指令生成一个只读层；未改动的层可直接复用缓存，修改某层后其上所有层需重新构建</text>
 </svg>

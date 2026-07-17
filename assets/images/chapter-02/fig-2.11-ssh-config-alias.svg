@@ -10,9 +10,9 @@
     <text x="20" y="38" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50">ssh -p 2222 -i ~/.ssh/id_ed25519 student@gpu-lab01</text>
   </g>
 
-  <!-- 向下箭头：长命令 → config -->
-  <line x1="400" y1="144" x2="400" y2="192" stroke="#1565c0" stroke-width="2"/>
-  <path d="M399,192 L401,192 L404,192 L400,198 L396,192 Z" fill="#1565c0"/>
+  <!-- 向下箭头：长命令 → config（尖端顶住 config 框顶边 y=200） -->
+  <line x1="400" y1="144" x2="400" y2="194" stroke="#1565c0" stroke-width="2"/>
+  <path d="M399,194 L401,194 L404,194 L400,200 L396,194 Z" fill="#1565c0"/>
 
   <!-- 中间：config 文件 -->
   <g transform="translate(240, 200)">
@@ -21,7 +21,7 @@
     <circle cx="18" cy="18" r="5" fill="#ff5f56"/>
     <circle cx="36" cy="18" r="5" fill="#ffbd2e"/>
     <circle cx="54" cy="18" r="5" fill="#27c93f"/>
-    <text x="160" y="22" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#2c3e50">~/.ssh/config</text>
+    <text x="160" y="22" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50">~/.ssh/config</text>
 
     <text x="20" y="66" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#1565c0">Host gpu</text>
     <text x="20" y="92" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50">  HostName gpu-lab01.example.com</text>
@@ -34,9 +34,9 @@
     <text x="20" y="38" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" fill="#2c3e50">ssh gpu</text>
   </g>
 
-  <!-- 箭头：config → 短命令 -->
-  <line x1="400" y1="330" x2="400" y2="352" stroke="#27ae60" stroke-width="2"/>
-  <path d="M399,352 L401,352 L404,352 L400,358 L396,352 Z" fill="#27ae60"/>
+  <!-- 箭头：config → 短命令（尖端顶住短命令框顶边 y=360） -->
+  <line x1="400" y1="330" x2="400" y2="354" stroke="#27ae60" stroke-width="2"/>
+  <path d="M399,354 L401,354 L404,354 L400,360 L396,354 Z" fill="#27ae60"/>
 
   <!-- 底部：完整 config 片段 -->
   <g transform="translate(80, 460)">

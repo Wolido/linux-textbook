@@ -9,7 +9,7 @@
   <text x="400" y="42" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" font-weight="500" fill="#2c3e50">find 递归搜索示意</text>
 
   <!-- 图例 -->
-  <g font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50">
+  <g font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50">
     <line x1="40" y1="95" x2="75" y2="95" stroke="#2c3e50" stroke-width="2"/>
     <text x="85" y="99">目录层级</text>
     <line x1="40" y1="115" x2="68" y2="115" stroke="#1565c0" stroke-width="3" stroke-dasharray="6 4"/>

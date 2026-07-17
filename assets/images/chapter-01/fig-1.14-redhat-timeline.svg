@@ -12,7 +12,7 @@
       text-anchor: middle;
     }
     .subtitle {
-      font-size: 13px;
+      font-size: 14px;
       fill: #666;
       text-anchor: middle;
     }
@@ -22,18 +22,18 @@
       text-anchor: middle;
     }
     .event {
-      font-size: 13px;
+      font-size: 14px;
       fill: #222;
       text-anchor: middle;
     }
     .legend-text {
-      font-size: 13px;
+      font-size: 14px;
       fill: #666;
     }
   </style>
   <defs>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L0,6 L6,3 z" fill="#666"/>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#666"/>
     </marker>
   </defs>
 
@@ -45,7 +45,7 @@
   <text x="400" y="68" class="subtitle">（时间轴为示意，不按严格比例绘制）</text>
 
   <!-- Main horizontal axis -->
-  <line x1="90" y1="210" x2="780" y2="210" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="90" y1="210" x2="772" y2="210" stroke="#666" stroke-width="2" marker-end="url(#arrow)"/>
 
   <!-- Event: 1993 Red Hat founded (company) -->
   <circle cx="150" cy="210" r="6" fill="#0d47a1" stroke="#fff" stroke-width="1.5"/>

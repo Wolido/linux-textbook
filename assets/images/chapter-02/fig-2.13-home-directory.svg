@@ -12,16 +12,16 @@
   <line x1="400" y1="150" x2="540" y2="150" stroke="#2c3e50" stroke-width="2"/>
   <!-- 分叉节点 -->
   <circle cx="400" cy="150" r="4.5" fill="#2c3e50"/>
-  <!-- 下垂线 + 箭头：指向 home（尖端停在 home 顶边外侧 2px，y=198） -->
-  <path d="M259,150 L261,150 L261,192 L264,192 L260,198 L256,192 L259,192 Z" fill="#2c3e50"/>
-  <!-- 下垂线 + 箭头：指向 root（尖端停在 root 顶边外侧 2px，y=198） -->
-  <path d="M539,150 L541,150 L541,192 L544,192 L540,198 L536,192 L539,192 Z" fill="#2c3e50"/>
+  <!-- 下垂线 + 箭头：指向 home（尖端顶住 home 顶边 y=200） -->
+  <path d="M259,150 L261,150 L261,194 L264,194 L260,200 L256,194 L259,194 Z" fill="#2c3e50"/>
+  <!-- 下垂线 + 箭头：指向 root（尖端顶住 root 顶边 y=200） -->
+  <path d="M539,150 L541,150 L541,194 L544,194 L540,200 L536,194 L539,194 Z" fill="#2c3e50"/>
 
-  <!-- 箭头：home → student（垂直向下） -->
-  <path d="M259,244 L261,244 L261,282 L264,282 L260,288 L256,282 L259,282 Z" fill="#2c3e50"/>
+  <!-- 箭头：home → student（垂直向下，尖端顶住 student 顶边 y=290） -->
+  <path d="M259,244 L261,244 L261,284 L264,284 L260,290 L256,284 L259,284 Z" fill="#2c3e50"/>
 
-  <!-- 箭头：~ → student（垂直向上） -->
-  <path d="M259,380 L261,380 L261,348 L264,348 L260,342 L256,348 L259,348 Z" fill="#e67e22"/>
+  <!-- 箭头：~ → student（垂直向上，尖端顶住 student 底边 y=340） -->
+  <path d="M259,380 L261,380 L261,346 L264,346 L260,340 L256,346 L259,346 Z" fill="#e67e22"/>
 
   <!-- 根目录 / -->
   <g transform="translate(400, 60)">
@@ -39,14 +39,14 @@
   <g transform="translate(540, 200)">
     <rect x="-50" y="0" width="100" height="44" rx="8" fill="#e67e22"/>
     <text x="0" y="29" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#ffffff">root</text>
-    <text x="0" y="64" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#2c3e50">/root</text>
+    <text x="0" y="64" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#2c3e50">/root</text>
   </g>
 
   <!-- student 家目录（位于 home 正下方） -->
   <g transform="translate(260, 290)">
     <rect x="-70" y="0" width="140" height="50" rx="8" fill="#27ae60"/>
     <text x="0" y="21" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ffffff">student</text>
-    <text x="0" y="41" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#ffffff">/home/student</text>
+    <text x="0" y="41" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#ffffff">/home/student</text>
   </g>
 
   <!-- ~ 标签指向 /home/student（位于 student 正下方） -->

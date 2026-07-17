@@ -84,8 +84,8 @@
   <!-- Layer 1 -> Layer 2 -->
   <path d="M398.5,442 L401.5,442 L401.5,434 L406,434 L400,426 L394,434 L398.5,434 Z" fill="#0d47a1"/>
 
-  <!-- Service annotation -->
-  <text x="730" y="320" class="annotation" transform="rotate(-90, 730, 320)">向上提供服务</text>
+  <!-- Service annotation (horizontal, to the right of the stack) -->
+  <text x="706" y="320" class="annotation">向上提供服务</text>
 
   <!-- Bottom summary -->
   <g transform="translate(400, 570)">

@@ -41,19 +41,19 @@
     <rect x="268" y="150" width="96" height="44" rx="6" fill="#1565c0"/>
     <text x="316" y="178">/root</text>
 
-    <rect x="436" y="150" width="96" height="44" rx="6" fill="#e67e22"/>
+    <rect x="436" y="150" width="96" height="44" rx="6" fill="#1565c0"/>
     <text x="484" y="178">/tmp</text>
 
-    <rect x="604" y="150" width="96" height="44" rx="6" fill="#27ae60"/>
+    <rect x="604" y="150" width="96" height="44" rx="6" fill="#1565c0"/>
     <text x="652" y="178">/etc</text>
   </g>
 
   <!-- 第二层目录 -->
   <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#ffffff" text-anchor="middle">
-    <rect x="100" y="290" width="96" height="44" rx="6" fill="#27ae60"/>
+    <rect x="100" y="290" width="96" height="44" rx="6" fill="#1565c0"/>
     <text x="148" y="318">/usr</text>
 
-    <rect x="268" y="290" width="96" height="44" rx="6" fill="#e67e22"/>
+    <rect x="268" y="290" width="96" height="44" rx="6" fill="#1565c0"/>
     <text x="316" y="318">/var</text>
 
     <rect x="436" y="290" width="96" height="44" rx="6" fill="#1565c0"/>
@@ -64,7 +64,7 @@
   </g>
 
   <!-- 用途标签 -->
-  <g font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#2c3e50" text-anchor="middle">
+  <g font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#2c3e50" text-anchor="middle">
     <text x="148" y="226">用户家目录</text>
     <text x="316" y="226">root 家目录</text>
     <text x="484" y="226">临时文件</text>

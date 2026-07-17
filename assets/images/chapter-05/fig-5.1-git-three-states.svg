@@ -22,39 +22,39 @@
   <g>
     <rect x="230" y="80" width="340" height="90" rx="10" fill="#0d47a1"/>
     <text x="400" y="122" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="17" font-weight="bold" fill="#ffffff">版本库（Repository）</text>
-    <text x="400" y="150" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#e3f2fd">已提交的快照，可被回溯与分支引用</text>
+    <text x="400" y="150" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#e3f2fd">已提交的快照，可被回溯与分支引用</text>
   </g>
 
   <!-- 暂存区 -->
   <g>
     <rect x="230" y="210" width="340" height="90" rx="10" fill="#1565c0"/>
     <text x="400" y="252" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="17" font-weight="bold" fill="#ffffff">暂存区（Staging Area）</text>
-    <text x="400" y="280" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#e3f2fd">已暂存的变更，等待下一次提交</text>
+    <text x="400" y="280" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#e3f2fd">已暂存的变更，等待下一次提交</text>
   </g>
 
   <!-- 工作区 -->
   <g>
     <rect x="230" y="340" width="340" height="90" rx="10" fill="#42a5f5"/>
     <text x="400" y="382" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="17" font-weight="bold" fill="#ffffff">工作区（Working Directory）</text>
-    <text x="400" y="410" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#ffffff">正在编辑的文件，未跟踪或已修改</text>
+    <text x="400" y="410" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#ffffff">正在编辑的文件，未跟踪或已修改</text>
   </g>
 
   <!-- 向上箭头：工作区 -> 暂存区 -->
   <line x1="400" y1="340" x2="400" y2="308" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
-  <text x="450" y="328" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" font-weight="bold" fill="#0d47a1">git add</text>
+  <text x="450" y="325" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" font-weight="bold" fill="#0d47a1">git add</text>
 
   <!-- 向上箭头：暂存区 -> 版本库 -->
   <line x1="400" y1="210" x2="400" y2="178" stroke="#0d47a1" stroke-width="3" marker-end="url(#arrow-blue)"/>
-  <text x="450" y="198" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" font-weight="bold" fill="#0d47a1">git commit</text>
+  <text x="450" y="195" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" font-weight="bold" fill="#0d47a1">git commit</text>
 
   <!-- 向下箭头：版本库 -> 工作区（回退） -->
   <line x1="330" y1="170" x2="330" y2="202" stroke="#1565c0" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrow-light)"/>
-  <text x="210" y="188" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#1565c0">git restore</text>
+  <text x="322" y="195" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#1565c0">git restore</text>
 
   <!-- 向下箭头：暂存区 -> 工作区（取消暂存） -->
   <line x1="330" y1="300" x2="330" y2="332" stroke="#1565c0" stroke-width="3" stroke-dasharray="6,4" marker-end="url(#arrow-light)"/>
-  <text x="190" y="318" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#1565c0">git restore --staged</text>
+  <text x="322" y="325" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#1565c0">git restore --staged</text>
 
   <!-- 底部说明 -->
-  <text x="400" y="485" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">git status 可随时查看文件当前处于哪一层状态</text>
+  <text x="400" y="485" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">git status 可随时查看文件当前处于哪一层状态</text>
 </svg>

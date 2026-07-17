@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" style="max-width:100%;height:auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" style="max-width:100%;height:auto;">
   <title>便签与命令的对照</title>
   <desc>左侧便签用人话表达复制需求，右侧终端用 cp 命令精确表达同一意图，并高亮动作、源、目标三部分。</desc>
 
   <!-- 背景 -->
-  <rect width="800" height="480" fill="#fafafa"/>
+  <rect width="800" height="520" fill="#fafafa"/>
 
   <!-- 左侧：便签纸 -->
   <g transform="translate(200, 200)">
@@ -23,11 +23,10 @@
   <!-- 左侧标签 -->
   <text x="200" y="370" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#2c3e50">日常便签</text>
 
-  <!-- 中间：向右箭头 -->
+  <!-- 中间：向右箭头（3px 箭杆、12px 底边、8px 头深；尖端顶住终端左边缘 x=460） -->
   <g transform="translate(400, 200)">
-    <!-- 箭杆长 80px，宽 4px；箭头深度 20px，底边 20px -->
-    <path d="M-60,-2 L-60,2 L20,2 L20,10 L40,0 L20,-10 L20,-2 Z" fill="#1565c0"/>
-    <text x="0" y="32" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#1565c0">对应到命令</text>
+    <path d="M-60,-1.5 L-60,1.5 L52,1.5 L52,6 L60,0 L52,-6 L52,-1.5 Z" fill="#1565c0"/>
+    <text x="0" y="34" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#1565c0">对应到命令</text>
   </g>
 
   <!-- 右侧：终端窗口 -->
@@ -39,7 +38,7 @@
     <circle cx="-124" cy="-82" r="5" fill="#ff5f56"/>
     <circle cx="-104" cy="-82" r="5" fill="#ffbd2e"/>
     <circle cx="-84" cy="-82" r="5" fill="#27c93f"/>
-    <text x="0" y="-78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#cccccc">Terminal</text>
+    <text x="0" y="-78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#cccccc">Terminal</text>
 
     <!-- 终端内容 -->
     <text x="-126" y="-44" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#4caf50">student@debian:~$</text>

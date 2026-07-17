@@ -29,12 +29,12 @@
       text-anchor: middle;
     }
     .sub-caption {
-      font-size: 12px;
+      font-size: 14px;
       fill: #666;
       text-anchor: middle;
     }
     .legend-text {
-      font-size: 13px;
+      font-size: 14px;
       fill: #666;
     }
     .arrow {
@@ -47,12 +47,9 @@
     }
   </style>
   <defs>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L0,6 L6,3 z" fill="#42a5f5"/>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#42a5f5"/>
     </marker>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.12"/>
-    </filter>
   </defs>
 
   <!-- Background -->
@@ -63,17 +60,17 @@
 
   <!-- Fedora (upstream) -->
   <g transform="translate(400, 95)">
-    <rect x="-90" y="-25" width="180" height="50" rx="8" fill="#42a5f5" filter="url(#shadow)"/>
+    <rect x="-90" y="-25" width="180" height="50" rx="8" fill="#42a5f5"/>
     <text x="0" y="7" class="box-label">Fedora</text>
   </g>
   <text x="400" y="150" class="caption">上游社区版</text>
 
-  <!-- Arrow: Fedora -> RHEL -->
-  <line x1="400" y1="155" x2="400" y2="200" class="arrow" marker-end="url(#arrow)"/>
+  <!-- Arrow: Fedora -> RHEL; line ends at head base (y=202), tip touches RHEL top edge (y=210) -->
+  <line x1="400" y1="155" x2="400" y2="202" class="arrow" marker-end="url(#arrow)"/>
 
   <!-- RHEL (enterprise) -->
   <g transform="translate(400, 235)">
-    <rect x="-90" y="-25" width="180" height="50" rx="8" fill="#ee0000" filter="url(#shadow)"/>
+    <rect x="-90" y="-25" width="180" height="50" rx="8" fill="#ee0000"/>
     <text x="0" y="7" class="box-label">RHEL</text>
   </g>
   <text x="400" y="290" class="caption">企业商业版</text>
@@ -83,34 +80,34 @@
   <line x1="400" y1="305" x2="400" y2="350" class="arrow-light"/>
   <!-- Horizontal spine -->
   <line x1="110" y1="350" x2="695" y2="350" class="arrow-light"/>
-  <!-- Vertical drops to each child -->
-  <line x1="110" y1="350" x2="110" y2="389" class="arrow-light" marker-end="url(#arrow)"/>
-  <line x1="305" y1="350" x2="305" y2="389" class="arrow-light" marker-end="url(#arrow)"/>
-  <line x1="500" y1="350" x2="500" y2="389" class="arrow-light" marker-end="url(#arrow)"/>
-  <line x1="695" y1="350" x2="695" y2="389" class="arrow-light" marker-end="url(#arrow)"/>
+  <!-- Vertical drops to each child; line ends at head base (y=382), tip touches child box top edge (y=390) -->
+  <line x1="110" y1="350" x2="110" y2="382" class="arrow-light" marker-end="url(#arrow)"/>
+  <line x1="305" y1="350" x2="305" y2="382" class="arrow-light" marker-end="url(#arrow)"/>
+  <line x1="500" y1="350" x2="500" y2="382" class="arrow-light" marker-end="url(#arrow)"/>
+  <line x1="695" y1="350" x2="695" y2="382" class="arrow-light" marker-end="url(#arrow)"/>
 
   <!-- CentOS Linux (stopped, dashed style) -->
   <g transform="translate(110, 415)">
-    <rect x="-75" y="-25" width="150" height="50" rx="8" fill="#e3f2fd" stroke="#90caf9" stroke-width="1.5" stroke-dasharray="6,4" filter="url(#shadow)"/>
+    <rect x="-75" y="-25" width="150" height="50" rx="8" fill="#e3f2fd" stroke="#90caf9" stroke-width="1.5" stroke-dasharray="6,4"/>
     <text x="0" y="-1" class="sub-box-label">CentOS Linux</text>
     <text x="0" y="17" class="sub-caption">已停止（2021）</text>
   </g>
 
   <!-- CentOS Stream -->
   <g transform="translate(305, 415)">
-    <rect x="-75" y="-25" width="150" height="50" rx="8" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="-75" y="-25" width="150" height="50" rx="8" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5"/>
     <text x="0" y="7" class="sub-box-label">CentOS Stream</text>
   </g>
 
   <!-- Rocky Linux -->
   <g transform="translate(500, 415)">
-    <rect x="-75" y="-25" width="150" height="50" rx="8" fill="#fff" stroke="#1565c0" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="-75" y="-25" width="150" height="50" rx="8" fill="#fff" stroke="#1565c0" stroke-width="1.5"/>
     <text x="0" y="7" class="sub-box-label">Rocky Linux</text>
   </g>
 
   <!-- AlmaLinux -->
   <g transform="translate(695, 415)">
-    <rect x="-75" y="-25" width="150" height="50" rx="8" fill="#fff" stroke="#1565c0" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="-75" y="-25" width="150" height="50" rx="8" fill="#fff" stroke="#1565c0" stroke-width="1.5"/>
     <text x="0" y="7" class="sub-box-label">AlmaLinux</text>
   </g>
 
@@ -122,10 +119,10 @@
     <rect x="140" y="-9" width="18" height="18" rx="4" fill="#ee0000"/>
     <text x="166" y="5" class="legend-text">企业版</text>
 
-    <rect x="240" y="-9" width="18" height="18" rx="4" fill="#e3f2fd" stroke="#90caf9" stroke-width="1"/>
-    <text x="266" y="5" class="legend-text">社区 / 已停止</text>
+    <rect x="240" y="-9" width="18" height="18" rx="4" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5"/>
+    <text x="266" y="5" class="legend-text">社区版</text>
 
-    <line x1="375" y1="0" x2="400" y2="0" class="arrow-light" stroke-dasharray="6,4"/>
-    <text x="408" y="5" class="legend-text">已停止项目</text>
+    <rect x="350" y="-9" width="18" height="18" rx="4" fill="#e3f2fd" stroke="#90caf9" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="376" y="5" class="legend-text">已停止项目</text>
   </g>
 </svg>

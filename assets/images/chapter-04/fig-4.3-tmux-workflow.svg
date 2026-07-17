@@ -4,8 +4,8 @@
   <desc>展示 SSH 登录服务器、创建 tmux session、启动训练、detach、回家后重新 attach 的完整工作流。</desc>
 
   <defs>
-    <marker id="arrowhead" markerWidth="8" markerHeight="12" refX="0" refY="6" orient="auto" markerUnits="userSpaceOnUse">
-      <path d="M0,0 L8,6 L0,12 Z" fill="#0d47a1"/>
+    <marker id="arrowhead" markerWidth="6" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L6,4 L0,8 Z" fill="#0d47a1"/>
     </marker>
   </defs>
 
@@ -18,45 +18,45 @@
   <!-- 步骤 1：SSH 登录 -->
   <rect x="60" y="100" width="120" height="90" rx="8" fill="#e3f2fd" stroke="#0d47a1" stroke-width="2"/>
   <text x="120" y="132" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">SSH 登录</text>
-  <text x="120" y="155" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#333333">ssh</text>
-  <text x="120" y="172" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#333333">student@gpu-lab</text>
+  <text x="120" y="155" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#333333">ssh</text>
+  <text x="120" y="172" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#333333">student@gpu-lab</text>
 
   <!-- 步骤 2：创建 session -->
   <rect x="205" y="100" width="120" height="90" rx="8" fill="#1565c0"/>
   <text x="265" y="132" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#ffffff">创建 session</text>
-  <text x="265" y="155" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#e3f2fd">tmux new</text>
-  <text x="265" y="172" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#e3f2fd">-s train</text>
+  <text x="265" y="155" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#e3f2fd">tmux new</text>
+  <text x="265" y="172" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#e3f2fd">-s train</text>
 
   <!-- 步骤 3：启动训练 -->
   <rect x="350" y="100" width="120" height="90" rx="8" fill="#1565c0"/>
   <text x="410" y="132" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#ffffff">启动训练</text>
-  <text x="410" y="155" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#e3f2fd">python</text>
-  <text x="410" y="172" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#e3f2fd">train.py</text>
+  <text x="410" y="155" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#e3f2fd">python</text>
+  <text x="410" y="172" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#e3f2fd">train.py</text>
 
   <!-- 步骤 4：detach -->
   <rect x="495" y="100" width="120" height="90" rx="8" fill="#ef5350"/>
   <text x="555" y="132" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#ffffff">脱离会话</text>
-  <text x="555" y="155" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#ffffff">Ctrl+B</text>
-  <text x="555" y="172" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#ffffff">然后 D</text>
+  <text x="555" y="155" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#ffffff">Ctrl+B</text>
+  <text x="555" y="172" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#ffffff">然后 D</text>
 
   <!-- 步骤 5：回家后 attach -->
   <rect x="640" y="100" width="120" height="90" rx="8" fill="#1565c0"/>
   <text x="700" y="125" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#ffffff">重新接入</text>
-  <text x="700" y="148" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#e3f2fd">ssh 登录后</text>
-  <text x="700" y="165" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#e3f2fd">tmux attach</text>
-  <text x="700" y="182" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="12" fill="#e3f2fd">-t train</text>
+  <text x="700" y="148" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#e3f2fd">ssh 登录后</text>
+  <text x="700" y="165" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#e3f2fd">tmux attach</text>
+  <text x="700" y="182" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="13" fill="#e3f2fd">-t train</text>
 
   <!-- 流程箭头 -->
-  <line x1="180" y1="145" x2="197" y2="145" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <line x1="325" y1="145" x2="342" y2="145" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <line x1="470" y1="145" x2="487" y2="145" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <line x1="615" y1="145" x2="632" y2="145" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="180" y1="145" x2="199" y2="145" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="325" y1="145" x2="344" y2="145" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="470" y1="145" x2="489" y2="145" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="615" y1="145" x2="634" y2="145" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrowhead)"/>
 
   <!-- 回家标注 -->
-  <text x="555" y="250" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">回家 / 关笔记本</text>
+  <text x="555" y="250" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">回家 / 关笔记本</text>
   <line x1="555" y1="210" x2="555" y2="232" stroke="#42a5f5" stroke-width="1.5" stroke-dasharray="4,4"/>
 
   <!-- 底部说明 -->
   <text x="400" y="300" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#333333">即使 SSH 断开，session 仍在服务器上继续运行</text>
-  <text x="400" y="325" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">detach 后训练不停止，重新 attach 即可回到原会话</text>
+  <text x="400" y="325" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">detach 后训练不停止，重新 attach 即可回到原会话</text>
 </svg>
