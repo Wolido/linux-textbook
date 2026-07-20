@@ -167,6 +167,10 @@
 <h2 id="linux与开源">Linux与开源</h2>
 <p>Linux的成功离不开开源，在20世纪60-70年代，学术界和研究机构普遍以共享源代码为荣，那时候的Unix也是以极低的价格向大学分发的。然而到了80年代，AT&amp;T公司将Unix全面商业化、封闭源码，打破了这种共享传统，也让许多开发者深感不满。</p>
 <p>1984年，理查德·斯托曼发起GNU计划，目标是开发一套完全自由的类Unix操作系统。他提出“自由软件”必须满足四项自由：为了任何目的运行软件的自由、研究软件如何工作的自由、再次分发的自由、以及改进并发布改进版本的自由。为了从法律层面上保障这些自由，理查德于1989年发布了GNU General Public License（GPL）这项开源协议，后来在1991年定稿的GPLv2协议成为最重要、名气最大的一版。</p>
+<figure>
+  <img src="assets/images/chapter-01/fig-1.4-gnu-logo.svg" alt="GNU 项目的官方标志——角马（gnu）头像">
+  <figcaption>图1.4 GNU 项目的官方标志</figcaption>
+</figure>
 <p>1992年，Linux内核正式使用GPLv2许可证，并一直沿用至今。林纳斯选择GPLv2许可证，而不是更宽松的BSD或者MIT许可证，是一个具有深远意义的决定，因为GPLv2有一个重要的传染性条款：任何基于Linux内核的分发版本，只要发布了二进制程序，就必须同时公开对应版本的完整源代码。这一条款从根本上杜绝了内核被单一公司私有化的可能性，确保所有改进最终回流到公共代码库，同时又允许企业自由使用和商业化。</p>
 <p>正是在这种许可证的保护下，Linux得以在互联网刚刚兴起的90年代迅速聚集全球开发者。任何人只要有一台上网的电脑，就可以下载源码、编译、发现问题、提交补丁。代码审查和讨论全部通过公开的邮件列表进行，问题暴露得快、修复得也快。这种全新的开发模式后来被总结为“林纳斯定律”：在足够多的眼睛注视下，所有 bug 都是浅显的。</p>
 <p>Linux 的崛起反过来也彻底改变了开源的命运。1998 年前后，IBM、Oracle、Intel等巨头先后宣布支持 Linux，Red Hat等公司探索出了“免费软件＋收费支持”的可持续商业模式，开源从学术圈的理想主义走向企业级现实应用。时至今日，Linux内核仍然是全球最大、最活跃的开源项目，每年有超过两千家公司的工程师为它贡献代码，却没有人能将它据为己有。</p>
@@ -179,8 +183,8 @@
 <li>广义的Linux：指以Linux内核为核心，再加上GNU工具链、系统库、图形界面等一大套软件构成的完整操作系统，常被称为GNU/Linux。</li>
 </ul>
 <figure>
-  <img src="assets/images/chapter-01/fig-1.4-distro-stack.svg" alt="Linux 发行版的层次结构">
-  <figcaption>图1.4 Linux 发行版由内核、GNU 工具链、系统库、应用软件和包管理工具等层次构成</figcaption>
+  <img src="assets/images/chapter-01/fig-1.5-distro-stack.svg" alt="Linux 发行版的层次结构">
+  <figcaption>图1.5 Linux 发行版由内核、GNU 工具链、系统库、应用软件和包管理工具等层次构成</figcaption>
 </figure>
 <p>在真正能被我们使用的Linux操作系统中，Linux内核是整个操作系统的“大脑和心脏”，它是一个运行在计算机最底层的软件层，负责直接和硬件打交道，同时向上层用户程序提供统一的抽象接口。换句话说，内核是硬件与软件之间的唯一翻译官。下一章我们会进一步展开内核在命令执行中的角色：你现在输入的命令，最终都要经过内核才能真正干活。</p>
 <p>我们能够看到，Linux内核能做的事情重要且专一，就是驱动各种硬件工作，但是并不是我们真正打交道的部分。内核只提供机制，而策略和用户体验就需要借助上层软件才能实现。不同的社区和公司在上层软件的开发和实现各有不同，这就让广义的Linux产生了很多不同的版本，比如Ubuntu、Debian、Fedora、Arch Linux，以及CentOS Stream、Rocky Linux等。这些就是我们所说的发行版。</p>
@@ -189,13 +193,13 @@
 <p>接下来我们介绍几个主流的Linux发行版。</p>
 <h3 id="debian系">Debian系</h3>
 <figure>
-  <img src="assets/images/chapter-01/fig-1.5-debian-family.svg" alt="Debian 系发行版家谱">
-  <figcaption>图1.5 Debian 系主要发行版的家谱</figcaption>
+  <img src="assets/images/chapter-01/fig-1.6-debian-family.svg" alt="Debian 系发行版家谱">
+  <figcaption>图1.6 Debian 系主要发行版的家谱</figcaption>
 </figure>
 <p>在这张家谱的最顶端，就是 Debian 本身。它不像 Ubuntu 那样频繁发布新版本，也不追求最时髦的桌面特效，而是以稳定、自由和社区自治著称。很多衍生版之所以选择基于 Debian，正是看中了它扎实的根基。</p>
 <figure>
-  <img src="assets/images/chapter-01/fig-1.6-debian.png" alt="Debian">
-  <figcaption>图1.6 Debian的图标</figcaption>
+  <img src="assets/images/chapter-01/fig-1.7-debian.png" alt="Debian">
+  <figcaption>图1.7 Debian的图标</figcaption>
 </figure>
 <p>Debian系是当今Linux世界真正的“人口第一大族”，根据公开统计，全球公开互联网服务器中约 55%～60% 的机器都直接或间接流淌着Debian的血。它的家族结构非常清晰：只有一个真正的“母版”——Debian GNU/Linux，其余所有成员都是它的直系后代或再衍生。Debian系使用apt包管理工具，软件包采用<code>.deb</code>格式，使用<code>apt-get</code>命令来安装软件包。现在更推荐使用 <code>apt</code> 命令，它是 <code>apt-get</code> 和 <code>apt-cache</code> 的更易用封装，带有进度条和更友好的输出。</p>
 <p>Debian 自身有三个主要分支：Stable（稳定版）、Testing（测试版）和 Unstable（不稳定版，代号 Sid）。Stable 经过长期测试，追求极致稳定，是服务器和生产环境的首选；Testing 是下一版 Stable 的候选池，软件版本较新但稳定性略低；Unstable 则是滚动更新的开发分支，适合愿意尝鲜和参与测试的开发者。Ubuntu 正是基于 Debian 的 Testing 分支进一步打磨而成的。</p>
@@ -204,8 +208,8 @@
 <p>Kali Linux，这是一个旨在提供安全测试的Linux发行版。它和上面的“孙子辈”不一样，是 Debian 的直系后代，只不过它彻底抛弃了“通用操作系统”的定位，专为渗透测试、安全研究、数字取证和逆向工程而生。一定要注意，千万不能将Kali Linux当作生产服务器用，它默认使用root用户，也就是最高权限，并且关闭了几乎所有的安全加固。</p>
 <p>Raspberry Pi OS，这是一个给树莓派设备使用的Linux发行版。早年间，这款Linux发行版名叫Raspbian，2015年由树莓派基金会接手，改名为Raspberry Pi OS。这款发行版也是纯血的Debian系，官方软件仓库大部分都是直接镜像Debian，只有少量树莓派专用软件。</p>
 <figure>
-  <img src="assets/images/chapter-01/fig-1.7-raspberry-pi.jpeg" alt="树莓派 Zero 2 W 设备">
-  <figcaption>图1.7 树莓派 Zero 2 W 设备</figcaption>
+  <img src="assets/images/chapter-01/fig-1.8-raspberry-pi.jpeg" alt="树莓派 Zero 2 W 设备">
+  <figcaption>图1.8 树莓派 Zero 2 W 设备</figcaption>
 </figure>
 
 <p>如果说 Debian 系代表了社区自治的民主路线，那么 Red Hat 系则走出了一条商业化、企业化的道路。</p>
@@ -217,8 +221,8 @@
 
 <h4 id="rhel">RHEL：企业级Linux的标杆</h4>
 <figure>
-  <img src="assets/images/chapter-01/fig-1.8-redhat-logo.svg" alt="Red Hat 的徽标">
-  <figcaption>图1.8 Red Hat 的徽标</figcaption>
+  <img src="assets/images/chapter-01/fig-1.9-redhat-logo.svg" alt="Red Hat 的徽标">
+  <figcaption>图1.9 Red Hat 的徽标</figcaption>
 </figure>
 
 <p>Red Hat Enterprise Linux，简称RHEL，是红帽的旗舰商业发行版，也是当今企业级Linux市场的标杆。它的核心卖点不是最新潮的功能，而是稳定、长期支持和可信赖的商业技术支持。RHEL采用订阅制，用户购买的不是软件许可，而是持续的安全更新、补丁、技术支持和硬件认证服务。</p>
@@ -226,8 +230,8 @@
 
 <h4 id="fedora">Fedora：红帽的试验田</h4>
 <figure>
-  <img src="assets/images/chapter-01/fig-1.9-fedora-logo.svg" alt="Fedora 的徽标">
-  <figcaption>图1.9 Fedora 的徽标</figcaption>
+  <img src="assets/images/chapter-01/fig-1.10-fedora-logo.svg" alt="Fedora 的徽标">
+  <figcaption>图1.10 Fedora 的徽标</figcaption>
 </figure>
 
 <p>与RHEL的沉稳不同，Fedora更像一个活力四射的实验室。它是红帽赞助的社区项目，也是RHEL的上游来源。新技术、新内核、新桌面环境、新容器工具，往往先在Fedora里验证、打磨，等成熟之后再被吸纳进RHEL。</p>
@@ -235,8 +239,8 @@
 
 <h4 id="centos">CentOS：那个免费的午餐变了</h4>
 <figure>
-  <img src="assets/images/chapter-01/fig-1.10-centos-stream-logo.svg" alt="CentOS Stream 的徽标">
-  <figcaption>图1.10 CentOS Stream 的徽标</figcaption>
+  <img src="assets/images/chapter-01/fig-1.11-centos-stream-logo.svg" alt="CentOS Stream 的徽标">
+  <figcaption>图1.11 CentOS Stream 的徽标</figcaption>
 </figure>
 
 <p>在传统CentOS Linux时代，很多创业公司和小团队都把它当作“免费的RHEL”。它会等待RHEL发布之后，移除其中的商业商标和专有组件，再重新编译打包，生成一个与RHEL二进制兼容的免费版本。因为几乎不需要改动代码，运行在RHEL上的软件通常也能无缝运行在CentOS上，这让CentOS成了预算有限但又需要企业级稳定性的用户的最爱。</p>
@@ -244,8 +248,8 @@
 
 <h4 id="rocky-linux">Rocky Linux：老父亲的回归</h4>
 <figure>
-  <img src="assets/images/chapter-01/fig-1.11-rocky-linux-logo.svg" alt="Rocky Linux 的徽标">
-  <figcaption>图1.11 Rocky Linux 的徽标</figcaption>
+  <img src="assets/images/chapter-01/fig-1.12-rocky-linux-logo.svg" alt="Rocky Linux 的徽标">
+  <figcaption>图1.12 Rocky Linux 的徽标</figcaption>
 </figure>
 
 <p>CentOS Linux的转向，让很多人开始寻找新的“免费RHEL替代品”。正是在这个背景下，原CentOS创始人Gregory Kurtzer重新发起了Rocky Linux项目。这个名字来源于他已故的合作者Rocky McGaugh，也带有一种“接棒传统CentOS精神”的意味。</p>
@@ -253,8 +257,8 @@
 
 <h4 id="almalinux">AlmaLinux：另一条接棒者</h4>
 <figure>
-  <img src="assets/images/chapter-01/fig-1.12-almalinux-logo.svg" alt="AlmaLinux 的徽标">
-  <figcaption>图1.12 AlmaLinux 的徽标</figcaption>
+  <img src="assets/images/chapter-01/fig-1.13-almalinux-logo.svg" alt="AlmaLinux 的徽标">
+  <figcaption>图1.13 AlmaLinux 的徽标</figcaption>
 </figure>
 
 <p>几乎与Rocky Linux同时出现的，还有AlmaLinux。它由CloudLinux公司发起，背后有商业公司的资源支持，但同样免费、开源，并且承诺兼容RHEL。AlmaLinux的出现，让“RHEL替代品”这个生态位不再只有单一选择。</p>
@@ -264,13 +268,13 @@
 <p>看完这些发行版，你可能会觉得关系有点复杂。其实它们的血脉关系非常清晰：Fedora是上游的创新试验田，RHEL是企业级的稳定产物，而CentOS Stream、Rocky Linux、AlmaLinux则围绕RHEL形成了不同的下游生态。下面两张图可以帮助你快速建立整体印象。</p>
 
 <figure>
-  <img src="assets/images/chapter-01/fig-1.13-redhat-family.svg" alt="红帽系发行版家谱图">
-  <figcaption>图1.13 红帽系发行版家谱：Fedora、RHEL 与下游衍生版的关系</figcaption>
+  <img src="assets/images/chapter-01/fig-1.14-redhat-family.svg" alt="红帽系发行版家谱图">
+  <figcaption>图1.14 红帽系发行版家谱：Fedora、RHEL 与下游衍生版的关系</figcaption>
 </figure>
 <p>除了血脉关系，时间线也能帮我们理解红帽系的发展历程。从 1993 年 Red Hat 公司成立，到 2020 年 CentOS Linux 转向 Stream、2021 年 Rocky Linux 和 AlmaLinux 相继发布，红帽系经历了从校园项目到企业巨头、从免费重建版繁荣到生态重新洗牌的多重转折。</p>
 <figure>
-  <img src="assets/images/chapter-01/fig-1.14-redhat-timeline.svg" alt="红帽系关键历史事件时间线">
-  <figcaption>图1.14 红帽系关键历史事件时间线（时间轴为示意，不按严格比例绘制）</figcaption>
+  <img src="assets/images/chapter-01/fig-1.15-redhat-timeline.svg" alt="红帽系关键历史事件时间线">
+  <figcaption>图1.15 红帽系关键历史事件时间线（时间轴为示意，不按严格比例绘制）</figcaption>
 </figure>
 
 
