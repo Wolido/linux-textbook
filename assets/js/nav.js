@@ -105,4 +105,71 @@
       }
     });
   });
+
+  // ── Scroll-based sidebar section tracking ──
+  // Highlight the current h2 section in the sidebar as the user scrolls.
+  (function trackScrollSection() {
+    const sections = document.querySelectorAll('main h2[id]');
+    if (sections.length === 0) return;
+
+    // Build a lookup: id → sidebar link that ends with #id
+    const idToLink = {};
+    sidebarLinks.forEach(function (link) {
+      var href = link.getAttribute('href');
+      if (!href) return;
+      // Match the hash part of href like #shell终端bash与配置文件
+      var match = href.match(/#(.+)$/);
+      if (match) {
+        idToLink[match[1]] = link;
+      }
+    });
+
+    if (Object.keys(idToLink).length === 0) return;
+
+    var activeId = null;
+
+    function updateActiveSection() {
+      var scrollY = window.scrollY + 120; // offset for fixed header
+      var currentId = '';
+
+      sections.forEach(function (section) {
+        if (section.offsetTop <= scrollY) {
+          currentId = section.id;
+        }
+      });
+
+      if (currentId && currentId !== activeId) {
+        activeId = currentId;
+
+        // Remove active from all sidebar links, add to the matching one
+        sidebarLinks.forEach(function (link) {
+          link.classList.remove('active');
+        });
+
+        if (idToLink[currentId]) {
+          idToLink[currentId].classList.add('active');
+        }
+
+        // Update URL hash without triggering scroll
+        if ('#' + currentId !== window.location.hash) {
+          history.replaceState(null, '', '#' + currentId);
+        }
+      }
+    }
+
+    // Debounce scroll with requestAnimationFrame
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Run once on load
+    updateActiveSection();
+  })();
 })();

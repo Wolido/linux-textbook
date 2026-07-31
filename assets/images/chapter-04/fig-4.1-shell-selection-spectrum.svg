@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 555" width="800" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
   <title>Shell 选型定位光谱</title>
-  <desc>以 Bash 兼容性为纵轴、配置复杂度/上手成本为横轴，定位 Bash、zsh、fish、xonsh 四种 Shell 的适用场景。</desc>
+  <desc>以 Bash 兼容性为纵轴、配置复杂度/上手成本为横轴，定位 Bash、zsh、fish、xonsh 四种 Shell 的适用场景。坐标轴带刻度线与浅灰网格，便于读取各 Shell 的位置。</desc>
 
   <defs>
     <marker id="arrowhead" markerWidth="6" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="userSpaceOnUse">
@@ -15,18 +15,41 @@
   <!-- 标题 -->
   <text x="400" y="42" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="bold" fill="#0d47a1">Shell 选型定位：兼容性与配置成本的权衡</text>
 
+  <!-- 浅灰网格线（与数据点水平/垂直位置对齐，辅助读图） -->
+  <g stroke="#e0e0e0" stroke-width="1">
+    <line x1="120" y1="160" x2="720" y2="160"/>
+    <line x1="120" y1="380" x2="720" y2="380"/>
+    <line x1="220" y1="100" x2="220" y2="420"/>
+    <line x1="420" y1="100" x2="420" y2="420"/>
+    <line x1="660" y1="100" x2="660" y2="420"/>
+  </g>
+
   <!-- 坐标轴 -->
   <line x1="120" y1="420" x2="720" y2="420" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)"/>
   <line x1="120" y1="420" x2="120" y2="100" stroke="#333333" stroke-width="2" marker-end="url(#arrowhead)"/>
 
-  <!-- 轴标签 -->
-  <text x="420" y="460" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#333333">配置复杂度 / 上手成本：低 → 高</text>
-  <text x="120" y="485" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">开箱即用</text>
-  <text x="690" y="485" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">需要折腾配置</text>
+  <!-- 刻度线：Y 轴 2 条（高/低兼容），X 轴 3 条（对应数据点横坐标） -->
+  <g stroke="#333333" stroke-width="2">
+    <line x1="114" y1="160" x2="120" y2="160"/>
+    <line x1="114" y1="380" x2="120" y2="380"/>
+    <line x1="220" y1="420" x2="220" y2="426"/>
+    <line x1="420" y1="420" x2="420" y2="426"/>
+    <line x1="660" y1="420" x2="660" y2="426"/>
+  </g>
 
-  <text x="70" y="260" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#333333">Bash 兼容性</text>
-  <text x="120" y="80" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">高（兼容 Bash 脚本）</text>
-  <text x="120" y="445" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">低（语法不兼容）</text>
+  <!-- Y 轴标题：整体旋转 -90°，位于轴左侧中间偏上，字形右缘距轴线 15px，避开刻度标签 -->
+  <text x="105" y="250" text-anchor="middle" transform="rotate(-90 105 250)" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#333333">Bash 兼容性</text>
+
+  <!-- Y 轴刻度标签：统一在轴左侧右对齐（text-anchor="end", x=105），两行块垂直居中于刻度 -->
+  <text x="105" y="152" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">高（兼容</text>
+  <text x="105" y="170" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">Bash 脚本）</text>
+  <text x="105" y="372" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">低（语法</text>
+  <text x="105" y="390" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">不兼容）</text>
+
+  <!-- X 轴标记：左端"开箱即用" —— 轴标题 —— 右端"需要折腾配置"，同一行均匀排布 -->
+  <text x="170" y="450" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">开箱即用</text>
+  <text x="420" y="450" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#333333">配置复杂度 / 上手成本：低 → 高</text>
+  <text x="670" y="450" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">需要折腾配置</text>
 
   <!-- 数据点：Bash -->
   <circle cx="220" cy="160" r="12" fill="#1565c0"/>

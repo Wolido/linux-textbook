@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 800 430" width="800" style="max-width:100%;height:auto;">
+  <title>图4.2 yazi — 终端里的文件管理器（双栏界面）</title>
+  <desc>在终端中执行 yazi 后的双栏界面：左栏是 /home/student/experiments 目录的文件列表（目录蓝色、文件浅灰，train.py 高亮选中），右栏实时预览选中文件的 Python 代码（带行号和语法高亮），底部为状态栏与按键提示。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="430" fill="#fafafa"/>
+
+  <!-- 终端外框 -->
+  <rect x="40" y="40" width="720" height="350" rx="10" fill="#1e1e1e"/>
+  <!-- 标题栏 -->
+  <rect x="40" y="40" width="720" height="36" rx="10" fill="#4a4a4a"/>
+  <rect x="40" y="66" width="720" height="10" fill="#4a4a4a"/>
+  <circle cx="62" cy="58" r="6" fill="#ff5f56"/>
+  <circle cx="82" cy="58" r="6" fill="#ffbd2e"/>
+  <circle cx="102" cy="58" r="6" fill="#27c93f"/>
+  <text x="400" y="63" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#f0f0f0">Terminal — bash</text>
+
+  <!-- 启动命令 -->
+  <text x="60" y="104" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14"><tspan fill="#4caf50">$</tspan><tspan fill="#ffffff"> yazi</tspan></text>
+
+  <!-- 路径栏（当前目录） -->
+  <rect x="60" y="124" width="680" height="24" fill="#252526"/>
+  <text x="68" y="141" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#ffffff">/home/student/experiments</text>
+
+  <!-- 选中行高亮条：train.py（左栏第 5 行） -->
+  <rect x="60" y="259" width="240" height="24" fill="#264f78"/>
+
+  <!-- 分栏竖线 -->
+  <line x1="308" y1="148" x2="308" y2="344" stroke="#4a4a4a" stroke-width="1"/>
+
+  <!-- 左栏：文件列表（目录蓝色 #64b5f6，文件浅灰 #e0e0e0） -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14">
+    <text x="68" y="172" fill="#64b5f6">..</text>
+    <text x="68" y="198" fill="#64b5f6">data/</text>
+    <text x="68" y="224" fill="#64b5f6">logs/</text>
+    <text x="68" y="250" fill="#64b5f6">configs/</text>
+    <text x="68" y="276" fill="#ffffff">train.py</text>
+    <text x="68" y="302" fill="#e0e0e0">README.md</text>
+  </g>
+
+  <!-- 右栏：文件预览（行号 + 语法高亮的 Python 代码） -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14">
+    <!-- 行号与分隔符 -->
+    <g fill="#757575" text-anchor="end">
+      <text x="338" y="172">1</text>
+      <text x="338" y="198">2</text>
+      <text x="338" y="224">3</text>
+      <text x="338" y="250">4</text>
+      <text x="338" y="276">5</text>
+      <text x="338" y="302">6</text>
+      <text x="338" y="328">…</text>
+    </g>
+    <g fill="#616161">
+      <text x="350" y="172">│</text>
+      <text x="350" y="198">│</text>
+      <text x="350" y="224">│</text>
+      <text x="350" y="250">│</text>
+      <text x="350" y="276">│</text>
+      <text x="350" y="302">│</text>
+      <text x="350" y="328">│</text>
+    </g>
+    <!-- 代码：关键字 #c586c0，模块/变量 #9cdcfe，类名 #4ec9b0，函数 #dcdcaa，其余 #e0e0e0 -->
+    <text x="364" y="172"><tspan fill="#c586c0">import</tspan><tspan fill="#9cdcfe"> torch</tspan></text>
+    <text x="364" y="198"><tspan fill="#c586c0">import</tspan><tspan fill="#9cdcfe"> torch.nn</tspan><tspan fill="#c586c0"> as</tspan><tspan fill="#9cdcfe"> nn</tspan></text>
+    <text x="364" y="250"><tspan fill="#c586c0">class</tspan><tspan fill="#4ec9b0"> MLP</tspan><tspan fill="#e0e0e0">(</tspan><tspan fill="#4ec9b0">nn.Module</tspan><tspan fill="#e0e0e0">):</tspan></text>
+    <text x="364" y="276"><tspan fill="#c586c0">    def</tspan><tspan fill="#dcdcaa"> __init__</tspan><tspan fill="#e0e0e0">(</tspan><tspan fill="#9cdcfe">self</tspan><tspan fill="#e0e0e0">):</tspan></text>
+    <text x="364" y="302"><tspan fill="#dcdcaa">        super</tspan><tspan fill="#e0e0e0">().</tspan><tspan fill="#dcdcaa">__init__</tspan><tspan fill="#e0e0e0">()</tspan></text>
+  </g>
+
+  <!-- 底部状态栏：文件信息 + 按键提示 -->
+  <rect x="60" y="344" width="680" height="26" fill="#2d2d2d"/>
+  <text x="68" y="362" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14"><tspan fill="#ffffff">train.py</tspan><tspan fill="#9e9e9e"> · 1.2 KB · Python</tspan></text>
+  <text x="732" y="362" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14"><tspan fill="#ffbd2e">↑↓</tspan><tspan fill="#e0e0e0"> 移动   </tspan><tspan fill="#ffbd2e">Enter</tspan><tspan fill="#e0e0e0"> 打开   </tspan><tspan fill="#ffbd2e">h</tspan><tspan fill="#e0e0e0"> 上级   </tspan><tspan fill="#ffbd2e">q</tspan><tspan fill="#e0e0e0"> 退出</tspan></text>
+</svg>

@@ -264,6 +264,18 @@ figure img {
   box-shadow: 0 2px 8px var(--shadow);
 }
 
+/* Portrait illustrations, memes, and photos — constrain width
+   so they don't dominate the page. */
+.fig-portrait {
+  max-width: 400px;
+}
+
+/* Medium-width horizontal figures (comics, screenshots with text)
+   — wider than portrait to keep text readable. */
+.fig-medium {
+  max-width: 550px;
+}
+
 figcaption {
   margin-top: 0.5rem;
   font-size: 0.9rem;

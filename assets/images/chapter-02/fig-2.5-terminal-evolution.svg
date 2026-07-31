@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 420" width="780">
+  <title>从硬件终端到终端模拟器的演变对比图</title>
+
+  <!-- 箭头 marker：底边在 x=0、尖端在 x=6，refX=0 使线端点连接底边中点 -->
+  <defs>
+    <marker id="arrow-blue" markerUnits="userSpaceOnUse" markerWidth="6" markerHeight="8" viewBox="0 0 6 8" refX="0" refY="4" orient="auto">
+      <path d="M0,0 L6,4 L0,8 Z" fill="#0d47a1"/>
+    </marker>
+  </defs>
+
+  <rect width="780" height="420" fill="#fafafa"/>
+
+  <!-- ================= 左侧：硬件终端（DEC VT100 风格） ================= -->
+  <text x="156" y="42" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#424242">硬件终端（1970s）</text>
+
+  <!-- 机身 -->
+  <g>
+    <rect x="40" y="64" width="232" height="176" rx="14" fill="#757575" stroke="#616161" stroke-width="1.5"/>
+    <text x="156" y="86" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" letter-spacing="1" fill="#ffffff">DEC VT100</text>
+    <!-- 屏幕 -->
+    <rect x="60" y="96" width="192" height="104" rx="6" fill="#1e1e1e"/>
+    <text x="72" y="126" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#4caf50">login:</text>
+    <!-- 块状光标（静态表示） -->
+    <rect x="124" y="112" width="9" height="17" fill="#4caf50"/>
+  </g>
+
+  <!-- 实体键盘 -->
+  <g>
+    <rect x="40" y="252" width="232" height="44" rx="6" fill="#9e9e9e" stroke="#616161" stroke-width="1.5"/>
+    <!-- 两排按键（虚线表示键位） -->
+    <line x1="56" y1="264" x2="256" y2="264" stroke="#616161" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 6"/>
+    <line x1="56" y1="276" x2="256" y2="276" stroke="#616161" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 6"/>
+    <!-- 空格键 -->
+    <line x1="96" y1="288" x2="216" y2="288" stroke="#616161" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- ================= 右侧：现代终端模拟器 ================= -->
+  <text x="624" y="42" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#424242">终端模拟器（今天）</text>
+
+  <g>
+    <!-- 窗口主体 -->
+    <rect x="508" y="64" width="232" height="176" rx="8" fill="#2d2d2d"/>
+    <!-- 标题栏（仅顶部圆角） -->
+    <path d="M508,74 Q508,64 518,64 L730,64 Q740,64 740,74 L740,92 L508,92 Z" fill="#3c3c3c"/>
+    <!-- 红黄绿圆点（直径 10px，在标题栏内垂直居中） -->
+    <circle cx="523" cy="78" r="5" fill="#ff5f56"/>
+    <circle cx="541" cy="78" r="5" fill="#ffbd2e"/>
+    <circle cx="559" cy="78" r="5" fill="#27c93f"/>
+    <text x="624" y="82" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#ffffff">Terminal — bash</text>
+    <!-- 窗口内容 -->
+    <text x="520" y="122" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14"><tspan fill="#4caf50">student@debian:~$</tspan><tspan fill="#ffffff"> ls</tspan></text>
+    <text x="520" y="146" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#bdbdbd">Desktop  Documents</text>
+    <text x="520" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#4caf50">student@debian:~$</text>
+    <!-- 块状光标 -->
+    <rect x="672" y="156" width="9" height="14" fill="#4caf50"/>
+  </g>
+
+  <!-- ================= 中间连接箭头 ================= -->
+  <!-- 上方箭头：左 → 右，尖端顶住窗口左边缘 x=508（head 深 6，线端点 502） -->
+  <line x1="272" y1="140" x2="502" y2="140" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="390" y="124" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#0d47a1">软件模拟硬件的输入输出行为</text>
+
+  <!-- 下方箭头：右 → 左，尖端顶住机身右边缘 x=272（head 深 6，线端点 278） -->
+  <line x1="508" y1="190" x2="278" y2="190" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="390" y="212" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#0d47a1">本质没变：接收键盘输入</text>
+  <text x="390" y="230" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#0d47a1">显示文本结果</text>
+
+  <!-- ================= 底部总结 ================= -->
+  <text x="390" y="370" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#757575">今天的终端窗口，其实是软件对当年那块屏幕的模仿。</text>
+</svg>

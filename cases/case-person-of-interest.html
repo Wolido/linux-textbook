@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>延伸阅读：《疑犯追踪》——当"Root"成为 AI 的化身 - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="../index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="../index.html">目录</a></li>
+        <li><a href="../preface.html">序言</a></li>
+        <li>
+          <a href="../chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="../chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="../chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="../chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="../chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="../chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="../chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="../chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="../chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="../chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="../chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="../chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的"乐高"</a></li>
+            <li><a href="../chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="../chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="../chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="../chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="../chapter-03.html#创建与管理用户">创建与管理用户</a></li>
+            <li><a href="../chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="../chapter-03.html#安装软件">安装软件</a></li>
+            <li><a href="../chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../chapter-04.html">第四章 Linux 好用的工具</a>
+        </li>
+        <li>
+          <a href="../chapter-05.html">第五章 Git</a>
+        </li>
+
+        <li>
+          <a href="../chapter-06.html">第六章 Vim 文本编辑器</a>
+        </li>
+        <li>
+          <a href="../chapter-07.html">第七章 网络基础</a>
+        </li>
+        <li>
+          <a href="../chapter-08.html">第八章 Web 与 API</a>
+        </li>
+        <li>
+          <a href="../chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="../chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="../chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="../extended-reading.html">延伸阅读</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1 id="疑犯追踪与root">《疑犯追踪》与 root</h1>
+
+    <p>《疑犯追踪》（Person of Interest）是 CBS 电视台 2011 年至 2016 年播出的一部科幻犯罪剧，共五季 103 集，由 Jonathan Nolan（克里斯托弗·诺兰的弟弟）和 J.J. Abrams 的 Bad Robot 公司联合打造。这部剧在播出时口碑逐年攀升，IMDb 评分 8.5，豆瓣评分从第一季的 8.9 一路升到最终季的 9.5——美剧里很少见到这种"越往后越好看"的走势。</p>
+
+    <p>为什么要在一本 Linux 教材里提一部美剧？因为剧中有一个重要角色，她的代号恰好叫 "Root"。</p>
+
+    <h2 id="一部预言了ai监控时代的美剧">一部预言了 AI 监控时代的美剧</h2>
+
+    <p>《疑犯追踪》的核心设定放到今天看，简直像新闻标题：9/11 事件后，美国政府秘密部署了一套大规模监控系统，代号 "The Machine"（机器）。这台机器能接入全美所有的监控摄像头、电话、邮件和网络数据，通过分析每个人的行为模式，提前预测恐怖袭击。</p>
+
+    <p>但它的创造者 Harold Finch 在系统里埋了一条底线：The Machine 只会给出涉及"国家安全"的威胁预警，而那些与普通人相关的"次要"犯罪信息——比如即将发生的谋杀——每天以社保号码的形式被悄悄删除。Finch 无法接受这种浪费，于是找到前 CIA 特工 John Reese，两人联手，用这些被系统丢弃的号码去拯救那些不知自己身处险境的普通人。</p>
+
+    <p>这个设定放到 2025 年回头看，会发现它预判了很多东西。斯诺登在 2013 年曝光"棱镜计划"时，这部剧已经播到了第三季——剧中的大规模监控、元数据分析、AI 行为预测，与现实惊人地吻合。更超前的是，它花大量篇幅探讨了一个至今仍然前沿的问题：如果把公共安全交给一个超级 AI 来决策，谁来监督这个 AI？它会有自己的意志吗？</p>
+
+    <h2 id="root一个代号的多重含义">Root：一个代号的多重含义</h2>
+
+    <p>Samantha Groves 这个角色出场较晚，但很快成为故事的核心驱动力之一。她原本是一名顶尖黑客，对计算机系统的理解远超常人。出于某些原因（这里不剧透），她给自己取了代号 "Root"——这显然不是随便选的。</p>
+
+    <p>在计算机世界里，root 意味着对系统的完全控制。剧中 Root 与 The Machine 逐渐建立了一种独特的关系，她称自己为 The Machine 的 "analog interface"（模拟接口）——一个能替 AI 在物理世界里行动的人。如果 The Machine 是一台超级计算机，那 Root 就是它伸向现实世界的一只手。某种意义上，她的角色弧就是一步步获得"系统 root 权限"的过程。</p>
+
+    <p>这个角色的妙处在于，她既展示了 root 级别的能力有多惊人，也把"能力越大、责任越大"的命题演到了极致。剧中有很多时刻，你看着屏幕上的 Root，会想起 Linux 终端里那个 <code>#</code> 提示符：当你能做任何事的时候，你选择做什么，往往比你能做什么更重要。</p>
+
+    <h2 id="值得一看吗">值得一看吗？</h2>
+
+    <p>如果你的口味偏理性、偏技术，又喜欢那种"看完一集会停下来想一会儿"的剧，《疑犯追踪》大概率会让你上瘾。它不靠爆炸场面和追车戏撑节奏（虽然有，但不是重点），而是靠编剧对未来社会的推演、对 AI 伦理的思考，以及一群角色之间复杂而动人的关系。</p>
+
+    <p>前两季像一部高水平的"案件 + 主线"周播剧，第三季开始层层揭露更大的世界观，第四、第五季几乎是一部关于 AI 觉醒的哲学寓言。在不少观众和评论者看来，它是美剧历史上对"强人工智能"（ASI）题材处理得最认真、最有深度的作品之一。</p>
+
+    <p>最后，回到 root 这个主题。如果你学完第三章，已经记住了 <code>sudo</code> 的用法、理解了 <code>#</code> 提示符的含义，那么不妨在看这部剧的时候留意一下：编剧给这个角色取名 "Root"，到底是一个巧合，还是某种必然？毕竟，在任何一个系统里——不管是 Linux 还是 AI——掌握 root 权限的人，总是站在故事的中心。</p>
+
+    <footer class="page-footer">
+      <a href="javascript:history.back()">返回上一页</a>
+      <span class="footer-separator">|</span>
+      <a href="../index.html">返回目录</a>
+    </footer>
+  </main>
+
+  <script src="../assets/js/nav.js" defer></script>
+</body>
+</html>

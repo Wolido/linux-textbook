@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>延伸阅读：Shell 的家族谱系 - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="../index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="../index.html">目录</a></li>
+        <li><a href="../preface.html">序言</a></li>
+        <li>
+          <a href="../chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="../chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="../chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="../chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="../chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="../chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="../chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="../chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="../chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="../chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="../chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="../chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的"乐高"</a></li>
+            <li><a href="../chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="../chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="../chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="../chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="../chapter-03.html#创建与管理用户">创建与管理用户</a></li>
+            <li><a href="../chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="../chapter-03.html#安装软件">安装软件</a></li>
+            <li><a href="../chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../chapter-04.html">第四章 Linux 好用的工具</a>
+        </li>
+        <li>
+          <a href="../chapter-05.html">第五章 Git</a>
+        </li>
+
+        <li>
+          <a href="../chapter-06.html">第六章 Vim 文本编辑器</a>
+        </li>
+        <li>
+          <a href="../chapter-07.html">第七章 网络基础</a>
+        </li>
+        <li>
+          <a href="../chapter-08.html">第八章 Web 与 API</a>
+        </li>
+        <li>
+          <a href="../chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="../chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="../chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="../extended-reading.html">延伸阅读</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1 id="shell的家族谱系">Shell 的家族谱系：从 sh 到 xonsh</h1>
+
+    <p>你每次打开终端，都是在跟一个 Shell 对话。你用的很可能是 Bash，但 Bash 只是 Shell 家族里的一支。这个家族的故事要从 1970 年代讲起，横跨半个世纪，至今还在生长。</p>
+
+    <h2 id="sh一切的起点">sh：一切的起点</h2>
+
+    <p>1977 年，Stephen Bourne 在贝尔实验室为 Unix V7 写了一个新的命令解释器。在他之前，Unix 上用的是 Ken Thompson 写的 Thompson shell，功能很简陋，连变量和控制流都不支持。Bourne 决定从头做一个：支持变量、条件判断、循环、函数。这些今天看起来理所当然的东西，在当时是开创性的。</p>
+
+    <p>他把这个 Shell 叫做 sh。此后几十年里，sh 的语法成了 Shell 世界的一门"普通话"。你今天写的每一个 <code>if</code>、<code>for</code>、<code>while</code>，骨子里都是 Bourne 在 1977 年定下的规矩。即便后来的 Shell 增加了无数新特性，它们几乎都选择兼容 sh 的脚本语法。这是一种共识：你可以做加法，但不要去动摇根基。</p>
+
+    <h2 id="csh和ksh家族开始分化">csh 和 ksh：家族开始分化</h2>
+
+    <p>sh 擅长脚本，但交互体验一般。几乎同一时期，Bill Joy 在伯克利写了 csh（C Shell）。这位 Joy 不是别人，正是后来写出 vi 编辑器的那个 Joy。csh 的语法模仿 C 语言，对当时整天写 C 的程序员来说非常亲切。它还带来了两个沿用至今的特性：命令历史记录（可以用 ↑ 翻之前的命令）和别名（<code>alias</code>）。今天你敲 <code>alias ll='ls -la'</code> 的时候，就是在用 csh 留下的遗产。</p>
+
+    <p>差不多同时，David Korn 在贝尔实验室写了 ksh（KornShell）。他的思路不一样：既要兼容 sh 脚本，又要有丰富的交互特性。ksh 支持命令行编辑、作业控制、关联数组，脚本能力比 csh 强得多。很长一段时间里，ksh 是商业 Unix 上的默认 Shell。后来 Bash 崛起，ksh 的光芒被盖过了，但在一些企业环境里它仍然在跑。</p>
+
+    <h2 id="bash致敬与调侃">bash：致敬与调侃</h2>
+
+    <p>1989 年，GNU 项目需要一个自由软件的 Shell。Brian Fox 接下了这个任务，写出了 Bash。名字是个双关：Bourne Again SHell，既是对 Bourne shell 的致敬，也带一点调侃。</p>
+
+    <p>Bash 兼容 sh，同时把 csh 和 ksh 的很多好东西吸收了进来：命令行编辑、历史记录、作业控制、别名、函数。但真正让 Bash 无处不在的，是它的许可证。Bash 是 GPL 协议的自由软件，谁都能用、能改、能分发。Linux 发行版需要一个默认 Shell，Bash 刚好等在那里。今天你在 Ubuntu、Debian、Fedora 上打开的终端，默认就是 Bash。它未必是最先进的 Shell，但绝对是覆盖面最广的。你可以在几乎任何 Linux 服务器上假设 Bash 存在。</p>
+
+    <h2 id="zsh把交互体验推到极致">zsh：把交互体验推到极致</h2>
+
+    <p>1990 年，普林斯顿大学的学生 Paul Falstad 写了 zsh。当时他可能没想到，三十多年后 zsh 会成为 macOS 的默认 Shell。</p>
+
+    <p>zsh 兼容 bash 脚本，但它的真正优势在交互体验。补全系统极其强大：输入 <code>git c</code> 按 Tab，它会列出所有 Git 子命令并允许你用方向键选择；输入一个路径，它可以补全远程服务器上的文件。搭配 oh-my-zsh 这类框架，主题、插件、Git 状态提示开箱即用。2019 年，macOS Catalina 把默认 Shell 从 Bash 换成了 zsh。Apple 给出的理由之一是 Bash 的 GPLv3 许可证与其商业策略冲突，但 zsh 本身的体验优势也是实打实的。</p>
+
+    <h2 id="fish不折腾开箱即用">fish：不折腾，开箱即用</h2>
+
+    <p>2005 年诞生的 fish 走了一条完全不同的路。它的全名是 Friendly Interactive Shell，这个名字就说明了一切：不追求兼容 POSIX，不追求能跑所有 bash 脚本，只追求一件事：让普通用户打开就能用。</p>
+
+    <p>fish 默认就有语法高亮：你敲的命令正确是蓝色，错误是红色。自动建议会根据历史记录预测你想敲的命令，按 → 直接补全。甚至还有一个 Web 界面可以配置 Shell。学习成本极低。代价也很明显：你在网上找到的 Shell 教程里那些 bash 写法，在 fish 里多半跑不通。它不是给运维老手准备的，是给"不想折腾"的人准备的。</p>
+
+    <h2 id="xonsh-python和shell的混血儿">xonsh：Python 和 Shell 的混血儿</h2>
+
+    <p>2012 年出现的 xonsh 是家族里最不像 Shell 的 Shell。它把 Python 解释器和 Shell 揉在了一起。</p>
+
+    <p>你在 xonsh 里可以这样写：先 <code>ls -l</code>，然后在同一行里调用 <code>len(os.listdir('.'))</code>，用 Python 的 <code>len()</code> 函数统计文件数量。管道、重定向这些 Shell 操作照样能用，但遇到复杂逻辑时可以直接写 Python，不用再在 bash 里用那些反直觉的字符串操作语法。对 Python 用户来说，xonsh 消除了 Shell 脚本和 Python 程序之间的边界。不写 Python 的人可能会觉得它奇怪；如果你日常就在 Python 里打转，xonsh 会让你觉得"Shell 早该这样了"。</p>
+
+    <h2 id="选哪个">选哪个？</h2>
+
+    <p>从 1977 年的 sh 到今天，Shell 的概念没有变：它仍然是人与操作系统之间的对话接口。变的是交互体验、语言融合和生态。</p>
+
+    <p>Bash 最普遍，假设它存在几乎总是安全的。zsh 最强大，补全和主题让许多开发者离不开它。fish 最省心，打开就能用。xonsh 对 Python 用户最亲切。选哪个没有对错，看你的场景和习惯。如果你刚入门，从 Bash 开始不会错；如果追求更好的补全和主题，试试 zsh；如果你一分钟都不想配置，用 fish；如果你写 Python 比写 Shell 脚本还顺手，xonsh 在等你。</p>
+
+    <footer class="page-footer">
+      <a href="javascript:history.back()">返回上一页</a>
+      <span class="footer-separator">|</span>
+      <a href="../index.html">返回目录</a>
+    </footer>
+  </main>
+
+  <script src="../assets/js/nav.js" defer></script>
+</body>
+</html>

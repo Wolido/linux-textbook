@@ -45,11 +45,10 @@
     <rect x="552" y="70" width="208" height="44" rx="12" fill="#e67e22"/>
     <text x="656" y="100" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="600" fill="#ffffff">cd</text>
 
-    <!-- 箭头/门图标 -->
+    <!-- 右向箭头图标 -->
     <g transform="translate(656, 166)" fill="none" stroke="#e67e22" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M-22,-22 L-22,22 L10,22 L10,-22 Z"/>
-      <path d="M-6,0 L18,-12 L18,12 Z" fill="#e67e22"/>
-      <circle cx="-12" cy="4" r="2" fill="#e67e22" stroke="none"/>
+      <path d="M-22,0 L22,0"/>
+      <path d="M10,-12 L22,0 L10,12"/>
     </g>
 
     <text x="656" y="230" text-anchor="middle" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="500" fill="#2c3e50">我想去哪？</text>

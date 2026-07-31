@@ -47,9 +47,9 @@
           <ul>
             <li><a href="chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
             <li><a href="chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="chapter-03.html#创建与管理用户">创建与管理用户</a></li>
             <li><a href="chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
-            <li><a href="chapter-03.html#用包管理器安装软件">用包管理器安装软件</a></li>
-            <li><a href="chapter-03.html#从源码或其他方式安装">从源码或其他方式安装</a></li>
+            <li><a href="chapter-03.html#安装软件">安装软件</a></li>
             <li><a href="chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
           </ul>
         </li>
@@ -121,7 +121,7 @@
 
 <p>科研工作中类似的批量任务比比皆是：材料模拟生成的大量结构文件、晶体学数据集中的衍射图谱、高通量实验产出的 CSV 表格。命令行的价值不在于它“更快”，而在于它把重复动作变成了一段可记录、可复现、可自动化的表达。</p>
 
-<p>当然，这并不是说图形界面一无是处。探索一个陌生的文件夹、预览图片、第一次接触某个软件时，鼠标和图标往往更直观。命令行与图形界面不是敌人，而是不同场景下的工具。GUI 适合探索，CLI 适合批量与复现。本书的重点放在 CLI，正是因为后面我们要处理的计算任务，大多属于批量与复现的范畴。</p>
+<p>当然，这并不是说图形界面一无是处。探索一个陌生的文件夹、预览图片、第一次接触某个软件时，鼠标和图标往往更直观。命令行与图形界面不是敌人，而是不同场景下的工具。GUI 适合日常使用与直观探索，CLI 适合批量与复现。本书的重点放在 CLI，正是因为后面我们要处理的计算任务，大多属于批量与复现的范畴。</p>
 
 <p>如果你想了解 Linux 图形界面的完整面貌——它的底层架构、常见桌面环境、发行版选择以及远程图形界面的用法，可以参考延伸阅读<a href="cases/case-linux-gui.html">Linux 的图形界面：不只是命令行的反面</a>。</p>
 
@@ -141,7 +141,7 @@
 <span class="output">Last login: Wed Jul  8 09:42:17 2026 from 10.0.0.15</span>
 <span class="prompt">student@gpu-lab01:~$</span></code></pre>
 
-<p>注意提示符的变化：登录前是 <code>student@debian</code>，登录后变成了 <code>student@gpu-lab01</code>。主机名的改变告诉你，现在你已经不在自己的电脑上了，而是在实验室的 GPU 服务器 <code>gpu-lab01</code> 上。</p>
+<p>注意提示符的变化：登录前是 <code>student@debian</code>，登录后变成了 <code>student@gpu-lab01</code>。这个例子里用户名恰好相同，但实际上登录后的用户名取决于你在远程服务器上的账号，不一定和本地一致；真正必然变化的是主机名——它告诉你，现在你已经不在自己的电脑上了，而是在实验室的 GPU 服务器 <code>gpu-lab01</code> 上。</p>
 
 <figure>
   <img src="assets/images/chapter-02/fig-2.2-ssh-remote.svg" alt="通过 SSH 登录远程服务器">
@@ -162,7 +162,7 @@
   <p>请把 <code>~/data</code> 目录下所有 <code>.csv</code> 文件复制到 <code>backup/</code> 目录。</p>
 </blockquote>
 
-<p>这张便签里有三个要素：动作（复制）、对象（<code>~/data</code> 下所有 <code>.csv</code> 文件）、目标（<code>backup/</code> 目录）。命令行只是把同样的意思翻译成更紧凑的形式：</p>
+<p>这张便签里有三个要素：<b>动作</b>（复制）、<b>对象</b>（<code>~/data</code> 下所有 <code>.csv</code> 文件）、<b>目标</b>（<code>backup/</code> 目录）。命令行只是把同样的意思翻译成更紧凑的形式：</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">cp ~/data/*.csv backup/</span></code></pre>
 
@@ -180,15 +180,55 @@
 
 <p>看到这个报错，你就知道刚才把 <code>backup</code> 拼成了 <code>bakup</code>，改回来再执行一次即可。命令行不怕犯错，怕的是不观察报错、不理解意图就盲目敲命令。</p>
 
-<p>初学者常犯的错误是把命令当成咒语去背。更好的方式是：先想清楚“我想让计算机做什么”，然后再去查“这个意图用哪条命令表达”。随着你写得越来越多，常用命令会自然变成肌肉记忆，而不常用的命令，知道去哪里查比死记硬背更重要。</p>
+<p>反过来，如果命令执行成功，Shell 不会弹窗告诉你“操作完成”，而是直接回到提示符，等你下一条命令。这不是偷懒，而是 Linux（以及它之前的 Unix）从诞生起就遵循的一条设计哲学：没有消息就是好消息（No news is good news）。命令行的沉默本身就是一种确认——它告诉你刚才的意图被准确理解、顺利执行了。把屏幕空间留给真正需要你关注的事（比如报错），而不是在每次成功后都喊一声“好耶”。</p>
 
-<p>下一节，我们会把目光投向命令行背后的三个角色：终端、Shell 和 Bash。你将看到，你输入的命令并不是直接交给操作系统执行的，中间还有一层“翻译”。</p>
+<h3 id="ai与命令行人与机器的通用语">AI 与命令行：人与机器的通用语</h3>
+
+<p>前面聊了三条：批量任务的可复现、远程场景的不可替代、精确表达的设计习惯。这三条合在一起，说的其实是同一件事：<b>命令行天然就是程序能"读懂"的</b>。每条命令有确定的语法、结构化的输出、明确的退出码。程序拿到这些，可以直接解析、生成、执行。不需要看屏幕，不需要点鼠标。</p>
+
+<p>今天的 AI agent 用的就是这个道理。你对 AI 助手说："帮我把实验日志里的准确率全提出来，画一张折线图。"它转身做的事，跟你自己敲命令差不多：grep 筛出关键行，awk 截出数字列，管道接给 Python 画图，然后检查输出有没有报错。GUI 对 AI 可不友好：屏幕上的像素和坐标，很难转化成可重复的操作逻辑；而命令行的输出就是纯文本，一行一行整整齐齐，AI 读起来毫不费力。所以你看现在的 AI 编程助手，几乎都是在终端里跑。这不是巧合。</p>
+
+<p>所以，你现在学的命令行，不光是拿来管服务器的。你敲的每一条命令、每一个管道、每一次报错排查，其实都是在积累一套和 AI agent 对话的词汇。不是因为学了 Linux 才能用 AI——而是 AI 自己选了命令行，作为它理解系统的方式。你学得越多，能跟它说的话就越多。</p>
+
+<p>想深入了解 AI agent 通过命令行工作的原理、生态和安全边界，可以看延伸阅读：<a href="cases/case-ai-agent-cli.html">为什么 AI agent 离不开命令行？</a>。</p>
+
+<p>当然，AI agent 能帮你省掉很多重复劳动，前提是你先看懂它在干什么：命令怎么拼、管道怎么接、报错怎么读。这些，就是我们接下来要做的事。</p>
+
+<p>说到"看懂 AI 在干什么"，有一个误区要先说清楚。初学者常犯的错误，就是把命令当成咒语去背。更好的方式是：先想清楚"我想让计算机做什么"，然后再去查"这个意图用哪条命令表达"。随着你写得越来越多，常用命令会自然变成肌肉记忆，而不常用的命令，知道去哪里查比死记硬背更重要。</p>
+
+<p>下一节，我们会把目光投向命令行背后的三个角色：终端、Shell 和 Bash。你将看到，你输入的命令并不是直接交给操作系统执行的，中间还有一层"翻译"。</p>
 
 <h2 id="shell终端bash与配置文件">Shell、终端、Bash 与配置文件</h2>
 
 <p>上一节我们说，命令行是你跟计算机对话的方式。但这句话其实省略了不少环节。你坐在屏幕前，对着一个黑底白字的窗口敲下 <code>ls</code>，然后看到文件列表跳出来——这中间到底发生了什么事？是谁“听见”了你敲的命令，又是谁真正去执行它？</p>
 
 <p>这一节就来拆掉这面墙，介绍三个最容易混淆的角色：终端、Shell 和 Bash。理解了它们的关系，你再看到提示符、配置文件和别名时，就不会觉得是一堆零散的规矩，而是同一张工作流程图上的不同零件。</p>
+
+<h3 id="终端从哪里来从硬件到软件">终端从哪里来：从硬件到软件</h3>
+
+<p>要讲清楚终端是什么，得回到半个世纪以前。1960 到 70 年代，计算机是占满整个房间的<b>大型主机</b>（mainframe），一台机器贵得离谱，只有大学、研究所和大公司才买得起。个人电脑还没影——你不可能抱一台回家放在书桌上。</p>
+
+<p>问题来了：一台主机只有一套 CPU 和内存，但整个机构的人都想用。怎么办？工程师想了个办法：在主机上接出很多根电缆，每根电缆的另一头放一套屏幕和键盘。屏幕和键盘本身不运行程序，不存数据——它们只负责把你在键盘上敲的字符传给主机，再把主机算出来的结果显示在屏幕上。这就是<b>"终端"</b>（terminal）。早期的终端甚至没有屏幕，而是一台电传打字机（teletype，简称 TTY）：你在纸上敲字，主机把反馈打印到同一卷纸上。今天 Linux 系统里还能看到 <code>/dev/tty</code> 这个名字，就是那段历史的活化石。</p>
+
+<p>为了让一群人同时用一台主机，操作系统引入了一种叫<b>"分时系统"</b>（time-sharing）的技术：主机在多个终端之间快速轮流干活，每次只服务一个用户几毫秒。切换速度极快，每个人都觉得自己独占了一整台机器，其实主机正在十几个人之间飞速跳转。打个比方：主机像一个后厨里的大厨，终端就是你桌上的菜单和出菜口——菜单送进去，菜从同一个口递出来，但锅碗瓢盆全在后厨，你看不见也碰不着。</p>
+
+<p>说回"终端"这个名字本身。terminal 的本意是"末端"或"端点"。数据从主机出发，沿着电缆跑到尽头，停在你面前的屏幕上。终端不参与计算，只做两件事：接收输入，显示输出。它是一根长线的终点，仅此而已。</p>
+
+<p>这种复古画面在今天其实并不陌生。如果你玩过《辐射》（Fallout）系列，一定对废土里那些泛着绿光或琥珀色光的 CRT 终端有印象：单色屏幕，字符一粒一粒地跳出来，一个闪烁的光标等着你输入指令。游戏里的这些道具，正是在致敬真实历史上统治了计算机界几十年的硬件终端。在那个没有图形界面的年代，人们就是这样和计算机打交道的。</p>
+
+<figure>
+  <img src="assets/images/chapter-02/fig-2.4-fallout-terminal.png" alt="《辐射4》游戏画面中的 CRT 终端，绿色单色屏幕，显示文字界面和闪烁光标">
+  <figcaption>图2.4 《辐射4》中的复古终端</figcaption>
+</figure>
+
+<p>你可能会问：那今天我们打开的那个黑底白字的"终端"应用，是一回事吗？不是。今天你在 Linux 桌面上点开的"终端"，是一段软件，学名叫<b>"终端模拟器"</b>（terminal emulator）。它不连接任何电缆，也不依赖任何主机：它只是在屏幕上画出一个窗口，用软件模仿当年那块屏幕和键盘的行为。你看到的黑底白字、闪烁的光标、逐行滚动的输出，都是那台笨重机器在软件里留下的影子。</p>
+
+<figure>
+  <img src="assets/images/chapter-02/fig-2.5-terminal-evolution.svg" alt="左侧为 DEC VT100 风格的硬件终端，右侧为 macOS 风格的终端模拟器窗口，中间箭头表示软件对硬件输入输出行为的模拟">
+  <figcaption>图2.5 从硬件终端到终端模拟器</figcaption>
+</figure>
+
+<p>说到这儿，你大概会冒出一个问题：既然今天的"终端"只是一段软件，为什么我们还管它叫同一个名字？它到底在系统里扮演什么角色？要回答这个问题，最好把终端、Shell 和内核放在一起看。就像接下来要讲的那个餐厅比喻：终端是窗户，Shell 是翻译，后厨才是真正干活的那个。</p>
 
 <h3 id="终端是窗户shell是翻译">终端是窗户，Shell 是翻译</h3>
 
@@ -213,8 +253,8 @@
 </ol>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.4-terminal-shell-kernel.svg" alt="终端、Shell 与内核的关系示意图">
-  <figcaption>图2.4 终端、Shell 与内核的关系</figcaption>
+  <img src="assets/images/chapter-02/fig-2.6-terminal-shell-kernel.svg" alt="终端、Shell 与内核的关系示意图">
+  <figcaption>图2.6 终端、Shell 与内核的关系</figcaption>
 </figure>
 
 <p>终端有很多种类。你本地 Debian 桌面上的“终端”应用是一个，通过 SSH 远程登录后看到的那个文字界面也是一个。它们外观不同，但干的活一样：替你接收输入、显示输出。真正理解你命令的，是它们背后的 Shell。</p>
@@ -233,11 +273,11 @@
 
 <p>内核的主要职责可以分成五大块：</p>
 <ul>
-  <li>进程管理： 决定现在让哪个程序使用 CPU。你在终端里同时运行训练脚本、听歌、后台下载文件，内核会快速在它们之间切换，让每个程序都觉得自己“独占”了 CPU。</li>
-  <li>内存管理： 给每个程序分配和回收内存，防止它们互相踩踏。如果物理内存不够用，内核还会把暂时不用的数据换到硬盘上的交换空间（swap），让系统不至于立刻崩溃。</li>
-  <li>文件系统： 帮你把硬盘上的 0 和 1 组织成文件和目录，并提供打开、读取、写入、删除等统一接口。不管你是存在机械硬盘、SSD 还是网络存储，内核都尽量让上层程序用同一套方式访问。</li>
-  <li>设备驱动： 让操作系统认识各种硬件：键盘、鼠标、显卡、网卡、打印机……每个硬件都有自己独特的“脾气”，驱动程序就是内核和硬件之间的翻译官。Linux 内核内置了大量驱动，所以插上常见硬件通常能直接工作。</li>
-  <li>网络栈： 处理数据包的发送和接收，把应用程序要传的数据打包成网络协议能识别的格式，再交给网卡发出去。你通过 SSH 登录服务器、浏览器访问网页，底层都依赖内核的网络栈。</li>
+  <li><b>进程管理</b>： 决定现在让哪个程序使用 CPU。你在终端里同时运行训练脚本、听歌、后台下载文件，内核会快速在它们之间切换，让每个程序都觉得自己“独占”了 CPU。</li>
+  <li><b>内存管理</b>： 给每个程序分配和回收内存，防止它们互相踩踏。如果物理内存不够用，内核还会把暂时不用的数据换到硬盘上的交换空间（swap），让系统不至于立刻崩溃。</li>
+  <li><b>文件系统</b>： 帮你把硬盘上的 0 和 1 组织成文件和目录，并提供打开、读取、写入、删除等统一接口。不管你是存在机械硬盘、SSD 还是网络存储，内核都尽量让上层程序用同一套方式访问。</li>
+  <li><b>设备驱动</b>： 让操作系统认识各种硬件：键盘、鼠标、显卡、网卡、打印机……每个硬件都有自己独特的“脾气”，驱动程序就是内核和硬件之间的翻译官。Linux 内核内置了大量驱动，所以插上常见硬件通常能直接工作。</li>
+  <li><b>网络栈</b>： 处理数据包的发送和接收，把应用程序要传的数据打包成网络协议能识别的格式，再交给网卡发出去。你通过 SSH 登录服务器、浏览器访问网页，底层都依赖内核的网络栈。</li>
 </ul>
 
 <p>如果把计算机比作一家大公司，内核就是总经理办公室加后勤中心：它不但决定资源怎么分配，还亲自处理所有和“外面世界”（硬件、网络）打交道的事务。</p>
@@ -280,6 +320,8 @@
 
 <p>对于初学者来说，认准 Bash 就够了。等你能熟练地用它完成日常任务，再考虑尝试 zsh 或 fish 也不迟。</p>
 
+<p>想了解 Shell 这个家族的来龙去脉——从 1977 年的 Bourne shell 到融合了 Python 的 xonsh，每款 Shell 诞生的背景和设计哲学——可以看延伸阅读：<a href="cases/case-shell-family.html">Shell 的家族谱系：从 sh 到 xonsh</a>。</p>
+
 <h3 id="看懂提示符它其实在向你汇报">看懂提示符：它其实在向你汇报</h3>
 
 <p>每次 Shell 准备好接受新命令时，它都会先打出一行提示符。Bash 的默认提示符看起来大概是这个样子：</p>
@@ -289,15 +331,15 @@
 <p>它不是在随便装饰，而是在向你汇报四件事：</p>
 
 <ul>
-<li><code>student</code>：当前用户名。如果你在多人共用的服务器上，这能帮你确认“我是谁”。</li>
+<li><code>student</code>：当前用户名。如果你在多人共用的服务器上，这能帮你确认“我是谁”。登录远程服务器后，这里的用户名取决于你在远程机器上的账号，不一定和本地相同。</li>
 <li><code>debian</code>：主机名。登录远程服务器后，这里会变成 <code>gpu-lab01</code> 之类的名字，提醒你“我在哪台机器上”。</li>
 <li><code>~/project</code>：当前目录。<code>~</code> 是你的家目录，所以这里表示“我正在家目录下的 project 文件夹里”。</li>
 <li><code>$</code>：身份提示。<code>$</code> 表示当前是普通用户；如果是 <code>#</code>，则表示你是 root（超级用户），拥有对整个系统的最高权限。</li>
 </ul>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.5-prompt-mockup.svg" alt="bash 提示符结构示意图">
-  <figcaption>图2.5 Bash 提示符结构</figcaption>
+  <img src="assets/images/chapter-02/fig-2.7-prompt-mockup.svg" alt="bash 提示符结构示意图">
+  <figcaption>图2.7 Bash 提示符结构</figcaption>
 </figure>
 
 <p><code>$</code> 和 <code>#</code> 的区别非常关键。普通用户误删一个文件，最多影响自己的数据；root 用户可以删掉系统文件、修改任何配置。很多初学者在网上搜到的命令前面带有 <code>#</code>，那通常表示“这条命令需要在 root 权限下执行”，而不是让你把 <code>#</code> 也敲进去。如果你不确定自己的身份，先瞄一眼提示符末尾。</p>
@@ -328,8 +370,8 @@
 <p><code>which python3</code> 告诉你，当你输入 <code>python3</code> 时，Shell 实际调用的是 <code>/usr/bin/python3</code>。这就好比你跟服务员说“来份宫保鸡丁”，服务员在菜单里找到对应编号，再告诉后厨。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.6-command-execution-flow.svg" alt="命令执行流程">
-  <figcaption>图2.6 命令执行流程</figcaption>
+  <img src="assets/images/chapter-02/fig-2.8-command-execution-flow.svg" alt="命令执行流程">
+  <figcaption>图2.8 命令执行流程</figcaption>
 </figure>
 
 <p>这个流程本身不需要背下来，但你要知道：命令不是魔法。它不过是一连串明确的步骤，而 Shell 就是负责把这些步骤串起来的调度员。</p>
@@ -360,12 +402,48 @@
 
 <p>这相当于告诉 Bash：“请你重新读一遍家目录下的 <code>.bashrc</code>，把新加的内容加载进来。”</p>
 
+<p>但 <code>source</code> 有一个地方容易让人误解：它只负责"加"，不负责"减"。source 的工作方式很简单——把文件里的命令逐行执行一遍，它不会先清空当前环境再从头构建。下面做个实验。你先往 <code>~/.bashrc</code> 末尾追加 <code>export MY_VAR="hello"</code>，source 之后变量就生效了；然后把 <code>.bashrc</code> 里那行删掉，再 source 一次。你可能会以为变量跟着消失了，但并没有：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">echo 'export MY_VAR="hello"' &gt;&gt; ~/.bashrc</span>
+<span class="prompt">student@debian:~$</span> <span class="command">source ~/.bashrc</span>
+<span class="prompt">student@debian:~$</span> <span class="command">echo $MY_VAR</span>
+<span class="output">hello</span>
+<span class="prompt">student@debian:~$</span> <span class="command"># 把 ~/.bashrc 里那行删掉，再 source 一次</span>
+<span class="prompt">student@debian:~$</span> <span class="command">source ~/.bashrc</span>
+<span class="prompt">student@debian:~$</span> <span class="command">echo $MY_VAR</span>
+<span class="output">hello</span>
+</code></pre>
+
+<p>原因很简单：第二次 source 只是执行了 <code>.bashrc</code> 里剩下的内容，没有哪条命令说"把 <code>MY_VAR</code> 删掉"。source 不会替你撤销之前设过的变量。要真正清除它，得手动 <code>unset MY_VAR</code>，或者关掉终端重开一个。</p>
+
 <figure>
-  <img src="assets/images/chapter-02/fig-2.7-bash-config-files.svg" alt="Bash 配置文件加载时机">
-  <figcaption>图2.7 Bash 配置文件加载时机</figcaption>
+  <img src="assets/images/chapter-02/fig-2.9-bash-config-files.svg" alt="Bash 配置文件加载时机">
+  <figcaption>图2.9 Bash 配置文件加载时机</figcaption>
 </figure>
 
 <p>刚开始时，建议不要随意改动这些文件，尤其是从网上复制粘贴配置之前，先搞清楚每一行在做什么。一旦改错，最直接的后果就是新打开的终端报一堆错，或者命令行为变得奇怪。改动前备份一份，总是个好主意。</p>
+
+<h4 id="bashrc写坏了怎么救">如果远程服务器的 .bashrc 写坏了怎么办</h4>
+
+<p>上面说了"改动前先备份"，但实际中我们常常先改完了才想起来这回事。尤其是在远程服务器上——你在自己的电脑上 SSH 登录到一台服务器，改了 <code>~/.bashrc</code> 然后 <code>source</code> 一下，马上报错。你赶紧退出重连，结果连上去就断，连上去就断，再也进不去了。</p>
+
+<p>这种局面有一个很直接的解法：用 <code>bash --norc</code> 跳过配置文件启动 Shell。具体来说，SSH 连接时加上 <code>-t</code> 参数和这个命令：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ssh -t user@服务器 'bash --norc'</span></code></pre>
+
+<p><code>-t</code> 的意思是让 SSH 强制分配一个伪终端，让远程的 Bash 以为自己在交互模式下运行；<code>bash --norc</code> 告诉 Bash 不要读取 <code>.bashrc</code>。两条合在一起的效果是：绕过了坏掉的配置，拿到一个能用的 Shell。进去之后把改坏的那一行注释掉或删掉，然后退出重连，就恢复正常了。</p>
+
+<p>如果你甚至不确定改坏了什么地方，可以先在不登录的情况下远程看看配置文件的内容。SSH 执行单条命令默认走非交互模式，不会触发 <code>.bashrc</code> 的加载，所以它不受影响：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ssh user@服务器 cat ~/.bashrc</span></code></pre>
+
+<p>如果配置文件已经乱到不值得修，直接重命名让 Bash 找不到它，也是一种急救手段：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ssh user@服务器 "mv ~/.bashrc ~/.bashrc.bak"</span></code></pre>
+
+<p>之后再 SSH 登录，Bash 发现没有 <code>.bashrc</code> 就跳过它，你就能正常进去了。接着把有用的条目从备份里挑出来重建就行。</p>
+
+<p>这三种手段依赖的是同一个原理：交互模式下 Bash 才读 <code>.bashrc</code>，非交互模式下不读。正常的 SSH 登录是交互模式，所以写坏的配置文件会被加载、导致崩溃；而 <code>ssh host command</code> 是非交互模式，Bash 执行完命令就退出，根本不碰 <code>.bashrc</code>，所以能安全地帮你绕过去。理解了这一层，再看 <code>bash --norc</code> 和 <code>-t</code> 的作用就很顺了——它们让你在保留交互能力的同时跳过配置文件加载，相当于给了你一把应急钥匙。</p>
 
 <h3 id="别名alias">别名：<code>alias</code></h3>
 
@@ -384,6 +462,13 @@
 <span class="output">-rw-r--r-- 1 student student 3771 Jul  8 09:10 .bashrc</span>
 <span class="output">-rw-r--r-- 1 student student  807 Jul  8 09:10 .profile</span></code></pre>
 
+<p>你也可以随时查看某个别名指向什么命令。<code>alias ll</code> 直接显示别名的定义，<code>type ll</code> 则更全面——它会告诉你 <code>ll</code> 是别名、内置命令还是外部程序：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">alias ll</span>
+<span class="output">alias ll='ls -la'</span>
+<span class="prompt">student@debian:~$</span> <span class="command">type ll</span>
+<span class="output">ll is aliased to `ls -la'</span></code></pre>
+
 <p>另一个常用别名是给 <code>rm</code> 加上 <code>-i</code> 选项，让它在删除前询问确认：</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">alias rm='rm -i'</span>
@@ -392,7 +477,7 @@
 
 <p>注意，直接在终端里用 <code>alias</code> 命令定义的别名，只对当前 Shell 有效。关掉终端再打开，它就消失了。如果你想让别名永久生效，需要把它写进 <code>.bashrc</code> 文件：</p>
 
-<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">echo "alias ll='ls -la'" >> ~/.bashrc</span>
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">echo "alias ll='ls -la'" &gt;&gt; ~/.bashrc</span>
 <span class="prompt">student@debian:~$</span> <span class="command">source ~/.bashrc</span></code></pre>
 
 <p>不过，别名虽然方便，也不要滥用。它是你的个人快捷方式，不是命令本身。考试、写脚本或跟别人交流时，最好使用完整命令，以免造成误解。</p>
@@ -415,11 +500,13 @@
 
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ssh student@gpu-lab01</span></code></pre>
 
-<p>如果网络可达、账号正确，你就会看到远程服务器的欢迎信息，提示符也变成 <code>student@gpu-lab01</code>。从现在起，你敲的每一行命令都在服务器上执行，就像在本地终端里一样自然。</p>
+<p>如果网络可达、账号正确，你就会看到远程服务器的欢迎信息，提示符也随之变成你在远程服务器上的身份（如 <code>student@gpu-lab01</code>）。从现在起，你敲的每一行命令都在服务器上执行，就像在本地终端里一样自然。</p>
+
+<p>如果你的服务器 SSH 端口不是默认的 22（比如管理员为了安全改成了 2222），用 <code>-p</code> 参数指定：<code>ssh -p 2222 student@gpu-lab01</code>。关于端口号是什么、一台机器上可以开多少端口、常见服务分别用哪些端口，我们会在第七章详细讲。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.8-ssh-encrypted-channel.svg" alt="SSH 加密通道">
-  <figcaption>图2.8 SSH 加密通道</figcaption>
+  <img src="assets/images/chapter-02/fig-2.10-ssh-encrypted-channel.svg" alt="SSH 加密通道">
+  <figcaption>图2.10 SSH 加密通道</figcaption>
 </figure>
 
 <h3 id="第一次登录host-key与指纹">第一次登录：host key 与指纹</h3>
@@ -441,10 +528,21 @@
 
 <p>这时不要急着继续。先问问管理员：服务器是不是重装过？IP 是不是被别人用了？只有排除了被冒充的可能，才能更新 <code>known_hosts</code>。养成这个习惯，你的远程登录才算真正安全。</p>
 
+<p>更新 <code>known_hosts</code> 最直接的做法是把对应的那行删掉。手动编辑 <code>~/.ssh/known_hosts</code> 可以，但 SSH 默认会对主机名做哈希处理，在文件里看到的是一串看不懂的乱码，不容易确认哪行对应哪台机器。更省事的办法是用 <code>ssh-keygen -R</code>，它会自动匹配并移除正确的条目：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ssh-keygen -R gpu-lab01</span>
+<span class="output"># Host gpu-lab01 found: line 15 type ED25519</span>
+<span class="output">/home/student/.ssh/known_hosts updated.</span>
+<span class="output">Original contents retained as /home/student/.ssh/known_hosts.old</span></code></pre>
+
+<p>执行之后重新 SSH 登录，就会像第一次连接一样提示你确认新的 host key。确认无误再输入 <code>yes</code> 即可。</p>
+
 <figure>
-  <img src="assets/images/chapter-02/fig-2.9-ssh-first-login.svg" alt="第一次 SSH 登录提示">
-  <figcaption>图2.9 第一次 SSH 登录提示</figcaption>
+  <img src="assets/images/chapter-02/fig-2.11-ssh-first-login.svg" alt="第一次 SSH 登录提示">
+  <figcaption>图2.11 第一次 SSH 登录提示</figcaption>
 </figure>
+
+<p>这里的核心问题——"你怎么确定自己拿到的公钥是真的？"——其实不只是 SSH 的事，也是整个互联网加密体系的命门。想系统了解对称加密、非对称加密和中间人攻击的来龙去脉，可以参考延伸阅读：<a href="cases/case-encryption.html">加密的原理：对称、非对称与中间人</a>。</p>
 
 <h3 id="密码认证vs密钥认证">密码认证 vs 密钥认证</h3>
 
@@ -486,8 +584,8 @@
 <p>这里有一条铁律：私钥不要上传到 GitHub，不要发到群里，不要借给别人，也不要通过邮件传输。如果你怀疑私钥泄露了，立刻在本地删除它，并在服务器上把对应的公钥从 <code>authorized_keys</code> 里移除，然后重新生成一对。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.10-ssh-key-pair.svg" alt="公钥/私钥认证过程">
-  <figcaption>图2.10 公钥/私钥认证过程</figcaption>
+  <img src="assets/images/chapter-02/fig-2.12-ssh-key-pair.svg" alt="公钥/私钥认证过程">
+  <figcaption>图2.12 公钥/私钥认证过程</figcaption>
 </figure>
 
 <h3 id="一些常用ssh技巧">一些常用 SSH 技巧</h3>
@@ -498,7 +596,9 @@
 
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ssh -p 2222 student@gpu-lab01</span></code></pre>
 
-<p>第二，如果服务器地址很长、端口也不是默认，每次都打一长串命令很烦。你可以把这些信息写进 <code>~/.ssh/config</code> 文件，给服务器起个简短别名：</p>
+<p>第二，如果服务器地址很长、端口也不是默认，每次都打一长串命令很烦。你可以把这些信息写进 <code>~/.ssh/config</code> 文件，给服务器起个简短别名。</p>
+
+<p>另外还有一个实用的小设置：长时间不操作时，SSH 连接可能会被防火墙或路由器悄悄断开。在配置里加上 <code>ServerAliveInterval 60</code>，客户端会每隔 60 秒给服务器发一个保持连接的心跳包，避免因为空闲被踢下线。对于需要挂一整晚跑训练的任务，这个设置特别实用。把上面这些合在一起，一个完整的配置长这样：</p>
 
 <pre><code># 文件：~/.ssh/config
 Host gpu
@@ -512,13 +612,11 @@ Host gpu
 
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ssh gpu</span></code></pre>
 
-<p>第三，长时间不操作时，SSH 连接可能会被防火墙或路由器悄悄断开。配置里加上 <code>ServerAliveInterval 60</code> 后，客户端会每隔 60 秒给服务器发一个保持连接的心跳包，避免Idle被踢下线。对于需要挂一整晚跑训练的任务，这个小设置特别实用。</p>
-
 <p>SSH 远远不止登录这么简单，它还能传文件、执行远程命令、做端口转发。本章我们只聚焦最基础的远程登录和密钥配置，后面用到更多功能时，你会更容易理解它们。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.11-ssh-config-alias.svg" alt="长命令 vs 简短别名">
-  <figcaption>图2.11 长命令 vs 简短别名</figcaption>
+  <img src="assets/images/chapter-02/fig-2.13-ssh-config-alias.svg" alt="长命令 vs 简短别名">
+  <figcaption>图2.13 长命令 vs 简短别名</figcaption>
 </figure>
 
 <h2 id="文件系统从根目录开始的世界">文件系统：从 / 开始的世界</h2>
@@ -538,9 +636,29 @@ Host gpu
 <p>不同发行版的目录名字可能略有差异，但有几个是你每天都会打交道的：<code>/home</code> 住着普通用户的家目录；<code>/root</code> 是 root 用户自己的家；<code>/tmp</code> 放临时文件，重启后常被清空；<code>/etc</code> 存系统级配置文件；<code>/var</code> 存日志和经常变化的数据；<code>/usr</code> 放用户程序与程序库；<code>/bin</code> 放最常用的命令；<code>/dev</code> 则把硬件设备也当成文件来访问。这里的“一句话解释”只是为了让你遇到它们时不陌生，至于文件系统层级标准（FHS）的详细规范，暂时不必深究。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.12-linux-directory-tree.svg" alt="Linux 目录树示意">
-  <figcaption>图2.12 Linux 目录树示意</figcaption>
+  <img src="assets/images/chapter-02/fig-2.14-linux-directory-tree.svg" alt="Linux 目录树示意">
+  <figcaption>图2.14 Linux 目录树示意</figcaption>
 </figure>
+
+<h3 id="几个值得认识的目录">几个值得认识的目录</h3>
+
+<p>上面 <code>ls /</code> 的输出里，有几个目录值得单独拿出来聊聊。它们不一定是你每天都要进的，但认识之后，很多"Linux 为什么这么设计"的困惑会慢慢解开。</p>
+
+<p>先说 <code>/etc</code>。这个名字容易让人联想到"等等"（et cetera），但它其实是系统全局配置的大本营。几乎每个程序的配置都在这里，以纯文本文件的形式存在。你在第三章用 <code>sudo apt install</code> 装的软件，它们的配置十有八九落在 <code>/etc</code> 下面。比如 SSH 服务的配置在 <code>/etc/ssh/sshd_config</code>，想看它监听的端口、允许哪些用户登录，直接 <code>cat</code> 这个文件就行。改配置、调参数、排查服务为什么起不来——这些事绕不开 <code>/etc</code>。</p>
+
+<p>接下来是 <code>/dev</code> 目录下的几位"特殊公民"。<code>/dev</code> 的意思是 devices，但它里面不全是真实的硬件设备。</p>
+
+<p>第一个是 <code>/dev/null</code>，你可以把它理解成 Linux 的黑洞。任何写入它的数据都会无声无息地消失，读取它则什么也得不到。这东西最常见的用途是屏蔽不需要的输出。比如你跑一个命令，确信自己只关心它有没有报错、不关心正常的打印，那就把正常输出丢进黑洞：<code>command &gt; /dev/null</code>。如果连报错也不想要，用 <code>command 2&gt; /dev/null</code>（还记得前面讲的 <code>stderr</code> 编号 2 吗）。脚本里经常能看到这样的写法。</p>
+
+<p>第二个是 <code>/dev/zero</code>，一个能无限吐出零字节的文件。写入它的数据被丢弃，读取它则返回无穷无尽的 <code>\0</code>（空字符）。它的经典用法是快速生成一个占位文件，比如测试磁盘写入速度或创建一块全零的镜像：<code>dd if=/dev/zero of=dummy.img bs=1M count=100</code>。这就得到了一个 100MB 的、内容全是零的文件。</p>
+
+<p>第三个是 <code>/dev/random</code> 和它的兄弟 <code>/dev/urandom</code>，两个随机数发生器。区别在于随机源：<code>/dev/random</code> 从硬件噪声（键盘敲击间隔、鼠标移动、磁盘读写抖动）收集真随机数，熵池空了就阻塞，一直等到攒够为止；<code>/dev/urandom</code> 不阻塞，熵不够时用密码学算法补上伪随机数。绝大多数场景（生成密钥、写测试数据、随机采样）用 <code>/dev/urandom</code> 就够了，速度更快也不会卡住。除非你在做严格意义上的密码学操作且需要硬件真随机，否则不用纠结二者的区别。</p>
+
+<p>再往上走一层，<code>/proc</code> 是个很特别的存在。它不是一个真实的目录，不占用任何磁盘空间。它是一个虚拟文件系统，内核把运行时的信息以文件的形式暴露在这里。每当你 <code>cat /proc/cpuinfo</code>，内核当场生成一份 CPU 型号、核心数、缓存的报告；<code>cat /proc/meminfo</code> 则实时告诉你内存用了多少、还剩多少。每个正在运行的进程在 <code>/proc</code> 下都有一个以 PID（进程 ID）命名的子目录，里面装着这个进程的内存映射、打开的文件、环境变量等一切"内情"。调试程序时，<code>/proc</code> 是最直接的信息来源之一。</p>
+
+<p>最后是 <code>/tmp</code>，临时文件目录。它的特点是任何用户都能往里写东西，没有权限门槛。但代价是：系统重启后，<code>/tmp</code> 里的内容通常会被清空。程序临时产生的中间文件、解压后的安装包缓存、随手存的一份草稿，都可以扔进去。但别把论文初稿只放在 <code>/tmp</code> 里，重启就没了。</p>
+
+<p>认识了这些目录，你再看 <code>ls /</code> 的输出，就不再是一串看不懂的名字了。接下来要讲的家目录（<code>/home/用户名</code>），是你今后待得最久的地方。</p>
 
 <h3 id="家目录与波浪号">家目录与波浪号</h3>
 
@@ -565,8 +683,8 @@ Host gpu
 <p>其中 <code>cd</code> 不加参数是最懒的写法，但效果与 <code>cd ~</code> 完全相同。下次你看到提示符从 <code>~/Documents</code> 变回 <code>~</code>，就知道自己已经回到家目录了。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.13-home-directory.svg" alt="家目录位置与 ~ 简写">
-  <figcaption>图2.13 家目录位置与 <code>~</code> 简写</figcaption>
+  <img src="assets/images/chapter-02/fig-2.15-home-directory.svg" alt="家目录位置与 ~ 简写">
+  <figcaption>图2.15 家目录位置与 <code>~</code> 简写</figcaption>
 </figure>
 
 <h3 id="点和点点当前目录与上一级"><code>.</code> 和 <code>..</code>：当前目录与上一级</h3>
@@ -606,13 +724,13 @@ Host gpu
 
 <h3 id="三板斧pwd-ls-cd">三板斧：<code>pwd</code>、<code>ls</code>、<code>cd</code></h3>
 
-<p>文件系统再复杂，日常导航其实就靠三句话：<code>pwd</code> 回答“我在哪”，<code>ls</code> 回答“这里有什么”，<code>cd</code> 回答“我要去哪”。把这三条命令用熟，命令行里的大部分迷路情况都能解决。</p>
+<p>文件系统再复杂，日常导航其实就靠三句话：<code>pwd</code> 回答“<b>我在哪</b>”，<code>ls</code> 回答“<b>这里有什么</b>”，<code>cd</code> 回答“<b>我要去哪</b>”。把这三条命令用熟，命令行里的大部分迷路情况都能解决。</p>
 
 <p><code>ls</code> 的常用选项有四个值得先记住：<code>-F</code> 会在目录名后加 <code>/</code>、可执行文件后加 <code>*</code>、符号链接后加 <code>@</code>，让你一眼看出类型；<code>-a</code> 会列出所有文件，包括以 <code>.</code> 开头的隐藏文件；<code>-l</code> 以长格式显示，输出最左边那一列是权限信息，下一章会专门讲；<code>-h</code> 与 <code>-l</code> 配合，让人类可读地显示文件大小（如 <code>4.0K</code>、<code>1.2M</code>）。</p>
 
 <p><code>cd</code> 除了跟目录名，还有两个小技巧：<code>cd ~</code> 或 <code>cd</code> 回家目录，<code>cd -</code> 回到刚才待过的目录。后者在“下去看一眼又返回”的场景里特别省事儿。</p>
 
-<p>下面是一个 AI 材料项目的目录导航示例：</p>
+<p>下面是一个项目的目录导航示例：</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">cd ~/ai-materials</span>
 <span class="prompt">student@debian:~/ai-materials$</span> <span class="command">pwd</span>
@@ -636,8 +754,8 @@ Host gpu
 <p>这三条命令不需要死记硬背。遇到新目录时，先 <code>pwd</code> 确认位置，再 <code>ls</code> 看看内容，最后用 <code>cd</code> 移动。反复几次之后，它们会变成你手指下的本能。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.14-navigation-trio.svg" alt="pwd、ls、cd 配合导航示意">
-  <figcaption>图2.14 <code>pwd</code>、<code>ls</code>、<code>cd</code> 配合导航</figcaption>
+  <img src="assets/images/chapter-02/fig-2.16-navigation-trio.svg" alt="pwd、ls、cd 配合导航示意">
+  <figcaption>图2.16 <code>pwd</code>、<code>ls</code>、<code>cd</code> 配合导航</figcaption>
 </figure>
 
 
@@ -658,7 +776,7 @@ Host gpu
 
 <pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">mkdir -p experiments/2026/07</span></code></pre>
 
-<p>没有 <code>-p</code> 时，<code>mkdir</code> 只能创建最末一级目录；中间的 <code>2026</code> 不存在，命令就会失败。<code>-p</code> 会按需把整条路径都建好，很适合写进自动化脚本。</p>
+<p>没有 <code>-p</code> 时，<code>mkdir</code> 只能创建最末一级目录；中间的 <code>2026</code> 不存在，命令就会失败。<code>-p</code> 会按需把整条路径都建好，而且如果目录已经存在也不会报错——写脚本时你可以直接跑，不用每次都先检查有没有建过。这两个特性合在一起，让 <code>-p</code> 几乎是脚本里 <code>mkdir</code> 的默认用法。</p>
 
 <p>有创建就有删除。删除空目录用 <code>rmdir</code>：</p>
 
@@ -671,7 +789,7 @@ Host gpu
 <pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">rm README.md</span>
 <span class="prompt">student@debian:~/ai-materials$</span> <span class="command">rm -r experiments/2026/07</span></code></pre>
 
-<p>这里必须停下来强调一件严肃的事：<code>rm</code> 删除的文件不会进回收站，也没有“撤销”按钮。 在 Linux 上，一旦 <code>rm</code> 执行成功，文件系统只是把这些数据标记为“可覆盖”，普通用户几乎不可能原样恢复。训练了一个星期的模型权重、跑了一个月的模拟结果，可能因为一条手滑的命令就永远消失。</p>
+<p>这里必须停下来强调一件严肃的事：<code>rm</code> 删除的文件不会进回收站，也没有“撤销”按钮。 在 Linux 上，一旦 <code>rm</code> 执行成功，文件系统只是把这些数据标记为“可覆盖”，普通用户几乎不可能原样恢复。训练了一个星期的模型权重、跑了一个月的模拟结果，可能因为一条手滑的命令就永远消失。这不是操作系统的疏忽，而是 Linux 的设计原则：它默认你知道自己在做什么，不会替你拦着——但<b>你按回车的权力越大，责任也越大</b>。</p>
 
 <p>所以，删除前先 <code>ls</code> 确认目标，是命令行里最重要的肌肉记忆之一：</p>
 
@@ -680,16 +798,16 @@ Host gpu
 <span class="prompt">student@debian:~/ai-materials$</span> <span class="command">rm experiments/2026/07/test_run.log</span>
 <span class="prompt">student@debian:~/ai-materials$</span> <span class="command">rmdir experiments/2026/07</span></code></pre>
 
-<p>如果还不放心，可以给 <code>rm</code> 加上 <code>-i</code> 选项，让它每次删除前都询问确认。有些系统管理员会给普通用户默认设置 <code>alias rm='rm -i'</code>，但你不要依赖这个别名——养成自己先确认的习惯更可靠。</p>
+<p>如果还不放心，可以给 <code>rm</code> 加上 <code>-i</code> 选项，让它每次删除前都询问确认。有些系统管理员会给普通用户默认设置 <code>alias rm='rm -i'</code>，但你不要依赖这个别名——养成自己先确认的习惯更可靠。过度依赖别名还有一个隐患：你习惯了自己的环境，每次 rm 都有提示，但换一台服务器或者用别人的账号登录时，那个别名可不在那儿。你按肌肉记忆敲下 <code>rm -rf some_dir</code>，回车，这次没有确认提示——东西直接没了。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.15-create-delete.svg" alt="创建与删除命令示意">
-  <figcaption>图2.15 创建与删除命令示意</figcaption>
+  <img src="assets/images/chapter-02/fig-2.17-create-delete.svg" alt="创建与删除命令示意">
+  <figcaption>图2.17 创建与删除命令示意</figcaption>
 </figure>
 
 <h3 id="复制与移动cp与mv">复制与移动：<code>cp</code> 与 <code>mv</code></h3>
 
-<p>实验做了很多次，你通常不会只保留一份结果。重要的模型权重、关键的中间数据，最好复制一份备份，再去做下一步分析。复制用 <code>cp</code>：</p>
+<p>实验做了很多次，你通常不会只保留一份结果。以后做机器学习或深度学习训练，训练好的模型权重、关键的中间数据，最好复制一份备份，再去做下一步分析。复制用 <code>cp</code>：</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">cp model_best.pth model_best.pth.bak</span></code></pre>
 
@@ -719,9 +837,38 @@ Host gpu
 <p>科研场景里，复制常用于备份模型检查点，移动常用于按日期整理日志。一个顺手的小习惯是：复制前先 <code>ls</code> 源文件，移动前先 <code>ls</code> 目标目录。两个动作各看一眼，能避开大部分覆盖事故。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.16-copy-move.svg" alt="复制与移动示意">
-  <figcaption>图2.16 复制与移动示意</figcaption>
+  <img src="assets/images/chapter-02/fig-2.18-copy-move.svg" alt="复制与移动示意">
+  <figcaption>图2.18 复制与移动示意</figcaption>
 </figure>
+
+<h3 id="查看文件内容cat">查看文件内容：<code>cat</code></h3>
+
+<p>创建了文件，复制了文件，下一步自然是看看里面写了什么。导师发来一个 <code>notes.txt</code>，说实验参数都在里面，你总不能每次都打开图形界面的文本编辑器。查看文件内容，最直接的命令是 <code>cat</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">cat notes.txt</span>
+<span class="output">learning_rate = 0.001
+batch_size = 32
+epochs = 50</span></code></pre>
+
+<p><code>cat</code> 做的事情很简单：把文件内容原样输出到终端，一个字不多，一个字不少。它不改文件，只是读给你看。</p>
+
+<p><code>cat</code> 这个名字来自 <b>concatenate</b>（连接）。它从一开始就不只能看一个文件，还能把多个文件首尾相接、连在一起输出：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">cat run_monday.log run_tuesday.log</span></code></pre>
+
+<p>两天的训练日志会按顺序接连显示在终端里，就像它们是一个文件一样。这个“连接”的本事，是 <code>cat</code> 名字的本义，只是日常用它查看单个文件的人太多，大家反倒忘了。</p>
+
+<p>还有一个很常见的用法：<code>cat</code> 经常和管道配合，充当管道的数据源。比如 <code>cat train.log | grep error</code>，意思是先把日志内容输出，再交给 <code>grep</code> 筛选出含 error 的行。管道本身留到后面细讲，这里先混个脸熟——你看到 <code>cat xxx | 某个命令</code> 的写法时，知道 <code>cat</code> 在负责“把文件内容送出去”就够了。</p>
+
+<p>查看代码或配置文件时，行号很有用——报错信息里写的“第 42 行出错”，靠数是数不出来的。给 <code>cat</code> 加上 <code>-n</code> 选项，每行前面就会带上行号：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">cat -n train.py</span>
+<span class="output">     1	import torch
+     2	import torch.nn as nn
+     3	
+     4	model = build_model()</span></code></pre>
+
+<p>最后是一个安全提醒：<code>cat</code> 对大文件不友好。它不会分页，文件多长就一股脑输出多长。一份几万行的训练日志，终端会瞬间刷屏，等你看到屏幕停下来，第一屏的内容早就翻过去了。所以，小文件随便 <code>cat</code>，大文件请改用 <code>less</code>——它能让你一屏一屏慢慢翻，还能上下回看。判断标准很简单：不确定文件多大时，先 <code>ls -lh</code> 看一眼大小，再决定用哪个。</p>
 
 <h3 id="隐藏文件与文件名规则">隐藏文件与文件名规则</h3>
 
@@ -747,8 +894,8 @@ Host gpu
 <p>科研项目里常见的隐藏文件包括 <code>.gitignore</code>（告诉 Git 哪些文件不要追踪）和 <code>.bashrc</code>（个人 Shell 配置）。它们不会出现在普通文件列表里，却一直默默影响你的工作流程。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.17-hidden-files.svg" alt="隐藏文件与命名规则示意">
-  <figcaption>图2.17 隐藏文件与命名规则示意</figcaption>
+  <img src="assets/images/chapter-02/fig-2.19-hidden-files.svg" alt="隐藏文件与命名规则示意">
+  <figcaption>图2.19 隐藏文件与命名规则示意</figcaption>
 </figure>
 
 <h3 id="通配符批量操作的秘密武器">通配符：批量操作的秘密武器</h3>
@@ -772,7 +919,7 @@ Host gpu
 
 <pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">rm temp[1-5].log</span></code></pre>
 
-<p>花括号 <code>{...}</code> 不是通配符，而是“ brace expansion ”。它由 Shell 直接展开成多个字符串，常用于批量创建结构相似的文件：</p>
+<p>花括号 <code>{...}</code> 不是通配符，而是"花括号展开"（brace expansion）。它由 Shell 在解析命令时直接展开成多个字符串，常用于批量创建结构相似的文件：</p>
 
 <pre><code class="terminal"><span class="prompt">student@debian:~/ai-materials$</span> <span class="command">touch result_{A,B,C}.txt</span>
 <span class="prompt">student@debian:~/ai-materials$</span> <span class="command">ls</span>
@@ -786,8 +933,8 @@ Host gpu
 <p>如果匹配范围比你想象的大，<code>ls</code> 会提前暴露问题；确认无误后再换成真正的修改命令。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.18-wildcards.svg" alt="通配符匹配示意">
-  <figcaption>图2.18 通配符匹配示意</figcaption>
+  <img src="assets/images/chapter-02/fig-2.20-wildcards.svg" alt="通配符匹配示意">
+  <figcaption>图2.20 通配符匹配示意</figcaption>
 </figure>
 
 <h3 id="find在文件系统里找人"><code>find</code>：在文件系统里找人</h3>
@@ -822,8 +969,8 @@ Host gpu
 <p><code>-mtime +7</code> 表示“修改时间在 7 天之前”。先只运行 <code>find</code> 不加删除动作，确认列表无误后，再考虑后续处理。很多初学者会直接搜“如何用 find 删除文件”然后复制一条带 <code>-delete</code> 或 <code>-exec rm</code> 的命令，这正是事故高发区。先定位、再确认、最后动手，永远是更稳妥的节奏。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.19-find-recursive.svg" alt="find 递归搜索示意">
-  <figcaption>图2.19 <code>find</code> 递归搜索示意</figcaption>
+  <img src="assets/images/chapter-02/fig-2.21-find-recursive.svg" alt="find 递归搜索示意">
+  <figcaption>图2.21 <code>find</code> 递归搜索示意</figcaption>
 </figure>
 
 <h3 id="wget下载文件"><code>wget</code>：下载文件</h3>
@@ -844,7 +991,9 @@ Host gpu
 
 <p>对于动辄上 GB 的模型权重或材料数据库，断点续传能省下大量时间和带宽。如果服务器需要半夜挂机下载，还可以把 <code>wget</code> 放进后台，或者配合 <code>nohup</code> 使用。</p>
 
-<p>需要提醒的是，只从可信来源下载文件。 从陌生网站下载的二进制文件、脚本或数据集可能包含恶意代码。公开数据集尽量使用官网或论文提供的链接；不要下载来历不明的脚本。如果下载的是可执行文件或脚本，最好先用 <code>md5sum</code>/<code>sha256sum</code> 校验官方公布的哈希值，或先在一个临时目录/虚拟机中检查内容，不要直接运行。</p>
+<p>需要提醒的是，只从可信来源下载文件。 从陌生网站下载的二进制文件、脚本或数据集可能包含恶意代码。公开数据集尽量使用官网或论文提供的链接；不要下载来历不明的脚本。如果下载的是可执行文件或脚本，最好先用 <code>md5sum</code>/<code>sha256sum</code> 校验官方公布的哈希值，或先在一个临时目录/虚拟机中检查内容，不要直接运行。想了解哈希校验的具体用法，可以看延伸阅读：<a href="cases/case-checksum.html">校验哈希：文件的指纹</a>。</p>
+
+<p>与 <code>wget</code> 功能相似的另一款工具是 <code>curl</code>。两者都能下载文件，但设计思路不同。<code>wget</code> 更像一个"下载器"——输个网址它就帮你把文件拿到本地，支持递归下载和断点续传，简单直接。<code>curl</code> 更像一个"网络调试器"——它支持更多协议、更多请求方式（GET、POST、PUT 等），还能直接查看响应头。第八章讲 Web 与 API 时会大量用到 <code>curl</code> 来调试接口。作为入门，先用 <code>wget</code> 把文件下回来就够了，知道 <code>curl</code> 的存在就好。</p>
 
 <h3 id="历史与补全让终端替你记">历史与补全：让终端替你记</h3>
 
@@ -878,8 +1027,8 @@ Host gpu
 <p>养成“少敲、多补、善用历史”的习惯，命令行会从一个需要死记硬背的界面，变成一个你越用越顺手的工具。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.20-history-completion.svg" alt="历史与 Tab 补全示意">
-  <figcaption>图2.20 历史与 Tab 补全示意</figcaption>
+  <img src="assets/images/chapter-02/fig-2.22-history-completion.svg" alt="历史与 Tab 补全示意">
+  <figcaption>图2.22 历史与 Tab 补全示意</figcaption>
 </figure>
 
 
@@ -908,8 +1057,8 @@ Host gpu
 <p>这里 <code>grep</code> 先把含有关键字的行挑出来，<code>wc -l</code> 再数一数有多少行。没有管道，你得先把 <code>grep</code> 的结果写进临时文件，再用 <code>wc</code> 去读那个文件。管道让数据直接在命令之间流动，省掉了中间文件，也减少了出错机会。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.21-pipe.svg" alt="管道连接示意">
-  <figcaption>图2.21 管道连接示意</figcaption>
+  <img src="assets/images/chapter-02/fig-2.23-pipe.svg" alt="管道连接示意">
+  <figcaption>图2.23 管道连接示意</figcaption>
 </figure>
 
 <h3 id="重定向输出到文件">重定向：输出到文件</h3>
@@ -937,8 +1086,8 @@ Host gpu
 <p>这行命令同时用了输入重定向和输出重定向：<code>sort</code> 从 <code>unsorted.txt</code> 读数据，排好序后写进 <code>sorted.txt</code>。很多命令其实可以直接跟文件名，所以 <code>&lt;</code> 在日常使用中不如 <code>&gt;</code> 和 <code>&gt;&gt;</code> 常见；但遇到只从标准输入读取数据的程序时，它就能派上用场。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.22-redirection.svg" alt="重定向示意">
-  <figcaption>图2.22 重定向示意</figcaption>
+  <img src="assets/images/chapter-02/fig-2.24-redirection.svg" alt="重定向示意">
+  <figcaption>图2.24 重定向示意</figcaption>
 </figure>
 
 <h3 id="stdinstdoutstderr三种水流"><code>stdin</code>、<code>stdout</code>、<code>stderr</code>：三种水流</h3>
@@ -964,8 +1113,8 @@ Host gpu
 <p>三个水管的编号 0、1、2 在写复杂命令时会用到，初学者先记住对应关系即可：<code>0&lt;</code> 或 <code>&lt;</code> 改输入，<code>1&gt;</code> 或 <code>&gt;</code> 改正常输出，<code>2&gt;</code> 改错误输出。等你需要把错误也合并进正常日志时，自然会用到 <code>2&gt;&amp;1</code> 这样的写法，但那是进阶话题，本节点到为止。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.23-three-streams.svg" alt="标准输入、输出与错误">
-  <figcaption>图2.23 标准输入、输出与错误</figcaption>
+  <img src="assets/images/chapter-02/fig-2.25-three-streams.svg" alt="标准输入、输出与错误">
+  <figcaption>图2.25 标准输入、输出与错误</figcaption>
 </figure>
 
 <h3 id="组合实战从日志里提取并统计">组合实战：从日志里提取并统计</h3>
@@ -1066,9 +1215,11 @@ Host gpu
 <p>对于初学者，推荐的顺序是：先 <code>--help</code> 或 <code>tldr</code> 快速上手，遇到细节问题再去 <code>man</code> 里查。三者组合起来，大部分“这个命令该怎么用”的问题都能自己解决。</p>
 
 <figure>
-  <img src="assets/images/chapter-02/fig-2.24-help-channels.svg" alt="三条求助渠道">
-  <figcaption>图2.24 三条求助渠道</figcaption>
+  <img src="assets/images/chapter-02/fig-2.26-help-channels.svg" alt="三条求助渠道">
+  <figcaption>图2.26 三条求助渠道</figcaption>
 </figure>
+
+<p>当然，还有第四条路：直接问 AI。把你遇到的问题和命令原样丢给 AI 助手，它通常能给出比翻手册更快的答案。不过正如 AI 不会替你敲回车一样，AI 给的命令也不一定完全正确——你可以用它提供的思路，但最好再用 <code>--help</code> 或 <code>man</code> 验证一下。四条路配合着用，效率最高。</p>
 
 <h3 id="先ls再操作肌肉记忆">先 <code>ls</code> 再操作：肌肉记忆</h3>
 

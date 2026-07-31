@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>延伸阅读：Neovim——Vim 的"平行宇宙" - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="../index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="../index.html">目录</a></li>
+        <li><a href="../preface.html">序言</a></li>
+        <li>
+          <a href="../chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="../chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="../chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="../chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="../chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="../chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="../chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="../chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="../chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="../chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="../chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="../chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的"乐高"</a></li>
+            <li><a href="../chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="../chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="../chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="../chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="../chapter-03.html#创建与管理用户">创建与管理用户</a></li>
+            <li><a href="../chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="../chapter-03.html#安装软件">安装软件</a></li>
+            <li><a href="../chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../chapter-04.html">第四章 Linux 好用的工具</a>
+        </li>
+        <li>
+          <a href="../chapter-05.html">第五章 Git</a>
+        </li>
+
+        <li>
+          <a href="../chapter-06.html">第六章 Vim 文本编辑器</a>
+        </li>
+        <li>
+          <a href="../chapter-07.html">第七章 网络基础</a>
+        </li>
+        <li>
+          <a href="../chapter-08.html">第八章 Web 与 API</a>
+        </li>
+        <li>
+          <a href="../chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="../chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="../chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="../extended-reading.html">延伸阅读</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1 id="neovimvim的平行宇宙">Neovim：Vim 的"平行宇宙"</h1>
+
+    <p>第六章讲到 Vim 的"替代方案"时，提到了 Nano、Emacs 和 VS Code 远程开发。但这些方案都跳出了 Vim 的家族圈——它们换的是编辑器本身，而不只是换一个 Vim 的版本。有没有一种选择，既保留 Vim 的编辑哲学和操作习惯，又能享受现代编辑器才有的特性？这就是 Neovim 要做的事。</p>
+
+    <p>Neovim 不是 Vim 的"竞品"，而是 Vim 的一个 fork——从同一棵树上分出来的枝干。它和 Vim 的关系，有点像 CentOS 和 RHEL、或者 MariaDB 和 MySQL：共享同一套基因，但走了不同的路。</p>
+
+    <h2 id="一封邮件引发的fork">一封邮件引发的 fork</h2>
+
+    <p>Neovim 的故事要从 2014 年说起。那时 Vim 已经存在了二十多年，是整个 Unix/Linux 世界里使用最广的终端编辑器之一。但它的代码库也带着那个年代的沉重印记：大量 C 代码交织在一起，维护难度极高，很多功能——比如异步执行外部命令——因为架构限制迟迟加不上。更关键的是，Vim 一直由 Bram Moolenaar 一人主导维护（长期有 Christian Brabandt 等协作者参与）。Bram 对合并大规模重构补丁非常谨慎，这让社区里一些想做深层改造的开发者感到挫折。</p>
+
+    <p>2013 年，tarruda 向 Vim 邮件列表提交了一个引入多线程和异步支持的大规模补丁。Bram 认为改动太大、风险太高，拒绝了合并。2014 年 1 月，巴西开发者 Thiago de Arruda（社区里通常叫他 tarruda）宣布 fork 出 Neovim。项目早期就定下了几个明确目标：引入异步任务、内置终端和现代化的插件 API——这些恰好都是当初 Vim 社区想要但 Bram 迟迟不愿接纳的东西。</p>
+
+    <p>他把 Vim 的代码库复制了一份，命名为 Neovim，在 GitHub 上独立开发。这不止是一次普通的 fork——tarruda 把它定位成一次"大手术"：清理旧代码、引入现代特性，并建立一个更开放的贡献机制。Neovim 不再由一个人独裁式地维护，而是由一个核心团队通过 GitHub 的 Pull Request 流程共同推进。</p>
+
+    <p>Bram Moolenaar 于 2023 年 8 月去世后，Vim 本身也在经历维护模式的转型，由 Christian Brabandt 接手继续维护。但 Neovim 在此之前的近十年里，已经走完了它最关键的差异化阶段。</p>
+
+    <h2 id="不只是更好的vim">不只是"更好的 Vim"</h2>
+
+    <p>如果只是修修 bug、提提性能，Neovim 不会成为一个值得单开一节的话题。它真正的价值在于几项 Vim 长期做不了或做得不够好的能力。</p>
+
+    <p><strong>内置终端。</strong>Neovim 自带一个完整的终端模拟器，在编辑器里直接按 <code>:terminal</code> 就能打开一个 shell。你可以在分屏的一边写代码，另一边跑测试脚本，不需要退出 Vim 再切回终端。Vim 后来在 8.1（2018 年）也加入了终端窗口支持（8.0 在 2016 年引入的是异步 I/O、channels 和 jobs），时间上比 Neovim 晚了几年。Bram 后来也公开承认，Neovim 的出现给 Vim 带来了切实的压力。</p>
+
+    <p><strong>异步任务。</strong>这是 Neovim 最底层也最重要的改进。传统 Vim 在执行外部命令（比如运行 linter、格式化工具）时，整个编辑器会"冻结"，直到命令执行完毕。Neovim 从架构层面支持异步，插件可以在后台运行检查、补全、语法分析，不影响你继续编辑。这个能力直接催生了后来一大批现代插件。</p>
+
+    <p><strong>Lua 作为一等配置语言。</strong>Vim 的配置和脚本一直用 Vimscript——一种为编辑器专门设计的脚本语言，语法古怪，学起来别扭。Neovim 把 Lua 提升为第一公民：你可以用 Lua 写所有配置和插件，享受一门真正的编程语言带来的便利。Lua 比 Vimscript 快、清晰，而且有完整的模块和包管理。对写过任何脚本语言的人来说，用 Lua 配置编辑器比学 Vimscript 舒服得多。</p>
+
+    <p><strong>内置 LSP 客户端。</strong>LSP（Language Server Protocol）是微软提出的一套协议，让编辑器和语言服务器之间能用统一的方式通信——不管是 Python 的补全、Rust 的类型检查还是 LaTeX 的引用跳转，都通过同一套接口完成。Neovim 从 0.5 版本（2021 年）起内置了 LSP 客户端，配置好语言服务器后就能获得接近 IDE 的体验：自动补全、跳转定义、悬停文档、重命名变量。Vim 也有 LSP 支持，但需要额外插件，集成度不如 Neovim 原生。</p>
+
+    <p><strong>Treesitter 语法高亮。</strong>传统的语法高亮靠正则表达式匹配，对嵌套结构和复杂语法容易出错。Neovim 集成了 Treesitter——一个增量解析库，能把代码解析成真正的语法树，再根据树的结构做高亮、折叠和选区。效果上的差异肉眼可见：Python 的 f-string 嵌套、Markdown 里的代码块、JSX 的标签内嵌表达式，这些 Treesitter 都能正确处理。</p>
+
+    <h2 id="插件生态与发行版">插件生态与发行版</h2>
+
+    <p>Neovim 能走到今天，插件生态扮演了关键角色。</p>
+
+    <p>插件管理器方面，早年主流是 packer.nvim，后来 lazy.nvim 取代了它的位置。lazy.nvim 的思路很讨巧：插件在用到时才加载，启动速度飞快，配置用 Lua 写，直观又好维护。2025 年的 Neovim 社区里，lazy.nvim 几乎是事实标准。</p>
+
+    <p>但真正让 Neovim 降低使用门槛的，是各种"发行版式"配置。所谓发行版，就是一个预先调好的 Neovim 配置包，你装上就能用，不需要从零开始写几百行 Lua。目前社区里最活跃的有两个：</p>
+
+    <ul>
+      <li><strong>LazyVim</strong>：由 lazy.nvim 的作者 folke 维护，走"现代 IDE"路线。装好就带 LSP、代码补全、文件树、模糊搜索、Git 集成、主题美化。如果你从 VS Code 转过来，LazyVim 是最接近那个体验的方案。</li>
+      <li><strong>NvChad</strong>：侧重外观和一致性，自带了精心设计的 UI 和主题系统，配置入口也很友好。适合对编辑器颜值有要求、喜欢定制界面的人。</li>
+    </ul>
+
+    <p>此外还有 LunarVim（一度非常流行，但 2024 年后维护放缓）和 AstroNvim（社区驱动的替代，结构清晰，适合喜欢自己改的进阶用户）。</p>
+
+    <p>关于兼容性：Neovim 基本可以运行大多数 Vim 插件。但有两个例外需要注意——依赖 Vim9script（Vim 9.0 引入的新脚本语言）的插件在 Neovim 上不可用；极少数深度依赖 Vim 内部 API 的插件也可能出问题。绝大多数流行插件（如 vim-surround、vim-commentary、fzf.vim）都同时支持两者。如果你不确定某个插件能不能用，去它的 GitHub 页面看一眼，一般会在 README 里注明。</p>
+
+    <h2 id="对初学者的建议现在转还是再等等">对初学者的建议：现在转，还是再等等？</h2>
+
+    <p>刚学完第六章的 Vim 基础操作，你可能在想：那我要不要直接换 Neovim？</p>
+
+    <p>答案是：不着急。理由有三。</p>
+
+    <p>第一，Neovim 的操作逻辑和 Vim 完全一样。第六章讲的三种模式、移动命令、查找替换——这些在 Neovim 里完全一样。Vimscript 配置内容本身也基本兼容，不过 Neovim 不会自动读取 <code>~/.vimrc</code>，配置要放在 <code>~/.config/nvim/init.vim</code>（或在其中 <code>source ~/.vimrc</code>）。你的学习成果不会因为换了一个 fork 就被浪费，但也没必要今天刚学会 <code>dd</code>，明天就急着装 LazyVim。</p>
+
+    <p>第二，Vim 的"兜底"优势依然存在。大多数 Linux 服务器预装的是 Vim，不是 Neovim。如果你现阶段的主要需求就是 SSH 上服务器改配置、调脚本，Vim 已经够用了。Neovim 的优势——LSP、Treesitter、插件生态——主要在你把它当作日常主力编辑器时才体现出来，而不是在偶尔远程改一行 <code>config.yaml</code> 时。</p>
+
+    <p>第三，Neovim 的配置成本更高。虽然 LazyVim 等发行版降低了门槛，但真要配得顺手，你仍然需要理解 Lua、了解 LSP 的工作原理、知道怎么管理插件。这些对于刚入门命令行的同学来说，步子有点大。先把 Vim 的基本操作练到肌肉记忆——打开、编辑、保存、退出不用过脑子——再考虑升级工具链。</p>
+
+    <p>什么时候适合转？几个信号可以参考：你开始频繁地用 Vim 写超过一百行的代码；你对 <code>.vimrc</code> 已经改过好几轮，开始觉得 Vimscript 别扭；你想在编辑器里直接看到类型错误和代码补全，而不是切回 IDE。这些信号出现的时候，Neovim 的门就已经向你敞开了。</p>
+
+    <p>一句话总结：Vim 是你的"保底技能"，Neovim 是你的"进阶选项"。先掌握前者，后者自然水到渠成。</p>
+
+    <footer class="page-footer">
+      <a href="javascript:history.back()">返回上一页</a>
+      <span class="footer-separator">|</span>
+      <a href="../index.html">返回目录</a>
+    </footer>
+  </main>
+
+  <script src="../assets/js/nav.js" defer></script>
+</body>
+</html>

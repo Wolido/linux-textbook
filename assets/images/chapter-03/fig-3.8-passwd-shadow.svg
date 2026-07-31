@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 704" width="800" style="max-width:100%;height:auto;">
+  <title>图3.5 用户信息存储关系</title>
+  <desc>Linux 系统中，用户身份信息存于 /etc/passwd，加密密码存于 /etc/shadow，组信息存于 /etc/group；创建用户时 /etc/skel 中的模板文件会自动复制到新用户的家目录。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="704" fill="#fafafa"/>
+
+  <!-- 箭头标记：底边在 x=0、尖端在 x=8，refX=0 使线端点连接底边中点 -->
+  <defs>
+    <marker id="arrow-copy" markerWidth="8" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#0d47a1"/>
+    </marker>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="400" y="54" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#2c3e50">Linux 用户信息存储体系</text>
+
+  <!-- /etc/passwd：用户身份信息 -->
+  <g>
+    <rect x="40" y="72" width="720" height="96" rx="8" fill="#ffffff" stroke="#0d47a1" stroke-width="2"/>
+    <rect x="40" y="72" width="720" height="32" rx="8" fill="#0d47a1"/>
+    <rect x="40" y="94" width="720" height="10" fill="#0d47a1"/>
+    <text x="56" y="93" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="15" font-weight="700" fill="#ffffff">/etc/passwd</text>
+    <text x="744" y="93" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#ffffff">用户身份信息</text>
+    <text x="56" y="128" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#1a1a1a"><tspan>alice:</tspan><tspan fill="#d32f2f" font-weight="700">x</tspan><tspan>:1001:1001:Alice Wang:/home/alice:/bin/bash</tspan></text>
+    <text x="56" y="152" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#555555">字段：用户名：密码占位符：UID:GID：描述：家目录：Shell</text>
+  </g>
+
+  <!-- /etc/shadow：安全敏感信息 -->
+  <g>
+    <rect x="40" y="184" width="720" height="96" rx="8" fill="#ffffff" stroke="#ef5350" stroke-width="2"/>
+    <rect x="40" y="184" width="720" height="32" rx="8" fill="#ef5350"/>
+    <rect x="40" y="206" width="720" height="10" fill="#ef5350"/>
+    <text x="56" y="205" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="15" font-weight="700" fill="#ffffff">/etc/shadow</text>
+    <text x="744" y="205" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#ffffff">安全敏感信息</text>
+    <text x="56" y="240" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#1a1a1a"><tspan>alice:</tspan><tspan fill="#d32f2f" font-weight="700">$y$j9T$...</tspan><tspan>:19876:0:99999:7:::</tspan></text>
+    <text x="56" y="264" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#555555">字段：用户名：加密密码：最后修改：最小/最大天数：警告：过期</text>
+  </g>
+
+  <!-- /etc/group：组信息 -->
+  <g>
+    <rect x="40" y="296" width="720" height="96" rx="8" fill="#ffffff" stroke="#1565c0" stroke-width="2"/>
+    <rect x="40" y="296" width="720" height="32" rx="8" fill="#1565c0"/>
+    <rect x="40" y="318" width="720" height="10" fill="#1565c0"/>
+    <text x="56" y="317" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="15" font-weight="700" fill="#ffffff">/etc/group</text>
+    <text x="744" y="317" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#ffffff">组信息</text>
+    <text x="56" y="352" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#1a1a1a"><tspan>lab_group:x:1003:</tspan><tspan fill="#1565c0" font-weight="700">alice,bob,carol</tspan></text>
+    <text x="56" y="376" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#555555">字段：组名：密码：GID：组成员列表</text>
+  </g>
+
+  <!-- /etc/skel 模板目录 -->
+  <g>
+    <rect x="40" y="416" width="280" height="120" rx="8" fill="#ffffff" stroke="#42a5f5" stroke-width="2"/>
+    <rect x="40" y="416" width="280" height="32" rx="8" fill="#e3f2fd"/>
+    <rect x="40" y="438" width="280" height="10" fill="#e3f2fd"/>
+    <text x="56" y="437" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="15" font-weight="700" fill="#0d47a1">/etc/skel/</text>
+    <text x="304" y="437" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#0d47a1">模板目录</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#1a1a1a">
+      <text x="56" y="474">.bashrc</text>
+      <text x="56" y="498">.profile</text>
+      <text x="56" y="522">.bash_logout</text>
+    </g>
+  </g>
+
+  <!-- /home/alice 新家目录 -->
+  <g>
+    <rect x="480" y="416" width="280" height="120" rx="8" fill="#ffffff" stroke="#42a5f5" stroke-width="2"/>
+    <rect x="480" y="416" width="280" height="32" rx="8" fill="#e3f2fd"/>
+    <rect x="480" y="438" width="280" height="10" fill="#e3f2fd"/>
+    <text x="496" y="437" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="15" font-weight="700" fill="#0d47a1">/home/alice/</text>
+    <text x="744" y="437" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#0d47a1">新家目录</text>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14" fill="#1a1a1a">
+      <text x="496" y="474">.bashrc</text>
+      <text x="496" y="498">.profile</text>
+      <text x="496" y="522">.bash_logout</text>
+    </g>
+  </g>
+
+  <!-- 复制流向箭头：尖端顶住 /home/alice 框左边缘（x=480），线端点为头底边中点 480-16=464 -->
+  <line x1="320" y1="476" x2="464" y2="476" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-copy)"/>
+  <!-- 箭头标签：相对整条箭头（320..480，中心 x=400）居中，与箭头头部保持 9px 垂直间隙 -->
+  <text x="400" y="456" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#0d47a1">新建用户时自动复制</text>
+
+  <!-- 图例 -->
+  <g>
+    <rect x="40" y="560" width="720" height="104" rx="8" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+    <text x="60" y="584" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#2c3e50">图例</text>
+    <rect x="60" y="598" width="12" height="12" rx="2" fill="#0d47a1"/>
+    <text x="80" y="609" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#444444">用户身份信息（/etc/passwd）</text>
+    <rect x="420" y="598" width="12" height="12" rx="2" fill="#ef5350"/>
+    <text x="440" y="609" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#444444">安全敏感信息：加密密码（/etc/shadow）</text>
+    <rect x="60" y="624" width="12" height="12" rx="2" fill="#1565c0"/>
+    <text x="80" y="635" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#444444">组信息（/etc/group）</text>
+    <line x1="416" y1="629" x2="420" y2="629" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-copy)"/>
+    <text x="440" y="635" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#444444">箭头：新建用户时的文件复制流向</text>
+  </g>
+</svg>

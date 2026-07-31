@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 800 648" width="800" style="max-width:100%;height:auto;">
+  <title>图3.4 使用 adduser 交互式创建用户</title>
+  <desc>在 Debian 终端中执行 sudo adduser alice 的完整交互过程：验证 sudo 密码、创建组和用户、复制骨架文件、设置密码、填写用户信息并确认。</desc>
+
+  <!-- 背景 -->
+  <rect width="800" height="648" fill="#fafafa"/>
+
+  <!-- 终端外框 -->
+  <rect x="40" y="40" width="720" height="496" rx="10" fill="#1e1e1e"/>
+  <!-- 标题栏 -->
+  <rect x="40" y="40" width="720" height="36" rx="10" fill="#4a4a4a"/>
+  <rect x="40" y="66" width="720" height="10" fill="#4a4a4a"/>
+  <circle cx="62" cy="58" r="6" fill="#ff5f56"/>
+  <circle cx="82" cy="58" r="6" fill="#ffbd2e"/>
+  <circle cx="102" cy="58" r="6" fill="#27c93f"/>
+  <text x="400" y="63" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#f0f0f0">Terminal — bash</text>
+
+  <!-- 终端内容：白色 = 用户输入，浅灰 = 系统输出/提示 -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace" font-size="14">
+    <text x="64" y="104"><tspan fill="#4caf50">$</tspan><tspan fill="#ffffff"> sudo adduser alice</tspan></text>
+    <text x="64" y="128"><tspan fill="#e0e0e0">[sudo] password for student: </tspan><tspan fill="#ffffff">********</tspan></text>
+    <text x="64" y="152" fill="#e0e0e0">正在添加用户“alice”...</text>
+    <text x="64" y="176" fill="#e0e0e0">正在添加新组“alice” (1001)...</text>
+    <text x="64" y="200" fill="#e0e0e0">正在添加新用户“alice” (1001) 到组“alice”...</text>
+    <text x="64" y="224" fill="#e0e0e0">创建主目录“/home/alice”...</text>
+    <text x="64" y="248" fill="#e0e0e0">正在从“/etc/skel”复制文件...</text>
+    <text x="64" y="272" fill="#e0e0e0">新的密码：</text>
+    <text x="64" y="296" fill="#e0e0e0">重新输入新的密码：</text>
+    <text x="64" y="320" fill="#e0e0e0">passwd：密码已成功更新</text>
+    <text x="64" y="344" fill="#e0e0e0">正在改变 alice 的用户信息</text>
+    <text x="64" y="368" fill="#e0e0e0">请输入新值，或直接按 Enter 决定默认值</text>
+    <text x="132" y="392"><tspan fill="#e0e0e0">全名 []: </tspan><tspan fill="#ffffff">Alice Wang</tspan></text>
+    <text x="132" y="416" fill="#e0e0e0">房间号码 []:</text>
+    <text x="132" y="440" fill="#e0e0e0">工作电话 []:</text>
+    <text x="132" y="464" fill="#e0e0e0">家庭电话 []:</text>
+    <text x="132" y="488" fill="#e0e0e0">其它 []:</text>
+    <text x="64" y="512"><tspan fill="#e0e0e0">信息是否正确？ [Y/n] </tspan><tspan fill="#ffffff">Y</tspan></text>
+  </g>
+
+  <!-- 底部说明框 -->
+  <rect x="40" y="560" width="720" height="48" rx="8" fill="#e3f2fd" stroke="#42a5f5" stroke-width="2"/>
+  <text x="400" y="589" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#0d47a1">adduser 是 Debian/Ubuntu 上对新手友好的交互式添加用户工具</text>
+</svg>
