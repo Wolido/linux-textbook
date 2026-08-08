@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="800" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
+  <title>TCP 三次握手时序图</title>
+  <desc>客户端与服务器之间的三次握手：客户端先发 SYN，服务器回 SYN-ACK，客户端再回 ACK，连接建立。</desc>
+
+  <defs>
+    <marker id="arrow-7.1-primary" markerWidth="8" markerHeight="10" refX="0" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,5 L0,10 Z" fill="#0d47a1"/>
+    </marker>
+    <marker id="arrow-7.1-accent" markerWidth="8" markerHeight="10" refX="0" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,5 L0,10 Z" fill="#ef5350"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="440" fill="#fafafa"/>
+
+  <!-- 客户端 -->
+  <g transform="translate(150,68)">
+    <rect x="-75" y="-28" width="150" height="56" rx="8" fill="#1565c0"/>
+    <text x="0" y="7" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="17" font-weight="bold" fill="#ffffff">客户端</text>
+  </g>
+
+  <!-- 服务器 -->
+  <g transform="translate(650,68)">
+    <rect x="-75" y="-28" width="150" height="56" rx="8" fill="#0d47a1"/>
+    <text x="0" y="7" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="17" font-weight="bold" fill="#ffffff">服务器</text>
+  </g>
+
+  <!-- 生命线（虚线） -->
+  <line x1="150" y1="100" x2="150" y2="404" stroke="#90a4ae" stroke-width="2" stroke-dasharray="6,6"/>
+  <line x1="650" y1="100" x2="650" y2="404" stroke="#90a4ae" stroke-width="2" stroke-dasharray="6,6"/>
+
+  <!-- ① SYN：客户端 → 服务器（尖端顶住服务器生命线 x=650） -->
+  <line x1="150" y1="180" x2="642" y2="180" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-7.1-primary)"/>
+  <text x="400" y="162" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="16" fill="#0d47a1">① SYN：我想和你建立连接</text>
+
+  <!-- ② SYN-ACK：服务器 → 客户端（尖端顶住客户端生命线 x=150） -->
+  <line x1="650" y1="270" x2="158" y2="270" stroke="#ef5350" stroke-width="2" marker-end="url(#arrow-7.1-accent)"/>
+  <text x="400" y="252" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="16" fill="#ef5350">② SYN-ACK：我收到了，我也准备好了</text>
+
+  <!-- ③ ACK：客户端 → 服务器（尖端顶住服务器生命线 x=650） -->
+  <line x1="150" y1="360" x2="642" y2="360" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-7.1-primary)"/>
+  <text x="400" y="342" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="16" fill="#0d47a1">③ ACK：好，那我开始传了</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="424" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#666666">三次握手完成，连接建立，双方开始传数据</text>
+</svg>
