@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>延伸阅读：OSI 七层模型：赢了课本，没赢下互联网 - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="../index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="../index.html">目录</a></li>
+        <li><a href="../preface.html">序言</a></li>
+        <li>
+          <a href="../chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="../chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="../chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="../chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="../chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="../chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="../chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="../chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="../chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="../chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="../chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="../chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的“乐高”</a></li>
+            <li><a href="../chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="../chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="../chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="../chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="../chapter-03.html#创建与管理用户">创建与管理用户</a></li>
+            <li><a href="../chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="../chapter-03.html#安装软件">安装软件</a></li>
+            <li><a href="../chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../chapter-04.html">第四章 Linux 好用的工具</a>
+        </li>
+        <li>
+          <a href="../chapter-05.html">第五章 Git</a>
+        </li>
+
+        <li>
+          <a href="../chapter-06.html">第六章 Vim 文本编辑器</a>
+        </li>
+        <li>
+          <a href="../chapter-07.html">第七章 网络基础</a>
+        </li>
+        <li>
+          <a href="../chapter-08.html">第八章 Web 与 API</a>
+        </li>
+        <li>
+          <a href="../chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="../chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="../chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="../extended-reading.html">延伸阅读</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1 id="osi七层模型赢了课本没赢下互联网">OSI 七层模型：赢了课本，没赢下互联网</h1>
+
+    <p>第七章正文只讲了 TCP/IP 四层模型，提到 OSI 七层模型时一笔带过。这个“一笔带过”其实有点委屈它：在绝大多数网络教材和认证考试里，七层模型才是主角，HTTP、TCP 这些协议常被标注成“工作在第七层”“工作在第四层”。这套层数编号从哪来？既然它这么出名，正文为什么反而按四层讲？这篇把故事补全。</p>
+
+    <h2 id="七层模型的来历">七层模型的来历</h2>
+
+    <p>时间回到 1970 年代末。那时候计算机网络已经不少，但各说各话：IBM 的机器跑 SNA，DEC 的机器跑 DECnet，不同厂商的网络之间几乎无法通信。想让全世界的计算机连起来，得先有一套大家共同遵守的框架。</p>
+
+    <p>出面定框架的是国际标准化组织 ISO。1970 年代末，ISO 成立专门小组研究“开放系统互联”（Open Systems Interconnection，简称 OSI），法国工程师 Hubert Zimmermann 是主要设计者，美国数据库先驱 Charles Bachman 等人也参与了早期标准化工作。1984 年，成果正式发布为 ISO 7498 标准，也就是今天说的 OSI 参考模型。</p>
+
+    <p>它的思路是“标准先行”：先把网络通信拆成七层，规定每层的职责和层间接口，再让各国厂商按框架去实现具体协议。只要大家都照做，任何两台机器理论上都能互通。ISO 背后还有各国政府和电信公司的支持，这套方案看起来势在必得。</p>
+
+    <p>但几乎在同一时间，另一条路线也在推进。美国 ARPANET 上，Vint Cerf 和 Bob Kahn 早在 1974 年就发表了 TCP 协议论文；1983 年 1 月 1 日，ARPANET 全部节点正式切换到 TCP/IP。一边是先定标准、再等人实现；另一边是先把代码跑起来，标准以后再说。后来的故事证明，这两种做法的差别是决定性的。</p>
+
+    <h2 id="七层是哪七层">七层是哪七层</h2>
+
+    <p>OSI 把通信过程从下往上拆成七层：</p>
+
+    <ol>
+      <li>物理层：管电缆、光纤、无线电波上的比特流，电压高低、接口形状都归它。</li>
+      <li>数据链路层：负责同一条链路上相邻节点之间传“帧”，以太网、Wi-Fi 在这一层，处理 MAC 地址和差错检测。</li>
+      <li>网络层：负责跨网络寻址和路由，把数据包从源主机送到目标主机。</li>
+      <li>传输层：负责端到端的传输，要可靠还是要快，在这一层做选择。</li>
+      <li>会话层：负责建立、维护和结束两个应用之间的会话，传输中断后还能从同步点恢复。</li>
+      <li>表示层：负责数据格式的翻译，比如编码转换、压缩、加密解密，让不同系统能读懂对方的数据。</li>
+      <li>应用层：直接面向用户的网络服务，电子邮件、文件传输、远程登录都在这一层。</li>
+    </ol>
+
+    <p>前四层和 TCP/IP 的四层大致对得上，多出来的是会话层和表示层——后来争议最大的，也正是这两层。</p>
+
+    <h2 id="为什么没赢下互联网">为什么没赢下互联网</h2>
+
+    <p>OSI 模型自身很完整，配套协议也有，比如电子邮件的 X.400、目录服务的 X.500。但它最终没能成为互联网实际运行的标准，原因大致有几个。</p>
+
+    <p>一是复杂。七层设计求全，整套协议实现起来又重又慢。会话层和表示层的功能，大多数应用要么用不上，要么自己顺手就做了，没人愿意为一层用不到的抽象付出性能代价。</p>
+
+    <p>二是慢。委员会的工作方式是先写标准、再实现，标准文档厚得惊人；等实现做出来、再解决不同厂商之间的兼容问题，几年过去了。而就在这几年里，TCP/IP 跟着 4.2BSD Unix 免费进入各所大学的机房，学生们拿它发邮件、传文件，用顺手了就不再换。到 1990 年代商用互联网兴起时，直接建在了 TCP/IP 之上。</p>
+
+    <p>三是推不动。1980 年代末到 1990 年代，以美国 GOSIP 采购政策为代表，英国等一些西方国家政府也推出了类似政策，要求政府采购的系统支持 OSI 协议，想靠行政力量把它扶上事实标准的位子。结果市场不买账，几年后这些政策也悄然退场。</p>
+
+    <p>1992 年，互联网工程师 David Clark 在 IETF 会议上说了一句后来被反复引用的话：“我们拒绝国王、总统和投票，我们相信的是粗略共识和能跑的代码。”这句话常被拿来总结这场标准之争：OSI 赢了纸面，TCP/IP 赢了网线。</p>
+
+    <h2 id="与四层模型的对应">与四层模型的对应</h2>
+
+    <p>TCP/IP 四层模型可以看作对 OSI 七层的合并：</p>
+
+    <ul>
+      <li>OSI 的第 5 到 7 层（会话、表示、应用）合并为 TCP/IP 的应用层；</li>
+      <li>第 4 层传输层、第 3 层网络层，两边一一对应；</li>
+      <li>OSI 的第 1 到 2 层（物理、数据链路）合并为 TCP/IP 的链路层。</li>
+    </ul>
+
+    <p>这个合并不是偷懒。真实协议里，HTTP 自己定义数据格式，SSH 自己管理会话，确实不需要单独的表示层和会话层协议。回过头看，OSI 的七层像是为一切可能的需求提前预留位置，TCP/IP 的四层则是按实际长出来的需求分工。</p>
+
+    <h2 id="它留下了什么">它留下了什么</h2>
+
+    <p>没赢下互联网，不等于消失。OSI 模型留下了两样东西。</p>
+
+    <p>一样是术语。今天网络设备说明书上的“二层交换机”“三层交换机”，负载均衡广告里的“四层”“七层”，防火墙文档里的“工作在应用层”，编的全是 OSI 的号。同事排错时说一句“这是二层的问题”，指的就是链路层附近的事。不懂七层编号，这些行话就听不懂。</p>
+
+    <p>另一样是教学框架。分层思想本身是对的，七层拆得细，适合拿来当教具，所以教材和认证考试至今仍在讲它。</p>
+
+    <p>现在你手里有两张地图：第七章正文里的四层模型告诉你互联网实际怎么运转，这篇的七层模型告诉你人们曾经设想它该怎么运转。两张都认识，再看到任何一份网络文档都不会迷路。</p>
+
+    <footer class="page-footer">
+      <a href="javascript:history.back()">返回上一页</a>
+      <span class="footer-separator">|</span>
+      <a href="../index.html">返回目录</a>
+    </footer>
+  </main>
+
+  <script src="../assets/js/nav.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>延伸阅读：HTTP 的版本之争：从 1.1 到 QUIC - Linux操作系统与数据库教材</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <input type="checkbox" id="nav-toggle" hidden>
+
+  <header class="site-header">
+    <div class="brand"><a href="../index.html">Linux操作系统与数据库教材</a></div>
+    <button type="button" class="menu-btn" aria-label="打开目录" aria-expanded="false" aria-controls="site-sidebar">≡</button>
+  </header>
+
+  <aside class="sidebar" id="site-sidebar">
+    <nav>
+      <ul>
+        <li><a href="../index.html">目录</a></li>
+        <li><a href="../preface.html">序言</a></li>
+        <li>
+          <a href="../chapter-01.html">第一章 Linux的基础知识</a>
+          <ul>
+            <li><a href="../chapter-01.html#unix与linux">Unix与Linux</a></li>
+            <li><a href="../chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
+            <li><a href="../chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
+            <li><a href="../chapter-01.html#linux与开源">Linux与开源</a></li>
+            <li><a href="../chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../chapter-02.html">第二章 Shell 与命令行</a>
+          <ul>
+            <li><a href="../chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
+            <li><a href="../chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
+            <li><a href="../chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
+            <li><a href="../chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
+            <li><a href="../chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
+            <li><a href="../chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的“乐高”</a></li>
+            <li><a href="../chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
+          </ul>
+
+        </li>
+        <li>
+          <a href="../chapter-03.html">第三章 用户、权限与软件安装</a>
+          <ul>
+            <li><a href="../chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
+            <li><a href="../chapter-03.html#root与sudo">root 与 sudo</a></li>
+            <li><a href="../chapter-03.html#创建与管理用户">创建与管理用户</a></li>
+            <li><a href="../chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
+            <li><a href="../chapter-03.html#安装软件">安装软件</a></li>
+            <li><a href="../chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../chapter-04.html">第四章 Linux 好用的工具</a>
+        </li>
+        <li>
+          <a href="../chapter-05.html">第五章 Git</a>
+        </li>
+
+        <li>
+          <a href="../chapter-06.html">第六章 Vim 文本编辑器</a>
+        </li>
+        <li>
+          <a href="../chapter-07.html">第七章 网络基础</a>
+        </li>
+        <li>
+          <a href="../chapter-08.html">第八章 Web 与 API</a>
+        </li>
+        <li>
+          <a href="../chapter-09.html">第九章 Docker</a>
+        </li>
+        <li>
+          <a href="../chapter-10.html">第十章 数据库</a>
+        </li>
+        <li>
+          <a href="../chapter-11.html">第十一章 DuckDB</a>
+        </li>
+        <li>
+          <span>第十二章 结语</span>
+        </li>
+
+        <li class="nav-section">
+          <span class="nav-section-title">延伸阅读</span>
+          <ul>
+            <li><a href="../extended-reading.html">延伸阅读</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1 id="http的版本之争从11到quic">HTTP 的版本之争：从 1.1 到 QUIC</h1>
+
+    <p>第七章的对比表里，HTTP 被画在了 TCP 一边。紧接着正文就给自己拆台：较新的 HTTP/3 不用 TCP，改用基于 UDP 的 QUIC。一个应用层协议，怎么就从传输层这边搬到了那边？答案得往前翻二十多年：HTTP 攒下的老毛病一层层治，最后治到了 TCP 头上。这篇按时间顺序讲三次大改版，看完你就知道正文那句“边界一直在动”是什么意思。</p>
+
+    <h2 id="http11时代一个连接一个请求">HTTP/1.1 时代：一个连接一个请求</h2>
+
+    <p>最早的 HTTP/1.0 规矩很死板：浏览器和服务器建一个 TCP 连接，发一个请求，收一份响应，然后连接关闭。网页是纯文字的年代这没什么。到了 1990 年代中后期，页面开始变“胖”，一个页面带几十张小图，每张图都要走一遍建连接、传数据、关连接的流程，大量时间耗在了握手和挥手上。</p>
+
+    <p>1997 年前后，HTTP/1.1 标准化（先是 RFC 2068，1999 年又更新为 RFC 2616）。最要紧的改进是持久连接，也叫 keep-alive：连接传完一份数据不急着关，可以接着传下一个请求，省掉了反复握手的开销。你今天抓包看到的 HTTP/1.1 流量，走的仍是这套规矩。</p>
+
+    <p>但 keep-alive 治不了排队。一个连接同一时刻只能处理一个请求，服务器还在传第一张图，第二张图的请求就只能在后面等。这个问题有个形象的名字，队头阻塞（head-of-line blocking）：排在队头的不动，全队都别想动。</p>
+
+    <p>浏览器没干等着，用了个土办法：一个连接会堵，那就对同一个域名多开几个连接，通常六七个（不同浏览器略有差别），各排各的队。今天的浏览器还在用这招。HTTP/1.1 至今没有被淘汰，一半靠的就是这些成熟的缓解办法。</p>
+
+    <h2 id="http2在一个连接里多路复用">HTTP/2：在一个连接里多路复用</h2>
+
+    <p>真正动手治队头阻塞的是 Google。2009 年前后，Google 公开了自家实验协议 SPDY（读作 “speedy”），2012 年前后 Chrome 浏览器默认启用了它。IETF 后来拿 SPDY 当底稿做标准化，2015 年 5 月正式发布 RFC 7540，这就是 HTTP/2。</p>
+
+    <p>HTTP/2 的思路是把“排队”从一个连接里拿掉。它先把请求和响应从一整块文本切成一个个带编号的小帧，这一步叫二进制分帧；然后让多个请求的帧在同一个连接里交错传输，哪张图的数据先回来就先交给浏览器，这一步叫多路复用；再配上头部压缩，把 HTTP/1.1 里每个请求都重复发送的一大串头部砍掉大半。多路复用是核心：一个连接就够用了，浏览器不用再开六七个窗口分头排队。</p>
+
+    <p>HTTP 层的队头阻塞解决了，可 HTTP/2 底下跑的还是 TCP。TCP 只认一个有序的字节流：连接里某个包丢了，哪怕丢的字节只属于其中一张小图，TCP 也会拦住后面所有已到达的数据，等这个包重传补齐之后，才一起交给浏览器。队头阻塞换了个地方，从 HTTP 层挪到了 TCP 层。网络质量好时感觉不到；丢包率一高，HTTP/2 的单连接有时反而比 HTTP/1.1 的多连接更吃亏，因为后者这条连接堵了，还有别的连接在跑。</p>
+
+    <h2 id="http3干脆换掉tcp">HTTP/3：干脆换掉 TCP</h2>
+
+    <p>想治 TCP 层的队头阻塞，绕不开一个现实：TCP 实现在操作系统内核里，写应用的人改不动它。Google 的办法很干脆，换掉 TCP。2013 年前后，Google 公开了 QUIC 协议：在 UDP 之上自己实现可靠传输，UDP 只负责把包送出去，序号、确认、重传、拥塞控制，QUIC 全部自己包下。</p>
+
+    <p>换掉 TCP，换来几样实打实的好处：</p>
+
+    <ul>
+      <li>握手更快。TCP 要先三次握手、再 TLS 握手，都完成后才能传数据；QUIC 把加密内置进了协议，建连和密钥协商合成一轮，通常一次往返就能开始传数据，访问过的服务器还能更快。</li>
+      <li>流之间真正独立。QUIC 里每个流自己排序、自己重传，丢一个包只卡住受它影响的流，其他流照常前进，TCP 层那种一人丢包、全队陪等的局面没有了。</li>
+      <li>连接能跟着人走。TCP 靠源地址、目标地址和两端端口这四个数标识一条连接，手机从 Wi-Fi 切到蜂窝网络，地址一变连接就断；QUIC 改用连接 ID 标识，网络切换后连接照常续上，视频会议不容易掉线。</li>
+    </ul>
+
+    <p>标准化也随之完成。2021 年 5 月，QUIC 传输协议发布为 RFC 9000；2022 年 6 月，跑在它上面的 HTTP/3 发布为 RFC 9114。据公开资料（如 W3Techs 的统计），主流浏览器和不少大型网站已经支持 HTTP/3，不过截至本文写作时，HTTP/1.1 和 HTTP/2 仍是互联网上的多数派，三个版本会长期共存。</p>
+
+    <h2 id="回到tcp与udp的分工">回到 TCP 与 UDP 的分工</h2>
+
+    <p>看完这段历史，再回头看第七章那张对比表，“数据不能丢的用 TCP”这句话还成立吗？</p>
+
+    <p>成立，但要加一个脚注。QUIC 证明了可靠传输并非 TCP 的专利：序号、确认、重传这套机制搬到 UDP 之上，照样能搭起来，还能按自己的需求改得更合身。HTTP 选择 QUIC，也不是 UDP 变可靠了，而是 HTTP 把可靠性拿回了自己手里；挑 UDP 当底子，只因为它足够简单，内核和沿途的网络设备又都认得它。</p>
+
+    <p>那张表教的分工依然是最实用的默认值：图省心选 TCP，要实时选 UDP。只是边界一直在动。HTTP 在 TCP 上跑了二十多年，把队头阻塞从应用层一路追到传输层，最后把可靠性这件事也收了回来。下次再看到“HTTP 基于 TCP”的写法，你就知道这个“基于”背后，藏着一整段搬家史。</p>
+
+    <footer class="page-footer">
+      <a href="javascript:history.back()">返回上一页</a>
+      <span class="footer-separator">|</span>
+      <a href="../index.html">返回目录</a>
+    </footer>
+  </main>
+
+  <script src="../assets/js/nav.js" defer></script>
+</body>
+</html>
