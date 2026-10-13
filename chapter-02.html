@@ -21,13 +21,6 @@
         <li><a href="preface.html">序言</a></li>
         <li>
           <a href="chapter-01.html">第一章 Linux的基础知识</a>
-          <ul>
-            <li><a href="chapter-01.html#unix与linux">Unix与Linux</a></li>
-            <li><a href="chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
-            <li><a href="chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
-            <li><a href="chapter-01.html#linux与开源">Linux与开源</a></li>
-            <li><a href="chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
-          </ul>
         </li>
         <li>
           <a href="chapter-02.html">第二章 Shell 与命令行</a>
@@ -40,18 +33,9 @@
             <li><a href="chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的“乐高”</a></li>
             <li><a href="chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
           </ul>
-
         </li>
         <li>
           <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
-          <ul>
-            <li><a href="chapter-03.html#为什么Linux要区分用户">为什么 Linux 要区分用户？</a></li>
-            <li><a href="chapter-03.html#root与sudo">root 与 sudo</a></li>
-            <li><a href="chapter-03.html#创建与管理用户">创建与管理用户</a></li>
-            <li><a href="chapter-03.html#文件权限与chmod">文件权限与 chmod</a></li>
-            <li><a href="chapter-03.html#安装软件">安装软件</a></li>
-            <li><a href="chapter-03.html#运行程序与环境变量">运行程序与环境变量</a></li>
-          </ul>
         </li>
         <li>
           <a href="chapter-04.html">第四章 Linux 好用的工具</a>
@@ -612,12 +596,45 @@ Host gpu
 
 <pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">ssh gpu</span></code></pre>
 
-<p>SSH 远远不止登录这么简单，它还能传文件、执行远程命令、做端口转发。本章我们只聚焦最基础的远程登录和密钥配置，后面用到更多功能时，你会更容易理解它们。</p>
+<p>SSH 远远不止登录这么简单，它还能传文件、执行远程命令、做端口转发。本章聚焦最基础的三件事——远程登录、密钥配置和文件传输，后面用到更多功能时，你会更容易理解它们。</p>
 
 <figure>
   <img src="assets/images/chapter-02/fig-2.13-ssh-config-alias.svg" alt="长命令 vs 简短别名">
   <figcaption>图2.13 长命令 vs 简短别名</figcaption>
 </figure>
+
+<h3 id="传文件scp与sftp">传文件：scp 与 sftp</h3>
+
+<p>登录之后，下一个问题马上就来：数据怎么传上去？这事不用另找工具，<code>scp</code> 和 <code>sftp</code> 都跑在 SSH 连接上，和远程登录共用同一套密钥，传输过程同样加密，不需要额外配置。</p>
+
+<p><code>scp</code> 相当于带远程地址的 <code>cp</code>，做的事就是在 SSH 连接上复制文件，默认走 22 端口。把本地文件传到服务器：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">scp data.csv student@gpu-lab01:~/project/</span>
+<span class="output">data.csv                                    100%  512MB  42.7MB/s   00:12</span>
+<span class="prompt">student@debian:~$</span> <span class="command">scp student@gpu-lab01:~/project/result.log ./</span></code></pre>
+
+<p>第一条命令把本地的 <code>data.csv</code> 送到服务器上的 <code>~/project/</code> 目录。第二条方向相反，把服务器上的 <code>result.log</code> 拉回当前目录。冒号前面是远程主机，冒号后面是那台机器上的路径。</p>
+
+<p>传整个目录要加 <code>-r</code>，让 <code>scp</code> 递归复制。端口不是默认的 22 时，用 <code>-P</code> 指定。这里是大写 P，和 <code>ssh</code> 指定端口的小写 <code>-p</code> 不一样。这俩写混了都要出事：<code>scp</code> 会把端口号当成文件名，<code>ssh</code> 则直接报 <code>unknown option</code>：</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">scp -r ./dataset student@gpu-lab01:~/project/</span>
+<span class="output">data.bin                                    100%  1.2GB  45.1MB/s   00:27</span>
+<span class="prompt">student@debian:~$</span> <span class="command">scp -P 2222 data.csv student@gpu-lab01:~/project/</span></code></pre>
+
+<p>想一边看服务器上有什么、一边决定传哪个文件时，<code>sftp</code> 比 <code>scp</code> 顺手。它打开的是一个交互式会话，进去以后在 <code>sftp&gt;</code> 提示符下敲命令：<code>put</code> 上传本地文件；<code>get</code> 把远程文件下载下来；<code>ls</code> 列出远程目录；<code>cd</code> 切换远程目录。</p>
+
+<pre><code class="terminal"><span class="prompt">student@debian:~$</span> <span class="command">sftp student@gpu-lab01</span>
+<span class="output">Connected to gpu-lab01.</span>
+<span class="prompt">sftp&gt;</span> <span class="command">put data.csv project/</span>
+<span class="prompt">sftp&gt;</span> <span class="command">ls project</span>
+<span class="prompt">sftp&gt;</span> <span class="command">cd project</span>
+<span class="prompt">sftp&gt;</span> <span class="command">get result.log</span></code></pre>
+
+<p><code>sftp</code> 还支持续传：单个大文件传到一半断了，<code>reget</code> 接着下载、<code>reput</code> 接着上传，不用从头再来。代价是多了一层会话，只传一两个文件时不如 <code>scp</code> 一条命令来得直接，按需选用就好。</p>
+
+<p>放到科研场景里，这两个命令每天都用得上。实验做完，先把本地的数据集或原始数据传到服务器；训练和计算结束，再把模型权重、结果文件和日志拉回本地。同一批大文件需要反复同步时，可以考虑 <code>rsync</code>，它只传变化的部分。</p>
+
+<p>最后提醒一句：FTP 传文件时账号密码都不加密，别拿它传数据集和结果文件；数据也别丢进任何人都能写的目录，公网服务器上更要避开。</p>
 
 <h2 id="文件系统从根目录开始的世界">文件系统：从 / 开始的世界</h2>
 
@@ -1296,7 +1313,7 @@ epochs = 50</span></code></pre>
 
 <p>这些习惯不会让你变成命令行高手，但会保护你不变成“凭一条命令删掉整月数据”的反面教材。命令行是一个需要慢慢建立信心的环境：每一次先确认再执行，每一次认真阅读报错，每一次自己查帮助解决问题，都会让你更熟悉它。</p>
 
-<p>到这里，第二章就结束了。你已经学会了命令行的基本操作、远程登录、文件系统导航、常用命令、管道与重定向，也建立了一些基本的安全习惯。下一章，我们会进入 Linux 的用户、权限与软件安装——也就是“谁能在系统里做什么”以及“怎么装自己需要的软件”。</p>
+<p>到这里，第二章就结束了。你已经学会了命令行的基本操作、远程登录、文件传输、文件系统导航、常用命令、管道与重定向，也建立了一些基本的安全习惯。下一章，我们会进入 Linux 的用户、权限与软件安装——也就是“谁能在系统里做什么”以及“怎么装自己需要的软件”。</p>
 
     <footer class="page-footer">
       <div class="prev">

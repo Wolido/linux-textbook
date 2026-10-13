@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 408" width="800" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
+  <title>通过跳板机访问内网机器的路径</title>
+  <desc>本地机器（203.0.113.5，位于公网）经跳板机 jump.lab.example（203.0.113.10，内网唯一对外入口）访问内网机器 db.lab.example（192.168.42.20，私网地址不可路由）；本地直连内网机器不可达，使用 ssh -J 一条命令穿过跳板机。</desc>
+
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#1565c0"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#ef5350"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="408" fill="#fafafa"/>
+
+  <!-- 标题 -->
+  <text x="400" y="34" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="bold" fill="#0d47a1">通过跳板机访问内网机器的路径</text>
+
+  <!-- 分区：竖直虚线分界 + 区域标签 -->
+  <line x1="260" y1="44" x2="260" y2="214" stroke="#9e9e9e" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="125" y="58" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">公网</text>
+  <text x="520" y="58" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">内网（私网地址不可路由）</text>
+
+  <!-- 连线（先线后框；端点计算：marker head 深 10px，线端点 = 目标边 - 10，尖端顶住目标框边） -->
+  <!-- ① 本地机器 → 跳板机：公网可达，蓝色实线 -->
+  <line x1="210" y1="146" x2="300" y2="146" stroke="#1565c0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <!-- ② 跳板机 → 内网机器：内网可达，蓝色实线 -->
+  <line x1="480" y1="146" x2="570" y2="146" stroke="#1565c0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <!-- × 本地机器 ⇢ 内网机器：不可直达，红色虚线正交肘形（从本地底边出，绕到内网机器底边入） -->
+  <path d="M125,204 V224 Q125,232 133,232 H617 Q625,232 625,224 V214" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="7,3" marker-end="url(#arrow-red)"/>
+
+  <!-- ssh -J 括号：贯穿整条路径 -->
+  <path d="M125,283 V290 H625 V283" fill="none" stroke="#0d47a1" stroke-width="1.5"/>
+
+  <!-- 节点：本地机器（外部系统样式） -->
+  <g>
+    <rect x="40" y="88" width="170" height="116" rx="6" fill="rgba(13,71,161,0.03)" stroke="rgba(13,71,161,0.35)" stroke-width="1.5"/>
+    <text x="125" y="120" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#0d47a1">本地机器</text>
+    <text x="125" y="143" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">处于公网</text>
+    <text x="125" y="166" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">203.0.113.5</text>
+  </g>
+
+  <!-- 节点：跳板机（焦点节点，主题蓝强调） -->
+  <g>
+    <rect x="310" y="88" width="170" height="116" rx="6" fill="#e3f2fd" stroke="#0d47a1" stroke-width="2"/>
+    <text x="395" y="110" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#0d47a1">跳板机 Bastion</text>
+    <text x="395" y="132" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">唯一对外入口</text>
+    <text x="395" y="153" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">jump.lab.example</text>
+    <text x="395" y="174" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">203.0.113.10（公网）</text>
+  </g>
+
+  <!-- 节点：内网机器（常规节点） -->
+  <g>
+    <rect x="580" y="88" width="170" height="116" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+    <text x="665" y="110" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#0d47a1">内网机器</text>
+    <text x="665" y="132" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">db.lab.example</text>
+    <text x="665" y="153" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">192.168.42.20（私网）</text>
+    <text x="665" y="174" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">只接受跳板机的连接</text>
+  </g>
+
+  <!-- 箭头标签（不透明衬底 + 与箭头同色；与连线外缘间隙 ≥6px） -->
+  <rect x="220" y="155" width="80" height="22" rx="2" fill="#fafafa"/>
+  <text x="260" y="170" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">① 公网可达</text>
+
+  <rect x="490" y="155" width="80" height="22" rx="2" fill="#fafafa"/>
+  <text x="530" y="170" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">② 内网可达</text>
+
+  <rect x="289" y="240" width="172" height="22" rx="2" fill="#fafafa"/>
+  <text x="375" y="255" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#ef5350">× 连不上：私网地址不可路由</text>
+
+  <!-- ssh -J 说明 -->
+  <text x="375" y="313" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">ssh -J xiaowang@jump.lab.example 192.168.42.20</text>
+  <text x="375" y="335" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">一条命令穿过跳板机，内网只留这一台机器对外</text>
+
+  <!-- 图例（底部水平条带） -->
+  <line x1="60" y1="358" x2="740" y2="358" stroke="#42a5f5" stroke-width="1"/>
+  <path d="M228,374 L250,374" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="274" y="378" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">可走通的路径</text>
+  <path d="M396,374 L418,374" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="7,3" marker-end="url(#arrow-red)"/>
+  <text x="442" y="378" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">不可走通（不可路由）</text>
+</svg>

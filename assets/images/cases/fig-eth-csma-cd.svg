@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 580" width="780" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
+  <title>CSMA/CD 与二进制指数退避：先听后发、边发边听、撞了就停、退避重试</title>
+  <desc>host-a 与 host-b 先听后发，同时向一段共享信道发送信号，边发边听；两股信号在信道中部相撞，冲突点用红色星号标出；双方撞了就停，各自随机退避不同的时间（host-a 等 1 个时隙、host-b 等 2 个时隙，等待时间随失败次数翻倍），然后重新侦听并重试。</desc>
+
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#1565c0"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#ef5350"/>
+    </marker>
+    <marker id="arrow-light" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#42a5f5"/>
+    </marker>
+  </defs>
+
+  <rect width="780" height="580" fill="#fafafa"/>
+
+  <text x="390" y="40" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="bold" fill="#0d47a1">CSMA/CD：先听后发 → 边发边听 → 撞了就停 → 退避重试</text>
+
+  <text x="390" y="92" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">① 先听后发：载波侦听，线上空闲才发</text>
+
+  <!-- 先画线，后画框 -->
+  <!-- ①② 两股发送信号：host-a 自左向右、host-b 自右向左，末端 45° 斜线共线收敛到信道中部冲突星号上 -->
+  <path d="M104,160 L104,208 Q104,216 112,216 L334,216 Q342,216 347.7,221.7 L370.2,244.2" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <path d="M676,160 L676,308 Q676,316 668,316 L450,316 Q442,316 436.3,310.3 L409.8,283.8" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- 共享信道 -->
+  <line x1="84" y1="264" x2="696" y2="264" stroke="#0d47a1" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- ③ 冲突点：红色星号 -->
+  <path d="M408,264 L397.4,267.1 L402.7,276.7 L393.1,271.4 L390,282 L386.9,271.4 L377.3,276.7 L382.6,267.1 L372,264 L382.6,260.9 L377.3,251.3 L386.9,256.6 L390,246 L393.1,256.6 L402.7,251.3 L397.4,260.9 Z" fill="#ef5350"/>
+
+  <!-- ④ 撞了就停：从冲突点分叉，各自随机退避（红色虚线） -->
+  <path d="M390,284 L390,348" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="7,3"/>
+  <path d="M220,348 L560,348" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="7,3"/>
+  <path d="M220,348 L220,370" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="7,3" marker-end="url(#arrow-red)"/>
+  <path d="M560,348 L560,370" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="7,3" marker-end="url(#arrow-red)"/>
+
+  <!-- 退避后重新侦听、重试（浅蓝虚线，回到各自主机） -->
+  <path d="M110,408 L80,408 Q72,408 72,400 L72,170" fill="none" stroke="#42a5f5" stroke-width="2" stroke-dasharray="7,3" marker-end="url(#arrow-light)"/>
+  <path d="M670,408 L700,408 Q708,408 708,400 L708,170" fill="none" stroke="#42a5f5" stroke-width="2" stroke-dasharray="7,3" marker-end="url(#arrow-light)"/>
+
+  <!-- 两台主机 -->
+  <g>
+    <rect x="56" y="112" width="96" height="48" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+    <text x="104" y="141" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="14" font-weight="bold" fill="#0d47a1">host-a</text>
+  </g>
+  <g>
+    <rect x="628" y="112" width="96" height="48" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+    <text x="676" y="141" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="14" font-weight="bold" fill="#0d47a1">host-b</text>
+  </g>
+
+  <!-- 步骤标签 -->
+  <text x="230" y="250" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">② 边发边听：冲突检测</text>
+  <text x="295" y="302" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#ef5350">③ 撞了就停！</text>
+  <text x="324" y="336" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="bold" fill="#ef5350">④ 各自随机退避</text>
+  <text x="640" y="290" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">共享信道</text>
+
+  <!-- 退避等待：两台主机等待不同的随机时间，等待条长度与时隙数成正比 -->
+  <g>
+    <rect x="110" y="380" width="220" height="56" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+    <text x="220" y="404" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">host-a：随机等待 1 个时隙</text>
+    <rect x="130" y="416" width="40" height="10" rx="2" fill="#1565c0"/>
+  </g>
+  <g>
+    <rect x="450" y="380" width="220" height="56" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+    <text x="560" y="404" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">host-b：随机等待 2 个时隙</text>
+    <rect x="470" y="416" width="80" height="10" rx="2" fill="#1565c0"/>
+  </g>
+
+  <text x="390" y="464" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#666666">等待时间随失败次数翻倍（二进制指数退避）</text>
+
+  <!-- 图例（底部水平条带） -->
+  <line x1="60" y1="516" x2="720" y2="516" stroke="#42a5f5" stroke-width="1"/>
+  <path d="M82,532 L108,532" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="126" y="536" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">信号发送</text>
+  <path d="M223,532 L217.7,533.5 L220.4,538.4 L215.5,535.7 L214,541 L212.5,535.7 L207.6,538.4 L210.3,533.5 L205,532 L210.3,530.5 L207.6,525.6 L212.5,528.3 L214,523 L215.5,528.3 L220.4,525.6 L217.7,530.5 Z" fill="#ef5350"/>
+  <text x="232" y="536" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">冲突点</text>
+  <path d="M297,532 L323,532" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="7,3" marker-end="url(#arrow-red)"/>
+  <text x="341" y="536" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">停止并退避</text>
+  <path d="M432,532 L458,532" fill="none" stroke="#42a5f5" stroke-width="2" stroke-dasharray="7,3" marker-end="url(#arrow-light)"/>
+  <text x="476" y="536" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">重新侦听、重试</text>
+  <line x1="602" y1="532" x2="638" y2="532" stroke="#0d47a1" stroke-width="8" stroke-linecap="round"/>
+  <text x="646" y="536" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">共享信道</text>
+</svg>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 800" width="780" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
+  <title>端口朝谁开：监听 0.0.0.0 与 127.0.0.1 的暴露面对照</title>
+  <desc>同一台服务器（虚构地址：lo 127.0.0.1、eth0 192.168.42.20、eth1 203.0.113.10）上，服务监听 0.0.0.0 时回环、内网、公网全部可达（公网可达标红，表示暴露）；监听 127.0.0.1 时只有本机经回环可达，内网与公网连接均被拒（红色虚线加叉号）。</desc>
+
+  <defs>
+    <marker id="arr-blue" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#1565c0"/>
+    </marker>
+    <marker id="arr-red" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#ef5350"/>
+    </marker>
+  </defs>
+
+  <rect width="780" height="800" fill="#fafafa"/>
+
+  <text x="390" y="36" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="bold" fill="#0d47a1">端口朝谁开：监听 0.0.0.0 与 127.0.0.1 的暴露面对照</text>
+
+  <!-- ================= 对照 A：0.0.0.0 ================= -->
+  <text x="40" y="72" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#0d47a1">对照 A：服务监听 0.0.0.0:8080（绑定所有网卡）</text>
+
+  <!-- 服务器 zone A -->
+  <rect x="40" y="100" width="420" height="240" rx="8" fill="none" stroke="#42a5f5" stroke-width="1"/>
+  <rect x="155" y="92" width="190" height="20" rx="2" fill="#fafafa"/>
+  <text x="250" y="106" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">服务器 srv01（虚构地址）</text>
+
+  <!-- 连线层 A（先线后框之外部/内部连线均顶边） -->
+  <!-- 内网主机 → eth0：可达（蓝实线） -->
+  <path d="M540,150 L450,150" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <!-- 公网扫描器 → eth1：可达（红实线，暴露） -->
+  <path d="M540,200 L450,200" fill="none" stroke="#ef5350" stroke-width="2" marker-end="url(#arr-red)"/>
+  <!-- 网卡 → 服务 -->
+  <path d="M280,150 L220,150" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <path d="M280,200 L220,200" fill="none" stroke="#ef5350" stroke-width="2" marker-end="url(#arr-red)"/>
+  <path d="M280,250 L220,250" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <!-- 本机进程 → lo -->
+  <path d="M360,288 L360,275" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arr-blue)"/>
+
+  <!-- 服务 A -->
+  <rect x="70" y="140" width="140" height="120" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="2"/>
+  <text x="140" y="180" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#0d47a1">web 服务</text>
+  <text x="140" y="204" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">监听 0.0.0.0:8080</text>
+  <text x="140" y="228" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">所有网卡接收</text>
+
+  <!-- 网卡 chips A -->
+  <rect x="280" y="135" width="160" height="30" rx="4" fill="#ffffff" stroke="#1565c0" stroke-width="1.2"/>
+  <text x="360" y="154" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">eth0 192.168.42.20</text>
+  <rect x="280" y="185" width="160" height="30" rx="4" fill="rgba(239,83,80,0.08)" stroke="#ef5350" stroke-width="2"/>
+  <text x="360" y="204" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">eth1 203.0.113.10</text>
+  <rect x="280" y="235" width="160" height="30" rx="4" fill="#ffffff" stroke="#1565c0" stroke-width="1.2"/>
+  <text x="360" y="254" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">lo 127.0.0.1</text>
+
+  <!-- 本机进程 A -->
+  <rect x="280" y="288" width="160" height="40" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+  <text x="360" y="313" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#0d47a1">本机进程</text>
+  <rect x="264" y="266" width="88" height="18" rx="2" fill="#fafafa"/>
+  <text x="346" y="279" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">经 lo 可达</text>
+
+  <!-- 外部网络 A -->
+  <text x="640" y="95" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">外部网络（虚构地址）</text>
+  <rect x="540" y="127" width="200" height="46" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+  <text x="640" y="147" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">内网主机</text>
+  <text x="640" y="165" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">192.168.42.30</text>
+  <rect x="540" y="177" width="200" height="46" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+  <text x="640" y="197" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">公网扫描器</text>
+  <text x="640" y="215" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">198.51.100.7</text>
+
+  <!-- 暴露标注 -->
+  <rect x="461" y="172" width="58" height="20" rx="2" fill="#fafafa"/>
+  <text x="490" y="186" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#ef5350">暴露！</text>
+
+  <text x="390" y="372" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#ef5350">结果：回环、内网、公网全部可达 —— 端口暴露给所有人</text>
+
+  <line x1="40" y1="396" x2="740" y2="396" stroke="#e0e0e0" stroke-width="1"/>
+
+  <!-- ================= 对照 B：127.0.0.1 ================= -->
+  <text x="40" y="430" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#0d47a1">对照 B：服务监听 127.0.0.1:8080（仅回环）</text>
+
+  <!-- 服务器 zone B -->
+  <rect x="40" y="460" width="420" height="240" rx="8" fill="none" stroke="#42a5f5" stroke-width="1"/>
+  <rect x="155" y="452" width="190" height="20" rx="2" fill="#fafafa"/>
+  <text x="250" y="466" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">服务器 srv01（虚构地址）</text>
+
+  <!-- 连线层 B -->
+  <!-- 外部连接被拒：红虚线止于 zone 边界 + 叉号 -->
+  <path d="M540,510 L462,510" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="6,4"/>
+  <path d="M540,560 L462,560" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="6,4"/>
+  <rect x="489" y="499" width="22" height="20" rx="2" fill="#fafafa"/>
+  <text x="500" y="515" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#ef5350">✗</text>
+  <rect x="489" y="549" width="22" height="20" rx="2" fill="#fafafa"/>
+  <text x="500" y="565" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#ef5350">✗</text>
+  <!-- eth0 / eth1 上无监听：短虚线 + 叉号 -->
+  <path d="M280,510 L254,510" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="242" y="515" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#ef5350">✗</text>
+  <path d="M280,560 L254,560" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="242" y="565" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#ef5350">✗</text>
+  <!-- lo → 服务：唯一可达路径（蓝实线） -->
+  <path d="M280,610 L220,610" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <!-- 本机进程 → lo -->
+  <path d="M360,648 L360,635" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arr-blue)"/>
+
+  <!-- 服务 B -->
+  <rect x="70" y="500" width="140" height="120" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="2"/>
+  <text x="140" y="540" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="15" font-weight="bold" fill="#0d47a1">web 服务</text>
+  <text x="140" y="564" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">监听 127.0.0.1:8080</text>
+  <text x="140" y="588" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">仅回环接收</text>
+
+  <!-- 网卡 chips B -->
+  <rect x="280" y="495" width="160" height="30" rx="4" fill="#ffffff" stroke="#1565c0" stroke-width="1.2"/>
+  <text x="360" y="514" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">eth0 192.168.42.20</text>
+  <rect x="280" y="545" width="160" height="30" rx="4" fill="#ffffff" stroke="#1565c0" stroke-width="1.2"/>
+  <text x="360" y="564" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">eth1 203.0.113.10</text>
+  <rect x="280" y="595" width="160" height="30" rx="4" fill="#ffffff" stroke="#1565c0" stroke-width="1.2"/>
+  <text x="360" y="614" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">lo 127.0.0.1</text>
+
+  <!-- 本机进程 B -->
+  <rect x="280" y="648" width="160" height="40" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+  <text x="360" y="673" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#0d47a1">本机进程</text>
+  <rect x="264" y="626" width="88" height="18" rx="2" fill="#fafafa"/>
+  <text x="346" y="639" text-anchor="end" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">经 lo 可达</text>
+
+  <!-- 外部网络 B -->
+  <text x="640" y="455" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#666666">外部网络（虚构地址）</text>
+  <rect x="540" y="487" width="200" height="46" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+  <text x="640" y="507" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">内网主机</text>
+  <text x="640" y="525" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">192.168.42.30</text>
+  <rect x="540" y="537" width="200" height="46" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+  <text x="640" y="557" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">公网扫描器</text>
+  <text x="640" y="575" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#1565c0">198.51.100.7</text>
+
+  <text x="390" y="732" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="bold" fill="#0d47a1">结果：只有本机经 lo 可达，外部连接全部被拒</text>
+
+  <!-- 图例（底部水平条带） -->
+  <line x1="60" y1="760" x2="720" y2="760" stroke="#42a5f5" stroke-width="1"/>
+  <path d="M96,774 L124,774" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arr-blue)"/>
+  <text x="140" y="778" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">蓝实线：连接可达（本机 / 内网）</text>
+  <path d="M356,774 L384,774" fill="none" stroke="#ef5350" stroke-width="2" marker-end="url(#arr-red)"/>
+  <text x="400" y="778" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">红实线：公网可达 · 暴露</text>
+  <path d="M566,774 L594,774" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="602" y="778" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">红虚线 + ✗：连接被拒</text>
+</svg>

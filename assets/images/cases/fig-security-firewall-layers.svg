@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 600" width="780" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
+  <title>防火墙工具链的分层关系</title>
+  <desc>自上而下三层：发行版前端 firewalld 与 ufw（界面层）、用户态工具 nftables 与 iptables（往内核写规则）、内核态 netfilter（真正收包并做判断：放行、丢弃或改写）。竖向箭头表示规则写入的依赖关系，底部横向箭头表示进出网卡的数据包流向。</desc>
+
+  <defs>
+    <marker id="arrow-dep" markerWidth="8" markerHeight="10" refX="0" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,5 L0,10 Z" fill="#0d47a1"/>
+    </marker>
+    <marker id="arrow-flow" markerWidth="8" markerHeight="10" refX="0" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L8,5 L0,10 Z" fill="#1565c0"/>
+    </marker>
+  </defs>
+
+  <rect width="780" height="600" fill="#fafafa"/>
+
+  <text x="390" y="44" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="bold" fill="#0d47a1">防火墙工具链的分层关系</text>
+
+  <!-- ===== 第一层：发行版前端（界面层） ===== -->
+  <text x="84" y="118" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">发行版前端</text>
+  <text x="84" y="138" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">（界面层）</text>
+
+  <g>
+    <rect x="144" y="82" width="244" height="80" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+    <text x="266" y="110" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#0d47a1">firewalld</text>
+    <text x="266" y="130" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">Red Hat 系发行版</text>
+    <text x="266" y="150" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">按区域（zone）分组管理</text>
+  </g>
+
+  <g>
+    <rect x="420" y="82" width="244" height="80" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+    <text x="542" y="110" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#0d47a1">ufw</text>
+    <text x="542" y="130" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">Ubuntu / Debian 系</text>
+    <text x="542" y="150" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">命令简单，无区域概念</text>
+  </g>
+
+  <!-- 依赖箭头：前端 → 用户态工具（尖端顶在目标框上边） -->
+  <line x1="266" y1="162" x2="266" y2="196" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-dep)"/>
+  <line x1="542" y1="162" x2="542" y2="196" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-dep)"/>
+
+  <!-- ===== 第二层：用户态工具 ===== -->
+  <text x="84" y="240" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">用户态工具</text>
+  <text x="84" y="260" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">（写规则）</text>
+
+  <g>
+    <rect x="144" y="204" width="244" height="80" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+    <text x="266" y="232" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#0d47a1">nftables</text>
+    <text x="266" y="252" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">新一代用户态工具</text>
+    <text x="266" y="272" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">IPv4 / IPv6 共用语法</text>
+  </g>
+
+  <g>
+    <rect x="420" y="204" width="244" height="80" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+    <text x="542" y="232" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="bold" fill="#0d47a1">iptables</text>
+    <text x="542" y="252" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">传统用户态工具</text>
+    <text x="542" y="272" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">规则按表和链组织</text>
+  </g>
+
+  <!-- 依赖箭头：用户态工具 → netfilter -->
+  <line x1="266" y1="284" x2="266" y2="318" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-dep)"/>
+  <line x1="542" y1="284" x2="542" y2="318" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-dep)"/>
+
+  <!-- ===== 第三层：内核态 netfilter（焦点层，实心主色） ===== -->
+  <text x="84" y="360" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">内核态</text>
+  <text x="84" y="380" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">（最终判断）</text>
+
+  <g>
+    <rect x="144" y="326" width="520" height="80" rx="6" fill="#0d47a1"/>
+    <text x="404" y="356" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="18" font-weight="bold" fill="#ffffff">netfilter</text>
+    <text x="404" y="378" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#ffffff">内核里真正收包并做判断的那一层</text>
+    <text x="404" y="398" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#ffffff">对数据包：放行 / 丢弃 / 改写</text>
+  </g>
+
+  <!-- ===== 底部：网络流量（横向箭头） ===== -->
+  <rect x="170" y="420" width="172" height="24" rx="2" fill="#fafafa"/>
+  <text x="256" y="436" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">数据包流入（来自网卡）</text>
+  <line x1="144" y1="456" x2="360" y2="456" stroke="#1565c0" stroke-width="2" marker-end="url(#arrow-flow)"/>
+
+  <rect x="432" y="420" width="240" height="24" rx="2" fill="#fafafa"/>
+  <text x="552" y="436" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#1565c0">检查后决定去向：放行 / 改写 / 丢弃</text>
+  <line x1="440" y1="456" x2="656" y2="456" stroke="#1565c0" stroke-width="2" marker-end="url(#arrow-flow)"/>
+
+  <!-- 注释 -->
+  <text x="390" y="500" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" fill="#0d47a1">注：上面两层只是界面与语法——最终收包并做判断的，是最下面内核里的 netfilter</text>
+
+  <!-- 图例（底部水平条带） -->
+  <line x1="60" y1="524" x2="720" y2="524" stroke="#42a5f5" stroke-width="1"/>
+  <line x1="176" y1="544" x2="208" y2="544" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-dep)"/>
+  <text x="228" y="548" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">规则写入（上层依赖下层）</text>
+  <line x1="424" y1="544" x2="456" y2="544" stroke="#1565c0" stroke-width="2" marker-end="url(#arrow-flow)"/>
+  <text x="480" y="548" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#0d47a1">数据包流向（进出网卡）</text>
+</svg>

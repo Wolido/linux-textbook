@@ -21,25 +21,9 @@
         <li><a href="preface.html">序言</a></li>
         <li>
           <a href="chapter-01.html">第一章 Linux的基础知识</a>
-          <ul>
-            <li><a href="chapter-01.html#unix与linux">Unix与Linux</a></li>
-            <li><a href="chapter-01.html#linux操作系统的用途">Linux操作系统的用途</a></li>
-            <li><a href="chapter-01.html#linux与windows为什么要用linux">Linux 与 Windows：为什么要用 Linux？</a></li>
-            <li><a href="chapter-01.html#linux与开源">Linux与开源</a></li>
-            <li><a href="chapter-01.html#linux操作系统的发行版">Linux操作系统的发行版</a></li>
-          </ul>
         </li>
         <li>
           <a href="chapter-02.html">第二章 Shell 与命令行</a>
-          <ul>
-            <li><a href="chapter-02.html#为什么还需要命令行">为什么还需要命令行？</a></li>
-            <li><a href="chapter-02.html#shell终端bash与配置文件">Shell、终端、Bash 与配置文件</a></li>
-            <li><a href="chapter-02.html#远程连接ssh与密钥">远程连接：SSH 与密钥</a></li>
-            <li><a href="chapter-02.html#文件系统从根目录开始的世界">文件系统：从 / 开始的世界</a></li>
-            <li><a href="chapter-02.html#常用命令工具箱">常用命令工具箱</a></li>
-            <li><a href="chapter-02.html#管道与重定向命令行的乐高">管道与重定向：命令行的“乐高”</a></li>
-            <li><a href="chapter-02.html#迷路了怎么办求助与好习惯">迷路了怎么办？求助与好习惯</a></li>
-          </ul>
         </li>
         <li>
           <a href="chapter-03.html">第三章 用户、权限与软件安装</a>
@@ -871,7 +855,7 @@ alice:x:1001:1001:Alice,,,:/home/alice:/bin/bash</span></code></pre>
 
     <h3 id="环境变量的常见用途">环境变量的常见用途</h3>
 
-    <p>到这里，你已经会查环境变量（<code>echo $变量名</code>）、会设环境变量（<code>export</code>）、也会让它永久生效（写进 <code>~/.bashrc</code>）了。但只学语法容易觉得无聊：不就是一堆大写的名字吗？这一节换个角度，看看这些变量实际能解决什么问题。
+    <p>到这里，你已经会查环境变量（<code>echo $变量名</code>）、会设环境变量（<code>export</code>）、也会让它永久生效（写进 <code>~/.bashrc</code>）了。但只学语法容易觉得无聊：不就是一堆大写的名字吗？这一节换个角度，看看这些变量实际能解决什么问题。</p>
 
     <p>有一点需要先明确：环境变量会<strong>沿着进程链一路传下去</strong>。你在 <code>~/.bashrc</code> 里设了一个变量，打开终端时 Shell 读到它；你在 Shell 里启动一个 Python 脚本，脚本继承它；脚本里又调用了 PyTorch，PyTorch 也继承它。谁也不认识谁，但配置一路传到了最后一环。</p>
 
@@ -882,7 +866,7 @@ alice:x:1001:1001:Alice,,,:/home/alice:/bin/bash</span></code></pre>
 
     <p>你没有改 <code>train.py</code> 的任何代码，也没有通知 PyTorch。但 PyTorch 启动时会去读这个变量，然后只用 2 号卡。这就是环境变量的工作方式：<strong>程序之间不直接通信，但都看同一块黑板</strong>——信息写在那里，谁需要谁自己去读。</p>
 
-    <h4><code>EDITOR</code>：git 弹出什么编辑器由它决定</h4>
+    <h4 id="editor"><code>EDITOR</code>：git 弹出什么编辑器由它决定</h4>
 
     <p>第一次跑 <code>git commit</code>（不带 <code>-m</code>）时，git 需要打开一个编辑器让你写提交信息。它打开什么？答案就是看 <code>EDITOR</code> 和 <code>VISUAL</code> 这两个变量。没设的话一般是 nano 或 vim，很多人第一次看到 vim 界面直接卡住，不知道怎么退出。</p>
 
@@ -892,7 +876,7 @@ alice:x:1001:1001:Alice,,,:/home/alice:/bin/bash</span></code></pre>
 
     <p><code>--wait</code> 的意思是让 VS Code 等你保存关闭文件之后，git 才继续。从此以后 <code>git commit</code>、<code>crontab -e</code> 这类需要编辑器的命令，都会弹 VS Code。</p>
 
-    <h4>代理变量：配一次，所有工具都走代理</h4>
+    <h4 id="代理变量">代理变量：配一次，所有工具都走代理</h4>
 
     <p>有些课题组的服务器在内网，访问外网要走代理。如果每个工具都单独配一遍——git 配一遍、pip 配一遍、wget 配一遍——那是噩梦。实际上它们全都认同一组变量：</p>
 
@@ -903,7 +887,7 @@ alice:x:1001:1001:Alice,,,:/home/alice:/bin/bash</span></code></pre>
 
     <p>不过这里要提醒一句<strong>安全问题</strong>：如果代理需要认证，有人会把密码写进变量里，比如 <code>http://user:password@proxy:8080</code>。注意，环境变量对你机器上的其他进程不是秘密——任何你运行的程序都能读到全部环境变量，<code>env</code> 命令一敲也全列出来。所以别把含密码的变量写进要提交的脚本或截图里，更别写进 git 仓库。</p>
 
-    <h4><code>LANG</code>：语言设置与临时覆盖</h4>
+    <h4 id="lang"><code>LANG</code>：语言设置与临时覆盖</h4>
 
     <p><code>LANG</code> 控制语言和区域习惯：报错信息用中文还是英文、日期怎么写、排序按拼音还是按字母。比如系统设成 <code>zh_CN.UTF-8</code> 时，<code>date</code> 的输出是中文格式：</p>
 
@@ -919,7 +903,7 @@ alice:x:1001:1001:Alice,,,:/home/alice:/bin/bash</span></code></pre>
 
     <p>只有这一条 <code>date</code> 用了英文环境，跑完就恢复，全局的 <code>LANG</code> 纹丝不动。这个技巧对调试特别有用：<code>LANG=C some_command</code> 让某条命令输出英文报错，方便复制去搜索。同样，<code>TZ=Asia/Shanghai date</code> 可以临时用上海时区看时间，不改系统时区。</p>
 
-    <h4>科研场景里的老三样</h4>
+    <h4 id="科研场景里的老三样">科研场景里的老三样</h4>
 
     <p>回到科研场景，有三个环境变量你迟早会打交道：<code>PYTHONPATH</code>、<code>LD_LIBRARY_PATH</code> 和 <code>CUDA_HOME</code>。它们的角色和 <code>PATH</code> 一模一样，只是服务的对象不同：<code>PATH</code> 告诉 Shell 去哪找命令，<code>PYTHONPATH</code> 告诉 Python 去哪找模块，<code>LD_LIBRARY_PATH</code> 告诉程序运行时去哪找动态链接库，<code>CUDA_HOME</code> 告诉 GPU 程序 CUDA 装在哪。</p>
 

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 560" width="780" style="max-width:100%;height:auto;" preserveAspectRatio="xMidYMid meet">
+  <title>ARP 与交换机：同一局域网内的 ARP 广播/单播与跨网段默认网关转发示意</title>
+  <desc>同一局域网内，主机 A 经交换机广播 ARP 请求询问 192.168.42.20，主机 B 单播应答自己的 MAC 地址；跨网段时主机 A 把数据包交给默认网关（路由器 192.168.42.1），由路由器按 IP 地址转发。</desc>
+  <defs>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#ef5350"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#1565c0"/>
+    </marker>
+    <marker id="arrow-dark" viewBox="0 0 10 10" refX="0" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#0d47a1"/>
+    </marker>
+  </defs>
+
+  <rect width="780" height="560" fill="#fafafa"/>
+
+  <!-- 左半：同一局域网 zone -->
+  <rect x="24" y="48" width="476" height="404" rx="8" fill="none" stroke="#42a5f5" stroke-width="1"/>
+  <rect x="147" y="38" width="230" height="20" rx="2" fill="#fafafa"/>
+  <text x="262" y="52" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#1565c0">同一局域网内（192.168.42.0/24）</text>
+
+  <!-- 右半：跨网段 zone -->
+  <rect x="536" y="48" width="220" height="404" rx="8" fill="none" stroke="#42a5f5" stroke-width="1" stroke-dasharray="4,3"/>
+  <rect x="625" y="38" width="54" height="20" rx="2" fill="#fafafa"/>
+  <text x="652" y="52" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="14" fill="#1565c0">跨网段</text>
+
+  <!-- 连线（先线后框原则：此处连线端点均顶在框边上，z 序不影响） -->
+  <!-- ① ARP 广播：A → 交换机 → B（红色虚线，向下） -->
+  <path d="M140,176 L140,214" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="7,3" marker-end="url(#arrow-red)"/>
+  <path d="M140,296 L140,334" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="7,3" marker-end="url(#arrow-red)"/>
+  <!-- ② ARP 单播应答：B → 交换机 → A（蓝色实线，向上） -->
+  <path d="M172,344 L172,306" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <path d="M172,224 L172,186" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <!-- ③ 跨网段：A 把数据包交给默认网关（深蓝实线，向右） -->
+  <path d="M256,134 L578,134" fill="none" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-dark)"/>
+
+  <!-- 主机 A -->
+  <g>
+    <rect x="56" y="92" width="200" height="84" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+    <text x="156" y="118" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="15" font-weight="bold" fill="#0d47a1">主机 A</text>
+    <text x="156" y="140" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="13" fill="#1565c0">IP 192.168.42.10</text>
+    <text x="156" y="162" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="13" fill="#1565c0">MAC 52:54:00:ab:cd:ef</text>
+  </g>
+
+  <!-- 交换机 -->
+  <g>
+    <rect x="76" y="224" width="160" height="72" rx="6" fill="rgba(66,165,245,0.15)" stroke="#1565c0" stroke-width="1.5"/>
+    <text x="156" y="252" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="15" font-weight="bold" fill="#0d47a1">交换机</text>
+    <text x="156" y="276" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#1565c0">按 MAC 地址转发</text>
+  </g>
+
+  <!-- 主机 B -->
+  <g>
+    <rect x="56" y="344" width="200" height="84" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+    <text x="156" y="368" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="15" font-weight="bold" fill="#0d47a1">主机 B</text>
+    <text x="156" y="390" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="13" fill="#1565c0">IP 192.168.42.20</text>
+    <text x="156" y="412" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="13" fill="#1565c0">MAC 52:54:00:12:34:56</text>
+  </g>
+
+  <!-- 路由器 / 默认网关 -->
+  <g>
+    <rect x="588" y="84" width="128" height="100" rx="6" fill="#ffffff" stroke="#0d47a1" stroke-width="1.5"/>
+    <text x="652" y="108" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="15" font-weight="bold" fill="#0d47a1">路由器</text>
+    <text x="652" y="128" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#1565c0">默认网关</text>
+    <text x="652" y="148" text-anchor="middle" font-family="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Courier New',monospace" font-size="13" fill="#1565c0">192.168.42.1</text>
+    <text x="652" y="168" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#1565c0">按 IP 地址转发</text>
+  </g>
+
+  <!-- 箭头标签（衬底 + 与箭头同色） -->
+  <rect x="188" y="190" width="216" height="22" rx="2" fill="#fafafa"/>
+  <text x="196" y="205" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#ef5350">① 广播：谁是 192.168.42.20？</text>
+
+  <rect x="188" y="310" width="248" height="22" rx="2" fill="#fafafa"/>
+  <text x="196" y="325" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#1565c0">② 单播应答：我是 52:54:00:12:34:56</text>
+
+  <rect x="300" y="102" width="180" height="22" rx="2" fill="#fafafa"/>
+  <text x="390" y="117" text-anchor="middle" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">③ 不在本网段，交给默认网关</text>
+
+  <!-- 图例（底部水平条带） -->
+  <line x1="60" y1="488" x2="720" y2="488" stroke="#42a5f5" stroke-width="1"/>
+  <path d="M151,512 L179,512" fill="none" stroke="#ef5350" stroke-width="2" stroke-dasharray="7,3" marker-end="url(#arrow-red)"/>
+  <text x="195" y="516" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">ARP 广播</text>
+  <path d="M283,512 L311,512" fill="none" stroke="#1565c0" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <text x="327" y="516" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">ARP 单播应答</text>
+  <path d="M441,512 L469,512" fill="none" stroke="#0d47a1" stroke-width="2" marker-end="url(#arrow-dark)"/>
+  <text x="485" y="516" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="13" fill="#0d47a1">跨网段：交给默认网关</text>
+</svg>
