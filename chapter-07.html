@@ -46,6 +46,7 @@
             <li><a href="chapter-07.html#路由表数据包怎么知道往哪走">路由表：数据包怎么知道往哪走</a></li>
             <li><a href="chapter-07.html#dns域名解析">DNS：域名解析</a></li>
             <li><a href="chapter-07.html#端口服务与防火墙">端口、服务与防火墙</a></li>
+            <li><a href="chapter-07.html#排障速查表">排障速查表</a></li>
           </ul>
         </li>
         <li>
@@ -290,7 +291,7 @@
 
     <h3 id="子网掩码划分大院里的小院子">子网掩码：划分大院里的小院子</h3>
 
-    <p>子网掩码用来区分 IP 地址的哪一部分代表“哪个院子”，哪一部分代表“院子里的哪一户”。写成 <code>255.255.255.0</code>，或者用 CIDR 表示 <code>/24</code>。</p>
+    <p>子网掩码用来区分 IP 地址的哪一部分代表“哪个院子”，哪一部分代表“院子里的哪一户”。写成 <code>255.255.255.0</code>，或者用 CIDR 表示 <code>/24</code>。CIDR 的全称是无类别域间路由（Classless Inter-Domain Routing），它用前缀位数代替过去按 A、B、C 类划分掩码的老做法：<code>/24</code> 就等于 <code>255.255.255.0</code>，位数少一位，网段就大一倍，<code>/23</code> 相当于把两个相邻的 <code>/24</code> 并成一个，主机数约 510 台。</p>
 
     <p>比如地址 <code>192.168.42.10/24</code>，前 24 位是网络号，相当于“大院”；后 8 位是主机号，相当于“户号”。同一子网内的设备可以直接通信；跨子网则需要经过网关转发。</p>
 
@@ -307,7 +308,7 @@
 
     <p>这里 <code>192.168.42.10/24</code> 就是本机地址和子网掩码的简写。</p>
 
-    <p>这段输出里还有几个词值得交代。<code>mtu 1500</code> 是最大传输单元，这些数据被装进一个个帧，每个帧最多能装 1500 字节。<code>qdisc fq_codel</code> 是网卡的排队规则，网卡来不及发送时，数据包先在这里排队，fq_codel 是 Linux 常用的公平排队算法，能避免一条连接把队列占满。</p>
+    <p>这段输出里还有几个词值得交代。<code>mtu 1500</code> 是最大传输单元，这些数据被装进一个个帧，每个帧最多能装 1500 字节。<code>qdisc fq_codel</code> 是网卡的排队规则，网卡来不及发送时，数据包先在这里排队，fq_codel 是 Linux 常用的公平排队算法，能避免一条连接把队列占满。输出里剩下的几个词也顺带交代：<code>qlen 1000</code> 是发送队列长度；尖括号里的 <code>BROADCAST</code> 能发广播、<code>MULTICAST</code> 支持组播、<code>UP</code> 表示接口已启用、<code>LOWER_UP</code> 表示物理链路已就绪。地址那一行的 <code>scope global</code> 说明地址全局有效，<code>noprefixroute</code> 表示不自动生成本前缀的路由，<code>preferred_lft</code> 是租约内优先使用这个地址的时限。</p>
 
     <p><code>link/ether 52:54:00:ab:cd:ef</code> 是这块网卡的 MAC 地址，也就是前面链路层一节里说的那个出厂编号。两行里各有一个 <code>brd</code>，它们分属不同的层：<code>ff:ff:ff:ff:ff:ff</code> 是链路层的广播地址，发给它等于发给局域网里所有设备，ARP 发问“谁是 192.168.42.20”时用的就是它；<code>192.168.42.255</code> 是 IP 层的本网段广播地址，发往这个 IP 的数据包会被本网段所有设备收到，是另一回事。</p>
 
@@ -349,11 +350,11 @@
 192.168.42.0/24 dev eth0 proto kernel scope link src 192.168.42.10 metric 100</span>
 </code></pre>
 
-    <p>第一行是默认路由：所有不知道往哪走的数据包，都交给 <code>192.168.42.1</code>，从 <code>eth0</code> 出去。第二行是直连路由：目的地在 <code>192.168.42.0/24</code> 这个子网内的，直接通过 <code>eth0</code> 发送，不需要网关。</p>
+    <p>第一行是默认路由：所有不知道往哪走的数据包，都交给 <code>192.168.42.1</code>，从 <code>eth0</code> 出去。第二行是直连路由：目的地在 <code>192.168.42.0/24</code> 这个子网内的，直接通过 <code>eth0</code> 发送，不需要网关。行尾的 <code>proto dhcp</code> 说明这条默认路由由 DHCP 下发，<code>proto kernel</code> 说明直连路由由内核自动生成，<code>metric</code> 是路由优先级，数字越小越优先。</p>
 
     <h3 id="默认网关出门的默认方向">默认网关：出门的默认方向</h3>
 
-    <p>默认网关通常是本地子网的第一个地址，比如 <code>192.168.42.1</code>。它一般是路由器或三层交换机的内网接口。数据包如果目的地不在本地子网，就会交给它，由它决定下一步。</p>
+    <p>默认网关通常是本地子网的第一个地址，比如 <code>192.168.42.1</code>。它一般是路由器或三层交换机的内网接口。数据包如果目的地不在本地子网，就会交给它，由它决定下一步。三层交换机本质还是交换机，只是芯片里带了路由功能，能替小型路由器做网段之间的转发。</p>
 
     <p>在配置静态 IP 时，网关填错是最常见的错误之一。比如把网关写成 <code>192.168.42.254</code>，而那台设备实际上在 <code>192.168.42.1</code>，结果就是本机能和局域网通信，但上不了互联网。</p>
 
@@ -369,7 +370,18 @@
       <li>ping 域名：比如 <code>ping datasets.materials-lab.example</code>，确认 DNS 正常。</li>
     </ol>
 
-    <p>这几条 ping 命令用的是 ICMP 协议，它和 IP 一起工作在网络层。TCP、UDP 负责搬数据，ICMP 不搬数据，只负责报告：把“能到”“不到”“目的地不可达”这样的消息带回来。</p>
+    <p>这几条 ping 命令用的是 ICMP 协议，它和 IP 一起工作在网络层。TCP、UDP 负责搬数据，ICMP 不搬数据，只负责报告：把“能到”“不到”“目的地不可达”这样的消息带回来。<code>ping</code> 输出里的 <code>time</code> 是往返时延（RTT），丢包百分比反映链路质量；时延高但能通，和完全不通是两类问题。</p>
+
+    <p><code>ping</code> 只回答“通不通”，看不出断在哪一跳。<code>traceroute</code> 把路径拆开：先把 TTL 设成 1，第一台路由器收到后把包丢掉，回一条 ICMP 超时消息；再把 TTL 设成 2，第二台路由器做同样的事……这样一路试下去，整条路径就被逐跳画了出来。后面排查“连接超时”要靠它定位断点，比从网关开始逐段 <code>ping</code> 快得多。</p>
+
+<pre><code class="terminal"><span class="prompt">student@lab-workstation:~$</span> <span class="command">traceroute datasets.materials-lab.example</span>
+<span class="output">traceroute to datasets.materials-lab.example (198.51.100.7), 30 hops max, 60 byte packets
+ 1  192.168.42.1 (192.168.42.1)  1.203 ms  1.150 ms  1.121 ms
+ 2  * * *
+ 3  198.51.100.7 (198.51.100.7)  12.482 ms  12.401 ms  12.377 ms</span>
+</code></pre>
+
+    <p><code>* * *</code> 不一定是故障，有些路由器就是不回这种包。</p>
 
     <p>如果第四步能通但第五步不通，问题通常在 DNS；如果第三步就不通，问题在本地网络或网关；如果第三步通但第四步不通，可能是路由器、NAT 或上层网络故障。</p>
 
@@ -519,7 +531,7 @@ LISTEN  0       128     0.0.0.0:22          0.0.0.0:*          users:(("sshd",pi
 LISTEN  0       128     127.0.0.1:8080      0.0.0.0:*          users:(("python",pid=5678,fd=5))</span>
 </code></pre>
 
-    <p>这里 <code>0.0.0.0:22</code> 表示 SSH 服务在所有接口上监听 22 端口；<code>127.0.0.1:8080</code> 表示某个 Python 程序只在本地回环地址监听，外部机器连不上。</p>
+    <p>这里 <code>0.0.0.0:22</code> 表示 SSH 服务在所有接口上监听 22 端口；<code>127.0.0.1:8080</code> 表示某个 Python 程序只在本地回环地址监听，外部机器连不上。其中 <code>Recv-Q</code> / <code>Send-Q</code> 是接收、发送队列里堆积的字节数，长期不为零说明对端处理不过来。</p>
 
     <h3 id="ssh连不上端口防火墙selinux一起查">SSH 连不上？端口、防火墙、SELinux 一起查</h3>
 
@@ -531,7 +543,7 @@ LISTEN  0       128     127.0.0.1:8080      0.0.0.0:*          users:(("python",
       <li>SSH 服务没运行。在服务器上检查：<code>systemctl status sshd</code>。</li>
       <li>SSH 监听在非标准端口，但你还用默认 22。查看 <code>/etc/ssh/sshd_config</code> 里的 <code>Port</code> 配置。</li>
       <li>防火墙拦截了 22 端口。检查 <code>sudo firewall-cmd --list-ports</code> 或 <code>sudo ufw status</code>。</li>
-      <li>SELinux 或 AppArmor 限制。RHEL/CentOS 系尤其常见，必要时检查审计日志。</li>
+      <li>SELinux 或 AppArmor 限制。RHEL/CentOS 系尤其常见，必要时检查审计日志。它们和防火墙不是一回事，属于内核层的强制访问控制，管得更细，症状往往是端口在监听、防火墙也放行了，却仍然连不上。RHEL 系可以先用 <code>getenforce</code> 看它是开着还是关着。这几层怎么配合，延伸阅读<a href="cases/case-server-security.html">《服务器上的防线》</a>里讲了。</li>
       <li>路由器没做端口转发。如果目标机器在私网里，公网 IP 只是路由器，需要把 22 端口映射到私网机器。</li>
     </ol>
 
@@ -546,6 +558,53 @@ LISTEN  0       128     127.0.0.1:8080      0.0.0.0:*          users:(("python",
 </code></pre>
 
     <p>这里提醒一句：改 SSH 端口或防火墙前，最好先保留一个已经登录的会话，免得把自己锁在门外。</p>
+
+    <h2 id="排障速查表">排障速查表</h2>
+
+    <p>把这一章用到的命令收在一处，下次网络出问题照着敲就行。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>命令</th>
+          <th>看什么</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>ip link</code></td>
+          <td>网卡有没有启用。<code>UP</code> 是启用了，<code>DOWN</code> 就是没起来。</td>
+        </tr>
+        <tr>
+          <td><code>ip addr</code></td>
+          <td>本机有没有拿到地址。看 <code>inet</code> 那一行的 IP 和掩码，接口状态是不是 <code>UP</code>。</td>
+        </tr>
+        <tr>
+          <td><code>ip route</code></td>
+          <td>默认路由指向哪个网关。有 <code>default via</code> 就正常。</td>
+        </tr>
+        <tr>
+          <td><code>ping</code></td>
+          <td>目标通不通。看丢包百分比和 <code>time</code> 时延。</td>
+        </tr>
+        <tr>
+          <td><code>traceroute</code></td>
+          <td>断在哪一跳。逐跳看，<code>* * *</code> 那跳不一定有问题。</td>
+        </tr>
+        <tr>
+          <td><code>host</code> 与 <code>dig</code></td>
+          <td>域名能不能解析成 IP。返回 <code>Address</code> 就正常。</td>
+        </tr>
+        <tr>
+          <td><code>ss -tlnp</code></td>
+          <td>服务在哪个端口监听。看是 <code>0.0.0.0:22</code> 这种全局监听，还是 <code>127.0.0.1</code> 的本地监听。</td>
+        </tr>
+        <tr>
+          <td><code>ssh localhost</code></td>
+          <td>SSH 服务自己认不认。本地能连上，说明服务在跑。</td>
+        </tr>
+      </tbody>
+    </table>
 
     <p>网络这一层没有魔法，它由地址、路由、端口、协议和防火墙规则共同构成。理解了这些，下一次数据集下载失败、SSH 登录超时或者域名解析异常，你就能有条不紊地排查。下一章我们会继续沿着“机器与外界通信”这条线，看看 Web 和 API 是怎么在互联网上交换数据的。</p>
 
