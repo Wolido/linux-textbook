@@ -132,6 +132,10 @@
 
     <p>为什么非要打招呼？想象你给合作者打电话讨论数据。电话接通后，你不会张口就念数字，而是先确认线路：“喂，听得到吗？”对方说：“听得到，你呢？”你说：“我也听得到。”然后才谈正事。少一句都不行：只有前两句的话，你知道对方能听见你，但对方还不知道你能听见他，万一你的听筒是坏的，他讲了半天全白讲。</p>
 
+    <figure>
+      <img src="assets/images/chapter-07/fig-7.1-tcp-handshake-and-teardown.svg" alt="手绘插图：上格用打电话讲三次握手——客户端举着听筒说「我想和你建立连接」，服务器一边做记录一边回「我收到了，我也准备好了」，客户端再回「好，那我开始传了」；下格用挂电话讲四次挥手——两边依次发出 FIN 与 ACK，最后一句是「好，挂吧」。底部两个小图分别标注 TIME_WAIT 与 RST">
+      <figcaption>图7.1 打电话的比喻：上半格是三次握手，先确认线路再谈正事；下半格是四次挥手，说完再见再挂电话。本图为项目自绘，风格致敬 xkcd，与 xkcd 及 Randall Munroe 无关联</figcaption>
+    </figure>
     <p>TCP 的三次握手就是这三句话，只是换了个名字：</p>
 
     <ul>
@@ -143,8 +147,8 @@
     <p>三次握手完成，连接才算建立，两边才放心传数据。顺便你也理解了，为什么网络不通时 SSH 会卡在那儿转圈：它正卡在握手这一步，SYN 发出去了，SYN-ACK 迟迟没回来。</p>
 
     <figure>
-      <img src="assets/images/chapter-07/fig-7.1-tcp-three-way-handshake.svg" alt="TCP 三次握手时序：客户端发 SYN，服务器回 SYN-ACK，客户端再回 ACK，连接建立">
-      <figcaption>图7.1 TCP 三次握手：客户端发 SYN，服务器回 SYN-ACK，客户端再回 ACK，三次握手完成后连接建立</figcaption>
+      <img src="assets/images/chapter-07/fig-7.2-tcp-three-way-handshake.svg" alt="TCP 三次握手时序：客户端发 SYN，服务器回 SYN-ACK，客户端再回 ACK，连接建立">
+      <figcaption>图7.2 TCP 三次握手：客户端发 SYN，服务器回 SYN-ACK，客户端再回 ACK，三次握手完成后连接建立</figcaption>
     </figure>
 
     <h4 id="录取通知书的秘密序号确认与重传">录取通知书的秘密：序号、确认与重传</h4>
@@ -221,8 +225,8 @@
     <p>这个过程叫封装。它让每一层都能独立工作，也出了问题容易定位：如果是 IP 地址写错了，数据到不了对方；如果是端口写错了，数据到了对方但没人接收。</p>
 
     <figure>
-      <img src="assets/images/chapter-07/fig-7.2-tcp-ip-layers.svg" alt="TCP/IP 分层与数据封装示意">
-      <figcaption>图7.2 TCP/IP 分层与数据封装：应用层数据向下逐层添加头部，最终通过链路层发送</figcaption>
+      <img src="assets/images/chapter-07/fig-7.3-tcp-ip-layers.svg" alt="TCP/IP 分层与数据封装示意">
+      <figcaption>图7.3 TCP/IP 分层与数据封装：应用层数据向下逐层添加头部，最终通过链路层发送</figcaption>
     </figure>
 
     <h3 id="链路层以太网mac地址与arp">链路层：以太网、MAC 地址与 ARP</h3>
@@ -238,8 +242,8 @@
     <p>弄清了 MAC 的用法，交换机和路由器的分工也就清楚了。交换机守着一个局域网，每收到一帧就记下这一帧的源 MAC 是从哪个端口进来的；发送时先查表，目的 MAC 有记录就从对应端口单发，查不到才向其余端口各发一份，所以它常被叫作二层设备。路由器管的是网段之间，按 IP 地址决定下一步往哪走，属于三层设备。数据要跨网段时，主机把帧先发给默认网关：帧头的接收方填网关的 MAC，IP 头部里写的仍是最终目标，网关收到后拆开帧，再按 IP 继续转发。数据包每经过一个路由器，都要重新装一次帧，MAC 只在一段链路上有效，IP 才能一路跟着走到终点。这就是本章反复要用的一条主线：同一网段直连，跨网段必须走网关。上一节停在“交给交换机或路由器”这半句话，到这儿就接上了。</p>
 
     <figure>
-      <img src="assets/images/chapter-07/fig-7.3-arp-and-switch.svg" alt="同一局域网内主机通过 ARP 查询对方 MAC 地址并经交换机转发；跨网段时数据包交给默认网关">
-      <figcaption>图7.3 ARP 与交换机：局域网内主机广播查询对方 MAC、交换机按 MAC 转发，跨网段的数据包交给默认网关</figcaption>
+      <img src="assets/images/chapter-07/fig-7.4-arp-and-switch.svg" alt="同一局域网内主机通过 ARP 查询对方 MAC 地址并经交换机转发；跨网段时数据包交给默认网关">
+      <figcaption>图7.4 ARP 与交换机：局域网内主机广播查询对方 MAC、交换机按 MAC 转发，跨网段的数据包交给默认网关</figcaption>
     </figure>
 
     <p>最后交代这一层的载体。机柜里服务器之间多用网线，铜缆便宜、功耗低，几十米的距离足够；跨楼层、跨楼栋的主干走光纤，距离远、带宽高，也不受电磁干扰；笔记本、手机这类移动设备靠 Wi-Fi，插不上网线，代价是稳定性和速度都看环境。同一台服务器通常只插一根网线，很少同时挂 Wi-Fi，图的就是线路稳定、延迟可控。每种介质具体怎么传，这里不展开。这套东西是怎么从实验室长出来的，延伸阅读里有一篇<a href="cases/case-ethernet.html">以太网的五十年</a>。</p>
@@ -318,8 +322,8 @@
     <p>这就像一个大院只有一个对外门牌号，收发室根据内部登记表把邮件分发给各家。NAT 极大缓解了 IPv4 地址不足的问题，也让内部网络多了一层隔离。</p>
 
     <figure>
-      <img src="assets/images/chapter-07/fig-7.4-nat-public-private.svg" alt="公网 IP、私网 IP 与 NAT 关系示意">
-      <figcaption>图7.4 公网 IP、私网 IP 与 NAT：多台私网设备通过 NAT 共享一个公网地址访问互联网</figcaption>
+      <img src="assets/images/chapter-07/fig-7.5-nat-public-private.svg" alt="公网 IP、私网 IP 与 NAT 关系示意">
+      <figcaption>图7.5 公网 IP、私网 IP 与 NAT：多台私网设备通过 NAT 共享一个公网地址访问互联网</figcaption>
     </figure>
 
     <h3 id="实验场景实验室共享公网ip">实验场景：实验室共享公网 IP</h3>
@@ -386,8 +390,8 @@
     <p>这个过程对你是透明的，通常只需几十到几百毫秒。解析结果会被缓存，一段时间内重复访问同一个域名就不需要再问一遍。</p>
 
     <figure>
-      <img src="assets/images/chapter-07/fig-7.5-dns-resolution.svg" alt="DNS 解析流程：从客户端经本地 DNS、递归 DNS 到权威 DNS">
-      <figcaption>图7.5 DNS 解析流程：从客户端经本地 DNS、递归 DNS 到权威 DNS</figcaption>
+      <img src="assets/images/chapter-07/fig-7.6-dns-resolution.svg" alt="DNS 解析流程：从客户端经本地 DNS、递归 DNS 到权威 DNS">
+      <figcaption>图7.6 DNS 解析流程：从客户端经本地 DNS、递归 DNS 到权威 DNS</figcaption>
     </figure>
 
     <h3 id="本地缓存与etchosts">本地缓存与 /etc/hosts</h3>
